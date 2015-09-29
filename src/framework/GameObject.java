@@ -1,14 +1,16 @@
 package framework;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class GameObject { //Entity
+public class GameObject { // also known as an Entity
 	
 	//-1 invalid ID
 	private int id=-1;
 	private String tag="";
 	private ArrayList<Component> components = new ArrayList<Component>();
 	
+	//get unique id of this gameObject
 	public int getID(){
 		//if id hasn't been generated yet, generate it
 		if(id < 0) 
@@ -22,6 +24,7 @@ public class GameObject { //Entity
 		id=(int)(Math.random() * ((100 - 1) + 1)); //random number between 100-1
 	}
 	
+	//add a component to the gameObject
 	public void addComponent(Component c){
 		c.setGameObjectTag(tag);
 		components.add(c);
@@ -43,13 +46,24 @@ public class GameObject { //Entity
 				comps.add(c);
 	}
 	
+	public void init(){
+		for(Component c : components)
+			c.init();
+	}
+	
 	//update all components
 	public void update(){
 		System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
-		for(Component c: components)
+		for(Component c : components)
 			c.update();
 	}
 	
+	public void draw(Graphics g){
+		for(Component c : components)
+			c.draw(g);
+	}
+	
+	//get tag of this GameObject
 	public String getTag(){
 		return tag;
 	}
