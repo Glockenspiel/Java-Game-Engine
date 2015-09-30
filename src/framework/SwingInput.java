@@ -1,6 +1,5 @@
 package framework;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SwingInput implements Input{
@@ -11,29 +10,18 @@ public class SwingInput implements Input{
 	static boolean [] currentInput = new boolean[SIZE];
 	
 	
-	public void setCurrentInput(){
+	public SwingInput(){
 		//set all values to false by default
 		Arrays.fill(prevInput, Boolean.FALSE);
 		Arrays.fill(currentInput, Boolean.FALSE);
 	}
 	
 	@Override
-	public void update(ArrayList<Integer> currentKeysPressed){
+	public void update(){
 		//copy array of previous frame
 		prevInput = Arrays.copyOf(currentInput, currentInput.length); 
-		
-		//set all pressed values to false
+		//clear current input
 		Arrays.fill(currentInput, Boolean.FALSE);
-		
-		//set all keys pressed for this frame
-		for(int i=0; i<currentKeysPressed.size(); i++){
-			int keyIndex = currentKeysPressed.get(i);
-			
-			// check if valid key index
-			if(keyIndex<SIZE && keyIndex>=0){
-				currentInput[keyIndex]=true;
-			}
-		}
 	}
 	
 	//if current state of key is down
@@ -63,5 +51,14 @@ public class SwingInput implements Input{
 		if(prevInput[key] == true && currentInput[key] == false)
 			return true;
 		return false;
+	}
+
+	//add key pressed to current frame
+	@Override
+	public void addKey(int keyCode) {
+		//valid code
+		if(keyCode<SIZE && keyCode>=0){
+			currentInput[keyCode]=true;
+		}
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Input {
 	
-	void update(ArrayList<Integer> currentKeysPressed);
+	void update();
 	
 	//if current state of key is down
 	public boolean isKeyDown(char key);
@@ -17,4 +17,6 @@ public interface Input {
 		
 	//true if key released
 	public boolean iskeyReleased(char key);
+
+	void addKey(int keyCode);
 }

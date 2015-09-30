@@ -42,7 +42,7 @@ public class Game {
 		for(GameObject g : objs)
 			g.init();
 		
-		testIDs();
+		//testIDs();
 		start();
 	}
 	
@@ -70,11 +70,11 @@ public class Game {
 		//check initialisation was done corrrectly
 		checkInit();
 		
-		
+		int i=0;
 		//main loop
 		boolean flag=true;
 		while(flag){
-			input.update(window.getCurrentKeysPressed());
+			input.update();
 			//======================================
 			//this code should be described in the behaviour of a component and is 
 			//only here for and example of finding and modifying a component
@@ -103,6 +103,8 @@ public class Game {
 			window.drawScene();
 					
 			//only loop once for testing
+			i++;
+			if(i>100000)
 			flag=false;
 		}
 	}

@@ -57,7 +57,7 @@ public class GameObject { // also known as an Entity
 	
 	//update all components
 	public void update(){
-		System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
+		//System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
 		for(Component c : components)
 			c.update(this);
 	}

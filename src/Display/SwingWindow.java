@@ -1,12 +1,20 @@
 package Display;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import framework.Game;
+
 public class SwingWindow implements Window{
+	//create and update the window
+	//listen to input
+	
 	private JFrame f;
 	private SwingPanel panel;
+	ArrayList<Integer> keysPressed = new ArrayList<Integer>();
 	
 	public SwingWindow(){
 		f = new JFrame();
@@ -21,18 +29,4 @@ public class SwingWindow implements Window{
 	public void drawScene() {
 		f.repaint();
 	}
-
-
-	@Override
-	public ArrayList<Integer> getCurrentKeysPressed() {
-		//todo: add a key listener to panel to scan for input
-		ArrayList<Integer> keys = new ArrayList<Integer>();
-		
-		//hardcoded
-		keys.add((int)'W');
-		keys.add((int)'S');
-		
-		return keys;
-	}
-
 }

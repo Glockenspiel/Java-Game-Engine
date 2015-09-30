@@ -32,7 +32,7 @@ public class ExampleScript extends Component {
 	
 	@Override
 	public void update(GameObject obj) {
-		System.out.println("Updating Component:" + getType() + " in " + getGameObjectTag() + " num:" + num);
+		//System.out.println("Updating Component:" + getType() + " in " + getGameObjectTag() + " num:" + num);
 	}
 
 	@Override
