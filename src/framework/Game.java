@@ -22,21 +22,21 @@ public class Game {
 		this.window=window;
 	}
 	
-	public void loadLevel(String filename){
-		//todo: load level from file
-		//game objects hardcoded
-		objs.add(new GameObject("ground"));
-		objs.add(new GameObject("enemy"));
-				
-		GameObject p = new GameObject("Player");
-		p.addComponent(new ExampleComponent()); //add component
-		p.addComponent(new Sprite("box.png", 64,64)); //add component
-		p.moveBy(new Vector(100,0)); //move GameObject
-		objs.add(p);
+	public void addGameObject(GameObject object){
+		objs.add(object);
+	}
+	
+	public void loadLevel(Level level){
+		//intialise level and set new game objects
+		level.init();
+		objs = level.getGameObjects();
 		
-		//call init() method in all gameObjects
+		//call initialise method in all gameObjects
 		for(GameObject g : objs)
 			g.init();
+		
+		testIDs();
+		start();
 	}
 	
 	//test for ids
@@ -49,7 +49,7 @@ public class Game {
 		System.out.println(); //spacing
 	}
 	
-	public void start(){
+	private void start(){
 		//if window type is not defined, set to SwingWindow by default
 		if(window==null)
 			window = new SwingWindow();

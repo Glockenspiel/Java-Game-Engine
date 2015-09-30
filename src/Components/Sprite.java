@@ -44,7 +44,7 @@ public class Sprite extends Component {
 							w, h);
 	}
 	
-	//loading images should be done in separate with design pattern 
+	//loading images should be done in separate class with design pattern 
 	private void loadImage(String filename){
 		try {
 			image = javax.imageio.ImageIO.read(new File(filename));
