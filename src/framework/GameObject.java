@@ -49,6 +49,7 @@ public class GameObject { // also known as an Entity
 				comps.add(c);
 	}
 	
+	//initialise all components
 	public void init(){
 		for(Component c : components)
 			c.init(this);

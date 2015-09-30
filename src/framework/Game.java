@@ -12,7 +12,6 @@ import Display.Window;
 public class Game {
 	
 	private static ArrayList<GameObject> objs  = new ArrayList<GameObject>();
-	private GameObject p; //hardcoded, to be removed
 	
 	Window window;
 	
@@ -29,10 +28,10 @@ public class Game {
 		objs.add(new GameObject("ground"));
 		objs.add(new GameObject("enemy"));
 				
-		p = new GameObject("Player");
+		GameObject p = new GameObject("Player");
 		p.addComponent(new ExampleComponent()); //add component
 		p.addComponent(new Sprite("box.png", 64,64)); //add component
-		p.moveBy(new Vector(100,0));
+		p.moveBy(new Vector(100,0)); //move GameObject
 		objs.add(p);
 		
 		//call init() method in all gameObjects
@@ -64,14 +63,14 @@ public class Game {
 			//only here for and example of finding and modifying a component
 			
 			//get the component and modify the value
-			ExampleComponent ex = (ExampleComponent)p.getComponentByType("Example"); 
+			ExampleComponent ex = (ExampleComponent)getGameObjectByTag("player").getComponentByType("Example"); 
 			ex.setNum(69); 
 
 			
 			//get all the components of the same time
 			//uncomment this to see behaviour of getting a single component above
 			ArrayList<Component> comps = new ArrayList<Component>();
-			p.getAllComponentsByType("Example", comps);
+			getGameObjectByTag("player").getAllComponentsByType("Example", comps);
 			for(Component c : comps){
 				ExampleComponent a = (ExampleComponent)c;
 				a.setNum(100);
@@ -90,6 +89,15 @@ public class Game {
 		}
 	}
 	
+	
+	public GameObject getGameObjectByTag(String tag){
+		for(GameObject g : objs)
+			if(g.getTag().equalsIgnoreCase(tag))
+				return g;
+		
+		System.out.println("Warning: no gameObject was found with tag \"" + tag+ "\"");
+		return new GameObject("-1");
+	}
 	
 	//return a shallow copy of all the GameObjects
 	public static ArrayList<GameObject> copyOfGameObjects(){

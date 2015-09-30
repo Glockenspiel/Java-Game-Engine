@@ -13,12 +13,21 @@ public class Sprite extends Component {
 	private static final String ImgFilePath = "Resources/Images/";
 	private static final String TYPE = "Sprite";
 	private BufferedImage image;
-	private int w,h;
+	private int w,h, offsetX, offsetY;
 	
 	public Sprite(String filename, int width, int height){
 		w=width;
 		h=height;
-		
+		offsetX=0;
+		offsetY=0;
+		loadImage(ImgFilePath + filename);
+	}
+	
+	public Sprite(String filename, int width, int height, int offsetX, int offsetY){
+		w=width;
+		h=height;
+		this.offsetX=offsetX;
+		this.offsetY=offsetY;
 		loadImage(ImgFilePath + filename);
 	}
 	
@@ -30,10 +39,12 @@ public class Sprite extends Component {
 
 	@Override
 	public void draw(GraphicDrawer g, GameObject obj) {
-		g.drawImage(image, obj.getPosition().intX(), obj.getPosition().intY(), w, h);
+		g.drawImage(image, 	obj.getPosition().intX()+offsetX, 
+							obj.getPosition().intY()+offsetY, 
+							w, h);
 	}
 	
-	//loading images sould be done in sperate design pattern with 
+	//loading images should be done in separate with design pattern 
 	private void loadImage(String filename){
 		try {
 			image = javax.imageio.ImageIO.read(new File(filename));
