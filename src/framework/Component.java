@@ -7,7 +7,7 @@ import Display.GraphicDrawer;
 public abstract class Component{
 	
 	//game object tag is the name of the GameObject which this component belongs to
-	private String type="", gameObjectTag="";
+	private String gameObjectTag="";
 	
 	
 	protected void setGameObjectTag(String tag){
@@ -17,21 +17,16 @@ public abstract class Component{
 	public String getGameObjectTag(){
 		return gameObjectTag;
 	}
+
 	
-	public void setType(String type){
-		this.type = type;
-	}
-	
-	public String getType(){
-		return type;
-	}
+	public abstract String getType();
 	
 	//init is called once all GameObjects and Components have been loaded and before the main loop starts
-	public abstract void init();
+	public abstract void init(GameObject obj);
 	
 	//update is where to do the game's logic
-	public abstract void update();
+	public abstract void update(GameObject obj);
 	
 	//draw is where draw calls should be placed and is called after update
-	public abstract void draw(GraphicDrawer g);
+	public abstract void draw(GraphicDrawer g, GameObject obj);
 }

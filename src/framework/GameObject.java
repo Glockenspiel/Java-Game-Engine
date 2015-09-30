@@ -11,6 +11,7 @@ public class GameObject { // also known as an Entity
 	private int id=-1;
 	private String tag="";
 	private ArrayList<Component> components = new ArrayList<Component>();
+	private Vector position = new Vector(0,0);
 	
 	//get unique id of this gameObject
 	public int getID(){
@@ -50,19 +51,33 @@ public class GameObject { // also known as an Entity
 	
 	public void init(){
 		for(Component c : components)
-			c.init();
+			c.init(this);
 	}
 	
 	//update all components
 	public void update(){
 		System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
 		for(Component c : components)
-			c.update();
+			c.update(this);
 	}
 	
+	//draw all components
 	public void draw(GraphicDrawer g){
 		for(Component c : components)
-			c.draw(g);
+			c.draw(g, this);
+	}
+	
+	//return a copy of position to avoid breaking encapsulation
+	public Vector getPosition(){
+		return new Vector(position.getX(), position.getY());
+	}
+	
+	public void moveBy(Vector amount){
+		position.moveBy(amount);
+	}
+	
+	public void moveTo(Vector position){
+		this.position.moveTo(position);
 	}
 	
 	//get tag of this GameObject

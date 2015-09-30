@@ -1,4 +1,4 @@
-package framework;
+package Components;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,15 +7,17 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import framework.Component;
+import framework.GameObject;
 import Display.GraphicDrawer;
 
 public class ExampleComponent extends Component {
 
 	private int num=1;
 	private BufferedImage image;
+	private static final String TYPE = "Example";
 	
 	public ExampleComponent(){
-		setType("Example");
 		loadImage();
 	}
 	
@@ -27,18 +29,17 @@ public class ExampleComponent extends Component {
 	
 	
 	@Override
-	public void init() { }
+	public void init(GameObject obj) { }
 	
 	@Override
-	public void update() {
+	public void update(GameObject obj) {
 		System.out.println("Updating Component:" + getType() + " in " + getGameObjectTag() + " num:" + num);
 	}
 
 	@Override
-	public void draw(GraphicDrawer g) {
+	public void draw(GraphicDrawer g, GameObject obj) {
 		//example drawing
-		//g.drawImage(image, 0,0,64,64, null);
-		g.drawImage(image, 0, 0, 64, 64);
+		//g.drawImage(image, 0, 0, 64, 64);
 		
 	}
 	
@@ -48,6 +49,12 @@ public class ExampleComponent extends Component {
 		} catch (IOException ex) {
 			System.out.println("here failed");
 		}
+	}
+
+
+	@Override
+	public String getType() {
+		return TYPE;
 	}
 
 }

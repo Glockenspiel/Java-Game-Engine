@@ -1,7 +1,11 @@
 package framework;
 
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
+
+import Components.ExampleComponent;
+import Components.Sprite;
 import Display.SwingWindow;
 import Display.Window;
 
@@ -27,6 +31,8 @@ public class Game {
 				
 		p = new GameObject("Player");
 		p.addComponent(new ExampleComponent()); //add component
+		p.addComponent(new Sprite("box.png", 64,64)); //add component
+		p.moveBy(new Vector(100,0));
 		objs.add(p);
 		
 		//call init() method in all gameObjects
