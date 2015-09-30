@@ -2,6 +2,8 @@ package framework;
 
 import java.awt.Graphics;
 
+import Display.GraphicDrawer;
+
 public abstract class Component{
 	
 	//game object tag is the name of the GameObject which this component belongs to
@@ -31,5 +33,5 @@ public abstract class Component{
 	public abstract void update();
 	
 	//draw is where draw calls should be placed and is called after update
-	public abstract void draw(Graphics g);
+	public abstract void draw(GraphicDrawer g);
 }

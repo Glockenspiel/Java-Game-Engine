@@ -3,6 +3,8 @@ package framework;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import Display.GraphicDrawer;
+
 public class GameObject { // also known as an Entity
 	
 	//-1 invalid ID
@@ -58,7 +60,7 @@ public class GameObject { // also known as an Entity
 			c.update();
 	}
 	
-	public void draw(Graphics g){
+	public void draw(GraphicDrawer g){
 		for(Component c : components)
 			c.draw(g);
 	}
