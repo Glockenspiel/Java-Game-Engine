@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import Display.GraphicDrawer;
+import Display.Drawer;
 import framework.Component;
 import framework.GameObject;
 
@@ -38,7 +38,7 @@ public class Sprite extends Component {
 	public void update(GameObject obj) {}
 
 	@Override
-	public void draw(GraphicDrawer g, GameObject obj) {
+	public void draw(Drawer g, GameObject obj) {
 		g.drawImage(image, 	obj.getPosition().intX()+offsetX, 
 							obj.getPosition().intY()+offsetY, 
 							w, h);

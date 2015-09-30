@@ -2,7 +2,7 @@ package framework;
 
 import java.awt.Graphics;
 
-import Display.GraphicDrawer;
+import Display.Drawer;
 
 public abstract class Component{
 	
@@ -28,5 +28,5 @@ public abstract class Component{
 	public abstract void update(GameObject obj);
 	
 	//draw is where draw calls should be placed and is called after update
-	public abstract void draw(GraphicDrawer g, GameObject obj);
+	public abstract void draw(Drawer g, GameObject obj);
 }

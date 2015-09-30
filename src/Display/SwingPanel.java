@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 import framework.Game;
 import framework.GameObject;
 
-public class DrawPanel extends JPanel  {
+public class SwingPanel extends JPanel  {
 	
 	SwingDrawer drawer = new SwingDrawer();
 	
-	public DrawPanel(){
+	public SwingPanel(){
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.setBackground(new Color(0,255,255));

@@ -3,7 +3,7 @@ package framework;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import Display.GraphicDrawer;
+import Display.Drawer;
 
 public class GameObject { // also known as an Entity
 	
@@ -63,7 +63,7 @@ public class GameObject { // also known as an Entity
 	}
 	
 	//draw all components
-	public void draw(GraphicDrawer g){
+	public void draw(Drawer g){
 		for(Component c : components)
 			c.draw(g, this);
 	}
@@ -87,6 +87,7 @@ public class GameObject { // also known as an Entity
 	}
 
 	public GameObject(String tag){
+		//todo: give warning if tag is already in use
 		this.tag=tag;
 	}
 }

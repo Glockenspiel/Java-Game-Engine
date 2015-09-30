@@ -1,4 +1,4 @@
-package Components;
+package Scripts;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -9,16 +9,15 @@ import javax.imageio.ImageIO;
 
 import framework.Component;
 import framework.GameObject;
-import Display.GraphicDrawer;
+import Display.Drawer;
 
-public class ExampleComponent extends Component {
+public class ExampleScript extends Component {
 
 	private int num=1;
 	private BufferedImage image;
 	private static final String TYPE = "Example";
 	
-	public ExampleComponent(){
-		loadImage();
+	public ExampleScript(){
 	}
 	
 	
@@ -37,19 +36,10 @@ public class ExampleComponent extends Component {
 	}
 
 	@Override
-	public void draw(GraphicDrawer g, GameObject obj) {
-		//example drawing
-		//g.drawImage(image, 0, 0, 64, 64);
-		
+	public void draw(Drawer g, GameObject obj) {
+
 	}
-	
-	private void loadImage(){
-		try {
-			image = javax.imageio.ImageIO.read(new File("../box.png"));
-		} catch (IOException ex) {
-			System.out.println("here failed");
-		}
-	}
+
 
 
 	@Override

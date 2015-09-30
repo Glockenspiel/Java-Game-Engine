@@ -3,7 +3,7 @@ package Display;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public class SwingDrawer implements GraphicDrawer {
+public class SwingDrawer implements Drawer {
 
 	Graphics g;
 	
