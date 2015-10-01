@@ -17,6 +17,10 @@ public interface Input {
 		
 	//true if key released
 	public boolean iskeyReleased(char key);
+	
+	public Vector getDirectionInput();
 
-	void addKey(int keyCode);
+	void setPressed(int keyCode);
+	
+	void setReleased(int keyCode);
 }

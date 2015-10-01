@@ -67,47 +67,69 @@ public class Game {
 	}
 	
 	private static void start(){
-		//check initialisation was done corrrectly
-		checkInit();
-		
-		int i=0;
-		//main loop
-		boolean flag=true;
-		while(flag){
-			input.update();
-			//======================================
-			//this code should be described in the behaviour of a component and is 
-			//only here for and example of finding and modifying a component
-			
-			//get the component and modify the value
-			ExampleScript ex = (ExampleScript)getGameObjectByTag("player").getComponentByType("Example"); 
-			ex.setNum(69); 
-
-			
-			//get all the components of the same time
-			//uncomment this to see behaviour of getting a single component above
-			ArrayList<Component> comps = new ArrayList<Component>();
-			getGameObjectByTag("player").getAllComponentsByType("Example", comps);
-			for(Component c : comps){
-				ExampleScript a = (ExampleScript)c;
-				a.setNum(100);
-			}
-			
-			
-			//========================================
-					
-			for(GameObject g : objs){
-				g.update();
-			}
-			
-			window.drawScene();
-					
-			//only loop once for testing
-			i++;
-			if(i>100000)
-			flag=false;
-		}
+		gameLoop.start();
 	}
+	
+	private static Thread gameLoop = new Thread(){
+		
+		private long startTime;
+		private static final long FRAME_TIME = 30; //milliseconds allowed per frame
+		
+		public void run(){
+			//check initialisation was done corrrectly
+			checkInit();
+			
+			int i=0;
+			//main loop
+			boolean flag=true;
+			while(flag){
+				startTime = System.currentTimeMillis();
+				input.update();
+				//======================================
+				//this code should be described in the behaviour of a component and is 
+				//only here for and example of finding and modifying a component
+				
+				//get the component and modify the value
+				ExampleScript ex = (ExampleScript)getGameObjectByTag("player").getComponentByType("Example"); 
+				ex.setNum(69); 
+	
+				
+				//get all the components of the same time
+				//uncomment this to see behaviour of getting a single component above
+				ArrayList<Component> comps = new ArrayList<Component>();
+				getGameObjectByTag("player").getAllComponentsByType("Example", comps);
+				for(Component c : comps){
+					ExampleScript a = (ExampleScript)c;
+					a.setNum(100);
+				}
+				
+				
+				//========================================
+						
+				for(GameObject g : objs){
+					g.update();
+				}
+				
+				window.drawScene();
+						
+				//dont loop forever
+				i++;
+				if(i>300)
+				flag=false;
+				
+				try {Thread.sleep(calculateSleepTime());} 
+		    	catch (InterruptedException e) {e.printStackTrace();}
+			}
+			
+			System.out.println("Finished looping");
+		}
+
+		private long calculateSleepTime() {
+			long executionTime= System.currentTimeMillis()-startTime;
+			long sleepTime=FRAME_TIME-executionTime;
+			return sleepTime;
+		}
+	};
 	
 	
 	public static GameObject getGameObjectByTag(String tag){

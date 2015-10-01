@@ -2,6 +2,8 @@ package Display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -9,11 +11,12 @@ import javax.swing.JPanel;
 import framework.Game;
 import framework.GameObject;
 
-public class SwingPanel extends JPanel  {
+public class SwingPanel extends JPanel implements KeyListener {
 	
 	SwingDrawer drawer = new SwingDrawer();
 	
 	public SwingPanel(){
+		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.setBackground(new Color(0,255,255));
@@ -31,5 +34,22 @@ public class SwingPanel extends JPanel  {
 			o.draw(drawer);
 		}	
 	}
+
+
+	//listen for key events in this panel
+	@Override
+	public void keyPressed(KeyEvent event) {
+		Game.getInput().setPressed(event.getKeyCode());
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent event) {
+		Game.getInput().setReleased(event.getKeyCode());
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {}
 
 }

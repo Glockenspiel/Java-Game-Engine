@@ -14,7 +14,6 @@ public class SwingWindow implements Window{
 	
 	private JFrame f;
 	private SwingPanel panel;
-	ArrayList<Integer> keysPressed = new ArrayList<Integer>();
 	
 	public SwingWindow(){
 		f = new JFrame();

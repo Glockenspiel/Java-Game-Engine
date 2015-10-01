@@ -1,5 +1,6 @@
 package framework;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 
 public class SwingInput implements Input{
@@ -20,8 +21,6 @@ public class SwingInput implements Input{
 	public void update(){
 		//copy array of previous frame
 		prevInput = Arrays.copyOf(currentInput, currentInput.length); 
-		//clear current input
-		Arrays.fill(currentInput, Boolean.FALSE);
 	}
 	
 	//if current state of key is down
@@ -55,10 +54,43 @@ public class SwingInput implements Input{
 
 	//add key pressed to current frame
 	@Override
-	public void addKey(int keyCode) {
+	public void setPressed(int keyCode) {
 		//valid code
 		if(keyCode<SIZE && keyCode>=0){
 			currentInput[keyCode]=true;
 		}
+	}
+
+	@Override
+	public void setReleased(int keyCode) {
+		if(keyCode<SIZE && keyCode>=0){
+			currentInput[keyCode]=false;
+		}
+	}
+
+	@Override
+	//returns vector direction of WASD and arrow keys
+	public Vector getDirectionInput() {
+		int x=0,y=0;
+		
+		//up
+		if(isKeyDown('W') || isKeyDown((char)KeyEvent.VK_UP)){
+			y=-1;
+		}
+		//down
+		else if(isKeyDown('S') || isKeyDown((char)KeyEvent.VK_DOWN)){
+			y=1;
+		}
+		
+		//left
+		if(isKeyDown('A') || isKeyDown((char)KeyEvent.VK_LEFT)){
+			x=-1;
+		}
+		//right
+		else if(isKeyDown('D') || isKeyDown((char)KeyEvent.VK_RIGHT)){
+			x=1;
+		}
+		
+		return new Vector(x,y);
 	}
 }
