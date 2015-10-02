@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import Display.Drawer;
+import Loaders.ImageLoader;
 import framework.Component;
 import framework.GameObject;
 
@@ -13,14 +14,15 @@ public class Sprite extends Component {
 	private static final String ImgFilePath = "Resources/Images/";
 	private static final String TYPE = "Sprite";
 	private BufferedImage image;
-	private int w,h, offsetX, offsetY;
+	private int w,h; //width and height
+	private int offsetX, offsetY; //offsets from GameObject origin
 	
 	public Sprite(String filename, int width, int height){
 		w=width;
 		h=height;
 		offsetX=0;
 		offsetY=0;
-		loadImage(ImgFilePath + filename);
+		image = ImageLoader.load(filename);
 	}
 	
 	public Sprite(String filename, int width, int height, int offsetX, int offsetY){
@@ -28,7 +30,7 @@ public class Sprite extends Component {
 		h=height;
 		this.offsetX=offsetX;
 		this.offsetY=offsetY;
-		loadImage(ImgFilePath + filename);
+		image = ImageLoader.load(filename);
 	}
 	
 	@Override
@@ -43,15 +45,7 @@ public class Sprite extends Component {
 							obj.getPosition().intY()+offsetY, 
 							w, h);
 	}
-	
-	//loading images should be done in separate class with design pattern 
-	private void loadImage(String filename){
-		try {
-			image = javax.imageio.ImageIO.read(new File(filename));
-		} catch (IOException ex) {
-			System.out.println("Failed to load image: " + ex.getMessage());
-		}
-	}
+
 
 	@Override
 	public String getType() {

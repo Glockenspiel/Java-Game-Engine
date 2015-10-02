@@ -1,0 +1,49 @@
+package Loaders;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+public class ImageLoader {
+	
+	private static String filePath = "Resources/Images/";
+	private static String errorImage = "error.png";
+	private static String[] validFormats = new String[]{"JPEG", "PNG", "BMP", "GIF"};
+	
+	public static BufferedImage load(String filename){
+		//check extension is valid
+		validFormat(filename);
+		
+		BufferedImage image;
+			try {
+				image = javax.imageio.ImageIO.read(new File(filePath+filename));
+			} catch (IOException ex) {
+				System.out.println("Failed to load image: " + ex.getMessage());
+				
+				//return  Error image instead
+				//and don't let loading become an infinite loop trying to load errorImage
+				if(filename!=errorImage)
+					return load(errorImage);
+				else return null;
+			}
+		
+		//if loaded successfully
+		return image;
+		}
+
+	//returns true if valid format
+	private static boolean validFormat(String filename){
+		String [] elements = filename.split(".");
+		
+		//no extension return false
+		if(elements.length==0) return false;
+		
+ 		String format = elements[elements.length-1]; //get last element
+		
+		for(int i=0; i<validFormats.length; i++)
+			if(validFormats[i] .equalsIgnoreCase(format))
+				return true;
+		
+		return false;
+	}
+}

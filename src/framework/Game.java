@@ -34,13 +34,17 @@ public class Game {
 	}
 	
 	public void loadLevel(Level level){
+		//todo: display loading screen here and thread init
+		
 		//intialise level and set new game objects
 		level.init();
 		objs = level.getGameObjects();
-		
+
 		//call initialise method in all gameObjects
 		for(GameObject g : objs)
 			g.init();
+		
+		
 		
 		//testIDs();
 		start();
@@ -76,7 +80,7 @@ public class Game {
 		private static final long FRAME_TIME = 30; //milliseconds allowed per frame
 		
 		public void run(){
-			//check initialisation was done corrrectly
+			//check initialisation was done correctly
 			checkInit();
 			
 			int i=0;
@@ -105,14 +109,15 @@ public class Game {
 				
 				
 				//========================================
-						
-				for(GameObject g : objs){
+
+				for(GameObject g : objs)
 					g.update();
-				}
+				
+				//todo: update collision here
 				
 				window.drawScene();
 						
-				//dont loop forever
+				//don't loop forever
 				i++;
 				if(i>300)
 				flag=false;
