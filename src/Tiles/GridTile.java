@@ -6,7 +6,9 @@ import Display.Drawer;
 
 public class GridTile implements Tile{
 	
+	//display size of tiles
 	private static final int tileWidth=32, tileHeight=32;
+	
 	private int x,y; //index of x and y in 2d array
 	private BufferedImage image;
 	private boolean hasCollision;

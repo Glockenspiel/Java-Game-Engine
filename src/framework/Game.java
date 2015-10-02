@@ -29,16 +29,31 @@ public class Game {
 		this.input=input;
 	}
 	
-	public void addGameObject(GameObject object){
+	public static void addGameObject(GameObject object){
+		checkDuplicateTag(object);
 		objs.add(object);
+	}
+	
+	//check if any duplicate Tags and give warning if there's a duplicate
+	private static boolean checkDuplicateTag(GameObject object){
+		for(GameObject o : objs){
+			if(o.getTag().equalsIgnoreCase(object.getTag())){
+				System.out.println("Warning! GameObject with the tag \"" + object.getTag() + "\" "
+						+ "already exists. This may cause unexpected execution");
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public void loadLevel(Level level){
 		//todo: display loading screen here and thread init
 		
 		//intialise level and set new game objects
+		objs.clear();
 		level.init();
-		objs = level.getGameObjects();
+		
 		
 		//testIDs();
 		start();

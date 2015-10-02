@@ -13,8 +13,9 @@ public class TileMap extends Component {
 
 	ArrayList<Tile> tiles;
 	
-	public TileMap(SpriteSheet sheet){
-		tiles = TileFactory.loadAndGetTiles();
+	public TileMap(SpriteSheet sheet, String filename){
+		//read 
+		tiles = TileFactory.loadAndGetTiles(sheet, filename);
 	}
 	
 	@Override

@@ -1,11 +1,12 @@
 package framework;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import Display.Drawer;
 
-public class GameObject { // also known as an Entity
+public class GameObject implements Debug{ // also known as an Entity
 	
 	//-1 invalid ID
 	private int id=-1;
@@ -81,7 +82,21 @@ public class GameObject { // also known as an Entity
 	}
 
 	public GameObject(String tag){
-		//todo: give warning if tag is already in use
 		this.tag=tag;
+	}
+
+	@Override
+	public void debugDraw(Drawer g) {
+		//draw origin of game object
+		Color lineColor = Color.RED;
+		int lineLength=20;
+		g.drawLine(position.intX()-lineLength/2, position.intY(), lineLength, 0, lineColor);
+		g.drawLine(position.intX(), position.intY()-lineLength/2, 0, lineLength, lineColor);
+		
+		//draw debug of all components that are instances of debug
+		for(Component c : components)
+		if(c instanceof Debug){
+            ((Debug) c).debugDraw(g);
+		}
 	}
 }

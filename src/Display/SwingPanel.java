@@ -32,7 +32,11 @@ public class SwingPanel extends JPanel implements KeyListener {
 		ArrayList<GameObject> objs = Game.copyOfGameObjects();
 		for(GameObject o : objs){
 			o.draw(drawer);
-		}	
+		}
+		
+		for(GameObject o : objs){
+			o.debugDraw(drawer);
+		}
 	}
 
 

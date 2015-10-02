@@ -2,6 +2,7 @@ package DemoLevels;
 
 import Scripts.ExampleInput;
 import Scripts.ExampleScript;
+import Tiles.TileMap;
 import Components.Animation;
 import Components.Sprite;
 import Components.SpriteSheet;
@@ -14,8 +15,12 @@ public class Level1 extends Level{
 	@Override
 	public void init() {
 
-		addObj(new GameObject("ground"));
-		addObj(new GameObject("enemy"));	
+		
+		GameObject map = new GameObject("map");
+		SpriteSheet mapSheet = new SpriteSheet("testSheet2.png", 32,32);
+		map.addComponent(new TileMap(mapSheet, "example.csv"));
+		
+	
 		
 		GameObject p = new GameObject("Player");
 		p.addComponent(new ExampleScript()); //add component
@@ -25,6 +30,9 @@ public class Level1 extends Level{
 		p.addComponent(new Animation(s, 32,32,-32,-32, 30)); //add counting animation
 		p.moveBy(new Vector(100,0)); //move player to a suitable starting position
 		addObj(p);
+		
+		addObj(new GameObject("map"));
+		
 	}
 
 	@Override

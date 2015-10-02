@@ -33,12 +33,7 @@ public class ImageLoader {
 
 	//returns true if valid format
 	private static boolean validFormat(String filename){
-		String [] elements = filename.split(".");
-		
-		//no extension return false
-		if(elements.length==0) return false;
-		
- 		String format = elements[elements.length-1]; //get last element
+		String format =  Format.getFormat(filename);
 		
 		for(int i=0; i<validFormats.length; i++)
 			if(validFormats[i] .equalsIgnoreCase(format))
