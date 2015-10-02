@@ -48,13 +48,7 @@ public class GameObject { // also known as an Entity
 			if(c.getType().equalsIgnoreCase(type))
 				comps.add(c);
 	}
-	
-	//initialise all components
-	public void init(){
-		for(Component c : components)
-			c.init(this);
-	}
-	
+
 	//update all components
 	public void update(){
 		//System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
@@ -65,7 +59,7 @@ public class GameObject { // also known as an Entity
 	//draw all components
 	public void draw(Drawer g){
 		for(Component c : components)
-			c.draw(g, this);
+			c.draw(g, this.position);
 	}
 	
 	//return a copy of position to avoid breaking encapsulation

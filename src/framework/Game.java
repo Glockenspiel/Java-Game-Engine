@@ -39,12 +39,6 @@ public class Game {
 		//intialise level and set new game objects
 		level.init();
 		objs = level.getGameObjects();
-
-		//call initialise method in all gameObjects
-		for(GameObject g : objs)
-			g.init();
-		
-		
 		
 		//testIDs();
 		start();

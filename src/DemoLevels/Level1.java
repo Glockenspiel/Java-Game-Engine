@@ -22,7 +22,7 @@ public class Level1 extends Level{
 		p.addComponent(new Sprite("box.png", 64,64)); //add component
 		p.addComponent(new ExampleInput());//adding a script
 		SpriteSheet s = new SpriteSheet("testSheet.png", 32,32);
-		p.addComponent(new Animation(s, 32,32,0,0, 10));
+		p.addComponent(new Animation(s, 32,32,-32,-32, 30)); //add counting animation
 		p.moveBy(new Vector(100,0)); //move player to a suitable starting position
 		addObj(p);
 	}

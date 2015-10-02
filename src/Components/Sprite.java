@@ -8,6 +8,7 @@ import Display.Drawer;
 import Loaders.ImageLoader;
 import framework.Component;
 import framework.GameObject;
+import framework.Vector;
 
 public class Sprite extends Component {
 
@@ -32,17 +33,14 @@ public class Sprite extends Component {
 		this.offsetY=offsetY;
 		image = ImageLoader.load(filename);
 	}
-	
-	@Override
-	public void init(GameObject obj) {}
 
 	@Override
 	public void update(GameObject obj) {}
 
 	@Override
-	public void draw(Drawer g, GameObject obj) {
-		g.drawImage(image, 	obj.getPosition().intX()+offsetX, 
-							obj.getPosition().intY()+offsetY, 
+	public void draw(Drawer g, Vector objPos) {
+		g.drawImage(image, 	objPos.intX()+offsetX, 
+							objPos.intY()+offsetY, 
 							w, h);
 	}
 

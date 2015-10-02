@@ -14,8 +14,8 @@ public class SwingDrawer implements Drawer {
 	}
 	
 	@Override
-	public void drawImage(Image img, int offsetX, int offsetY, int width, int height) {
-		g.drawImage(img, offsetX, offsetY, width, height, null);
+	public void drawImage(Image img, int x, int y, int width, int height) {
+		g.drawImage(img, x, y, width, height, null);
 	}
 
 }

@@ -8,15 +8,13 @@ import framework.Vector;
 
 public class ExampleInput extends Component {
 
-	private float XSpeed=3, YSpeed=5;
+	private float XSpeed=4, YSpeed=4;
 	
 	@Override
 	public String getType() {
 		return "ExampleInput";
 	}
 
-	@Override
-	public void init(GameObject obj) {}
 
 	@Override
 	public void update(GameObject obj) {
@@ -38,6 +36,6 @@ public class ExampleInput extends Component {
 	}
 
 	@Override
-	public void draw(Drawer g, GameObject obj) {}
+	public void draw(Drawer g, Vector objPos) {}
 
 }

@@ -3,13 +3,13 @@ package Components;
 import Display.Drawer;
 import framework.Component;
 import framework.GameObject;
+import framework.Vector;
 
 public class Animation extends Component {
 
 	private SpriteSheet spriteSheet;
 	private int h,w,offsetX, offsetY;
 	private int frameX = 0, frameY=0;
-	private int currentFrame=0;
 	private int frameSpeed; //number of game frames until change to next image in animation
 	private int frameCount=0;
 	/*
@@ -23,7 +23,6 @@ public class Animation extends Component {
 		this.offsetX=offsetX;
 		this.offsetY=offsetY;
 		this.frameSpeed=frameSpeed;
-		System.out.println("X: " + spriteSheet.gridWidth() + "\nY: " + spriteSheet.gridHeight());
 	}
 	
 	@Override
@@ -32,18 +31,13 @@ public class Animation extends Component {
 	}
 
 	@Override
-	public void init(GameObject obj) {
-		
-	}
-
-	@Override
 	public void update(GameObject obj) {
 		frameCount++;
 		
 		//change to next image
 		if(frameCount>=frameSpeed){
-			System.out.println("here");
 			frameCount=0;
+			
 			//decide image to move to in the grid
 			//move right
 			if(frameX+1 < spriteSheet.gridWidth())
@@ -66,8 +60,8 @@ public class Animation extends Component {
 	}
 
 	@Override
-	public void draw(Drawer g, GameObject obj) {
-		g.drawImage(spriteSheet.getFrame(frameX, frameY), obj.getPosition().intX()+ offsetX, obj.getPosition().intY() + offsetY, w, h);
+	public void draw(Drawer g, Vector objPos) {
+		g.drawImage(spriteSheet.getFrame(frameX, frameY), objPos.intX()+ offsetX, objPos.intY() + offsetY, w, h);
 	}
 
 }
