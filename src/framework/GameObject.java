@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import Debugging.Debug;
 import Display.Drawer;
 
 public class GameObject implements Debug{ // also known as an Entity

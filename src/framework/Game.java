@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import Components.Sprite;
+import Debugging.Print;
+import Debugging.SwingPrint;
 import Display.SwingWindow;
 import Display.Window;
 import Scripts.ExampleScript;
@@ -17,6 +19,9 @@ public class Game {
 	
 	private static Window window;
 	private static Input input;
+	private static Print print;
+	private static boolean drawDebug=false;
+	private static Level currentLevel;
 	
 	public Game(){}
 	
@@ -29,6 +34,10 @@ public class Game {
 		this.input=input;
 	}
 	
+	public void setPrint(Print print){
+		this.print = print;
+	}
+	
 	public static void addGameObject(GameObject object){
 		checkDuplicateTag(object);
 		objs.add(object);
@@ -38,7 +47,7 @@ public class Game {
 	private static boolean checkDuplicateTag(GameObject object){
 		for(GameObject o : objs){
 			if(o.getTag().equalsIgnoreCase(object.getTag())){
-				System.out.println("Warning! GameObject with the tag \"" + object.getTag() + "\" "
+				print.log("Warning: GameObject with the tag \"" + object.getTag() + "\" "
 						+ "already exists. This may cause unexpected execution");
 				return true;
 			}
@@ -47,27 +56,15 @@ public class Game {
 		return false;
 	}
 	
+	//load level 
 	public void loadLevel(Level level){
-		//todo: display loading screen here and thread init
-		
-		//intialise level and set new game objects
+		if(print==null)
+			print = new SwingPrint();
+		currentLevel = level;
 		objs.clear();
 		level.init();
-		
-		
-		//testIDs();
-		start();
 	}
-	
-	//test for ids
-	public void testIDs(){
-		//display IDs
-		System.out.println("GameObject:ID");
-		for(GameObject g : objs){
-			System.out.println(g.getTag() + ":" + g.getID());
-		}
-		System.out.println(); //spacing
-	}
+
 	
 	//checks to see if all attributes have been initialised correctly
 	//if not this method sets them to the defaults
@@ -77,9 +74,13 @@ public class Game {
 		
 		if(input==null)
 			input = new SwingInput();
+		
+		if(print==null)
+			print = new SwingPrint();
 	}
 	
-	private static void start(){
+	//start thread for game loop
+	public static void start(){
 		gameLoop.start();
 	}
 	
@@ -135,7 +136,7 @@ public class Game {
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
 			
-			System.out.println("Finished looping");
+			print.log("Finished looping");
 		}
 
 		private long calculateSleepTime() {
@@ -151,7 +152,7 @@ public class Game {
 			if(g.getTag().equalsIgnoreCase(tag))
 				return g;
 		
-		System.out.println("Warning: no gameObject was found with tag \"" + tag+ "\"");
+		print.log("Warning: no gameObject was found with tag \"" + tag+ "\"");
 		return new GameObject("-1");
 	}
 	
@@ -162,5 +163,17 @@ public class Game {
 	
 	public static Input getInput(){
 		return input;
+	}
+	
+	public static Print print(){
+		return print;
+	}
+
+	public void enableDebugDraw(boolean isOn) {
+		drawDebug=isOn;
+	}
+
+	public static boolean isDrawingDebug() {
+		return drawDebug;
 	}
 }

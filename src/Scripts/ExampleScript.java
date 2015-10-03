@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import framework.Component;
+import framework.Game;
 import framework.GameObject;
 import framework.Vector;
 import Display.Drawer;
@@ -30,7 +31,6 @@ public class ExampleScript extends Component {
 	
 	@Override
 	public void update(GameObject obj) {
-		//System.out.println("Updating Component:" + getType() + " in " + getGameObjectTag() + " num:" + num);
 	}
 
 	@Override

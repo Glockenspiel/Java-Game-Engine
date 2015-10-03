@@ -1,4 +1,4 @@
-package framework;
+package Debugging;
 
 import Display.Drawer;
 

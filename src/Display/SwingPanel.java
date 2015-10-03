@@ -34,9 +34,10 @@ public class SwingPanel extends JPanel implements KeyListener {
 			o.draw(drawer);
 		}
 		
-		for(GameObject o : objs){
-			o.debugDraw(drawer);
-		}
+		if(Game.isDrawingDebug())
+			for(GameObject o : objs){
+				o.debugDraw(drawer);
+			}
 	}
 
 

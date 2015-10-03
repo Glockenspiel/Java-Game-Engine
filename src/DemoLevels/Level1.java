@@ -19,6 +19,7 @@ public class Level1 extends Level{
 		GameObject map = new GameObject("map");
 		SpriteSheet mapSheet = new SpriteSheet("testSheet2.png", 32,32);
 		map.addComponent(new TileMap(mapSheet, "example.csv"));
+		addObj(map);
 		
 	
 		
@@ -30,9 +31,7 @@ public class Level1 extends Level{
 		p.addComponent(new Animation(s, 32,32,-32,-32, 30)); //add counting animation
 		p.moveBy(new Vector(100,0)); //move player to a suitable starting position
 		addObj(p);
-		
-		addObj(new GameObject("map"));
-		
+
 	}
 
 	@Override
