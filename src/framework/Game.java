@@ -9,7 +9,6 @@ import Debugging.Print;
 import Debugging.SwingPrint;
 import Display.SwingWindow;
 import Display.Window;
-import Scripts.ExampleScript;
 
 public class Game {
 	
@@ -99,27 +98,7 @@ public class Game {
 			while(flag){
 				startTime = System.currentTimeMillis();
 				input.update();
-				//======================================
-				//this code should be described in the behaviour of a component and is 
-				//only here for and example of finding and modifying a component
 				
-				//get the component and modify the value
-				ExampleScript ex = (ExampleScript)getGameObjectByTag("player").getComponentByType("Example"); 
-				ex.setNum(69); 
-	
-				
-				//get all the components of the same time
-				//uncomment this to see behaviour of getting a single component above
-				ArrayList<Component> comps = new ArrayList<Component>();
-				getGameObjectByTag("player").getAllComponentsByType("Example", comps);
-				for(Component c : comps){
-					ExampleScript a = (ExampleScript)c;
-					a.setNum(100);
-				}
-				
-				
-				//========================================
-
 				for(GameObject g : objs)
 					g.update();
 				

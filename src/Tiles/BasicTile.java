@@ -1,7 +1,6 @@
 package Tiles;
 
 import java.awt.image.BufferedImage;
-
 import Display.Drawer;
 
 public class BasicTile implements Tile{

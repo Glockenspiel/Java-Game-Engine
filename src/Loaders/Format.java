@@ -3,7 +3,7 @@ package Loaders;
 public class Format {
 	
 	public static String getFormat(String filename){
-		String [] elements = filename.split(".");
+		String [] elements = filename.split("\\.");
 		
 		//no extension return false
 		if(elements.length==0) 

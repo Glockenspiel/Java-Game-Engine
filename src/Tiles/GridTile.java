@@ -1,7 +1,6 @@
 package Tiles;
 
 import java.awt.image.BufferedImage;
-
 import Display.Drawer;
 
 public class GridTile implements Tile{
@@ -10,20 +9,23 @@ public class GridTile implements Tile{
 	private static final int tileWidth=32, tileHeight=32;
 	
 	private int x,y; //index of x and y in 2d array
-	private BufferedImage image;
+	private int sheetX, sheetY;
 	private boolean hasCollision;
+	TileMap map;
 	
 	
-	public GridTile(BufferedImage image, int indexX, int indexY, boolean hasCollision){
-		this.image=image;
+	public GridTile(TileMap map, int sheetX, int sheetY, int indexX, int indexY, boolean hasCollision){
 		x = indexX;
 		y = indexY;
+		this.sheetX=sheetX;
+		this.sheetY=sheetY;
 		this.hasCollision=hasCollision;
+		this.map=map;
 	}
 
 	@Override
 	public void draw(Drawer g) {
-		g.drawImage(image , x*tileWidth, y*tileHeight, tileWidth, tileHeight);
+		g.drawImage(map.getSpriteFromSheet(sheetX, sheetY) , x*tileWidth, y*tileHeight, tileWidth, tileHeight);
 	}
 
 	@Override

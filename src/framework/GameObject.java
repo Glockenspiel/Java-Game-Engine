@@ -13,6 +13,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	private int id=-1;
 	private String tag="";
 	private ArrayList<Component> components = new ArrayList<Component>();
+	private ArrayList<Script> scripts = new ArrayList<Script>();
 	private Vector position = new Vector(0,0);
 	
 	//get unique id of this gameObject
@@ -30,9 +31,13 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 	
 	//add a component to the gameObject
-	public void addComponent(Component c){
+	public void add(Component c){
 		c.setGameObjectTag(tag);
 		components.add(c);
+	}
+	
+	public void add(Script s){
+		scripts.add(s);
 	}
 	
 	//returns first found component with matching type
@@ -53,9 +58,11 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	//update all components
 	public void update(){
-		//System.out.println("Updating all components in GameObject: " + tag + " (count:" + components.size() + ")");
+		for(Script s: scripts)
+			s.execute(this);
 		for(Component c : components)
 			c.update(this);
+		
 	}
 	
 	//draw all components
