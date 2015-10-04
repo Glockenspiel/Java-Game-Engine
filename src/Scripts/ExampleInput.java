@@ -1,5 +1,6 @@
 package Scripts;
 
+import Components.Sprite;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -17,11 +18,25 @@ public class ExampleInput implements Script {
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement);
 		
+		//shoot
+		if(Game.getInput().isKeyDown('P')){
+			shoot(obj.getPosition());
+		}
+		
 		//deleting a GameObject with keyboard input
 		if(once && Game.getInput().isKeyDown('Q')){
 			Game.deleteObjByTag("map");
 			once=false;
 		}
+	}
+
+	private void shoot(Vector position) {
+		Game.print().log("here");
+		GameObject bullet = new GameObject("bullet");
+		bullet.add(new Sprite("box.png", 8,8));
+		bullet.moveTo(position);
+		bullet.add(new BulletScript());
+		Game.addGameObject(bullet);
 	}
 
 }

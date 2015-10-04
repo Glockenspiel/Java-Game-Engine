@@ -13,7 +13,9 @@ import Display.Window;
 public class Game {
 	
 	private static ArrayList<GameObject> objs  = new ArrayList<GameObject>();
-	private static ArrayList<String> deleteBuffer = new ArrayList<String>();
+	private static ArrayList<String> deleteBufferTag = new ArrayList<String>();
+	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
+	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
 	//todo: have global data not bound to a single level, but to the game as a whole
 	//such as player attributes, cross level information, etc.
 	
@@ -40,7 +42,7 @@ public class Game {
 	
 	public static void addGameObject(GameObject object){
 		checkDuplicateTag(object);
-		objs.add(object);
+		objsToAdd.add(object);
 	}
 	
 	//check if any duplicate Tags and give warning if there's a duplicate
@@ -92,13 +94,15 @@ public class Game {
 		public void run(){
 			//check initialisation was done correctly
 			checkInit();
-			
+			adObjs();
 			int i=0;
 			//main loop
 			boolean flag=true;
 			while(flag){
 				startTime = System.currentTimeMillis();
 				input.update();
+				
+				
 				
 				for(GameObject g : objs)
 					g.update();
@@ -107,8 +111,9 @@ public class Game {
 				
 				window.drawScene();
 						
-				//delete Game Objects in buffer
+				//add and delete Game Objects in buffer
 				deleteGameObjects();
+				adObjs();
 				
 				//don't loop forever
 				i++;
@@ -122,9 +127,17 @@ public class Game {
 			print.log("Finished looping");
 		}
 
+		private void adObjs() {
+			for(GameObject o : objsToAdd)
+				objs.add(o);
+			objsToAdd.clear();
+		}
+
 		private void deleteGameObjects() {
 			boolean found;
-			for(String s : deleteBuffer){
+			
+			//delete game objects with matching id
+			for(String s : deleteBufferTag){
 				found=false;
 				for(int g=0; g<objs.size() && !found; g++){
 					if(objs.get(g).getTag().equalsIgnoreCase(s)){
@@ -133,9 +146,22 @@ public class Game {
 					}
 				}
 				if(found==false)
-					Game.print().log("GameObject tag not found when deleting GameObject: " + s);
+					Game.print().log("GameObject tag not found when deleting GameObject by Tag : " + s);
 			}
-			deleteBuffer.clear();
+			deleteBufferTag.clear();
+			
+			//delete game objects with matching id
+			for(Integer id : deleteBufferIDs){
+				found=false;
+				for(int g=0; g<objs.size() && !found; g++){
+					if(objs.get(g).getID()==id){
+						objs.remove(g);
+						found=true;
+					}
+				}
+				if(found==false)
+					Game.print().log("GameObject ID not found when deleting GameObject by ID : " + id);
+			}
 		}
 
 		private long calculateSleepTime() {
@@ -182,6 +208,11 @@ public class Game {
 	
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByTag(String tag){
-		deleteBuffer.add(tag);
+		deleteBufferTag.add(tag);
+	}
+	
+	//add tags to buffer which will be deleted later
+	public static void deleteObjByID(int id){
+		deleteBufferIDs.add(id);
 	}
 }
