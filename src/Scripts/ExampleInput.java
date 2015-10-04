@@ -30,8 +30,8 @@ public class ExampleInput implements Script {
 		}
 	}
 
+	//spawn bullet object
 	private void shoot(Vector position) {
-		Game.print().log("here");
 		GameObject bullet = new GameObject("bullet");
 		bullet.add(new Sprite("box.png", 8,8));
 		bullet.moveTo(position);

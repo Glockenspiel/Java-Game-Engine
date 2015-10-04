@@ -1,6 +1,7 @@
 package Tiles;
 
 import java.awt.image.BufferedImage;
+
 import Display.Drawer;
 
 public class BasicTile implements Tile{
@@ -31,5 +32,11 @@ public class BasicTile implements Tile{
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

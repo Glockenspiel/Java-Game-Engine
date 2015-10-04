@@ -10,12 +10,14 @@ public class Tile2 implements Tile {
 	private int w,h;
 	private boolean hasCollision;
 	private int id;
+	private String name;
 	
-	public Tile2(BufferedImage image, int width, int height, int id, boolean hasCollision){
+	public Tile2(BufferedImage image, int width, int height, int id, String name, boolean hasCollision){
 		this.image=image;
 		w=width;
 		h=height;
 		this.id=id;
+		this.name=name;
 		this.hasCollision=hasCollision;
 	}
 
@@ -33,5 +35,12 @@ public class Tile2 implements Tile {
 	public int getID() {
 		return id;
 	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+	
+	
 	
 }

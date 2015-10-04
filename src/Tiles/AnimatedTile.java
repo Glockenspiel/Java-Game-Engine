@@ -1,7 +1,6 @@
 package Tiles;
 
 import framework.Vector;
-
 import framework.GameObject;
 import Components.Animation;
 import Components.SpriteSheet;
@@ -35,6 +34,12 @@ public class AnimatedTile implements Tile {
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
