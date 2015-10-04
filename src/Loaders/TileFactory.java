@@ -2,6 +2,8 @@ package Loaders;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import framework.Game;
 import Components.SpriteSheet;
@@ -11,6 +13,7 @@ import Tiles.Tile;
 public class TileFactory {
 
 	private static  String [] formats = new String[]{"xml"};
+	private static Map<Short, Tile> legend = new HashMap<Short, Tile>();
 
 	public static ArrayList<Tile> loadAndGetTiles(SpriteSheet sheet, String filename) {
 		String format = Format.getFormat(filename);
@@ -19,6 +22,12 @@ public class TileFactory {
 		if(checkValidFormat(format)){
 			//read file
 			//first iteration:read gird
+			
+			//legend first
+			//legend.put(1, new GridTile
+			
+			//map should be list of indexes
+			
 			//2nd iteration interface for reading 
 		
 		}

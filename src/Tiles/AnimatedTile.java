@@ -21,7 +21,7 @@ public class AnimatedTile implements Tile {
 
 	//update and draw tile
 	@Override
-	public void draw(Drawer g) {
+	public void draw(Drawer g, int x, int y) {
 		anim.update(new GameObject("null"));
 		anim.draw(g, position);
 	}
@@ -29,6 +29,12 @@ public class AnimatedTile implements Tile {
 	@Override
 	public boolean hasCollision() {
 		return hasCollision;
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

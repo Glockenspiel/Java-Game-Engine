@@ -45,4 +45,19 @@ public class Vector { //for storing coordinates or directions
 		x = position.getX();
 		y = position.getY();
 	}
+	
+	//multiple vector a by b on each axis and return result
+	public static Vector multiply(Vector a, Vector b){
+		return new Vector(a.getX() * b.getX(), a.getY() * b.getY());
+	}
+	
+	//add vector a by b on each axis and return result
+	public static Vector add(Vector a, Vector b){
+		return new Vector(a.getX() + b.getX(), a.getY() + b.getY());
+	}
+	
+	//subtract vector a by b on each axis and return result
+	public static Vector subtract(Vector a, Vector b){
+		return new Vector(a.getX() - b.getX(), a.getY() - b.getY());
+	}
 }

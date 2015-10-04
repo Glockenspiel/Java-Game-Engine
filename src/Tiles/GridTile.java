@@ -24,12 +24,18 @@ public class GridTile implements Tile{
 	}
 
 	@Override
-	public void draw(Drawer g) {
+	public void draw(Drawer g, int x, int y) {
 		g.drawImage(map.getSpriteFromSheet(sheetX, sheetY) , x*tileWidth, y*tileHeight, tileWidth, tileHeight);
 	}
 
 	@Override
 	public boolean hasCollision() {
 		return hasCollision;
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

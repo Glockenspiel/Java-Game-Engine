@@ -13,6 +13,7 @@ import Display.Window;
 public class Game {
 	
 	private static ArrayList<GameObject> objs  = new ArrayList<GameObject>();
+	private static ArrayList<String> deleteBuffer = new ArrayList<String>();
 	//todo: have global data not bound to a single level, but to the game as a whole
 	//such as player attributes, cross level information, etc.
 	
@@ -106,6 +107,9 @@ public class Game {
 				
 				window.drawScene();
 						
+				//delete Game Objects in buffer
+				deleteGameObjects();
+				
 				//don't loop forever
 				i++;
 				if(i>300)
@@ -116,6 +120,22 @@ public class Game {
 			}
 			
 			print.log("Finished looping");
+		}
+
+		private void deleteGameObjects() {
+			boolean found;
+			for(String s : deleteBuffer){
+				found=false;
+				for(int g=0; g<objs.size() && !found; g++){
+					if(objs.get(g).getTag().equalsIgnoreCase(s)){
+						objs.remove(g);
+						found=true;
+					}
+				}
+				if(found==false)
+					Game.print().log("GameObject tag not found when deleting GameObject: " + s);
+			}
+			deleteBuffer.clear();
 		}
 
 		private long calculateSleepTime() {
@@ -140,19 +160,28 @@ public class Game {
 		return new ArrayList<GameObject>(objs);
 	}
 	
+	//get input object
 	public static Input getInput(){
 		return input;
 	}
 	
+	//display messages 
 	public static Print print(){
 		return print;
 	}
 
+	//turn debug drawing on or off
 	public void enableDebugDraw(boolean isOn) {
 		drawDebug=isOn;
 	}
 
+	//if drawing debugging help
 	public static boolean isDrawingDebug() {
 		return drawDebug;
+	}
+	
+	//add tags to buffer which will be deleted later
+	public static void deleteObjByTag(String tag){
+		deleteBuffer.add(tag);
 	}
 }

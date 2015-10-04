@@ -1,19 +1,21 @@
 package Tiles;
 
 import java.awt.image.BufferedImage;
+
 import Display.Drawer;
 
-public class BasicTile implements Tile{
-	private int x,y,w,h;
-	private BufferedImage image;
-	private boolean hasCollision;
+public class Tile2 implements Tile {
 	
-	public BasicTile(BufferedImage image, int x, int y, int w, int h, boolean hasCollision){
+	private BufferedImage image;
+	private int w,h;
+	private boolean hasCollision;
+	private int id;
+	
+	public Tile2(BufferedImage image, int width, int height, int id, boolean hasCollision){
 		this.image=image;
-		this.x=x;
-		this.y=y;
-		this.w=w;
-		this.h=h;
+		w=width;
+		h=height;
+		this.id=id;
 		this.hasCollision=hasCollision;
 	}
 
@@ -29,7 +31,7 @@ public class BasicTile implements Tile{
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
+	
 }
