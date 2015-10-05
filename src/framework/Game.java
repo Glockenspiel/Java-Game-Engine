@@ -100,7 +100,7 @@ public class Game {
 			boolean flag=true;
 			while(flag){
 				startTime = System.currentTimeMillis();
-				input.update();
+				//input.update();
 				
 				
 				
@@ -115,6 +115,7 @@ public class Game {
 				deleteGameObjects();
 				adObjs();
 				
+				input.clear();
 				//don't loop forever
 				i++;
 				if(i>300)
@@ -162,6 +163,7 @@ public class Game {
 				if(found==false)
 					Game.print().log("GameObject ID not found when deleting GameObject by ID : " + id);
 			}
+			deleteBufferIDs.clear();
 		}
 
 		private long calculateSleepTime() {

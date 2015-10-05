@@ -14,7 +14,7 @@ public class AnimatedTile implements Tile {
 	
 	public AnimatedTile(SpriteSheet spriteSheet, int width, int height, int x, int y, int frameSpeed, boolean hasCollision){
 		position = new Vector(x,y);
-		anim = new Animation(spriteSheet, width, height, 0,0, frameSpeed);
+		anim = new Animation(spriteSheet, width, height, new Vector(0,0), frameSpeed);
 		this.hasCollision=hasCollision;
 	}
 

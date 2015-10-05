@@ -1,6 +1,7 @@
 package DemoLevels;
 
-import Scripts.ExampleInput;
+
+import Scripts.PlayerInput;
 import Tiles.AnimatedTile;
 import Tiles.BasicTile;
 import Tiles.TileMap;
@@ -31,10 +32,17 @@ public class Level1 extends Level{
 	
 		
 		GameObject p = new GameObject("Player");
-		p.add(new Sprite("box.png", 64,64)); //add component
-		p.add(new ExampleInput());//adding a script
-		SpriteSheet s = new SpriteSheet("testSheet.png", 32,32);
-		p.add(new Animation(s, 32,32,-32,-32, 10)); //add counting animation
+		Vector playerSize = new Vector(64,64);
+		Vector rocketSize = new Vector(64,64);
+		//offset position of rocket flames
+		
+		Vector rocketOffset = new Vector(-32,16);
+		
+		Sprite triangle = new Sprite("triangle.png", 64, 64);
+		p.add(triangle); //add component
+		p.add(new PlayerInput());//adding a script
+		SpriteSheet s = new SpriteSheet("rocket.png", 32,32);
+		p.add(new Animation(s, 32,32, rocketOffset,3)); //add counting animation
 		p.moveBy(new Vector(100,0)); //move player to a suitable starting position
 		addObj(p);
 

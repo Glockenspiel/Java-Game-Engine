@@ -15,6 +15,8 @@ public class GameObject implements Debug{ // also known as an Entity
 	private ArrayList<Component> components = new ArrayList<Component>();
 	private ArrayList<Script> scripts = new ArrayList<Script>();
 	private Vector position = new Vector(0,0);
+	private Thread deleteThread;
+	private boolean once=true;
 	
 	//get unique id of this gameObject
 	public int getID(){
@@ -27,7 +29,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	private void generateID(){
 		//todo: use UUID 
-		id=(int)(Math.random() * ((100 - 1) + 1)); //random number between 100-1
+		id=(int)(Math.random() * ((1000 - 1) + 1)); //random number between 1000-1
 	}
 	
 	//add a component to the gameObject
@@ -58,11 +60,17 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	//update all components
 	public void update(){
+		if(once){
+			if(deleteThread!=null)
+				deleteThread.start();
+			once=false;
+		}
+		
 		for(Script s: scripts)
 			s.execute(this);
+		
 		for(Component c : components)
 			c.update(this);
-		
 	}
 	
 	//draw all components
@@ -91,6 +99,27 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	public GameObject(String tag){
 		this.tag=tag;
+		
+	}
+	
+	//deletes this game object
+	public void delete(){
+		Game.deleteObjByID(id);
+	}
+	
+	//deletes this object in a given amount of time (milliseconds)
+	public void delete(long milliseconds){
+		deleteThread = new Thread(){
+			public void run(){
+				try {
+					sleep(milliseconds);
+					
+				} catch (InterruptedException e) {
+					Game.print().log("DeleteObjInTime interupted! When deleting game Object with id:  " + id);
+				}
+				Game.deleteObjByID(getID());
+			}
+		};
 	}
 
 	@Override

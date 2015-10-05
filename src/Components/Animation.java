@@ -1,5 +1,7 @@
 package Components;
 
+import java.awt.image.BufferedImage;
+
 import Display.Drawer;
 import framework.Component;
 import framework.GameObject;
@@ -8,7 +10,7 @@ import framework.Vector;
 public class Animation extends Component {
 
 	private SpriteSheet spriteSheet;
-	private int h,w,offsetX, offsetY;
+	private Vector offset;
 	private int frameX = 0, frameY=0;
 	private int frameSpeed; //number of game frames until change to next image in animation
 	private int frameCount=0;
@@ -16,13 +18,19 @@ public class Animation extends Component {
 	 * width and height are display sizes
 	 * offsetX and offsetY are offsets to append to the GameObject origin
 	 */
-	public Animation(SpriteSheet spriteSheet, int width, int height, int offsetX, int offsetY, int frameSpeed){
+	public Animation(SpriteSheet spriteSheet, int displayW, int displayH, Vector offset, int frameSpeed){
+		this.offset=offset;
 		this.spriteSheet = spriteSheet;
-		h=height;
-		w=width;
-		this.offsetX=offsetX;
-		this.offsetY=offsetY;
 		this.frameSpeed=frameSpeed;
+		spriteSheet.scaleImages(displayW, displayH);
+	}
+	
+	public void setOffset(int offsetX, int offsetY){
+		offset = new Vector(offsetX, offsetY);
+	}
+	
+	public Vector getOffset(){
+		return offset;
 	}
 	
 	@Override
@@ -61,7 +69,8 @@ public class Animation extends Component {
 
 	@Override
 	public void draw(Drawer g, Vector objPos) {
-		g.drawImage(spriteSheet.getFrame(frameX, frameY), objPos.intX()+ offsetX, objPos.intY() + offsetY, w, h);
+		BufferedImage image = spriteSheet.getFrame(frameX, frameY);
+		g.drawImage(image, objPos.intX()+ offset.intX(), objPos.intY() + offset.intY(), image.getWidth(), image.getHeight());
 	}
 
 }

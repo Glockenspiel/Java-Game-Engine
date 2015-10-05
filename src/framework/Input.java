@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public interface Input {
 	
-	void update();
+	//clear input for next frame
+	void clear();
 	
 	//if current state of key is down
 	public boolean isKeyDown(char key);

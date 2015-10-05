@@ -18,7 +18,7 @@ public class SwingInput implements Input{
 	}
 	
 	@Override
-	public void update(){
+	public void clear(){
 		//copy array of previous frame
 		prevInput = Arrays.copyOf(currentInput, currentInput.length); 
 	}

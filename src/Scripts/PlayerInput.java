@@ -6,7 +6,7 @@ import framework.GameObject;
 import framework.Script;
 import framework.Vector;
 
-public class ExampleInput implements Script {
+public class PlayerInput implements Script {
 
 	private int speed=3;
 	private boolean once=true;
@@ -17,9 +17,9 @@ public class ExampleInput implements Script {
 		Vector direction = Game.getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement);
-		
+
 		//shoot
-		if(Game.getInput().isKeyDown('P')){
+		if(Game.getInput().iskeyPressed('P')){
 			shoot(obj.getPosition());
 		}
 		
@@ -33,9 +33,16 @@ public class ExampleInput implements Script {
 	//spawn bullet object
 	private void shoot(Vector position) {
 		GameObject bullet = new GameObject("bullet");
-		bullet.add(new Sprite("box.png", 8,8));
-		bullet.moveTo(position);
-		bullet.add(new BulletScript());
+		Vector bulletSize = new Vector(16,8);
+		
+		
+		bullet.add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
+		
+		//draw bullet at front of player
+		Vector offset = new Vector(64,32-bulletSize.intY()/2);
+		bullet.moveTo(Vector.add(position, offset));
+		bullet.add(new BulletScript(2,0));
+		bullet.delete(4000);
 		Game.addGameObject(bullet);
 	}
 
