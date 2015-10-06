@@ -22,13 +22,11 @@ import framework.Vector;
 import Components.SpriteSheet;
 import Display.Drawer;
 import Loaders.ImageLoader;
-import Loaders.TileFactory;
 
 public class TileMap extends Component {
 
 	private ArrayList<Tile> tiles;
 	private SpriteSheet sheet;
-	private Vector mapSize;
 	private Vector tileSize;
 	private ArrayList<ArrayList<Integer>> indexes = new ArrayList<ArrayList<Integer>>();
 

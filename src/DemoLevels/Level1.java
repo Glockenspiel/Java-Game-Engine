@@ -2,8 +2,6 @@ package DemoLevels;
 
 
 import Scripts.PlayerInput;
-import Tiles.AnimatedTile;
-import Tiles.BasicTile;
 import Tiles.TileMap;
 import Components.Animation;
 import Components.Sprite;
@@ -23,9 +21,6 @@ public class Level1 extends Level{
 		
 		//create tile map component
 		TileMap tilemap = new TileMap(mapSheet, "level1.xml", new Vector(32,32));
-		//tilemap.addTile(new AnimatedTile(mapSheet, 100,100, 300,150,30,false));
-		//tilemap.addTile(new BasicTile(mapSheet.getFrame(0, 0), 100,100,20,20,false));
-		
 		map.add(tilemap);
 		addObj(map);
 		
