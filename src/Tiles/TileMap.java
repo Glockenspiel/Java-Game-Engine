@@ -42,6 +42,7 @@ public class TileMap extends Component {
 	
 	//xml loading
 	//todo: add comments to this
+	//todo: xml file includes sprite sheet name and parameters, rather than passing in a sprite sheet in the constructor 
 	//reads and loads each tile type and the map indexes
 	private void loadTiles(String filename) {
 		File xmlFile = new File(tileMapPath+filename);
