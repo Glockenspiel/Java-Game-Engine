@@ -33,7 +33,6 @@ public class TileMap extends Component {
 	private static String tileMapPath= "Resources/TileMaps/";
 	
 	public TileMap(SpriteSheet sheet, String filename, Vector tileSize){
-		//read indexes from file
 		this.sheet=sheet;
 		this.tileSize=tileSize;
 		
@@ -43,6 +42,7 @@ public class TileMap extends Component {
 	
 	//xml loading
 	//todo: add comments to this
+	//reads and loads each tile type and the map indexes
 	private void loadTiles(String filename) {
 		File xmlFile = new File(tileMapPath+filename);
 		
@@ -128,6 +128,7 @@ public class TileMap extends Component {
 	@Override
 	public void update(GameObject obj) {}
 
+	//draw all the tiles
 	@Override
 	public void draw(Drawer g, Vector objPos) {
 		Tile_I t;
@@ -140,6 +141,7 @@ public class TileMap extends Component {
 		}
 	}
 	
+	//get a certain tile by its id
 	private Tile_I getTileByID(int id){
 		for(Tile_I t : tiles){
 			if(t.getID()==id)
@@ -149,6 +151,7 @@ public class TileMap extends Component {
 		return null;
 	}
 	
+	//returns a BufferedImage from the spriteSheet at a given grid coordinate
 	public BufferedImage getSpriteFromSheet(int x, int y){
 		return sheet.getFrame(x, y);
 	}

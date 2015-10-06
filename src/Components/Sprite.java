@@ -1,16 +1,11 @@
 package Components;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 import Display.Drawer;
 import Loaders.ImageLoader;
 import framework.Component;
 import framework.GameObject;
-import framework.Scaler;
 import framework.Vector;
 
 public class Sprite extends Component {

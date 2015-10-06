@@ -3,9 +3,6 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
-import Components.Sprite;
 import Debugging.Print;
 import Debugging.SwingPrint;
 import Display.SwingWindow;

@@ -1,7 +1,5 @@
 package framework;
 
-import java.awt.Graphics;
-
 import Display.Drawer;
 
 public abstract class Component{

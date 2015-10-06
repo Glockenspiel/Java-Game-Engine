@@ -10,6 +10,7 @@ public class ImageLoader {
 	private static String errorImage = "error.png";
 	private static String[] validFormats = new String[]{"JPEG", "PNG", "BMP", "GIF"};
 	
+	//loads an image from file that are of format JPEG, PNG, BMP, GIF
 	public static BufferedImage load(String filename){
 		//check extension is valid
 		validFormat(filename);

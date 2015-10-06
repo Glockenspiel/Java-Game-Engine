@@ -1,7 +1,5 @@
 package framework;
 
-import java.util.ArrayList;
-
 public interface Input {
 	
 	//clear input for next frame

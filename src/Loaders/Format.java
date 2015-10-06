@@ -2,6 +2,7 @@ package Loaders;
 
 public class Format {
 	
+	//return extension for a file name
 	public static String getFormat(String filename){
 		String [] elements = filename.split("\\.");
 		
