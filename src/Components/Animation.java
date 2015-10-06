@@ -14,6 +14,7 @@ public class Animation extends Component {
 	private int frameX = 0, frameY=0;
 	private int frameSpeed; //number of game frames until change to next image in animation
 	private int frameCount=0;
+	private Vector displaySize;
 	/*
 	 * width and height are display sizes
 	 * offsetX and offsetY are offsets to append to the GameObject origin
@@ -22,7 +23,7 @@ public class Animation extends Component {
 		this.offset=offset;
 		this.spriteSheet = spriteSheet;
 		this.frameSpeed=frameSpeed;
-		spriteSheet.scaleImages(displayW, displayH);
+		displaySize = new Vector(displayW, displayH);
 	}
 	
 	public void setOffset(int offsetX, int offsetY){
@@ -31,6 +32,11 @@ public class Animation extends Component {
 	
 	public Vector getOffset(){
 		return offset;
+	}
+	
+	//returns dimensions of image displayed
+	public Vector getDisplaySize(){
+		return displaySize;
 	}
 	
 	@Override
@@ -70,7 +76,8 @@ public class Animation extends Component {
 	@Override
 	public void draw(Drawer g, Vector objPos) {
 		BufferedImage image = spriteSheet.getFrame(frameX, frameY);
-		g.drawImage(image, objPos.intX()+ offset.intX(), objPos.intY() + offset.intY(), image.getWidth(), image.getHeight());
+		Vector position = Vector.add(objPos, offset);
+		g.drawImage(image, position.intX(), position.intY(), displaySize.intX(), displaySize.intY());
 	}
 
 }

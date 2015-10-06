@@ -10,6 +10,11 @@ public class PlayerInput implements Script {
 
 	private int speed=3;
 	private boolean once=true;
+	private Vector playerSize;
+	
+	public PlayerInput(Vector playerSize){
+		this.playerSize=playerSize;
+	}
 	
 	@Override
 	public void execute(GameObject obj) {
@@ -35,11 +40,10 @@ public class PlayerInput implements Script {
 		GameObject bullet = new GameObject("bullet");
 		Vector bulletSize = new Vector(16,8);
 		
-		
 		bullet.add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
 		
 		//draw bullet at front of player
-		Vector offset = new Vector(64,32-bulletSize.intY()/2);
+		Vector offset = new Vector(playerSize.intX(),playerSize.intY()/2-bulletSize.intY()/2);
 		bullet.moveTo(Vector.add(position, offset));
 		bullet.add(new BulletScript(2,0));
 		bullet.delete(4000);

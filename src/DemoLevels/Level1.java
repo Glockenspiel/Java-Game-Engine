@@ -32,18 +32,26 @@ public class Level1 extends Level{
 	
 		
 		GameObject p = new GameObject("Player");
+		
+		Vector playerStartPosition = new Vector(100,10);
+		
+		//dimensions to display images
 		Vector playerSize = new Vector(64,64);
-		Vector rocketSize = new Vector(64,64);
+		Vector rocketSize = new Vector(32,32);
+		
 		//offset position of rocket flames
+		Vector rocketOffset = new Vector(-rocketSize.intX(),-rocketSize.intY()/2+playerSize.intY()/2);
 		
-		Vector rocketOffset = new Vector(-32,16);
-		
-		Sprite triangle = new Sprite("triangle.png", 64, 64);
+		Sprite triangle = new Sprite("triangle.png", playerSize.intX(), playerSize.intY());
 		p.add(triangle); //add component
-		p.add(new PlayerInput());//adding a script
+		
+		
+		//rocket flame animation
 		SpriteSheet s = new SpriteSheet("rocket.png", 32,32);
-		p.add(new Animation(s, 32,32, rocketOffset,3)); //add counting animation
-		p.moveBy(new Vector(100,0)); //move player to a suitable starting position
+		p.add(new Animation(s, rocketSize.intX(), rocketSize.intY(), rocketOffset,3));
+		
+		p.moveBy(playerStartPosition); //move player to a suitable starting position
+		p.add(new PlayerInput(playerSize));//adding a script for input
 		addObj(p);
 
 	}

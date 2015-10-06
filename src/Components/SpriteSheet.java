@@ -17,21 +17,8 @@ public class SpriteSheet {
 	BufferedImage srcImage;
 	
 	public SpriteSheet(String filename, int frameWidth, int frameHeight){
-		
-		//todo: frame width & height dont scale the image. tip: use graphics2d
 		srcImage = ImageLoader.load(filename);
 		loadFrames(frameWidth, frameHeight, filename);
-	}
-	
-	//scale all images
-	public void scaleImages(int displayWidth, int displayHeight) {
-		if(images[0][0]==null) return;
-		
-		for(int y=0; y<images.length; y++){
-			for(int x=0; x<images[y].length; x++){
-				images[y][x] = Scaler.scaleTo(displayWidth, displayHeight, images[y][x]);
-			}
-		}
 	}
 
 	//loads image file and splits into a grid of images (frames) stored in a 2D array BufferedImages
@@ -51,18 +38,6 @@ public class SpriteSheet {
 						srcImage.getSubimage(x*width, y*height, 
 							width, height);
 			}
-	}
-	
-	public int displayHeight(){
-		if(images[0][0]==null) 
-			return 0;
-		return images[0][0].getHeight();
-	}
-	
-	public int displayWidth(){
-		if(images[0][0]==null) 
-			return 0;
-		return images[0][0].getWidth();
 	}
 
 	

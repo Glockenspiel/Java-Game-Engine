@@ -19,10 +19,13 @@ public class Sprite extends Component {
 	private static final String TYPE = "Sprite";
 	private BufferedImage image;
 	private int offsetX, offsetY; //offsets from GameObject origin
+	private int w,h;
 	
 	public Sprite(String filename, int width, int height){
 		offsetX=0;
 		offsetY=0;
+		w=width;
+		h=height;
 		image = ImageLoader.load(filename);
 	}
 	
@@ -30,17 +33,15 @@ public class Sprite extends Component {
 		this.offsetX=offsetX;
 		this.offsetY=offsetY;
 		image = ImageLoader.load(filename);
-		//todo: scale with graphics2d
-		//Scaler.scaleTo(width, height,image);
 	}
 
 	
 	public int getHeight(){
-		return image.getHeight();
+		return w;
 	}
 	
 	public int getWidth(){
-		return image.getWidth();
+		return h;
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class Sprite extends Component {
 	public void draw(Drawer g, Vector objPos) {
 		g.drawImage(image, 	objPos.intX()+offsetX, 
 							objPos.intY()+offsetY, 
-							image.getWidth(), image.getHeight());
+							w,h);
 	}
 
 
