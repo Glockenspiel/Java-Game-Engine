@@ -25,7 +25,7 @@ import Loaders.ImageLoader;
 
 public class TileMap extends Component {
 
-	private ArrayList<Tile> tiles;
+	private ArrayList<Tile_I> tiles;
 	private SpriteSheet sheet;
 	private Vector tileSize;
 	private ArrayList<ArrayList<Integer>> indexes = new ArrayList<ArrayList<Integer>>();
@@ -37,7 +37,7 @@ public class TileMap extends Component {
 		this.sheet=sheet;
 		this.tileSize=tileSize;
 		
-		tiles= new ArrayList<Tile>();
+		tiles= new ArrayList<Tile_I>();
 		loadTiles(filename);
 	}
 	
@@ -85,7 +85,7 @@ public class TileMap extends Component {
 				sheetY = Integer.parseInt(getContent(tile, "sheetY"));
 				collision = getContent(tile, "collision").equalsIgnoreCase("true");
 				
-				this.tiles.add(new Tile2(sheet.getFrame(sheetX, sheetY),tileSize.intX(), tileSize.intY(), id, name, collision));
+				this.tiles.add(new Tile(sheet.getFrame(sheetX, sheetY),tileSize.intX(), tileSize.intY(), id, name, collision));
 			}
 		
 			//read indexes
@@ -130,7 +130,7 @@ public class TileMap extends Component {
 
 	@Override
 	public void draw(Drawer g, Vector objPos) {
-		Tile t;
+		Tile_I t;
 		for(int y=0; y<indexes.size(); y++){
 			for(int x=0;x<indexes.get(y).size(); x++){
 				t=getTileByID(indexes.get(y).get(x));
@@ -140,8 +140,8 @@ public class TileMap extends Component {
 		}
 	}
 	
-	private Tile getTileByID(int id){
-		for(Tile t : tiles){
+	private Tile_I getTileByID(int id){
+		for(Tile_I t : tiles){
 			if(t.getID()==id)
 				return t;
 		}

@@ -17,11 +17,13 @@ public class SwingWindow implements Window{
 	private JFrame f;
 	private SwingPanel panel;
 	
-	public SwingWindow(){
+	public SwingWindow(int width, int height, boolean windowed, String windowName){
 		f = new JFrame();
+		f.setUndecorated(!windowed);
+		f.setTitle(windowName);
 		panel = new SwingPanel();
 		f.add(panel);
-		f.setBounds(100,50,500,300);
+		f.setBounds(100,50,width,height);
 		
 		f.addWindowListener(new WindowAdapter() {
 		    @Override

@@ -1,5 +1,6 @@
 package framework;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -66,13 +67,17 @@ public class Game {
 		objs.clear();
 		level.init();
 	}
+	
+	public Level getCurrentLevel(){
+		return currentLevel;
+	}
 
 	
 	//checks to see if all attributes have been initialised correctly
 	//if not this method sets them to the defaults
 	private static void checkInit(){
 		if(window==null)
-			window = new SwingWindow();
+			window = new SwingWindow(512,256,false, "Framework");
 		
 		if(input==null)
 			input = new SwingInput();
@@ -121,11 +126,23 @@ public class Game {
 				if(i>300)
 				flag=false;
 				
+				
+				if(checkExitGame())
+					flag=false;
+				
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
 			
-			print.log("Finished looping");
+			//exit game if ended loop
+			System.exit(0);
+		}
+
+		//checks if the escape game command is true
+		private boolean checkExitGame() {
+			if(input.isKeyDown((char)KeyEvent.VK_ESCAPE))
+				return true;
+			return false;
 		}
 
 		private void adObjs() {

@@ -12,6 +12,8 @@ import framework.Vector;
 
 public class Level1 extends Level{
 
+	private String levelName = "example level1";
+	
 	@Override
 	public void init() {
 
@@ -53,7 +55,7 @@ public class Level1 extends Level{
 
 	@Override
 	public String getName() {
-		return "example level";
+		return levelName;
 	}
 
 }
