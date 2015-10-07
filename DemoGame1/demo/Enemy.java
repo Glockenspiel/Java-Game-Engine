@@ -15,7 +15,7 @@ public class Enemy extends GameObject {
 	public Enemy(String tag) {
 		super(tag);
 		
-		add(new Sprite("box.png", 32, 32));
+		add(new Sprite("rock.png", 32, 64));
 	}
 	
 	@Override

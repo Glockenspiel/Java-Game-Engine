@@ -59,22 +59,7 @@ public class Game {
 	}
 	
 	public static void addGameObject(GameObject object){
-		//checkDuplicateTag(object);
 		objsToAdd.add(object);
-	}
-	
-	//todo: remove this
-	//check if any duplicate Tags and give warning if there's a duplicate
-	private static boolean checkDuplicateTag(GameObject object){
-		for(GameObject o : objs){
-			if(o.getTag().equalsIgnoreCase(object.getTag())){
-				print.log("Warning: GameObject with the tag \"" + object.getTag() + "\" "
-						+ "already exists. This may cause unexpected execution");
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	public static void changeLevel(Level level){
@@ -88,10 +73,13 @@ public class Game {
 	}
 	
 	//load level 
-	public static void loadLevel(Level level){
-		//checkInit();
-		currentLevel = level;
+	private static void loadLevel(Level level){
+		deleteBufferTag.clear();
+		deleteBufferIDs.clear();
+		objsToAdd.clear();
 		objs.clear();
+		//todo: this should also stop any threads running in scripts such as delete(milliseconds)
+		currentLevel = level;
 		level.init();
 	}
 	
