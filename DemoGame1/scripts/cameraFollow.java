@@ -1,4 +1,4 @@
-package Scripts;
+package scripts;
 
 import java.awt.event.KeyEvent;
 

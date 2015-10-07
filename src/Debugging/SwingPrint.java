@@ -1,10 +1,12 @@
-package Debugging;
+package debugging;
+
+import javax.swing.JOptionPane;
 
 public class SwingPrint implements Print {
 	
 	@Override
-	public void dialog(String msg, int type) {
-		
+	public void dialog(String msg, String title, int type) {
+		JOptionPane.showMessageDialog(null, title , msg, type);
 	}
 
 	@Override

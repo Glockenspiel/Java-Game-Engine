@@ -3,8 +3,8 @@ package framework;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import Debugging.Debug;
-import Display.Drawer;
+import debugging.Debug;
+import display.Drawer;
 
 public class GameObject implements Debug{ // also known as an Entity
 	

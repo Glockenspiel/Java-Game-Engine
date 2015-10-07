@@ -1,6 +1,6 @@
-package Tiles;
+package tiles;
 
-import Display.Drawer;
+import display.Drawer;
 
 
 //world object that has a static position

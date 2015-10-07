@@ -1,12 +1,13 @@
-package DemoLevels;
+package levels;
 
 
-import Scripts.PlayerInput;
-import Scripts.cameraFollow;
-import Tiles.TileMap;
-import Components.Animation;
-import Components.Sprite;
-import Components.SpriteSheet;
+import components.Animation;
+import components.Sprite;
+import components.SpriteSheet;
+
+import scripts.PlayerInput;
+import scripts.cameraFollow;
+import tiles.TileMap;
 import framework.GameObject;
 import framework.Level;
 import framework.Vector;

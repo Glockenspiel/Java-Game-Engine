@@ -1,6 +1,6 @@
-package Debugging;
+package debugging;
 
-import Display.Drawer;
+import display.Drawer;
 
 public interface Debug {
 	

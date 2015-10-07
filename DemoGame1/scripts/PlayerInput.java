@@ -1,6 +1,7 @@
-package Scripts;
+package scripts;
 
-import Components.Sprite;
+import components.Sprite;
+
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -14,7 +15,6 @@ public class PlayerInput implements Script {
 	
 	public PlayerInput(Vector playerSize){
 		this.playerSize=playerSize;
-		
 	}
 	
 	@Override

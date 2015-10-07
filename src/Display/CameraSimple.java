@@ -1,4 +1,4 @@
-package Display;
+package display;
 
 import framework.Game;
 import framework.Vector;

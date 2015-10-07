@@ -1,8 +1,8 @@
-package Tiles;
+package tiles;
 
 import java.awt.image.BufferedImage;
 
-import Display.Drawer;
+import display.Drawer;
 
 public class Tile implements Tile_I {
 	

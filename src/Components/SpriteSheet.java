@@ -1,8 +1,8 @@
-package Components;
+package components;
 
 import java.awt.image.BufferedImage;
 
-import Loaders.ImageLoader;
+import loaders.ImageLoader;
 
 public class SpriteSheet {
 	

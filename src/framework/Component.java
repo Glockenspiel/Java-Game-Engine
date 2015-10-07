@@ -1,6 +1,6 @@
 package framework;
 
-import Display.Drawer;
+import display.Drawer;
 
 public abstract class Component{
 	

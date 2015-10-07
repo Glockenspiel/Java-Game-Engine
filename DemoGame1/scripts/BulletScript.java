@@ -1,4 +1,4 @@
-package Scripts;
+package scripts;
 
 import framework.Vector;
 import framework.GameObject;

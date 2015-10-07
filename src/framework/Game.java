@@ -3,12 +3,12 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import Debugging.Print;
-import Debugging.SwingPrint;
-import Display.Camera;
-import Display.CameraSimple;
-import Display.SwingWindow;
-import Display.Window;
+import debugging.Print;
+import debugging.SwingPrint;
+import display.Camera;
+import display.CameraSimple;
+import display.SwingWindow;
+import display.Window;
 
 public class Game {
 	
@@ -73,8 +73,8 @@ public class Game {
 	}
 	
 	//load level 
-	public void loadLevel(Level level){
-		checkInit();
+	public static void loadLevel(Level level){
+		//checkInit();
 		currentLevel = level;
 		objs.clear();
 		level.init();
@@ -102,7 +102,8 @@ public class Game {
 	}
 	
 	//start thread for game loop
-	public static void start(){
+	public static void start(Level level){
+		currentLevel = level;
 		gameStarted=true;
 		gameLoop.start();
 	}
@@ -115,6 +116,7 @@ public class Game {
 		public void run(){
 			//check initialisation was done correctly
 			checkInit();
+			loadLevel(currentLevel);
 			adObjs();
 			
 			//main loop
@@ -122,8 +124,6 @@ public class Game {
 			while(flag){
 				startTime = System.currentTimeMillis();
 				//input.update();
-				
-				
 				
 				for(GameObject g : objs)
 					g.update();

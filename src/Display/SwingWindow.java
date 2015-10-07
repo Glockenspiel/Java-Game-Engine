@@ -1,4 +1,4 @@
-package Display;
+package display;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

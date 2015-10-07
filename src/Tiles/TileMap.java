@@ -1,4 +1,4 @@
-package Tiles;
+package tiles;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,19 +9,22 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import loaders.ImageLoader;
+import loaders.XmlLoader;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import components.SpriteSheet;
+
+import display.Drawer;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;
 import framework.Vector;
-import Components.SpriteSheet;
-import Display.Drawer;
-import Loaders.ImageLoader;
 
 public class TileMap extends Component {
 
@@ -45,27 +48,12 @@ public class TileMap extends Component {
 	//todo: xml file includes sprite sheet name and parameters, rather than passing in a sprite sheet in the constructor 
 	//reads and loads each tile type and the map indexes
 	private void loadTiles(String filename) {
-		File xmlFile = new File(tileMapPath+filename);
+		NodeList nList = XmlLoader.load(tileMapPath+filename, "Legend");
 		
-		if(!xmlFile.exists()){
+		if(nList==null){
 			return;
 		}
 		
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = null;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		Document doc = null;
-		try {
-			doc = dBuilder.parse(xmlFile);
-		} catch (SAXException | IOException e) {
-			e.printStackTrace();
-		}
-		
-		NodeList nList = doc.getElementsByTagName("Legend");
 		Element legend = (Element) nList.item(0);
 		System.out.println(legend.getNodeName());
 		
@@ -77,7 +65,6 @@ public class TileMap extends Component {
 		for(int i=0; i<tiles.getLength(); i++){
 			//read tiles
 			if(tiles.item(i).getNodeName().equals("Tile")){
-				System.out.println(tiles.item(i).getNodeName());
 				Element tile = (Element) tiles.item(i);
 				
 				name = getContent(tile,"name");

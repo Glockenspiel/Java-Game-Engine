@@ -1,4 +1,4 @@
-package Loaders;
+package loaders;
 
 public class Format {
 	

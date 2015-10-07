@@ -1,8 +1,8 @@
-package Components;
+package components;
 
 import java.awt.image.BufferedImage;
 
-import Display.Drawer;
+import display.Drawer;
 import framework.Component;
 import framework.GameObject;
 import framework.Vector;
