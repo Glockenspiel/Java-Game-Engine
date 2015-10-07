@@ -47,6 +47,18 @@ public class SwingDrawer implements Drawer {
 	private int cameraPosY(){
 		return Game.getCamera().getPosition().intY();
 	}
+
+	@Override
+	public void drawHUDImage(Image img, int x, int y, int w, int h) {
+		g.drawImage(img, x, y, w, h, null);
+	}
+
+	@Override
+	public void drawHUDText(String string, int x, int y, Color color) {
+		g.setColor(color);
+		g.drawString(string, x, y);
+	}
+	
 	
 	
 

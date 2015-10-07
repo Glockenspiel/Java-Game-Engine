@@ -2,6 +2,7 @@ package demo;
 
 import scripts.PlayerInput;
 import scripts.cameraFollow;
+import scripts.PlayerStatus;
 
 import components.Animation;
 import components.Sprite;
@@ -38,6 +39,8 @@ public class Player extends GameObject {
 		//rocket flame animation
 		SpriteSheet s = new SpriteSheet("rocket.png", 32,32);
 		add(new Animation(s, rocketSize.intX(), rocketSize.intY(), rocketOffset,3));
+		
+		add(new PlayerStatus());
 		
 		moveBy(playerStartPosition); //move player to a suitable starting position
 		add(new PlayerInput(playerSize));//adding a script for input

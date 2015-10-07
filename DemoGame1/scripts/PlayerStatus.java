@@ -1,0 +1,35 @@
+package scripts;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+import components.HUDItem;
+import display.Drawer;
+import framework.Game;
+import framework.GameObject;
+import framework.Script;
+
+public class PlayerStatus implements Script, HUDItem {
+
+	
+	private int time = 0;
+	private BufferedImage image;
+			
+	public PlayerStatus(){
+		image = loaders.ImageLoader.load("hudImage.png");
+	}
+	
+	@Override
+	public void execute(GameObject obj) {
+		time+=Game.getFrameTime();
+	}
+
+	
+	@Override
+	public void drawGUI(Drawer g) {
+		if(image!=null)
+			g.drawHUDImage(image, 0, 0, 100, 30);
+		
+		g.drawHUDText("time: "+ time/1000, 25, 20, Color.BLACK);
+	}
+}

@@ -31,6 +31,8 @@ public class Game {
 	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
 	
+	private static final long FRAME_TIME = 30; //milliseconds allowed per frame
+	
 	public Game(){}
 	
 	//sets the window type
@@ -114,7 +116,7 @@ public class Game {
 	private static Thread gameLoop = new Thread(){
 		
 		private long startTime;
-		private static final long FRAME_TIME = 30; //milliseconds allowed per frame
+		
 		
 		public void run(){
 			//check initialisation was done correctly
@@ -272,5 +274,9 @@ public class Game {
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByID(int id){
 		deleteBufferIDs.add(id);
+	}
+	
+	public static long getFrameTime(){
+		return FRAME_TIME;
 	}
 }

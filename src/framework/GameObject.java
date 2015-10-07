@@ -3,8 +3,11 @@ package framework;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import components.HUDItem;
+
 import debugging.Debug;
 import display.Drawer;
+import display.SwingDrawer;
 
 public class GameObject implements Debug{ // also known as an Entity
 	
@@ -133,6 +136,15 @@ public class GameObject implements Debug{ // also known as an Entity
 		for(Component c : components)
 		if(c instanceof Debug){
             ((Debug) c).debugDraw(g);
+		}
+	}
+
+	//finds which scripts implement HUDItem and draw the HUD
+	public void drawHUDItems(SwingDrawer drawer) {
+		for(Script s : scripts){
+			if(s instanceof HUDItem){
+				((HUDItem) s).drawGUI(drawer);
+			}
 		}
 	}
 }

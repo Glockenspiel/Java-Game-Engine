@@ -11,4 +11,7 @@ public interface Drawer {
 	
 	public void drawBox(int x, int y, int width, int height, Color color);
 	
+	public void drawHUDImage(Image img, int x, int y, int w, int h);
+	
+	public void drawHUDText(String string, int x, int y, Color color);
 }
