@@ -1,7 +1,5 @@
 package framework;
 
-import java.util.Random;
-
 public class MathG {
 	
 	public static int randomNumber(int min, int max){

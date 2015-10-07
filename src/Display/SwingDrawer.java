@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import framework.Game;
-import framework.Vector;
 
 public class SwingDrawer implements Drawer {
 

@@ -1,7 +1,6 @@
 package levels;
 
 import scripts.ToggleLevel;
-import demo.Enemy;
 import demo.Player;
 import framework.GameObject;
 import framework.Level;
@@ -10,7 +9,7 @@ import demo.EnemySpawner;
 
 public class Level2 extends Level {
 
-	private String levelName="level2";
+	private final String levelName="level2";
 	
 	@Override
 	public void init() {

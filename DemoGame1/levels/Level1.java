@@ -1,13 +1,7 @@
 package levels;
 
-
-import components.Animation;
-import components.Sprite;
 import components.SpriteSheet;
 import demo.Player;
-import scripts.PlayerInput;
-import scripts.ToggleLevel;
-import scripts.cameraFollow;
 import scripts.ToggleLevel;
 import tiles.TileMap;
 import framework.Game;
@@ -17,7 +11,7 @@ import framework.Vector;
 
 public class Level1 extends Level{
 
-	private String levelName = "example level1";
+	private final String levelName = "example level1";
 	
 	@Override
 	public void init() {

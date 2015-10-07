@@ -7,7 +7,6 @@ import framework.Script;
 public class BulletScript implements Script {
 
 	private Vector speed;
-	private boolean once=true;
 	
 	public BulletScript(Vector speed){
 		this.speed=speed;
