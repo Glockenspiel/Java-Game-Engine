@@ -14,6 +14,7 @@ public class PlayerInput implements Script {
 	
 	public PlayerInput(Vector playerSize){
 		this.playerSize=playerSize;
+		
 	}
 	
 	@Override
@@ -22,9 +23,12 @@ public class PlayerInput implements Script {
 		Vector direction = Game.getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement);
+		//obj.moveBy(Vector.multiply(displacement, new Vector(-1,-1)));
+	//	Game.getCamera().moveBy(displacement);
+		
 
 		//shoot
-		if(Game.getInput().iskeyPressed('P')){
+		if(Game.getInput().isKeyPressed('P')){
 			shoot(obj.getPosition());
 		}
 		

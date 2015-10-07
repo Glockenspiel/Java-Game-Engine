@@ -37,7 +37,7 @@ public class SwingInput implements Input{
 	
 	//true if key pressed down
 	@Override
-	public boolean iskeyPressed(char key){
+	public boolean isKeyPressed(char key){
 		if(prevInput[key] == false && currentInput[key] == true)
 			return true;
 		return false;
@@ -46,7 +46,7 @@ public class SwingInput implements Input{
 	
 	//true if key released
 	@Override
-	public boolean iskeyReleased(char key){
+	public boolean isKeyReleased(char key){
 		if(prevInput[key] == true && currentInput[key] == false)
 			return true;
 		return false;

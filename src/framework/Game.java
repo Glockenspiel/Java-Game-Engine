@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import Debugging.Print;
 import Debugging.SwingPrint;
+import Display.Camera;
+import Display.CameraSimple;
 import Display.SwingWindow;
 import Display.Window;
 
@@ -20,22 +22,36 @@ public class Game {
 	private static Window window;
 	private static Input input;
 	private static Print print;
+	private static Camera camera;
 	private static boolean drawDebug=false;
 	private static Level currentLevel;
+	private static boolean gameStarted=false;
 	
 	public Game(){}
 	
 	//sets the window type
-	public void setWindow(Window window){
-		this.window=window;
+	public static void setWindow(Window windowType){
+		if(gameStarted){
+			Game.print().log("Window cannot be set once game has started");
+			return;
+		}
+		window=windowType;
 	}
 	
-	public void setInputType(Input input){
-		this.input=input;
+	public static void setInputType(Input inputType){
+		if(gameStarted){
+			Game.print().log("Input cannot be set once game has started");
+			return;
+		}
+		input=inputType;
 	}
 	
-	public void setPrint(Print print){
-		this.print = print;
+	public static void setPrint(Print printType){
+		if(gameStarted){
+			Game.print().log("Print cannot be set once game has started");
+			return;
+		}
+		print = printType;
 	}
 	
 	public static void addGameObject(GameObject object){
@@ -58,8 +74,7 @@ public class Game {
 	
 	//load level 
 	public void loadLevel(Level level){
-		if(print==null)
-			print = new SwingPrint();
+		checkInit();
 		currentLevel = level;
 		objs.clear();
 		level.init();
@@ -74,7 +89,10 @@ public class Game {
 	//if not this method sets them to the defaults
 	private static void checkInit(){
 		if(window==null)
-			window = new SwingWindow(512,256,false, "Framework");
+			window = new SwingWindow(100,50,512,256,false, "Framework");
+		
+		if(camera==null)
+			camera = new CameraSimple(0,0);
 		
 		if(input==null)
 			input = new SwingInput();
@@ -85,6 +103,7 @@ public class Game {
 	
 	//start thread for game loop
 	public static void start(){
+		gameStarted=true;
 		gameLoop.start();
 	}
 	
@@ -97,7 +116,7 @@ public class Game {
 			//check initialisation was done correctly
 			checkInit();
 			adObjs();
-			int i=0;
+			
 			//main loop
 			boolean flag=true;
 			while(flag){
@@ -110,7 +129,7 @@ public class Game {
 					g.update();
 				
 				//todo: update collision here
-				
+				camera.update();
 				window.drawScene();
 						
 				//add and delete Game Objects in buffer
@@ -118,10 +137,6 @@ public class Game {
 				adObjs();
 				
 				input.clear();
-				//don't loop forever
-				i++;
-				if(i>300)
-				flag=false;
 				
 				
 				if(checkExitGame())
@@ -197,6 +212,15 @@ public class Game {
 		return new GameObject("-1");
 	}
 	
+	public static GameObject getGameObjectById(int id){
+		for(GameObject g: objs){
+			if(g.getID()==id)
+				return g;
+		}
+		print.log("Warning: no gameObject was found with id \"" + id+ "\"");
+		return new GameObject("-1");
+	}
+	
 	//return a shallow copy of all the GameObjects
 	public static ArrayList<GameObject> copyOfGameObjects(){
 		return new ArrayList<GameObject>(objs);
@@ -225,6 +249,14 @@ public class Game {
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByTag(String tag){
 		deleteBufferTag.add(tag);
+	}
+	
+	public static Camera getCamera(){
+		return camera;
+	}
+	
+	public static Window getWindow(){
+		return window;
 	}
 	
 	//add tags to buffer which will be deleted later

@@ -2,6 +2,7 @@ package DemoLevels;
 
 
 import Scripts.PlayerInput;
+import Scripts.cameraFollow;
 import Tiles.TileMap;
 import Components.Animation;
 import Components.Sprite;
@@ -29,12 +30,13 @@ public class Level1 extends Level{
 	
 		
 		GameObject p = new GameObject("Player");
-		
-		Vector playerStartPosition = new Vector(100,10);
-		
 		//dimensions to display images
 		Vector playerSize = new Vector(64,64);
 		Vector rocketSize = new Vector(32,32);
+		
+		Vector playerStartPosition = new Vector(50,128-playerSize.intY()/2);
+		
+		
 		
 		//offset position of rocket flames
 		Vector rocketOffset = new Vector(-rocketSize.intX(),-rocketSize.intY()/2+playerSize.intY()/2);
@@ -49,6 +51,8 @@ public class Level1 extends Level{
 		
 		p.moveBy(playerStartPosition); //move player to a suitable starting position
 		p.add(new PlayerInput(playerSize));//adding a script for input
+
+		p.add(new cameraFollow(p.getID(), playerStartPosition));
 		addObj(p);
 
 	}

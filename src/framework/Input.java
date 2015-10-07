@@ -12,10 +12,10 @@ public interface Input {
 	public boolean isKeyUp(char key);
 		
 	//true if key pressed down
-	public boolean iskeyPressed(char key);
+	public boolean isKeyPressed(char key);
 		
 	//true if key released
-	public boolean iskeyReleased(char key);
+	public boolean isKeyReleased(char key);
 	
 	public Vector getDirectionInput();
 
