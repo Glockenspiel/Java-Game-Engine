@@ -3,6 +3,8 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import levels.Level1;
+import levels.Level2;
 import debugging.Print;
 import debugging.SwingPrint;
 import display.Camera;
@@ -25,6 +27,8 @@ public class Game {
 	private static Camera camera;
 	private static boolean drawDebug=false;
 	private static Level currentLevel;
+	private static Level nextLevel;
+	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
 	
 	public Game(){}
@@ -71,6 +75,16 @@ public class Game {
 		}
 		
 		return false;
+	}
+	
+	public static void changeLevel(Level level){
+		changeLevel=true;
+		nextLevel=level;
+	}
+	
+	private static void doChangeLevel(){
+		changeLevel=false;
+		loadLevel(nextLevel);
 	}
 	
 	//load level 
@@ -137,7 +151,12 @@ public class Game {
 				deleteGameObjects();
 				adObjs();
 				
+				if(changeLevel){
+					doChangeLevel();
+				}
+				
 				input.clear();
+				
 				
 				
 				if(checkExitGame())
@@ -150,6 +169,8 @@ public class Game {
 			//exit game if ended loop
 			System.exit(0);
 		}
+		
+		
 
 		//checks if the escape game command is true
 		private boolean checkExitGame() {

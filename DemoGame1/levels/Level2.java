@@ -1,5 +1,6 @@
 package levels;
 
+import scripts.ToggleLevel;
 import demo.Enemy;
 import demo.Player;
 import framework.GameObject;
@@ -18,6 +19,10 @@ public class Level2 extends Level {
 		
 		GameObject player = new Player("Player", new Vector(50, 128));
 		addObj(player);
+		
+		GameObject nextLevel = new GameObject("move level");
+		nextLevel.add(new ToggleLevel(new Level1()));
+		addObj(nextLevel);
 	}
 
 	@Override

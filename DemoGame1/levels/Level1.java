@@ -6,7 +6,9 @@ import components.Sprite;
 import components.SpriteSheet;
 import demo.Player;
 import scripts.PlayerInput;
+import scripts.ToggleLevel;
 import scripts.cameraFollow;
+import scripts.ToggleLevel;
 import tiles.TileMap;
 import framework.Game;
 import framework.GameObject;
@@ -31,6 +33,10 @@ public class Level1 extends Level{
 		
 		GameObject player = new Player("Player", new Vector(50, Game.getWindow().getHeight()/2));
 		addObj(player);
+		
+		GameObject nextLevel = new GameObject("move level");
+		nextLevel.add(new ToggleLevel(new Level2()));
+		addObj(nextLevel);
 	}
 
 	@Override
