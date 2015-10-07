@@ -55,7 +55,6 @@ public class TileMap extends Component {
 		}
 		
 		Element legend = (Element) nList.item(0);
-		System.out.println(legend.getNodeName());
 		
 		NodeList tiles = legend.getChildNodes();
 		int id, sheetX, sheetY;
@@ -78,7 +77,6 @@ public class TileMap extends Component {
 		
 			//read indexes
 			else if(tiles.item(i).getNodeName().equalsIgnoreCase("Map")){
-				System.out.println("map");
 				Element data = (Element) tiles.item(i);
 				NodeList rows = data.getElementsByTagName("row");
 				

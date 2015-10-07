@@ -55,10 +55,11 @@ public class Game {
 	}
 	
 	public static void addGameObject(GameObject object){
-		checkDuplicateTag(object);
+		//checkDuplicateTag(object);
 		objsToAdd.add(object);
 	}
 	
+	//todo: remove this
 	//check if any duplicate Tags and give warning if there's a duplicate
 	private static boolean checkDuplicateTag(GameObject object){
 		for(GameObject o : objs){
