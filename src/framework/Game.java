@@ -210,6 +210,7 @@ public class Game {
 		private long calculateSleepTime() {
 			long executionTime= System.currentTimeMillis()-startTime;
 			long sleepTime=FRAME_TIME-executionTime;
+			if(sleepTime<0) sleepTime=0;
 			return sleepTime;
 		}
 	};

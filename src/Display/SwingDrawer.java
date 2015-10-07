@@ -57,6 +57,14 @@ public class SwingDrawer implements Drawer {
 		g.setColor(color);
 		g.drawString(string, x, y);
 	}
+
+	@Override
+	public void drawText(String string, int x, int y, Color color) {
+		x+=cameraPosX();
+		y+=cameraPosY();
+		g.setColor(color);
+		g.drawString(string, x, y);
+	}
 	
 	
 	

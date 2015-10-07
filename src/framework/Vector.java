@@ -46,6 +46,10 @@ public class Vector { //for storing coordinates or directions
 		y = position.getY();
 	}
 	
+	public String toString(){
+		return "("+ (int)x + "," + (int)y + ")";
+	}
+	
 	//multiple vector a by b on each axis and return result
 	public static Vector multiply(Vector a, Vector b){
 		return new Vector(a.getX() * b.getX(), a.getY() * b.getY());

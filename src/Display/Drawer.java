@@ -6,6 +6,8 @@ import java.awt.Image;
 public interface Drawer {
 	
 	public void drawImage(Image img, int x, int y, int width, int height);
+	
+	public void drawText(String string, int x, int y, Color color);
 
 	public void drawLine(int x, int y, int xDirection, int yDirection, Color color);
 	

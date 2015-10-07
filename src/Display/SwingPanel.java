@@ -34,10 +34,12 @@ public class SwingPanel extends JPanel implements KeyListener {
 			o.draw(drawer);
 		}
 		
+		//draw all HUDItems
 		for(GameObject o : objs){
 			o.drawHUDItems(drawer);
 		}
 		
+		//draw all debugging help 
 		if(Game.isDrawingDebug())
 			for(GameObject o : objs){
 				o.debugDraw(drawer);
