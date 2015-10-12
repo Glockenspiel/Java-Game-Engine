@@ -3,6 +3,8 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import Collision.CollisionManager;
+import Collision.CollisionManagerI;
 import levels.Level1;
 import levels.Level2;
 import debugging.Print;
@@ -30,6 +32,7 @@ public class Game {
 	private static Level nextLevel;
 	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
+	private static CollisionManagerI collisionManager;
 	
 	private static final long FRAME_TIME = 30; //milliseconds allowed per frame
 	
@@ -50,6 +53,10 @@ public class Game {
 			return;
 		}
 		input=inputType;
+	}
+	
+	public static void setCollisionManager(CollisionManagerI cm){
+		collisionManager = cm;
 	}
 	
 	public static void setPrint(Print printType){
@@ -104,6 +111,9 @@ public class Game {
 		
 		if(print==null)
 			print = new SwingPrint();
+		
+		if(collisionManager==null)
+			collisionManager = new CollisionManager();
 	}
 	
 	//start thread for game loop
@@ -133,6 +143,7 @@ public class Game {
 				for(GameObject g : objs)
 					g.update();
 				
+				collisionManager.detect(objs);
 				//todo: update collision here
 				camera.update();
 				window.drawScene();

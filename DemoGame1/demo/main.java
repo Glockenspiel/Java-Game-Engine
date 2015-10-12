@@ -10,7 +10,7 @@ public class main{
 	public static void main(String[] args) {
 		Game game = new Game();
 		//uncomment this to enable debug drawing
-		//game.enableDebugDraw(true);
+		game.enableDebugDraw(true);
 		Game.start(new Level2());
 		
 		//this line of code also work instead of 2 lines

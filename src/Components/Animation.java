@@ -26,6 +26,10 @@ public class Animation extends Component {
 		displaySize = new Vector(displayW, displayH);
 	}
 	
+	public void reset(){
+		frameCount=0;
+	}
+	
 	public void setOffset(int offsetX, int offsetY){
 		offset = new Vector(offsetX, offsetY);
 	}

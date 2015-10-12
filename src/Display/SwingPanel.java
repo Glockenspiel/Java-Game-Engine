@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import framework.Game;
 import framework.GameObject;
+import framework.Vector;
 
 public class SwingPanel extends JPanel implements KeyListener {
 	
@@ -19,7 +20,7 @@ public class SwingPanel extends JPanel implements KeyListener {
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.requestFocusInWindow();
-		this.setBackground(new Color(0,255,255));
+		this.setBackground(new Color(0,200,200));
 	}
 
 
@@ -40,9 +41,10 @@ public class SwingPanel extends JPanel implements KeyListener {
 		}
 		
 		//draw all debugging help 
+		Vector zero = new Vector(0,0);
 		if(Game.isDrawingDebug())
 			for(GameObject o : objs){
-				o.debugDraw(drawer);
+				o.debugDraw(drawer, zero);
 			}
 	}
 

@@ -13,6 +13,7 @@ public class PlayerStatus implements Script, HUDItem {
 
 	
 	private int time = 0;
+	private int lives = 3;
 	private BufferedImage image;
 			
 	public PlayerStatus(){
@@ -30,6 +31,7 @@ public class PlayerStatus implements Script, HUDItem {
 		if(image!=null)
 			g.drawHUDImage(image, 0, 0, 100, 30);
 		
-		g.drawHUDText("time: "+ time/1000, 25, 20, Color.BLACK);
+		g.drawHUDText("Time: "+ time/1000, 15, 12, Color.BLACK);
+		g.drawHUDText("Lives: " + lives, 15, 25, Color.BLACK);
 	}
 }

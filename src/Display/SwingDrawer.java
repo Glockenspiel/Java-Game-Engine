@@ -65,6 +65,13 @@ public class SwingDrawer implements Drawer {
 		g.setColor(color);
 		g.drawString(string, x, y);
 	}
+
+	@Override
+	public void drawCircle(int x, int y, int radius) {
+		x+=cameraPosX();
+		y+=cameraPosY();
+		g.drawOval(x-radius, y-radius, 2*radius, 2*radius);
+	}
 	
 	
 	

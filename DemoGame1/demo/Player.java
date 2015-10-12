@@ -1,13 +1,14 @@
 package demo;
 
+import Collision.CollisionBox;
+import Collision.CollisionCircle;
 import scripts.PlayerInput;
 import scripts.cameraFollow;
 import scripts.PlayerStatus;
-
 import components.Animation;
+import components.Animator;
 import components.Sprite;
 import components.SpriteSheet;
-
 import framework.GameObject;
 import framework.Vector;
 
@@ -28,18 +29,30 @@ public class Player extends GameObject {
 		
 		playerStartPosition = new Vector(startPos.intX(),startPos.intY()-playerSize.intY()/2);
 		
-		
-		//offset position of rocket flames
-		Vector rocketOffset = new Vector(-rocketSize.intX(),-rocketSize.intY()/2+playerSize.intY()/2);
-		
+		//player sprite
 		Sprite triangle = new Sprite("triangle.png", playerSize.intX(), playerSize.intY());
 		add(triangle); //add component
 		
+		//offset position of rocket flames
+		Vector smallRocketOffset = new Vector(-rocketSize.intX(),-rocketSize.intY()/2+playerSize.intY()/2);
+		Vector bigRocketOffset = new Vector(-rocketSize.intX()*2,-rocketSize.intY()/2+playerSize.intY()/2);
 		
 		//rocket flame animation
 		SpriteSheet s = new SpriteSheet("rocket.png", 32,32);
-		add(new Animation(s, rocketSize.intX(), rocketSize.intY(), rocketOffset,3));
+		Animation smallRocket = new Animation(s, rocketSize.intX(), rocketSize.intY(), smallRocketOffset,3);
+		Animation bigRocket = new Animation(s, rocketSize.intX()*2, rocketSize.intY(), bigRocketOffset,3);
+		Animator animator = new Animator();
+		animator.addAnimation(smallRocket, "small");
+		animator.addAnimation(bigRocket, "big");
+		animator.setCurrentAnimation("small");
+		add(animator);
+	//	add(bigRocket);
 		
+		//collision boc
+		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY(),true));
+		add(new CollisionCircle(0,0,20,true));
+		
+		//Player stats i.e. time and lives
 		add(new PlayerStatus());
 		
 		moveBy(playerStartPosition); //move player to a suitable starting position

@@ -3,8 +3,8 @@ package framework;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import Collision.CollisionShape;
 import components.HUDItem;
-
 import debugging.Debug;
 import display.Drawer;
 import display.SwingDrawer;
@@ -15,6 +15,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	private int id=-1;
 	private String tag="";
 	private ArrayList<Component> components = new ArrayList<Component>();
+	private ArrayList<CollisionShape> collisionShapes = new ArrayList<CollisionShape>();
 	private ArrayList<Script> scripts = new ArrayList<Script>();
 	private Vector position = new Vector(0,0);
 	private Thread deleteThread;
@@ -125,19 +126,19 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 
 	@Override
-	public void debugDraw(Drawer g) {
+	public void debugDraw(Drawer g, Vector objPos) {
 		//draw origin of game object
-		Color lineColor = Color.RED;
+		Color lineColor = Color.GREEN;
 		int lineLength=20;
 		g.drawLine(position.intX()-lineLength/2, position.intY(), lineLength, 0, lineColor);
 		g.drawLine(position.intX(), position.intY()-lineLength/2, 0, lineLength, lineColor);
 		
-		g.drawText(getPosition().toString(), position.intX()+2, position.intY()-5, Color.red);
+		g.drawText(getPosition().toString(), position.intX()+2, position.intY()-5, lineColor);
 		
 		//draw debug of all components that are instances of debug
 		for(Component c : components)
 		if(c instanceof Debug){
-            ((Debug) c).debugDraw(g);
+            ((Debug) c).debugDraw(g, getPosition());
 		}
 	}
 

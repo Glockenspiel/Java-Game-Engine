@@ -16,4 +16,6 @@ public interface Drawer {
 	public void drawHUDImage(Image img, int x, int y, int w, int h);
 	
 	public void drawHUDText(String string, int x, int y, Color color);
+
+	public void drawCircle(int x, int y, int radius);
 }

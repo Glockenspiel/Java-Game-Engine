@@ -1,7 +1,9 @@
 package scripts;
 
-import components.Sprite;
+import java.awt.event.KeyEvent;
 
+import components.Animator;
+import components.Sprite;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -36,6 +38,26 @@ public class PlayerInput implements Script {
 		if(once && Game.getInput().isKeyDown('Q')){
 			Game.deleteObjByTag("map");
 			once=false;
+		}
+		
+		//enable boost
+		char boostKey = (char)KeyEvent.VK_SPACE;
+		if(Game.getInput().isKeyDown(boostKey)){
+			speed = 5;
+		}
+		else{
+			speed = 3;
+		}
+		
+		//display animation for boost
+		Animator a = (Animator) obj.getComponentByType("Animator");
+		if(a!=null){
+			if(Game.getInput().isKeyDown(boostKey) && a.getCurrentState()!="big"){
+					a.setCurrentAnimation("big");
+			}
+			else if(Game.getInput().isKeyUp(boostKey)  && a.getCurrentState()!="small"){
+				a.setCurrentAnimation("small");
+			}
 		}
 	}
 
