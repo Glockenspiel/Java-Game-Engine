@@ -64,4 +64,9 @@ public class Vector { //for storing coordinates or directions
 	public static Vector subtract(Vector a, Vector b){
 		return new Vector(a.getX() - b.getX(), a.getY() - b.getY());
 	}
+	
+	public Vector getDeltaVector(){
+		Vector dt = new Vector(x*Time.deltaTime, y*Time.deltaTime);
+		return dt;
+	}
 }

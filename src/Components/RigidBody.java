@@ -5,6 +5,7 @@ import framework.Component;
 import framework.Game;
 import framework.GameObject;
 import framework.MathG;
+import framework.Time;
 import framework.Vector;
 
 public class RigidBody extends Component {
@@ -69,7 +70,16 @@ public class RigidBody extends Component {
 		velocity = new Vector(velocity.getX()*((100-drag)/100),velocity.getY()*((100-drag)/100));
 		
 		//move GameObject by velocity
-		obj.moveBy(velocity);
+		Vector moveBy = new Vector(velocity.getX(), velocity.getY());
+
+		//ignore small movements
+		if(Math.abs(moveBy.getX())<1f)
+			moveBy = new Vector(0,moveBy.getY());
+		if(Math.abs(moveBy.getY())<1f)
+			moveBy = new Vector(moveBy.getX(),0);
+		
+		moveBy = new Vector(moveBy.getX()*Time.deltaTime, moveBy.getY()*Time.deltaTime);
+		obj.moveBy(moveBy);
 	}
 
 	@Override

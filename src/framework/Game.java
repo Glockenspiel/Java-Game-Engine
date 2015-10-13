@@ -34,7 +34,7 @@ public class Game {
 	private static boolean gameStarted=false;
 	private static CollisionManagerI collisionManager;
 	
-	private static final long FRAME_TIME = 30; //milliseconds allowed per frame
+	//private static final long FRAME_TIME = 30; //milliseconds allowed per frame
 	
 	public Game(){}
 	
@@ -220,7 +220,7 @@ public class Game {
 
 		private long calculateSleepTime() {
 			long executionTime= System.currentTimeMillis()-startTime;
-			long sleepTime=FRAME_TIME-executionTime;
+			long sleepTime=(long) (Time.FRAME_TIME-executionTime);
 			if(sleepTime<0) sleepTime=0;
 			return sleepTime;
 		}
@@ -286,9 +286,5 @@ public class Game {
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByID(int id){
 		deleteBufferIDs.add(id);
-	}
-	
-	public static long getFrameTime(){
-		return FRAME_TIME;
 	}
 }

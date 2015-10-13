@@ -7,13 +7,14 @@ import framework.Component;
 import framework.Game;
 import framework.GameObject;
 import framework.MathG;
+import framework.Time;
 import framework.Vector;
 
 public class Enemy extends GameObject {
 	
-	private Vector moveSpeed = new Vector(-0.3f,0);
+	private Vector moveSpeed = new Vector(-10,0);
 	private Vector size = new Vector(32,64);
-	private float maxSpeed = 5f;
+	private float maxSpeed = 15f;
 
 	public Enemy(String tag) {
 		super(tag);
@@ -32,7 +33,7 @@ public class Enemy extends GameObject {
 		if(c instanceof RigidBody){
 			RigidBody body =((RigidBody) c);
 			if(body.getVelocityDistance()<maxSpeed)
-				body.addForce(moveSpeed);
+				body.addForce(moveSpeed.getDeltaVector());
 		}
 	}
 

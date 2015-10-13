@@ -8,6 +8,7 @@ import display.Drawer;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
+import framework.Time;
 
 public class PlayerStatus implements Script, HUDItem {
 
@@ -22,7 +23,7 @@ public class PlayerStatus implements Script, HUDItem {
 	
 	@Override
 	public void execute(GameObject obj) {
-		time+=Game.getFrameTime();
+		time+=Time.FRAME_TIME;
 	}
 
 	

@@ -26,7 +26,7 @@ public class PlayerInput implements Script {
 		//move player
 		Vector direction = Game.getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
-		obj.moveBy(displacement);
+		obj.moveBy(displacement.getDeltaVector());
 		//obj.moveBy(Vector.multiply(displacement, new Vector(-1,-1)));
 	//	Game.getCamera().moveBy(displacement);
 		
@@ -45,7 +45,7 @@ public class PlayerInput implements Script {
 		//enable boost
 		char boostKey = (char)KeyEvent.VK_SPACE;
 		if(Game.getInput().isKeyDown(boostKey)){
-			speed = 5;
+			speed = 14;
 		}
 		else{
 			speed = 3;
