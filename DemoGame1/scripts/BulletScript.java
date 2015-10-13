@@ -22,4 +22,7 @@ public class BulletScript implements Script {
 		obj.moveBy(speed.getDeltaVector());
 	}
 
+	@Override
+	public void interuptThreads() {}
+
 }

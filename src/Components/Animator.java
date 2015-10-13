@@ -51,4 +51,7 @@ public class Animator extends Component {
 			currentAnim.draw(g,objPos);
 	}
 
+	@Override
+	public void interruptThreads() {}
+
 }

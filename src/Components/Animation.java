@@ -84,4 +84,7 @@ public class Animation extends Component {
 		g.drawImage(image, position.intX(), position.intY(), displaySize.intX(), displaySize.intY());
 	}
 
+	@Override
+	public void interruptThreads() {}
+
 }

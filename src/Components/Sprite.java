@@ -55,4 +55,6 @@ public class Sprite extends Component {
 		return TYPE;
 	}
 
+	@Override
+	public void interruptThreads() {}
 }

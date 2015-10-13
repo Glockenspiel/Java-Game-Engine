@@ -35,4 +35,7 @@ public class PlayerStatus implements Script, HUDItem {
 		g.drawHUDText("Time: "+ time/1000, 15, 12, Color.BLACK);
 		g.drawHUDText("Lives: " + lives, 15, 25, Color.BLACK);
 	}
+	
+	@Override
+	public void interuptThreads() {}
 }

@@ -9,6 +9,7 @@ import components.Animation;
 import components.Animator;
 import components.Sprite;
 import components.SpriteSheet;
+import framework.Game;
 import framework.GameObject;
 import framework.Vector;
 

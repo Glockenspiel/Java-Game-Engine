@@ -34,4 +34,6 @@ public class cameraFollow implements Script {
 			
 	}
 
+	@Override
+	public void interuptThreads() {}
 }

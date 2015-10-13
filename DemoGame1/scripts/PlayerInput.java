@@ -66,14 +66,7 @@ public class PlayerInput implements Script {
 	//spawn bullet object
 	private void shoot(Vector position) {
 		Bullet bullet = new Bullet("bullet"); //new GameObject("bullet");
-		/*Vector bulletSize = new Vector(16,8);
-		
-		//add components and scripts
-		bullet.add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
-		bullet.add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY(), true, false));
-		bullet.add(new BulletScript(2,0));
-		
-		*/
+
 		//draw bullet at front of player
 		Vector offset = new Vector(playerSize.intX(),playerSize.intY()/2-bullet.getSize().intY()/2);
 		bullet.moveTo(Vector.add(position, offset));
@@ -82,4 +75,6 @@ public class PlayerInput implements Script {
 		Game.addGameObject(bullet);
 	}
 
+	@Override
+	public void interuptThreads() {}
 }

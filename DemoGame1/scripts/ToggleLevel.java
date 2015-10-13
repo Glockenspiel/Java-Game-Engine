@@ -25,4 +25,6 @@ public class ToggleLevel implements Script {
 		}
 	}
 
+	@Override
+	public void interuptThreads() {}
 }

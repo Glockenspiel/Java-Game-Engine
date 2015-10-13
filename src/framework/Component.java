@@ -24,4 +24,7 @@ public abstract class Component{
 	
 	//draw is where draw calls should be placed and is called after update
 	public abstract void draw(Drawer g, Vector objPos);
+	
+	//ends all threads in this component with an interrupt 
+	public abstract void interruptThreads();
 }

@@ -127,15 +127,17 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	//deletes this object in a given amount of time (milliseconds)
 	public void delete(long milliseconds){
+		getID();
 		deleteThread = new Thread(){
 			public void run(){
 				try {
 					sleep(milliseconds);
+					Game.deleteObjByID(getID());
 					
 				} catch (InterruptedException e) {
-					Game.print().log("DeleteObjInTime interupted! When deleting game Object with id:  " + id);
+					//this will be interrupted when loading new level
 				}
-				Game.deleteObjByID(getID());
+				
 			}
 		};
 	}
@@ -169,5 +171,15 @@ public class GameObject implements Debug{ // also known as an Entity
 				((HUDItem) s).drawGUI(drawer);
 			}
 		}
+	}
+
+	//ends all threads within this GameObject with interrupts
+	public void interruptThreads() {
+		if(deleteThread!=null)
+			deleteThread.interrupt();
+		for(Component c : components)
+			c.interruptThreads();
+		for(Script s: scripts)
+			s.interuptThreads();
 	}
 }

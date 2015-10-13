@@ -97,4 +97,6 @@ public class RigidBody extends Component {
 		return drag;
 	}
 
+	@Override
+	public void interruptThreads() {}
 }

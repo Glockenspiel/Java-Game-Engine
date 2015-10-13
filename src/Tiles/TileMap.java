@@ -132,4 +132,7 @@ public class TileMap extends Component {
 		return sheet.getFrame(x, y);
 	}
 
+	@Override
+	public void interruptThreads() {}
+
 }

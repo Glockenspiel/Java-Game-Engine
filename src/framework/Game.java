@@ -34,7 +34,6 @@ public class Game {
 	private static boolean gameStarted=false;
 	private static CollisionManagerI collisionManager;
 	
-	//private static final long FRAME_TIME = 30; //milliseconds allowed per frame
 	
 	public Game(){}
 	
@@ -85,14 +84,20 @@ public class Game {
 	private static void loadLevel(Level level){
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
+		
+		for(GameObject g : objsToAdd)
+			g.interruptThreads();
 		objsToAdd.clear();
+		
+		for(GameObject g : objs)
+			g.interruptThreads();
 		objs.clear();
 		//todo: this should also stop any threads running in scripts such as delete(milliseconds)
 		currentLevel = level;
 		level.init();
 	}
 	
-	public Level getCurrentLevel(){
+	public static Level getCurrentLevel(){
 		return currentLevel;
 	}
 
@@ -138,27 +143,28 @@ public class Game {
 			boolean flag=true;
 			while(flag){
 				startTime = System.currentTimeMillis();
-				//input.update();
 				
+				//add and delete Game Objects in buffer
+				deleteGameObjects();
+				adObjs();
+				
+				//input.update();
 				for(GameObject g : objs)
 					g.update();
+				
 				
 				collisionManager.detect(objs);
 				//todo: update collision here
 				camera.update();
+				
 				window.drawScene();
-						
-				//add and delete Game Objects in buffer
-				deleteGameObjects();
-				adObjs();
+
 				
 				if(changeLevel){
 					doChangeLevel();
 				}
 				
 				input.clear();
-				
-				
 				
 				if(checkExitGame())
 					flag=false;
