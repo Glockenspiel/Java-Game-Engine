@@ -2,8 +2,10 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
+import Collision.CollisionBox;
 import components.Animator;
 import components.Sprite;
+import demo.Bullet;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -63,16 +65,20 @@ public class PlayerInput implements Script {
 
 	//spawn bullet object
 	private void shoot(Vector position) {
-		GameObject bullet = new GameObject("bullet");
-		Vector bulletSize = new Vector(16,8);
+		Bullet bullet = new Bullet("bullet"); //new GameObject("bullet");
+		/*Vector bulletSize = new Vector(16,8);
 		
+		//add components and scripts
 		bullet.add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
-		
-		//draw bullet at front of player
-		Vector offset = new Vector(playerSize.intX(),playerSize.intY()/2-bulletSize.intY()/2);
-		bullet.moveTo(Vector.add(position, offset));
+		bullet.add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY(), true, false));
 		bullet.add(new BulletScript(2,0));
+		
+		*/
+		//draw bullet at front of player
+		Vector offset = new Vector(playerSize.intX(),playerSize.intY()/2-bullet.getSize().intY()/2);
+		bullet.moveTo(Vector.add(position, offset));
 		bullet.delete(4000);
+		
 		Game.addGameObject(bullet);
 	}
 

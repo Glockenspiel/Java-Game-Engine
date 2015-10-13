@@ -6,17 +6,19 @@ import framework.Component;
 import framework.GameObject;
 import framework.Vector;
 
-public class CollisionCircle extends Component implements CollisionShape, Debug {
+public class CollisionCircle implements CollisionShape, Debug {
 
 	private static final String TYPE="CIRCLE";
-	private boolean isAlive;
+	private boolean isAlive, isTrigger;
 	private int x,y,r;
+	private String tag="";
 	
-	public CollisionCircle(int x, int y, int radius, boolean isAlive){
+	public CollisionCircle(int x, int y, int radius, boolean isTrigger, boolean isAlive){
 		this.x=x;
 		this.y=y;
 		this.r=radius;
 		this.isAlive=isAlive;
+		this.isTrigger=isTrigger;
 	}
 	
 	@Override
@@ -35,9 +37,23 @@ public class CollisionCircle extends Component implements CollisionShape, Debug 
 	}
 
 	@Override
-	public void update(GameObject obj) {}
+	public boolean getIsTrigger() {
+		return isTrigger;
+	}
 
 	@Override
-	public void draw(Drawer g, Vector objPos) {}
+	public void setIsTrigger(boolean isTrigger) {
+		this.isTrigger=isTrigger;
+	}
+
+	@Override
+	public String getTag() {
+		return tag;
+	}
+
+	@Override
+	public void setTag(String tag) {
+		this.tag=tag;
+	}
 
 }

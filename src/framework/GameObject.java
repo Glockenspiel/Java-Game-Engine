@@ -41,8 +41,19 @@ public class GameObject implements Debug{ // also known as an Entity
 		components.add(c);
 	}
 	
+	public void add(CollisionShape shape){
+		collisionShapes.add(shape);
+	}
+	
 	public void add(Script s){
 		scripts.add(s);
+	}
+	
+	public void removeCollisionShapesByTag(String tag){
+		for(int i=0; i<collisionShapes.size(); i++){
+			if(collisionShapes.get(i).getTag().equalsIgnoreCase(tag))
+				collisionShapes.remove(i);
+		}
 	}
 	
 	//returns first found component with matching type
@@ -59,6 +70,10 @@ public class GameObject implements Debug{ // also known as an Entity
 		for(Component c: components)
 			if(c.getType().equalsIgnoreCase(type))
 				comps.add(c);
+	}
+	
+	public ArrayList<CollisionShape> getCollisionShapes(){
+		return collisionShapes;
 	}
 
 	//update all components
@@ -139,6 +154,11 @@ public class GameObject implements Debug{ // also known as an Entity
 		for(Component c : components)
 		if(c instanceof Debug){
             ((Debug) c).debugDraw(g, getPosition());
+		}
+		for(CollisionShape s : collisionShapes){
+			if(s instanceof Debug){
+				((Debug) s).debugDraw(g, getPosition());
+			}
 		}
 	}
 
