@@ -152,6 +152,10 @@ public class Game {
 				for(GameObject g : objs)
 					g.update();
 				
+				//update new positions of collision shapes
+				//todo use observer design pattern to keep position updated
+				for(GameObject g : objs)
+					g.updateCollisionShapes();
 				
 				collisionManager.detect(objs);
 				//todo: update collision here

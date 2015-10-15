@@ -15,6 +15,7 @@ public class CollisionBox implements CollisionShape, Debug {
 	private int x,y,w,h;
 	private static final String TYPE="COLLISIONBOX";
 	private String tag;
+	Vector objPosition=new Vector(0,0);
 	
 	public CollisionBox(int x, int y, int w, int h, boolean isTrigger, boolean isAlive){
 		this.x=x;
@@ -27,19 +28,19 @@ public class CollisionBox implements CollisionShape, Debug {
 	}
 	
 	public int minX(){
-		return x;
+		return objPosition.intX()+x;
 	}
 	
 	public int minY(){
-		return y;
+		return objPosition.intY()+y;
 	}
 	
 	public int maxX(){
-		return x+w;
+		return objPosition.intX()+x+w;
 	}
 	
 	public int maxY(){
-		return y+h;
+		return objPosition.intY()+y+h;
 	}
 	
 	@Override
@@ -75,6 +76,11 @@ public class CollisionBox implements CollisionShape, Debug {
 	@Override
 	public void setTag(String tag) {
 		this.tag=tag;
+	}
+
+	@Override
+	public void update(Vector position) {
+		objPosition=position;
 	}
 
 }

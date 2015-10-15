@@ -12,6 +12,7 @@ public class CollisionCircle implements CollisionShape, Debug {
 	private boolean isAlive, isTrigger;
 	private int x,y,r;
 	private String tag="";
+	private Vector objPosition = new Vector(0,0);
 	
 	public CollisionCircle(int x, int y, int radius, boolean isTrigger, boolean isAlive){
 		this.x=x;
@@ -54,6 +55,11 @@ public class CollisionCircle implements CollisionShape, Debug {
 	@Override
 	public void setTag(String tag) {
 		this.tag=tag;
+	}
+
+	@Override
+	public void update(Vector position) {
+		objPosition = position;
 	}
 
 }

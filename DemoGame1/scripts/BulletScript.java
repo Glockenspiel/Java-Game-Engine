@@ -1,11 +1,13 @@
 package scripts;
 
+import Collision.CollisionListener;
+import framework.Game;
 import framework.Time;
 import framework.Vector;
 import framework.GameObject;
 import framework.Script;
 
-public class BulletScript implements Script {
+public class BulletScript implements Script, CollisionListener {
 
 	private Vector speed;
 	
@@ -24,5 +26,16 @@ public class BulletScript implements Script {
 
 	@Override
 	public void interuptThreads() {}
+
+	@Override
+	public void onCollision(String tag) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTrigger(String tag) {
+			Game.print().log("bullet overlap: " + tag);
+	}
 
 }

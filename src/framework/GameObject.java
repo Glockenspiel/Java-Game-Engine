@@ -3,6 +3,7 @@ package framework;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import Collision.CollisionListener;
 import Collision.CollisionShape;
 import components.HUDItem;
 import debugging.Debug;
@@ -181,5 +182,21 @@ public class GameObject implements Debug{ // also known as an Entity
 			c.interruptThreads();
 		for(Script s: scripts)
 			s.interuptThreads();
+	}
+
+	public void updateCollisionShapes() {
+		for(CollisionShape cs : collisionShapes){
+			cs.update(getPosition());
+		}
+	}
+
+	public void collisionOverlap(String tag) {
+		for(Script s : scripts){
+			if(s instanceof CollisionListener){
+				CollisionListener cl = (CollisionListener) s;
+				cl.onTrigger(tag);
+			}
+			
+		}
 	}
 }
