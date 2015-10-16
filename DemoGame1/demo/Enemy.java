@@ -20,7 +20,7 @@ public class Enemy extends GameObject {
 		super(tag);
 		
 		add(new Sprite("rock.png", size.intX(), size.intY()));
-		add(new CollisionBox(0,0,size.intX(),size.intY(),true,true));
+		add(new CollisionBox(0,0,size.intX(),size.intY(),true));
 		RigidBody r = new RigidBody(100);
 		r.setGravity(0);
 		add(r);

@@ -35,6 +35,7 @@ public class BulletScript implements Script, CollisionListener {
 
 	@Override
 	public void onTrigger(String tag) {
+		if(tag.equalsIgnoreCase("Bullet")==false)
 			Game.print().log("bullet overlap: " + tag);
 	}
 

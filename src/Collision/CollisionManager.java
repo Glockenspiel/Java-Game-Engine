@@ -15,6 +15,7 @@ public class CollisionManager implements CollisionManagerI {
 		
 		ArrayList<CollisionShape> objA;// = new ArrayList<CollisionShape>();
 		ArrayList<CollisionShape> objB;// = ArrayList<CollisionShape>();
+		ArrayList<CollisionResult> results = new ArrayList<CollisionResult>();
 		
 		for(int i=0; i<objs.size()-1; i++){
 			//collision components in each object
@@ -24,12 +25,16 @@ public class CollisionManager implements CollisionManagerI {
 				//don't check any overlaps if one of the 2 GameObject has no collision shapes
 				if(objA.size()>0 && objB.size()>0){
 					//check if they overlap
-					if(hasCollisions(objA, objB)){
-						//notify both objects of the overlaps
+					results.clear();
+					results = hasCollisions(objA, objB);
+					if(results.size()>0){
+						//if the collision shapes which overlaped 
+						//notify both objects of the overlaps to invoke onTrigger() to listeners
+						if(collResShapeAHasTrigger(results))
+							objs.get(i).collisionOverlap(objs.get(j).getTag());
 						
-						//todo: check if onCollision or onTrigger, and pass boolean to collisionOverlap()
-						objs.get(i).collisionOverlap(objs.get(j).getTag());
-						objs.get(j).collisionOverlap(objs.get(i).getTag());
+						if(collResShapeBHasTrigger(results))
+							objs.get(j).collisionOverlap(objs.get(i).getTag());
 					}
 				}
 			}
@@ -37,35 +42,43 @@ public class CollisionManager implements CollisionManagerI {
 	}
 
 
-	private boolean hasCollisions(ArrayList<CollisionShape> objA,
+
+
+	//returns an ArrayList of results from the ArrayList of CollisionShapes in object A and B
+	private ArrayList<CollisionResult> hasCollisions(ArrayList<CollisionShape> objA,
 			ArrayList<CollisionShape> objB) {
 		
+		
+		ArrayList<CollisionResult> collisionResults  = new ArrayList<CollisionResult>();
 		for(CollisionShape a : objA){
 			for(CollisionShape b : objB){
 				if(a instanceof CollisionBox && b instanceof CollisionBox){ //box and box
 					CollisionBox boxA = (CollisionBox)a;
 					CollisionBox boxB = (CollisionBox)b;
 					boolean hasCollision = checkOverlap(boxA, boxB);
-					return hasCollision;
+					if(hasCollision)
+						collisionResults.add(new CollisionResult(boxA, boxB));
 				}
 				//todo: box and cirlce, circle and circle
 			}
 		}
-		return false;
+		
+		return collisionResults;
 	}
 
+	//checks if there is an overlap between 2 collision boxes
 	private boolean checkOverlap(CollisionBox a, CollisionBox b) {
 		//use min and max values to check overlap
 		
 		/* example of Case1:
-		 * +------+
-		 * |      |
-		 * |   B  |
-		 * |    +-+-----+
-		 * +----+ +     |
-		 *      |   A   |
-		 * 		|       |
-		 * 		+-------+	
+		 * +-------+
+		 * |       |
+		 * |   B   |
+		 * |     +-+-----+
+		 * +-----+ +     |
+		 *       |   A   |
+		 * 	   	 |       |
+		 *  	 +-------+	
 		 * 
 		 */
 		
@@ -96,8 +109,28 @@ public class CollisionManager implements CollisionManagerI {
 	//resolve collisions
 	@Override
 	public void resolve(ArrayList<GameObject> objs) {
+		if(objs.size()<2) return;
 		
+		for(int i=0; i<objs.size()-1; i++){
+			for(int j=i+1; j<objs.size(); j++){
+				
+			}
+		}
 	}
 	
+	//returns true if any CollisionResult shape A returns true for isTrigger()
+	private boolean collResShapeAHasTrigger(ArrayList<CollisionResult> results) {
+		for(CollisionResult r : results)
+			if(r.getShapeA().getIsTrigger())
+				return true;
+		return false;
+	}
 	
+	//returns true if any CollisionResult shape B returns true for isTrigger()
+	private boolean collResShapeBHasTrigger(ArrayList<CollisionResult> results) {
+		for(CollisionResult r : results)
+			if(r.getShapeB().getIsTrigger())
+				return true;
+		return false;
+	}
 }

@@ -61,5 +61,10 @@ public class CollisionCircle implements CollisionShape, Debug {
 	public void update(Vector position) {
 		objPosition = position;
 	}
+	
+	@Override
+	public void setAlive(boolean isAlive) {
+		this.isAlive=isAlive;
+	}
 
 }

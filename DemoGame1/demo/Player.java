@@ -50,7 +50,7 @@ public class Player extends GameObject {
 	//	add(bigRocket);
 		
 		//collision boc
-		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY(),false, true));
+		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY(),false));
 		add(new CollisionCircle(0,0,20,false,true));
 		
 		//Player stats i.e. time and lives

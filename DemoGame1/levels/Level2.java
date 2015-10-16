@@ -23,7 +23,7 @@ public class Level2 extends Level {
 		addObj(player);
 		
 		GameObject testCollision = new GameObject("test");
-		testCollision.add(new CollisionBox(0,0,128,128,true, false));
+		testCollision.add(new CollisionBox(0,0,128,128,false));
 		testCollision.add(new Sprite("box.png",128,128));
 		testCollision.moveTo(new Vector(200,200));
 		addObj(testCollision);
