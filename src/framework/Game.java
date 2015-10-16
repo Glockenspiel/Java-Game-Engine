@@ -35,7 +35,9 @@ public class Game {
 	private static CollisionManagerI collisionManager;
 	
 	
+	
 	public Game(){}
+
 	
 	//sets the window type
 	public static void setWindow(Window windowType){
@@ -88,11 +90,18 @@ public class Game {
 		for(GameObject g : objsToAdd)
 			g.interruptThreads();
 		objsToAdd.clear();
+
+		//remove GameObjects that are not global
+		for(int i=0; i<objs.size(); i++){
+			if(objs.get(i).getIsGlobal()==false){
+				objs.get(i).interruptThreads();
+				objs.remove(i);
+				i--;
+			}
+		}
 		
-		for(GameObject g : objs)
-			g.interruptThreads();
-		objs.clear();
-		//todo: this should also stop any threads running in scripts such as delete(milliseconds)
+		
+		
 		currentLevel = level;
 		level.init();
 	}
@@ -137,7 +146,7 @@ public class Game {
 			//check initialisation was done correctly
 			checkInit();
 			loadLevel(currentLevel);
-			adObjs();
+			addObjs();
 			
 			//main loop
 			boolean flag=true;
@@ -146,7 +155,7 @@ public class Game {
 				
 				//add and delete Game Objects in buffer
 				deleteGameObjects();
-				adObjs();
+				addObjs();
 				
 				//input.update();
 				for(GameObject g : objs)
@@ -190,9 +199,24 @@ public class Game {
 			return false;
 		}
 
-		private void adObjs() {
-			for(GameObject o : objsToAdd)
-				objs.add(o);
+		private void addObjs() {
+			for(GameObject o : objsToAdd){
+				boolean flag=true;
+				
+				//only allow one global GameObject with the same tag
+				//check if a global object with the same tag exists
+				if(o.getIsGlobal()){
+					for(int i=0; i<objs.size() && flag; i++){
+						if(objs.get(i).getIsGlobal() && objs.get(i).getTag().equalsIgnoreCase(o.getTag())){
+							flag=false;
+						}
+					}
+				}
+				
+				//add if this GameObject has a unique tag
+				if(flag)
+				objs.add(o);	
+			}
 			objsToAdd.clear();
 		}
 
@@ -297,4 +321,13 @@ public class Game {
 	public static void deleteObjByID(int id){
 		deleteBufferIDs.add(id);
 	}
+	
+	public static boolean objExistsWithTag(String tag){
+		for(GameObject obj : objs)
+			if(obj.getTag().equalsIgnoreCase(tag))
+				return true;
+		
+		return false;
+	}
+
 }

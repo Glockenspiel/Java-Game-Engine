@@ -28,10 +28,7 @@ public class BulletScript implements Script, CollisionListener {
 	public void interuptThreads() {}
 
 	@Override
-	public void onCollision(String tag) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onCollision(String tag) {}
 
 	@Override
 	public void onTrigger(String tag) {

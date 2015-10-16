@@ -1,10 +1,10 @@
 package levels;
 
 import components.Sprite;
-
 import Collision.CollisionBox;
 import scripts.ToggleLevel;
 import demo.Player;
+import framework.Game;
 import framework.GameObject;
 import framework.Level;
 import framework.Vector;
@@ -19,8 +19,10 @@ public class Level2 extends Level {
 		GameObject enemySpawner = new EnemySpawner("Enemy spawner", 1000);
 		//addObj(enemySpawner);
 		
-		GameObject player = new Player("Player", new Vector(50, 128));
-		addObj(player);
+		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
+			GameObject player = new Player(new Vector(50, 128));
+			addObj(player);
+		}
 		
 		GameObject testCollision = new GameObject("test");
 		testCollision.add(new CollisionBox(0,0,128,128,false));

@@ -21,6 +21,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	private Vector position = new Vector(0,0);
 	private Thread deleteThread;
 	private boolean once=true;
+	private boolean isGlobal=false;
 	
 	//get unique id of this gameObject
 	public int getID(){
@@ -198,5 +199,18 @@ public class GameObject implements Debug{ // also known as an Entity
 			}
 			
 		}
+	}
+
+	public ArrayList<Script> getScripts(){
+		return scripts;
+	}
+	
+	
+	public void setIsGlobal(boolean isGlobal){
+		this.isGlobal=isGlobal;
+	}
+
+	public boolean getIsGlobal() {
+		return isGlobal;
 	}
 }

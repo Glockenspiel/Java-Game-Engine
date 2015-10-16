@@ -38,6 +38,13 @@ public class CameraSimple implements Camera {
 		this.offset=offset;
 	}
 	
+	//follows a game object 
+	@Override
+	public void followObjectTag(String tag, Vector offset) {
+		int id = Game.getGameObjectByTag(tag).getID();
+		followObjectID(id, offset);
+	}
+	
 	
 
 	@Override

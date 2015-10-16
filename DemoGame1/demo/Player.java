@@ -16,9 +16,10 @@ import framework.Vector;
 public class Player extends GameObject {
 	
 	private Vector playerStartPosition;
+	private final static String defaultTag = "Player";
 
-	public Player(String tag, Vector startPos) {
-		super(tag);
+	public Player(Vector startPos) {
+		super(defaultTag);
 		
 		createPlayer(startPos);
 	}
@@ -27,6 +28,8 @@ public class Player extends GameObject {
 		//dimensions to display images
 		Vector playerSize = new Vector(64,64);
 		Vector rocketSize = new Vector(32,32);
+		
+		setIsGlobal(true);
 		
 		playerStartPosition = new Vector(startPos.intX(),startPos.intY()-playerSize.intY()/2);
 		
@@ -62,7 +65,9 @@ public class Player extends GameObject {
 		add(new cameraFollow(getID(), playerStartPosition));
 	}
 	
-	
+	public static String getDefaultTag(){
+		return defaultTag;
+	}
 	
 	
 	

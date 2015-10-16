@@ -28,7 +28,7 @@ public class CollisionManager implements CollisionManagerI {
 					results.clear();
 					results = hasCollisions(objA, objB);
 					if(results.size()>0){
-						//if the collision shapes which overlaped 
+						//if the collision shapes which overlapped 
 						//notify both objects of the overlaps to invoke onTrigger() to listeners
 						if(collResShapeAHasTrigger(results))
 							objs.get(i).collisionOverlap(objs.get(j).getTag());
@@ -40,8 +40,6 @@ public class CollisionManager implements CollisionManagerI {
 			}
 		}
 	}
-
-
 
 
 	//returns an ArrayList of results from the ArrayList of CollisionShapes in object A and B

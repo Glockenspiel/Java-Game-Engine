@@ -25,8 +25,11 @@ public class Level1 extends Level{
 		map.add(tilemap);
 		addObj(map);
 		
-		GameObject player = new Player("Player", new Vector(50, Game.getWindow().getHeight()/2));
-		addObj(player);
+		
+		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
+			GameObject player = new Player(new Vector(50, Game.getWindow().getHeight()/2));
+			addObj(player);
+		}
 		
 		GameObject nextLevel = new GameObject("move level");
 		nextLevel.add(new ToggleLevel(new Level2()));
