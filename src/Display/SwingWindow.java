@@ -15,6 +15,7 @@ public class SwingWindow implements Window{
 	private JFrame f;
 	private SwingPanel panel;
 	private int w,h;
+	private static int preferredW=-1, preferredH=-1;
 	
 	public SwingWindow(int x, int y, int width, int height, boolean windowed, String windowName){
 		f = new JFrame();
@@ -61,5 +62,30 @@ public class SwingWindow implements Window{
 	@Override
 	public Vector getSize() {
 		return new Vector(w,h);
+	}
+
+
+	@Override
+	public int getPreferredWidth() {
+		return preferredW;
+	}
+
+
+	@Override
+	public int getPreferredHeight() {
+		return preferredH;
+	}
+
+
+	@Override
+	public Vector getWindowScale() {
+		return new Vector((float)w/(float)preferredW, (float)h/(float)preferredH);
+	}
+
+
+	@Override
+	public void setPreferredSize(int w, int h) {
+		preferredW=w;
+		preferredH=h;
 	}
 }

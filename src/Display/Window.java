@@ -8,4 +8,8 @@ public interface Window {
 	public int getWidth();
 	public int getHeight();
 	public Vector getSize();
+	public int getPreferredWidth();
+	public int getPreferredHeight();
+	public void setPreferredSize(int w, int h);
+	public Vector getWindowScale();
 }

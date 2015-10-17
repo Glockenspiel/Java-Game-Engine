@@ -30,7 +30,7 @@ public class Player extends GameObject {
 		Vector playerSize = new Vector(64,64);
 		Vector rocketSize = new Vector(32,32);
 		
-		Vector startPos = new Vector(50, Game.getPreferredH()/2);
+		Vector startPos = new Vector(50, Game.getWindow().getPreferredHeight()/2);
 		
 		setIsGlobal(true);
 		

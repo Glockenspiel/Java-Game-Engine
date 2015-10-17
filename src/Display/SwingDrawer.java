@@ -97,11 +97,11 @@ public class SwingDrawer implements Drawer {
 	
 	private int unitsToWindowPosX(int val){
 		
-		return (int)(val*Game.getWindowRatioSize().getX());
+		return (int)(val*Game.getWindow().getWindowScale().getX());
 	}
 	
 	private int unitsToWindowPosY( int val){
-		return (int)(val*Game.getWindowRatioSize().getY());
+		return (int)(val*Game.getWindow().getWindowScale().getY());
 	}
 	
 

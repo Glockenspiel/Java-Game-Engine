@@ -33,16 +33,10 @@ public class Game {
 	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
 	private static CollisionManagerI collisionManager;
-	private static int preferredW=-1, preferredH=-1;
 	
 	
 	
 	public Game(){}
-
-	public void setPreferredWindowSize(int w, int h){
-		preferredW=w;
-		preferredH=h;
-	}
 	
 	//sets the window type
 	public static void setWindow(Window windowType){
@@ -82,13 +76,13 @@ public class Game {
 		nextLevel=level;
 	}
 	
-	private static void doChangeLevel(){
+	static void doChangeLevel(){
 		changeLevel=false;
 		loadLevel(nextLevel);
 	}
 	
 	//load level 
-	private static void loadLevel(Level level){
+	static void loadLevel(Level level){
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
 		
@@ -118,14 +112,15 @@ public class Game {
 	
 	//checks to see if all attributes have been initialised correctly
 	//if not this method sets them to the defaults
-	private static void checkInit(){
-		if(preferredW<0 || preferredH<0){
-			preferredW=854;
-			preferredH=480;
-		}
+	static void checkInit(){
+		int w=854,h=480; //default window size
 		
 		if(window==null)
-			window = new SwingWindow(100,50,854,480,false, "Framework");
+			window = new SwingWindow(100,50,w,h,false, "Framework");
+		
+		if(window.getPreferredHeight()<=0 || window.getPreferredWidth()<=0){
+			window.setPreferredSize(w, h);
+		}
 		
 		if(camera==null)
 			camera = new CameraSimple(0,0);
@@ -325,18 +320,6 @@ public class Game {
 	
 	public static Window getWindow(){
 		return window;
-	}
-	
-	public static Vector getWindowRatioSize(){
-		return new Vector((float)window.getWidth()/(float)preferredW, (float)window.getHeight()/(float)preferredH);
-	}
-	
-	public static int getPreferredW(){
-		return preferredW;
-	}
-	
-	public static int getPreferredH(){
-		return preferredH;
 	}
 	
 	//add tags to buffer which will be deleted later
