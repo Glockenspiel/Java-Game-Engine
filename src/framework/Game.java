@@ -237,8 +237,8 @@ public class Game {
 						found=true;
 					}
 				}
-				if(found==false)
-					Game.print().log("GameObject tag not found when deleting GameObject by Tag : " + s);
+				//if(found==false)
+				//	Game.print().log("GameObject tag not found when deleting GameObject by Tag : " + s);
 			}
 			deleteBufferTag.clear();
 			
@@ -251,8 +251,8 @@ public class Game {
 						found=true;
 					}
 				}
-				if(found==false)
-					Game.print().log("GameObject ID not found when deleting GameObject by ID : " + id);
+				//if(found==false)
+				//	Game.print().log("GameObject ID not found when deleting GameObject by ID : " + id);
 			}
 			deleteBufferIDs.clear();
 		}
@@ -333,6 +333,10 @@ public class Game {
 				return true;
 		
 		return false;
+	}
+
+	public static ArrayList<GameObject> getObjsCopy() {
+		return new ArrayList<GameObject>(objs);
 	}
 
 }

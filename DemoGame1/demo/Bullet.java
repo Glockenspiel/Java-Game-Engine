@@ -18,7 +18,7 @@ public class Bullet extends GameObject {
 		//add components and scripts
 		add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
 		add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY(), true));
-		add(new BulletScript(10,0));
+		add(new BulletScript(10,0, getID()));
 	}
 	
 	public Vector getSize(){

@@ -17,7 +17,7 @@ public class Level2 extends Level {
 	@Override
 	public void init() {
 		GameObject enemySpawner = new EnemySpawner("Enemy spawner", 1000);
-		//addObj(enemySpawner);
+		addObj(enemySpawner);
 		
 		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
 			GameObject player = new Player();

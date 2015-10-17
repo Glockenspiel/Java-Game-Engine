@@ -31,10 +31,10 @@ public class CollisionManager implements CollisionManagerI {
 						//if the collision shapes which overlapped 
 						//notify both objects of the overlaps to invoke onTrigger() to listeners
 						if(collResShapeAHasTrigger(results))
-							objs.get(i).collisionOverlap(objs.get(j).getTag());
+							objs.get(i).collisionOverlap(objs.get(j).getTag(), objs.get(j).getID());
 						
 						if(collResShapeBHasTrigger(results))
-							objs.get(j).collisionOverlap(objs.get(i).getTag());
+							objs.get(j).collisionOverlap(objs.get(i).getTag(), objs.get(i).getID());
 					}
 				}
 			}

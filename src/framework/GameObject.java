@@ -28,9 +28,13 @@ public class GameObject implements Debug{ // also known as an Entity
 	public int getID(){
 		//if id hasn't been generated yet, generate it
 		if(id < 0) 
-			generateID();
+			id = IdGenerator.generateID();
 		
 		return id;
+	}
+	
+	public boolean hasID(){
+		return id>=0;
 	}
 	
 	private void generateID(){
@@ -192,11 +196,11 @@ public class GameObject implements Debug{ // also known as an Entity
 		}
 	}
 
-	public void collisionOverlap(String tag) {
+	public void collisionOverlap(String tag, int id) {
 		for(Script s : scripts){
 			if(s instanceof CollisionListener){
 				CollisionListener cl = (CollisionListener) s;
-				cl.onTrigger(tag);
+				cl.onTrigger(tag, id);
 			}
 			
 		}
