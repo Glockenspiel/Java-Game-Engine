@@ -18,16 +18,19 @@ public class Player extends GameObject {
 	private Vector playerStartPosition;
 	private final static String defaultTag = "Player";
 
-	public Player(Vector startPos) {
+	public Player() {
 		super(defaultTag);
+		setDrawLayer(10);
 		
-		createPlayer(startPos);
+		createPlayer();
 	}
 
-	private void createPlayer(Vector startPos) {
+	private void createPlayer() {
 		//dimensions to display images
 		Vector playerSize = new Vector(64,64);
 		Vector rocketSize = new Vector(32,32);
+		
+		Vector startPos = new Vector(50, Game.getPreferredH()/2);
 		
 		setIsGlobal(true);
 		

@@ -22,6 +22,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	private Thread deleteThread;
 	private boolean once=true;
 	private boolean isGlobal=false;
+	private int drawLayer=0;
 	
 	//get unique id of this gameObject
 	public int getID(){
@@ -212,5 +213,13 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	public boolean getIsGlobal() {
 		return isGlobal;
+	}
+	
+	public int getDrawLayer(){
+		return drawLayer;
+	}
+	
+	public void setDrawLayer(int drawLayer){
+		this.drawLayer=drawLayer;
 	}
 }

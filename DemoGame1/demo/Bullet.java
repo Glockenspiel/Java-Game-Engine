@@ -14,8 +14,7 @@ public class Bullet extends GameObject {
 
 	public Bullet(String tag) {
 		super(tag);
-		
-		
+
 		//add components and scripts
 		add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
 		add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY(), true));

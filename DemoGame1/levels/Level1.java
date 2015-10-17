@@ -27,7 +27,7 @@ public class Level1 extends Level{
 		
 		
 		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
-			GameObject player = new Player(new Vector(50, Game.getWindow().getHeight()/2));
+			GameObject player = new Player();
 			addObj(player);
 		}
 		

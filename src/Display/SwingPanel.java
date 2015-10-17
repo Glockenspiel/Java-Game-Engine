@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JPanel;
 
@@ -31,6 +33,14 @@ public class SwingPanel extends JPanel implements KeyListener {
 		
 		//draw all GameObjecs
 		ArrayList<GameObject> objs = Game.copyOfGameObjects();
+		
+		//sort objs by drawLayer
+		Collections.sort(objs, new Comparator<GameObject>(){
+		     public int compare(GameObject o1, GameObject o2){
+		    	return  o1.getDrawLayer()-o2.getDrawLayer();
+		     } 
+		});
+		
 		for(GameObject o : objs){
 			o.draw(drawer);
 		}

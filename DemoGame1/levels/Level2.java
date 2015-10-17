@@ -20,7 +20,7 @@ public class Level2 extends Level {
 		//addObj(enemySpawner);
 		
 		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
-			GameObject player = new Player(new Vector(50, 128));
+			GameObject player = new Player();
 			addObj(player);
 		}
 		

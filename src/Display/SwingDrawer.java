@@ -20,6 +20,10 @@ public class SwingDrawer implements Drawer {
 	public void drawImage(Image img, int x, int y, int width, int height) {
 		x+=cameraPosX();
 		y+=cameraPosY();
+		x = unitsToWindowPosX(x);
+		width = unitsToWindowPosX(width)+1; //+1 to prevent bug with window ratio
+		y = unitsToWindowPosY(y);
+		height = unitsToWindowPosY(height)+1;
 		g.drawImage(img, x, y, width, height, null);
 	}
 
@@ -27,6 +31,10 @@ public class SwingDrawer implements Drawer {
 	public void drawLine(int x, int y, int xDirection, int yDirection, Color color) {
 		x+=cameraPosX();
 		y+=cameraPosY();
+		x = unitsToWindowPosX(x);
+		xDirection = unitsToWindowPosX(xDirection);
+		y = unitsToWindowPosY(y);
+		yDirection = unitsToWindowPosY(yDirection);
 		g.setColor(color);
 		g.drawLine(x, y, x+xDirection, y+yDirection);
 	}
@@ -35,6 +43,10 @@ public class SwingDrawer implements Drawer {
 	public void drawBox(int x, int y, int width, int height, Color color) {
 		x+=cameraPosX();
 		y+=cameraPosY();
+		x = unitsToWindowPosX(x);
+		width = unitsToWindowPosX(width);
+		y = unitsToWindowPosY(y);
+		height = unitsToWindowPosY(height);
 		g.setColor(color);
 		g.drawRect(x, y, width, height);
 	}
@@ -49,11 +61,17 @@ public class SwingDrawer implements Drawer {
 
 	@Override
 	public void drawHUDImage(Image img, int x, int y, int w, int h) {
+		x = unitsToWindowPosX(x);
+		w = unitsToWindowPosX(w);
+		y = unitsToWindowPosY(y);
+		h = unitsToWindowPosY(h);
 		g.drawImage(img, x, y, w, h, null);
 	}
 
 	@Override
 	public void drawHUDText(String string, int x, int y, Color color) {
+		x = unitsToWindowPosX(x);
+		y = unitsToWindowPosY(y);
 		g.setColor(color);
 		g.drawString(string, x, y);
 	}
@@ -62,6 +80,8 @@ public class SwingDrawer implements Drawer {
 	public void drawText(String string, int x, int y, Color color) {
 		x+=cameraPosX();
 		y+=cameraPosY();
+		x = unitsToWindowPosX(x);
+		y = unitsToWindowPosY(y);
 		g.setColor(color);
 		g.drawString(string, x, y);
 	}
@@ -70,10 +90,19 @@ public class SwingDrawer implements Drawer {
 	public void drawCircle(int x, int y, int radius) {
 		x+=cameraPosX();
 		y+=cameraPosY();
+		x = unitsToWindowPosX(x);
+		y = unitsToWindowPosY(y);
 		g.drawOval(x-radius, y-radius, 2*radius, 2*radius);
 	}
 	
+	private int unitsToWindowPosX(int val){
+		
+		return (int)(val*Game.getWindowRatioSize().getX());
+	}
 	
+	private int unitsToWindowPosY( int val){
+		return (int)(val*Game.getWindowRatioSize().getY());
+	}
 	
 
 }
