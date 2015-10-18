@@ -20,8 +20,6 @@ public class Game {
 	private static ArrayList<String> deleteBufferTag = new ArrayList<String>();
 	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
-	//todo: have global data not bound to a single level, but to the game as a whole
-	//such as player attributes, cross level information, etc.
 	
 	private static Window window;
 	private static Input input;
@@ -47,6 +45,7 @@ public class Game {
 		window=windowType;
 	}
 	
+	//sets the input type
 	public static void setInputType(Input inputType){
 		if(gameStarted){
 			Game.print().log("Input cannot be set once game has started");
@@ -55,10 +54,12 @@ public class Game {
 		input=inputType;
 	}
 	
+	//sets the collision manager
 	public static void setCollisionManager(CollisionManagerI cm){
 		collisionManager = cm;
 	}
 	
+	//sets the printing type
 	public static void setPrint(Print printType){
 		if(gameStarted){
 			Game.print().log("Print cannot be set once game has started");
