@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class LauncherOptions {
+	
+	//display a dialog for setting the window size for the game
 	public static Vector launch(){
 		
 		 String[] resolutions = { "854x480", "320x568" , "1024x768", "1280x800" ,"1366x768", "1920x1080", "Fullscreen" };

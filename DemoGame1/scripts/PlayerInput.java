@@ -51,6 +51,11 @@ public class PlayerInput implements Script {
 			speed = 3;
 		}
 		
+		//toggle debug drawing
+		if(Game.getInput().isKeyPressed('L')){
+			Game.enableDebugDraw(!Game.isDrawingDebug());
+		}
+		
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType("Animator");
 		if(a!=null){

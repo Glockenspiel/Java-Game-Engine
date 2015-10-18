@@ -33,29 +33,28 @@ public class GameObject implements Debug{ // also known as an Entity
 		return id;
 	}
 	
+	//returns false if this this object hasn't generated an id yet
 	public boolean hasID(){
 		return id>=0;
 	}
 	
-	private void generateID(){
-		//todo: use UUID 
-		id=(int)(Math.random() * ((1000 - 1) + 1)); //random number between 1000-1
-	}
-	
-	//add a component to the gameObject
+	//adds a Component to the GameObject
 	public void add(Component c){
 		c.setGameObjectTag(tag);
 		components.add(c);
 	}
 	
+	//adds a CollisionShape to the GameObject
 	public void add(CollisionShape shape){
 		collisionShapes.add(shape);
 	}
 	
+	//adds a Script to the GameObject
 	public void add(Script s){
 		scripts.add(s);
 	}
 	
+	//removes all CollisionShapes with a matching tag
 	public void removeCollisionShapesByTag(String tag){
 		for(int i=0; i<collisionShapes.size(); i++){
 			if(collisionShapes.get(i).getTag().equalsIgnoreCase(tag))
@@ -79,6 +78,7 @@ public class GameObject implements Debug{ // also known as an Entity
 				comps.add(c);
 	}
 	
+	//returns all CollisionShapes
 	public ArrayList<CollisionShape> getCollisionShapes(){
 		return collisionShapes;
 	}
@@ -109,10 +109,12 @@ public class GameObject implements Debug{ // also known as an Entity
 		return new Vector(position.getX(), position.getY());
 	}
 	
+	//moves this GameObject by a given amount
 	public void moveBy(Vector amount){
 		position.moveBy(amount);
 	}
 	
+	//moves this GameObject to the position given
 	public void moveTo(Vector position){
 		this.position.moveTo(position);
 	}
@@ -122,9 +124,9 @@ public class GameObject implements Debug{ // also known as an Entity
 		return tag;
 	}
 
+	//constructor
 	public GameObject(String tag){
 		this.tag=tag;
-		
 	}
 	
 	//deletes this game object
@@ -149,6 +151,7 @@ public class GameObject implements Debug{ // also known as an Entity
 		};
 	}
 
+	//draws the debug for this GameObject
 	@Override
 	public void debugDraw(Drawer g, Vector objPos) {
 		//draw origin of game object
@@ -164,6 +167,8 @@ public class GameObject implements Debug{ // also known as an Entity
 		if(c instanceof Debug){
             ((Debug) c).debugDraw(g, getPosition());
 		}
+		
+		//draw the debugging for all the CollisionShapes
 		for(CollisionShape s : collisionShapes){
 			if(s instanceof Debug){
 				((Debug) s).debugDraw(g, getPosition());
@@ -190,12 +195,14 @@ public class GameObject implements Debug{ // also known as an Entity
 			s.interuptThreads();
 	}
 
+	//updates the CollisionShapes in this GameObject
 	public void updateCollisionShapes() {
 		for(CollisionShape cs : collisionShapes){
 			cs.update(getPosition());
 		}
 	}
 
+	//notifies any CollisionListeners of CollisionOverlaps this GameObject has had
 	public void collisionOverlap(String tag, int id) {
 		for(Script s : scripts){
 			if(s instanceof CollisionListener){
@@ -206,23 +213,27 @@ public class GameObject implements Debug{ // also known as an Entity
 		}
 	}
 
+	//returns all the Scripts
 	public ArrayList<Script> getScripts(){
 		return scripts;
 	}
 	
-	
+	//set this GameObjects Global status. global true means this object passes from level to level and doesnt get deleted when the level changes
 	public void setIsGlobal(boolean isGlobal){
 		this.isGlobal=isGlobal;
 	}
-
+	
+	//returns true if this GameObject is global
 	public boolean getIsGlobal() {
 		return isGlobal;
 	}
 	
+	//returns the draw layer
 	public int getDrawLayer(){
 		return drawLayer;
 	}
 	
+	//sets the draw layer
 	public void setDrawLayer(int drawLayer){
 		this.drawLayer=drawLayer;
 	}

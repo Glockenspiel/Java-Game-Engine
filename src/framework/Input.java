@@ -17,9 +17,12 @@ public interface Input {
 	//true if key released
 	public boolean isKeyReleased(char key);
 	
+	//returns the magnitude for the directional input
 	public Vector getDirectionInput();
 
+	//sets a key pressed
 	void setPressed(int keyCode);
 	
+	//sets a key released
 	void setReleased(int keyCode);
 }

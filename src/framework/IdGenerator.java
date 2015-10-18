@@ -7,6 +7,7 @@ public class IdGenerator {
 	private static int lastID=0;
 	private static boolean reachedMax=false;
 	
+	//generates a unique id for use of a GameObject in this Game
 	public static int generateID(){
 		if(lastID==Integer.MAX_VALUE-1){
 			reachedMax=true;
@@ -15,7 +16,7 @@ public class IdGenerator {
 		if(reachedMax){
 			//find all exisitng ids
 			ArrayList<Integer> existingIDs = new ArrayList<Integer>();
-			for(GameObject o : Game.getObjsCopy()){
+			for(GameObject o : Game.copyOfGameObjects()){
 				if(o.hasID())
 					existingIDs.add(o.getID());
 			}

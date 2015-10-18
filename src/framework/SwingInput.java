@@ -10,13 +10,14 @@ public class SwingInput implements Input{
 	static boolean [] prevInput = new boolean[SIZE];
 	static boolean [] currentInput = new boolean[SIZE];
 	
-	
+	//default constructor
 	public SwingInput(){
 		//set all values to false by default
 		Arrays.fill(prevInput, Boolean.FALSE);
 		Arrays.fill(currentInput, Boolean.FALSE);
 	}
 	
+	//clears the input buffer
 	@Override
 	public void clear(){
 		//copy array of previous frame
@@ -61,6 +62,7 @@ public class SwingInput implements Input{
 		}
 	}
 
+	//sets a key is pressed
 	@Override
 	public void setReleased(int keyCode) {
 		if(keyCode<SIZE && keyCode>=0){
@@ -68,8 +70,8 @@ public class SwingInput implements Input{
 		}
 	}
 
-	@Override
 	//returns vector direction of WASD and arrow keys
+	@Override
 	public Vector getDirectionInput() {
 		int x=0,y=0;
 		

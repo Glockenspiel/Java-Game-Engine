@@ -16,7 +16,10 @@ import display.Window;
 
 public class Game {
 	
+	//all game objects currently being used in the game
 	private static ArrayList<GameObject> objs  = new ArrayList<GameObject>();
+	
+	//buffers
 	private static ArrayList<String> deleteBufferTag = new ArrayList<String>();
 	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
@@ -33,7 +36,7 @@ public class Game {
 	private static CollisionManagerI collisionManager;
 	
 	
-	
+	//default constructor
 	public Game(){}
 	
 	//sets the window type
@@ -68,22 +71,28 @@ public class Game {
 		print = printType;
 	}
 	
+	//add a GameObject to the game
 	public static void addGameObject(GameObject object){
 		objsToAdd.add(object);
 	}
 	
+	//request change level
 	public static void changeLevel(Level level){
 		changeLevel=true;
 		nextLevel=level;
 	}
 	
-	static void doChangeLevel(){
-		changeLevel=false;
-		loadLevel(nextLevel);
+	//change the level
+	private static void doChangeLevel(){
+		if(changeLevel){
+			changeLevel=false;
+			loadLevel(nextLevel);
+		}
 	}
 	
-	//load level 
-	static void loadLevel(Level level){
+	//loads level given
+	private static void loadLevel(Level level){
+		//clear all the buffers
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
 		
@@ -91,7 +100,7 @@ public class Game {
 			g.interruptThreads();
 		objsToAdd.clear();
 
-		//remove GameObjects that are not global
+		//remove all GameObjects that are not global
 		for(int i=0; i<objs.size(); i++){
 			if(objs.get(i).getIsGlobal()==false){
 				objs.get(i).interruptThreads();
@@ -101,23 +110,24 @@ public class Game {
 		}
 		
 		
-		
+		//initialise level
 		currentLevel = level;
 		level.init();
 	}
 	
+	//returns the current level
 	public static Level getCurrentLevel(){
 		return currentLevel;
 	}
 
 	
-	//checks to see if all attributes have been initialised correctly
+	//checks to see if all attributes have been initialised correctly for the game
 	//if not this method sets them to the defaults
 	static void checkInit(){
 		int w=854,h=480; //default window size
 		
 		if(window==null)
-			window = new SwingWindow(100,50,w,h,false, "Framework");
+			window = new SwingWindow(0,0,w,h,false, "Framework");
 		
 		if(window.getPreferredHeight()<=0 || window.getPreferredWidth()<=0){
 			window.setPreferredSize(w, h);
@@ -143,27 +153,29 @@ public class Game {
 		gameLoop.start();
 	}
 	
+	//thread for the main game loop
 	private static Thread gameLoop = new Thread(){
 		
+		//time for start of frame
 		private long startTime;
-		
-		
+
 		public void run(){
-			//check initialisation was done correctly
+			//check initialisation was done correctly and load the starting level
 			checkInit();
 			loadLevel(currentLevel);
-			addObjs();
+			addObjs(); //add GameObject in buffer that were created when level is loaded
 			
 			//main loop
 			boolean flag=true;
 			while(flag){
+				//start frame time
 				startTime = System.currentTimeMillis();
 				
 				//add and delete Game Objects in buffer
 				deleteGameObjects();
 				addObjs();
 				
-				//input.update();
+				//update all GameObjects
 				for(GameObject g : objs)
 					g.update();
 				
@@ -172,22 +184,26 @@ public class Game {
 				for(GameObject g : objs)
 					g.updateCollisionShapes();
 				
+				//detect any collisions
 				collisionManager.detect(objs);
-				//todo: update collision here
+				
+				//update camera once all GameObject positions are finalised
 				camera.update();
 				
+				//draw Scene (level)
 				window.drawScene();
 
+				//change level if there is a request to change level
+				doChangeLevel();
 				
-				if(changeLevel){
-					doChangeLevel();
-				}
-				
+				//clear the input buffer
 				input.clear();
 				
+				//check if there is a request to quit the game
 				if(checkExitGame())
 					flag=false;
 				
+				//sleep so there is a limit to the number of frames per second
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
@@ -205,6 +221,7 @@ public class Game {
 			return false;
 		}
 
+		//adds GameObjects in buffer to the level
 		private void addObjs() {
 			for(GameObject o : objsToAdd){
 				boolean flag=true;
@@ -226,6 +243,7 @@ public class Game {
 			objsToAdd.clear();
 		}
 
+		//deletes GameObjects in level that are listed in the buffers
 		private void deleteGameObjects() {
 			boolean found;
 			
@@ -266,7 +284,7 @@ public class Game {
 		}
 	};
 	
-	
+	//returns the first GameObject found with a matching tag
 	public static GameObject getGameObjectByTag(String tag){
 		for(GameObject g : objs)
 			if(g.getTag().equalsIgnoreCase(tag))
@@ -276,6 +294,7 @@ public class Game {
 		return new GameObject("-1");
 	}
 	
+	//returns the GameObject with a matching id
 	public static GameObject getGameObjectById(int id){
 		for(GameObject g: objs){
 			if(g.getID()==id)
@@ -285,27 +304,27 @@ public class Game {
 		return new GameObject("-1");
 	}
 	
-	//return a shallow copy of all the GameObjects
+	//returns a shallow copy of all the GameObjects
 	public static ArrayList<GameObject> copyOfGameObjects(){
 		return new ArrayList<GameObject>(objs);
 	}
 	
-	//get input object
+	//returns the input object
 	public static Input getInput(){
 		return input;
 	}
 	
-	//display messages 
+	//returns the print object
 	public static Print print(){
 		return print;
 	}
 
 	//turn debug drawing on or off
-	public void enableDebugDraw(boolean isOn) {
+	public static void enableDebugDraw(boolean isOn) {
 		drawDebug=isOn;
 	}
 
-	//if drawing debugging help
+	//returns true if drawing debug
 	public static boolean isDrawingDebug() {
 		return drawDebug;
 	}
@@ -315,10 +334,12 @@ public class Game {
 		deleteBufferTag.add(tag);
 	}
 	
+	//returns the camera object
 	public static Camera getCamera(){
 		return camera;
 	}
 	
+	//returns the window object
 	public static Window getWindow(){
 		return window;
 	}
@@ -328,6 +349,7 @@ public class Game {
 		deleteBufferIDs.add(id);
 	}
 	
+	//returns true if a GameObject exists with a matching tag
 	public static boolean objExistsWithTag(String tag){
 		for(GameObject obj : objs)
 			if(obj.getTag().equalsIgnoreCase(tag))
@@ -336,8 +358,5 @@ public class Game {
 		return false;
 	}
 
-	public static ArrayList<GameObject> getObjsCopy() {
-		return new ArrayList<GameObject>(objs);
-	}
 
 }
