@@ -56,6 +56,13 @@ public class PlayerInput implements Script {
 			Game.enableDebugDraw(!Game.isDrawingDebug());
 		}
 		
+		if(Game.getInput().isKeyPressed('B')){
+			Game.saveState();
+		}
+		if(Game.getInput().isKeyPressed('N')){
+			Game.load();
+		}
+		
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType("Animator");
 		if(a!=null){

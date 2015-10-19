@@ -24,6 +24,28 @@ public class GameObject implements Debug{ // also known as an Entity
 	private boolean isGlobal=false;
 	private int drawLayer=0;
 	
+	//constructor
+	public GameObject(String tag){
+		this.tag=tag;
+	}
+	
+	public GameObject(GameObjectStateI state){
+		position=state.getPosition();
+		once=false;
+		id=state.getID();
+		tag=state.getTag();
+		isGlobal=state.getIsGlobal();
+		drawLayer=state.getDrawLayer();
+	}
+	
+	public GameObjectStateI getState(){
+		return new GameObjState(this);
+	}
+	
+	public void setState(GameObjectStateI state){
+		this.position=state.getPosition();
+	}
+	
 	//get unique id of this gameObject
 	public int getID(){
 		//if id hasn't been generated yet, generate it
@@ -122,11 +144,6 @@ public class GameObject implements Debug{ // also known as an Entity
 	//get tag of this GameObject
 	public String getTag(){
 		return tag;
-	}
-
-	//constructor
-	public GameObject(String tag){
-		this.tag=tag;
 	}
 	
 	//deletes this game object

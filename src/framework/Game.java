@@ -3,6 +3,9 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import saving.GameState;
+import saving.Saving;
+import saving.SavingI;
 import Collision.CollisionManager;
 import Collision.CollisionManagerI;
 import levels.Level1;
@@ -27,6 +30,7 @@ public class Game {
 	private static Window window;
 	private static Input input;
 	private static Print print;
+	private static SavingI saving;
 	private static Camera camera;
 	private static boolean drawDebug=false;
 	private static Level currentLevel;
@@ -34,6 +38,7 @@ public class Game {
 	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
 	private static CollisionManagerI collisionManager;
+	private static boolean load=false;
 	
 	
 	//default constructor
@@ -133,6 +138,10 @@ public class Game {
 			window.setPreferredSize(w, h);
 		}
 		
+		if(saving==null){
+			saving = new Saving();
+		}
+		
 		if(camera==null)
 			camera = new CameraSimple(0,0);
 		
@@ -195,6 +204,8 @@ public class Game {
 
 				//change level if there is a request to change level
 				doChangeLevel();
+				
+				loadLatestState();
 				
 				//clear the input buffer
 				input.clear();
@@ -358,5 +369,29 @@ public class Game {
 		return false;
 	}
 
+	public static void saveState(){
+		saving.saveState(getGameState());
+	}
+	
+	public static void load(){
+		load=true;
+	}
+	
+	public static void loadLatestState(){
+		if(load==false)return;
+		load=false;
+		GameState state = saving.getLastState();
+		camera.unFollow();
+		objs.clear();
+		for(GameObjectStateI objState : state.getGameObjStates()){
+			objs.add(new GameObject(objState));
+		}
+		//objs = state.getGameObjects();
+		currentLevel= state.getCurrentLevel();
+	}
+	
+	private static GameState getGameState(){
+		return new GameState(copyOfGameObjects(), currentLevel);
+	}
 
 }
