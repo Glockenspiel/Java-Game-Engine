@@ -184,6 +184,8 @@ public class Game {
 				deleteGameObjects();
 				addObjs();
 				
+				loadLatestState();
+				
 				//update all GameObjects
 				for(GameObject g : objs)
 					g.update();
@@ -204,8 +206,6 @@ public class Game {
 
 				//change level if there is a request to change level
 				doChangeLevel();
-				
-				loadLatestState();
 				
 				//clear the input buffer
 				input.clear();
@@ -381,7 +381,11 @@ public class Game {
 		if(load==false)return;
 		load=false;
 		GameState state = saving.getLastState();
-		camera.unFollow();
+		
+		//if no state is saved yet
+		if(state==null) 
+			return;
+		
 		objs.clear();
 		for(GameObjectStateI objState : state.getGameObjStates()){
 			objs.add(new GameObject(objState));
