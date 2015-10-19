@@ -15,6 +15,9 @@ public class CareTaker {
    }
    
    public Memento getLatest(){
+	   if(mementoList.size()==0)
+		   return new Memento(null);
+	   
 	   return mementoList.get(mementoList.size()-1);
    }
 }
