@@ -63,6 +63,14 @@ public class PlayerInput implements Script {
 			Game.load();
 		}
 		
+		if(Game.getInput().isKeyPressed('H')){
+			boolean flag=true;
+			while(flag){
+				//if(Game.getInput().isKeyReleased('H'))
+					flag=false;
+			}
+		}
+		
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType("Animator");
 		if(a!=null){
