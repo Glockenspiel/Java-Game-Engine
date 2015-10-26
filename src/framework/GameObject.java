@@ -1,6 +1,7 @@
 package framework;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Collision.CollisionListener;
@@ -19,10 +20,9 @@ public class GameObject implements Debug{ // also known as an Entity
 	private ArrayList<CollisionShape> collisionShapes = new ArrayList<CollisionShape>();
 	private ArrayList<Script> scripts = new ArrayList<Script>();
 	private Vector position = new Vector(0,0);
-	private Thread deleteThread;
-	private boolean once=true;
 	private boolean isGlobal=false;
 	private int drawLayer=0;
+	private long deleteOnTime=0;
 	
 	//constructor
 	public GameObject(String tag){
@@ -31,7 +31,6 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	public GameObject(GameObjectStateI state){
 		position=state.getPosition();
-		once=false;
 		id=state.getID();
 		tag=state.getTag();
 		isGlobal=state.getIsGlobal();
@@ -107,17 +106,16 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	//update all components
 	public void update(){
-		if(once){
-			if(deleteThread!=null)
-				deleteThread.start();
-			once=false;
-		}
-		
+
 		for(Script s: scripts)
 			s.execute(this);
 		
 		for(Component c : components)
 			c.update(this);
+		
+		if(deleteOnTime>0 && Time.getTime()>deleteOnTime){
+			delete();
+		}
 	}
 	
 	//draw all components
@@ -153,19 +151,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	//deletes this object in a given amount of time (milliseconds)
 	public void delete(long milliseconds){
-		getID();
-		deleteThread = new Thread(){
-			public void run(){
-				try {
-					sleep(milliseconds);
-					Game.deleteObjByID(getID());
-					
-				} catch (InterruptedException e) {
-					//this will be interrupted when loading new level
-				}
-				
-			}
-		};
+		deleteOnTime=Time.getTime()+milliseconds;
 	}
 
 	//draws the debug for this GameObject
@@ -204,8 +190,6 @@ public class GameObject implements Debug{ // also known as an Entity
 
 	//ends all threads within this GameObject with interrupts
 	public void interruptThreads() {
-		if(deleteThread!=null)
-			deleteThread.interrupt();
 		for(Component c : components)
 			c.interruptThreads();
 		for(Script s: scripts)

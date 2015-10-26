@@ -366,6 +366,7 @@ public class Game {
 			if(obj.getTag().equalsIgnoreCase(tag))
 				return true;
 		
+		
 		return false;
 	}
 
