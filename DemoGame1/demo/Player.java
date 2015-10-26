@@ -27,7 +27,7 @@ public class Player extends GameObject {
 
 	private void createPlayer() {
 		//dimensions to display images
-		Vector playerSize = new Vector(64,64);
+		Vector playerSize = new Vector(100,32);
 		Vector rocketSize = new Vector(32,32);
 		
 		Vector startPos = new Vector(50, Game.getWindow().getPreferredHeight()/2);
@@ -36,13 +36,12 @@ public class Player extends GameObject {
 		
 		playerStartPosition = new Vector(startPos.intX(),startPos.intY()-playerSize.intY()/2);
 		
-		//player sprite
-		Sprite triangle = new Sprite("triangle.png", playerSize.intX(), playerSize.intY());
-		add(triangle); //add component
+		
 		
 		//offset position of rocket flames
-		Vector smallRocketOffset = new Vector(-rocketSize.intX(),-rocketSize.intY()/2+playerSize.intY()/2);
-		Vector bigRocketOffset = new Vector(-rocketSize.intX()*2,-rocketSize.intY()/2+playerSize.intY()/2);
+		int offX = 7;
+		Vector smallRocketOffset = new Vector(0+offX,-rocketSize.intY()/2+playerSize.intY()/2);
+		Vector bigRocketOffset = new Vector(-rocketSize.intX()+offX,-rocketSize.intY()/2+playerSize.intY()/2);
 		
 		//rocket flame animation
 		SpriteSheet s = new SpriteSheet("rocket.png", 32,32);
@@ -53,11 +52,15 @@ public class Player extends GameObject {
 		animator.addAnimation(bigRocket, "big");
 		animator.setCurrentAnimation("small");
 		add(animator);
-	//	add(bigRocket);
 		
-		//collision boc
+		//player sprite
+		Sprite ship = new Sprite("spaceship.png", playerSize.intX(), playerSize.intY());
+		add(ship); //add component
+		
+		
+		//collision box
 		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY(),false));
-		add(new CollisionCircle(0,0,20,false,true));
+		//add(new CollisionCircle(0,0,20,false,true));
 		
 		//Player stats i.e. time and lives
 		add(new PlayerStatus());

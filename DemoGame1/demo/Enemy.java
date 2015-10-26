@@ -1,5 +1,6 @@
 package demo;
 
+import scripts.EnemyHit;
 import Collision.CollisionBox;
 import components.RigidBody;
 import components.Sprite;
@@ -21,6 +22,7 @@ public class Enemy extends GameObject {
 		
 		add(new Sprite("rock.png", size.intX(), size.intY()));
 		add(new CollisionBox(0,0,size.intX(),size.intY(),true));
+		add(new EnemyHit(super.getID()));
 		RigidBody r = new RigidBody(100);
 		r.setGravity(0);
 		add(r);
