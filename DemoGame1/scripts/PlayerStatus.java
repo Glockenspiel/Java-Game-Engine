@@ -16,6 +16,7 @@ public class PlayerStatus implements Script, HUDItem, Event {
 	
 	private int time = 0;
 	private int health = 100;
+	private int money = 0;
 	private BufferedImage image;
 			
 	public PlayerStatus(){
@@ -31,10 +32,11 @@ public class PlayerStatus implements Script, HUDItem, Event {
 	@Override
 	public void drawGUI(Drawer g) {
 		if(image!=null)
-			g.drawHUDImage(image, 0, 0, 100, 30);
+			g.drawHUDImage(image, 0, 0, 100, 55);
 		
-		g.drawHUDText("Time: "+ time/1000, 15, 12, Color.BLACK);
-		g.drawHUDText("HP: " + health, 15, 25, Color.BLACK);
+		g.drawHUDText("Time: "+ time/1000, 15, 15, Color.BLACK);
+		g.drawHUDText("HP: " + health, 15, 30, Color.BLACK);
+		g.drawHUDText("Money: " + money, 15, 45, Color.BLACK);
 	}
 	
 	@Override
@@ -45,6 +47,10 @@ public class PlayerStatus implements Script, HUDItem, Event {
 		if(tag.contains("Enemy")){
 			health -= value;
 			checkIsAlive();
+		}
+		
+		else if(tag.equalsIgnoreCase("Coin")){
+			money+=value;
 		}
 	}
 

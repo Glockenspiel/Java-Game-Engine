@@ -238,4 +238,14 @@ public class GameObject implements Debug{ // also known as an Entity
 	public void setDrawLayer(int drawLayer){
 		this.drawLayer=drawLayer;
 	}
+
+	public ArrayList<Event> getEvents() {
+		ArrayList<Event> events = new ArrayList<Event>();
+		for(Script s: scripts){
+			if(s instanceof Event){
+				events.add((Event)s);
+			}
+		}
+		return events;
+	}
 }

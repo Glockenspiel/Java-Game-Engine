@@ -25,11 +25,8 @@ public class EnemyHit implements Script, CollisionListener {
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
-			for(Script s : Game.getGameObjectById(id).getScripts()){
-				if(s instanceof Event){
-					Event e = (Event) s;
+			for(Event e : Game.getGameObjectById(id).getEvents()){
 					e.invokeEvent(getTag(), damage+MathG.randomNumber(0, 10));
-				}
 			}
 			
 			//create an explosion

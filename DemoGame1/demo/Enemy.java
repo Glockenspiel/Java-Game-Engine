@@ -1,6 +1,7 @@
 package demo;
 
 import scripts.EnemyHit;
+import scripts.MoveScript;
 import Collision.CollisionBox;
 import components.RigidBody;
 import components.Sprite;
@@ -26,17 +27,12 @@ public class Enemy extends GameObject {
 		RigidBody r = new RigidBody(100);
 		r.setGravity(0);
 		add(r);
+		add(new MoveScript(getID(), maxSpeed));
 	}
 	
 	@Override
 	public void update(){
 		super.update();
-		Component c = super.getComponentByType("RigidBody");
-		if(c instanceof RigidBody){
-			RigidBody body =((RigidBody) c);
-			if(body.getVelocityDistance()<maxSpeed)
-				body.addForce(moveSpeed.getDeltaVector());
-		}
 	}
 
 }

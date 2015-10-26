@@ -3,6 +3,7 @@ package levels;
 import components.Sprite;
 import Collision.CollisionBox;
 import scripts.ToggleLevel;
+import demo.CoinDispenser;
 import demo.Player;
 import framework.Game;
 import framework.GameObject;
@@ -29,6 +30,8 @@ public class Level2 extends Level {
 		testCollision.add(new Sprite("box.png",128,128));
 		testCollision.moveTo(new Vector(200,200));
 		addObj(testCollision);
+		
+		addObj(new CoinDispenser(500,0));
 		
 		GameObject nextLevel = new GameObject("move level");
 		nextLevel.add(new ToggleLevel(new Level1()));
