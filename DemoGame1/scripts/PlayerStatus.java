@@ -11,7 +11,7 @@ import framework.GameObject;
 import framework.Script;
 import framework.Time;
 
-public class PlayerStatus implements Script, HUDItem, Event {
+public class PlayerStatus implements HUDItem, Event {
 
 	
 	private int time = 0;
