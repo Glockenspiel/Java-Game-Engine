@@ -29,22 +29,6 @@ public class GameObject implements Debug{ // also known as an Entity
 		this.tag=tag;
 	}
 	
-	public GameObject(GameObjectStateI state){
-		position=state.getPosition();
-		id=state.getID();
-		tag=state.getTag();
-		isGlobal=state.getIsGlobal();
-		drawLayer=state.getDrawLayer();
-	}
-	
-	public GameObjectStateI getState(){
-		return new GameObjState(this);
-	}
-	
-	public void setState(GameObjectStateI state){
-		this.position=state.getPosition();
-	}
-	
 	//get unique id of this gameObject
 	public int getID(){
 		//if id hasn't been generated yet, generate it

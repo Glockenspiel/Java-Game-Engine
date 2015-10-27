@@ -1,6 +1,6 @@
 package saving;
 
 public interface SavingI {
-	public void saveState(GameState state);
-	public GameState getLastState();
+	public void saveState();
+	public GameStateI getLastState();
 }

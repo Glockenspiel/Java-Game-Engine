@@ -1,23 +1,13 @@
 package saving;
 
-import java.util.ArrayList;
-
-import framework.GameObject;
-import framework.GameObjectStateI;
-import framework.Level;
-
 public class Originator {
-	   private GameState state;
-
-	   public void setState(ArrayList<GameObject> objs, Level currentLevel){
-	      state = new GameState(objs, currentLevel);
-	   }
+	   private GameStateI state;
 	   
-	   public void setState(GameState state){
+	   public void setState(GameStateI state){
 		  this.state=state;
 	   }
 
-	   public GameState getState(){
+	   public GameStateI getState(){
 	      return state;
 	   }
 

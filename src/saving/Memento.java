@@ -2,13 +2,13 @@ package saving;
 
 public class Memento {
 	
-	private GameState gameState;
+	private GameStateI gameState;
 	
-	public Memento(GameState state){
+	public Memento(GameStateI state){
 		gameState=state;
 	}
 	
-	public GameState getState(){
+	public GameStateI getState(){
 		return gameState;
 	}
 }

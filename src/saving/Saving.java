@@ -1,5 +1,7 @@
 package saving;
 
+import framework.Game;
+
 public class Saving implements SavingI {
 	
 	private Originator originator;
@@ -11,13 +13,14 @@ public class Saving implements SavingI {
 	}
 
 	@Override
-	public void saveState(GameState state) {
+	public void saveState() {
+		GameState state = new GameState(Game.getCurrentLevel());
 		originator.setState(state);
 		careTaker.add(originator.saveStateToMemento());
 	}
 
 	@Override
-	public GameState getLastState() {
+	public GameStateI getLastState() {
 		originator.getStateFromMemento(careTaker.getLatest());
 		return originator.getState();
 	}

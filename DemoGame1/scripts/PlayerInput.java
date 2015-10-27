@@ -57,7 +57,7 @@ public class PlayerInput implements Script {
 		}
 		
 		if(Game.getInput().isKeyPressed('B')){
-			Game.saveState();
+			Game.getSaving().saveState();
 		}
 		if(Game.getInput().isKeyPressed('N')){
 			Game.load();

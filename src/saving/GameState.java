@@ -1,30 +1,13 @@
 package saving;
 
-import java.util.ArrayList;
-
-import framework.GameObject;
-import framework.GameObjectStateI;
 import framework.Level;
 
-public class GameState {
+public class GameState implements GameStateI {
 
-	private ArrayList<GameObjectStateI> objStates = new ArrayList<GameObjectStateI>();
 	private Level currentLevel;
 	
-	public GameState(ArrayList<GameObject> objs, Level currentLevel){
-		ArrayList<GameObjectStateI> objStates = new ArrayList<GameObjectStateI>();
-		   for(GameObject o : objs){
-			   objStates.add(o.getState());
-		}
-		   
-		this.objStates.addAll(objStates);
-		
-		
+	public GameState(Level currentLevel){
 		this.currentLevel=currentLevel;
-	}
-	
-	public ArrayList<GameObjectStateI> getGameObjStates(){
-		return new ArrayList<GameObjectStateI>(objStates);
 	}
 	
 	public Level getCurrentLevel(){

@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import saving.GameState;
+import saving.GameStateI;
+import saving.LoadingState;
+import saving.LoadingStateI;
 import saving.Saving;
 import saving.SavingI;
 import Collision.CollisionManager;
@@ -31,6 +34,7 @@ public class Game {
 	private static Input input;
 	private static Print print;
 	private static SavingI saving;
+	private static LoadingStateI loading;
 	private static Camera camera;
 	private static boolean drawDebug=false;
 	private static Level currentLevel;
@@ -74,6 +78,16 @@ public class Game {
 			return;
 		}
 		print = printType;
+	}
+	
+	//set state loader
+	public static void setLoading(LoadingStateI stateLoader){
+		if(gameStarted){
+			Game.print().log("Loading cannot be set once game has started");
+			return;
+		}
+		
+		loading = stateLoader;
 	}
 	
 	//add a GameObject to the game
@@ -140,6 +154,10 @@ public class Game {
 		
 		if(saving==null){
 			saving = new Saving();
+		}
+		
+		if(loading==null){
+			loading = new LoadingState();
 		}
 		
 		if(camera==null)
@@ -369,34 +387,29 @@ public class Game {
 		
 		return false;
 	}
-
-	public static void saveState(){
-		saving.saveState(getGameState());
-	}
 	
 	public static void load(){
 		load=true;
 	}
 	
 	public static void loadLatestState(){
-		if(load==false)return;
-		load=false;
-		GameState state = saving.getLastState();
+		//if a load state is not required
+		if(load==false) 
+			return;
 		
-		//if no state is saved yet
+		//change flag to false
+		load=false;
+		
+		GameStateI state = saving.getLastState();
+		
+		//if no state is saved yet return
 		if(state==null) 
 			return;
 		
-		objs.clear();
-		for(GameObjectStateI objState : state.getGameObjStates()){
-			objs.add(new GameObject(objState));
-		}
-		//objs = state.getGameObjects();
-		currentLevel= state.getCurrentLevel();
-	}
-	
-	private static GameState getGameState(){
-		return new GameState(copyOfGameObjects(), currentLevel);
+		loading.loadLatestState(state);
 	}
 
+	public static SavingI getSaving() {
+		return saving;
+	}
 }
