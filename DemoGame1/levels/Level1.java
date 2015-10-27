@@ -18,10 +18,9 @@ public class Level1 extends Level{
 
 		
 		GameObject map = new GameObject("map");
-		SpriteSheet mapSheet = new SpriteSheet("testSheet2.png", 32,32);
 		
 		//create tile map component
-		TileMap tilemap = new TileMap(mapSheet, "level1.xml", new Vector(32,32));
+		TileMap tilemap = new TileMap("level1.xml", 32,32);
 		map.add(tilemap);
 		addObj(map);
 		

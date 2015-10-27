@@ -7,16 +7,13 @@ import display.Drawer;
 public class Tile implements Tile_I {
 	
 	private BufferedImage image;
-	private int w,h;
 	private boolean hasCollision;
 	private int id;
 	private String name;
 	
 	//create new tile
-	public Tile(BufferedImage image, int width, int height, int id, String name, boolean hasCollision){
+	public Tile(BufferedImage image, int id, String name, boolean hasCollision){
 		this.image=image;
-		w=width;
-		h=height;
 		this.id=id;
 		this.name=name;
 		this.hasCollision=hasCollision;
@@ -24,7 +21,7 @@ public class Tile implements Tile_I {
 
 	//draw the tile in the given position
 	@Override
-	public void draw(Drawer g, int x, int y) {
+	public void draw(Drawer g, int x, int y, int w, int h) {
 		g.drawImage(image, x, y, w, h);
 	}
 

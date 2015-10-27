@@ -148,6 +148,7 @@ public class GameObject implements Debug{ // also known as an Entity
 		g.drawLine(position.intX(), position.intY()-lineLength/2, 0, lineLength, lineColor);
 		
 		g.drawText(getPosition().toString(), position.intX()+2, position.intY()-5, lineColor);
+		g.drawText(getTag(), position.intX()+2, position.intY()-18, lineColor);
 		
 		//draw debug of all components that are instances of debug
 		for(Component c : components)

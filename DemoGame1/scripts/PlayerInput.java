@@ -45,10 +45,10 @@ public class PlayerInput implements Script {
 		//enable boost
 		char boostKey = (char)KeyEvent.VK_SPACE;
 		if(Game.getInput().isKeyDown(boostKey)){
-			speed = 14;
+			speed = 20;
 		}
 		else{
-			speed = 3;
+			speed = 10;
 		}
 		
 		//toggle debug drawing

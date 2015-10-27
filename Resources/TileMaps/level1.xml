@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Legend>
+
+	<SpriteSheet>
+		<image>testSheet2.png</image>
+		<width>32</width>
+		<height>32</height>
+	</SpriteSheet>
+
 	<Tile>
 		<name>Grass</name>
 		<sheetX>0</sheetX>

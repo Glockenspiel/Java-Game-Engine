@@ -25,18 +25,12 @@ public class TileMap extends Component {
 
 	private static String tileMapPath= "Resources/TileMaps/";
 	
-	public TileMap(SpriteSheet sheet, String filename, Vector tileSize){
-		this.sheet=sheet;
-		this.tileSize=tileSize;
-		
+	public TileMap(String filename, int tileW, int tileH){
+		tileSize=new Vector(tileW, tileH);
 		tiles= new ArrayList<Tile_I>();
 		loadTiles(filename);
 	}
-	
-	//xml loading
-	//todo: add comments to this
-	//todo: xml file includes sprite sheet name and parameters, rather than passing in a sprite sheet in the constructor 
-	//reads and loads each tile type and the map indexes
+
 	private void loadTiles(String filename) {
 		NodeList nList = XmlLoader.load(tileMapPath+filename, "Legend");
 		
@@ -52,23 +46,32 @@ public class TileMap extends Component {
 		boolean collision;
 		
 		for(int i=0; i<tiles.getLength(); i++){
+			
+			if(tiles.item(i).getNodeName().equals("SpriteSheet")){
+				Element e = (Element) tiles.item(i);
+				String imgSrc = getContent(e,"image");
+				int frameW = Integer.parseInt(getContent(e, "width"));
+				int frameH = Integer.parseInt(getContent(e, "height"));
+				
+				sheet = new SpriteSheet(imgSrc, frameW, frameH);
+			}
+			
 			//read tiles
 			if(tiles.item(i).getNodeName().equals("Tile")){
-				Element tile = (Element) tiles.item(i);
+				Element e = (Element) tiles.item(i);
+				name = getContent(e,"name");
+				id = Integer.parseInt(getContent(e, "id"));
+				sheetX = Integer.parseInt(getContent(e, "sheetX"));
+				sheetY = Integer.parseInt(getContent(e, "sheetY"));
+				collision = getContent(e, "collision").equalsIgnoreCase("true");
 				
-				name = getContent(tile,"name");
-				id = Integer.parseInt(getContent(tile, "id"));
-				sheetX = Integer.parseInt(getContent(tile, "sheetX"));
-				sheetY = Integer.parseInt(getContent(tile, "sheetY"));
-				collision = getContent(tile, "collision").equalsIgnoreCase("true");
-				
-				this.tiles.add(new Tile(sheet.getFrame(sheetX, sheetY),tileSize.intX(), tileSize.intY(), id, name, collision));
+				this.tiles.add(new Tile(sheet.getFrame(sheetX, sheetY), id, name, collision));
 			}
-		
+
 			//read indexes
 			else if(tiles.item(i).getNodeName().equalsIgnoreCase("Map")){
-				Element data = (Element) tiles.item(i);
-				NodeList rows = data.getElementsByTagName("row");
+				Element e = (Element) tiles.item(i);
+				NodeList rows = e.getElementsByTagName("row");
 				
 				//read row and convert to int
 				for(int y=0; y<rows.getLength(); y++){
@@ -112,7 +115,7 @@ public class TileMap extends Component {
 			for(int x=0;x<indexes.get(y).size(); x++){
 				t=getTileByID(indexes.get(y).get(x));
 				if(t!=null)
-					t.draw(g, x*tileSize.intX(), y*tileSize.intY());
+					t.draw(g, objPos.intX()+x*tileSize.intX(), objPos.intY()+y*tileSize.intY(), tileSize.intX(), tileSize.intY());
 			}
 		}
 	}
