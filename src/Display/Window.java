@@ -12,4 +12,6 @@ public interface Window {
 	public int getPreferredHeight();
 	public void setPreferredSize(int w, int h);
 	public Vector getWindowScale();
+	public void showCursor(boolean show);
+	public void setCustomCursor(String filename);
 }

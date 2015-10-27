@@ -44,6 +44,9 @@ public class Game {
 	private static CollisionManagerI collisionManager;
 	private static boolean load=false;
 	
+	//time for start of frame
+	private static long startTime;
+	
 	
 	//default constructor
 	public Game(){}
@@ -183,8 +186,7 @@ public class Game {
 	//thread for the main game loop
 	private static Thread gameLoop = new Thread(){
 		
-		//time for start of frame
-		private long startTime;
+		
 
 		public void run(){
 			//check initialisation was done correctly and load the starting level
@@ -311,6 +313,10 @@ public class Game {
 			if(sleepTime<0) sleepTime=0;
 			return sleepTime;
 		}
+		
+		public long getStartTime(){
+			return startTime;
+		}
 	};
 	
 	//returns the first GameObject found with a matching tag
@@ -411,5 +417,9 @@ public class Game {
 
 	public static SavingI getSaving() {
 		return saving;
+	}
+	
+	public static long getFrameStartTime(){
+		return startTime;
 	}
 }

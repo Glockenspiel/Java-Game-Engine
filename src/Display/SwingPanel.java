@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import framework.Game;
 import framework.GameObject;
+import framework.Time;
 import framework.Vector;
 
 public class SwingPanel extends JPanel implements KeyListener {
@@ -52,10 +53,12 @@ public class SwingPanel extends JPanel implements KeyListener {
 		
 		//draw all debugging help 
 		Vector zero = new Vector(0,0);
-		if(Game.isDrawingDebug())
+		if(Game.isDrawingDebug()){
 			for(GameObject o : objs){
 				o.debugDraw(drawer, zero);
 			}
+			drawer.drawHUDText("Frame MS: "+(Time.getTime()-Game.getFrameStartTime()), Game.getWindow().getWidth()-100, 10, Color.GREEN);
+		}
 	}
 
 

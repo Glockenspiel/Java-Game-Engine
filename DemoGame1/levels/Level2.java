@@ -1,7 +1,5 @@
 package levels;
 
-import components.Sprite;
-import Collision.CollisionBox;
 import scripts.ToggleLevel;
 import tiles.TileMap;
 import demo.CoinDispenser;

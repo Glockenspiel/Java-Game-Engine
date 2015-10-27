@@ -1,5 +1,6 @@
 package display;
 
+import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,6 +17,7 @@ public class SwingWindow implements Window{
 	private SwingPanel panel;
 	private int w,h;
 	private static int preferredW=-1, preferredH=-1;
+	private Cursor cursor = Cursor.getDefaultCursor();
 	
 	public SwingWindow(int x, int y, int width, int height, boolean windowed, String windowName){
 		f = new JFrame();
@@ -87,5 +89,22 @@ public class SwingWindow implements Window{
 	public void setPreferredSize(int w, int h) {
 		preferredW=w;
 		preferredH=h;
+	}
+
+
+	@Override
+	public void showCursor(boolean show) {
+		if(show==false)
+			f.getContentPane().setCursor(CursorCreator.getBlankCursor());
+		else{
+			f.getContentPane().setCursor(cursor);
+		}
+	}
+
+
+	@Override
+	public void setCustomCursor(String filename) {
+		cursor = CursorCreator.getCustomCursor("Resources/Images/"+filename);
+		f.getContentPane().setCursor(cursor);
 	}
 }
