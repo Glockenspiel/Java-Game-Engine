@@ -12,6 +12,7 @@ public class Bullet extends GameObject {
 	
 	private Vector bulletSize = new Vector(16,8);
 
+	//a bullet
 	public Bullet(String tag) {
 		super(tag);
 

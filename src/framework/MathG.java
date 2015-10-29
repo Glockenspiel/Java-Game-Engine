@@ -15,11 +15,12 @@ public class MathG {
 		return randomNum;
 	}
 	
-	//clamp to min and max
+	//clamp value to minimum and maximum with integers
 	public static int clamp(int value, int max, int min){
 		return Math.min(max, Math.max(min, value));
 	}
-
+	
+	//clamp value to minimum and maximum with floats
 	public static float clamp(float val, float max, float min) {
 		if(val>=max) return max;
 		else if(val<=min) return min;

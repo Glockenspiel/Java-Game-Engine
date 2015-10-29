@@ -9,6 +9,7 @@ import framework.GameObject;
 import framework.MathG;
 import framework.Vector;
 
+//a coin
 public class Coin extends GameObject {
 	
 	public Coin(String tag){

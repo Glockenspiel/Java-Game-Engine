@@ -12,6 +12,7 @@ public class Saving implements SavingI {
 		careTaker = new CareTaker();
 	}
 
+	//get the current game state and save it
 	@Override
 	public void saveState() {
 		GameState state = new GameState(Game.getCurrentLevel());
@@ -19,6 +20,7 @@ public class Saving implements SavingI {
 		careTaker.add(originator.saveStateToMemento());
 	}
 
+	//returns the last saved state
 	@Override
 	public GameStateI getLastState() {
 		originator.getStateFromMemento(careTaker.getLatest());

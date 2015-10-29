@@ -18,6 +18,7 @@ public class Enemy extends GameObject {
 	private Vector size = new Vector(32,64);
 	private float maxSpeed = 15f;
 
+	//constructor
 	public Enemy(String tag) {
 		super(tag);
 		
@@ -29,10 +30,4 @@ public class Enemy extends GameObject {
 		add(r);
 		add(new MoveScript(getID(), maxSpeed));
 	}
-	
-	@Override
-	public void update(){
-		super.update();
-	}
-
 }

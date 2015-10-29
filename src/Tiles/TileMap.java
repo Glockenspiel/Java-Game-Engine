@@ -19,10 +19,17 @@ import framework.Vector;
 public class TileMap extends Component {
 
 	private ArrayList<Tile_I> tiles;
+	
+	//sprite sheet of images
 	private SpriteSheet sheet;
+	
+	//size to display the tiles
 	private Vector tileSize;
+	
+	//indexes of tiles on the current map
 	private ArrayList<ArrayList<Integer>> indexes = new ArrayList<ArrayList<Integer>>();
 
+	//default path for a TileMap  xml file
 	private static String tileMapPath= "Resources/TileMaps/";
 	
 	public TileMap(String filename, int tileW, int tileH){
@@ -31,6 +38,7 @@ public class TileMap extends Component {
 		loadTiles(filename);
 	}
 
+	//loads the rest of the TileMap from the filename provided
 	private void loadTiles(String filename) {
 		NodeList nList = XmlLoader.load(tileMapPath+filename, "Legend");
 		
@@ -47,6 +55,7 @@ public class TileMap extends Component {
 		
 		for(int i=0; i<tiles.getLength(); i++){
 			
+			//read and create the sprite sheet
 			if(tiles.item(i).getNodeName().equals("SpriteSheet")){
 				Element e = (Element) tiles.item(i);
 				String imgSrc = getContent(e,"image");
@@ -56,7 +65,7 @@ public class TileMap extends Component {
 				sheet = new SpriteSheet(imgSrc, frameW, frameH);
 			}
 			
-			//read tiles
+			//read and create the different type of tiles
 			if(tiles.item(i).getNodeName().equals("Tile")){
 				Element e = (Element) tiles.item(i);
 				name = getContent(e,"name");
@@ -68,7 +77,7 @@ public class TileMap extends Component {
 				this.tiles.add(new Tile(sheet.getFrame(sheetX, sheetY), id, name, collision));
 			}
 
-			//read indexes
+			//read and add the map indexes
 			else if(tiles.item(i).getNodeName().equalsIgnoreCase("Map")){
 				Element e = (Element) tiles.item(i);
 				NodeList rows = e.getElementsByTagName("row");

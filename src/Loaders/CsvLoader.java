@@ -10,6 +10,7 @@ import framework.Game;
 
 public class CsvLoader {
 	
+	//reads a .csv file and returns it as a 2D ArrayList of String type
 	public static ArrayList<ArrayList<String>> load(String filename, String delimiter){
 		//incorrect file extension
 		if(Format.getFormat(filename).equalsIgnoreCase(".csv")==false){

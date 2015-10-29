@@ -30,18 +30,23 @@ public class Game {
 	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
 	
+	//variables to be set
 	private static Window window;
 	private static Input input;
 	private static Print print;
 	private static SavingI saving;
 	private static LoadingStateI loading;
 	private static Camera camera;
-	private static boolean drawDebug=false;
+	private static CollisionManagerI collisionManager;
+	
+	//stores the current level and the desired next level
 	private static Level currentLevel;
 	private static Level nextLevel;
+	
+	//flags
+	private static boolean drawDebug=false;
 	private static boolean changeLevel=false;
 	private static boolean gameStarted=false;
-	private static CollisionManagerI collisionManager;
 	private static boolean load=false;
 	
 	//time for start of frame
@@ -186,8 +191,6 @@ public class Game {
 	//thread for the main game loop
 	private static Thread gameLoop = new Thread(){
 		
-		
-
 		public void run(){
 			//check initialisation was done correctly and load the starting level
 			checkInit();
@@ -204,6 +207,7 @@ public class Game {
 				deleteGameObjects();
 				addObjs();
 				
+				//checks if loading state is required and loads if so
 				loadLatestState();
 				
 				//update all GameObjects
@@ -211,7 +215,7 @@ public class Game {
 					g.update();
 				
 				//update new positions of collision shapes
-				//todo use observer design pattern to keep position updated
+				//as other GameObjects may have changed the current GameObjects position after the current GameObject updated
 				for(GameObject g : objs)
 					g.updateCollisionShapes();
 				
@@ -221,7 +225,7 @@ public class Game {
 				//update camera once all GameObject positions are finalised
 				camera.update();
 				
-				//draw Scene (level)
+				//draw Scene i.e. draw the level
 				window.drawScene();
 
 				//change level if there is a request to change level
@@ -412,7 +416,7 @@ public class Game {
 		if(state==null) 
 			return;
 		
-		loading.loadLatestState(state);
+		loading.loadState(state);
 	}
 
 	public static SavingI getSaving() {

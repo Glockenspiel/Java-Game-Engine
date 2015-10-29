@@ -8,6 +8,7 @@ import framework.MathG;
 import framework.Time;
 import framework.Vector;
 
+//physics movement component
 public class RigidBody extends Component {
 	
 	private static final String TYPE="Rigidbody";
@@ -16,35 +17,42 @@ public class RigidBody extends Component {
 	private float drag=1; //from 0-100
 	private Vector velocity=new Vector(0,0);
 	
+	//constructor
 	public RigidBody(int mass){
 		this.mass=mass;
 	}
 	
+	//set the gravity
 	public void setGravity(float gravity){
 		if(gravity<0) 
 			gravity = 0;
 		this.gravity=gravity;
 	}
 	
+	//return the mass
 	public int getMass(){
 		return mass;
 	}
 	
+	//set the mass
 	public void setMass(int mass){
 		if(mass<0)
 			mass=0;
 		this.mass=mass;
 	}
 	
+	//return the gravity
 	public float getGravity(){
 		return gravity;
 	}
 
+	//return type of this component
 	@Override
 	public String getType() {
 		return TYPE;
 	}
 	
+	//add a force
 	public void addForce(Vector force){
 		float x = force.getX() * massRatio();
 		float y = force.getY() * massRatio();
@@ -53,14 +61,17 @@ public class RigidBody extends Component {
 		velocity = Vector.add(velocity, new Vector(x,y));
 	}
 	
+	//returns the current velocity
 	public Vector getVelocity(){
 		return velocity;
 	}
 	
+	//returns the distance the rigid body is moving 
 	public float getVelocityDistance(){
 		return (float)MathG.distance(0, 0, velocity.getX(), velocity.getY());
 	}
 
+	//calculate the position change of the GameObject
 	@Override
 	public void update(GameObject obj) {
 		//apply gravity
@@ -82,17 +93,21 @@ public class RigidBody extends Component {
 		obj.moveBy(moveBy);
 	}
 
+	//don't draw anything
 	@Override
 	public void draw(Drawer g, Vector objPos) {}
 	
+	//ratio of the current mass to the default mass
 	private float massRatio(){
 		return 100/(float)mass;
 	}
 
+	//set the drag
 	public void setDrag(float drag) {
 		this.drag = MathG.clamp(drag, 0, 100);
 	}
 	
+	//returns the drag
 	public float getDrag(){
 		return drag;
 	}

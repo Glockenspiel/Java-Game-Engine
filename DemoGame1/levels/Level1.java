@@ -13,6 +13,7 @@ public class Level1 extends Level{
 
 	private final String levelName = "example level1";
 	
+	//initialise level
 	@Override
 	public void init() {
 

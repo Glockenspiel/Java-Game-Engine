@@ -8,12 +8,13 @@ import framework.Vector;
 
 public class CollisionCircle implements CollisionShape, Debug {
 
-	private static final String TYPE="CIRCLE";
+	private static final String TYPE="COLLISIONCIRCLE";
 	private boolean isAlive, isTrigger;
 	private int x,y,r;
 	private String tag="";
 	private Vector objPosition = new Vector(0,0);
 	
+	//constructor
 	public CollisionCircle(int x, int y, int radius, boolean isTrigger, boolean isAlive){
 		this.x=x;
 		this.y=y;
@@ -22,49 +23,57 @@ public class CollisionCircle implements CollisionShape, Debug {
 		this.isTrigger=isTrigger;
 	}
 	
+	//draw a debug circle
 	@Override
 	public void debugDraw(Drawer g, Vector objPos) {
 		g.drawCircle(x+objPos.intX(),y+objPos.intY(),r);
 	}
 
+	//returns isAlive
 	@Override
 	public boolean getAlive() {
 		return isAlive;
 	}
-
-	@Override
-	public String getType() {
-		return TYPE;
-	}
-
-	@Override
-	public boolean getIsTrigger() {
-		return isTrigger;
-	}
-
-	@Override
-	public void setIsTrigger(boolean isTrigger) {
-		this.isTrigger=isTrigger;
-	}
-
-	@Override
-	public String getTag() {
-		return tag;
-	}
-
-	@Override
-	public void setTag(String tag) {
-		this.tag=tag;
-	}
-
-	@Override
-	public void update(Vector position) {
-		objPosition = position;
-	}
 	
+	//set isAlive
 	@Override
 	public void setAlive(boolean isAlive) {
 		this.isAlive=isAlive;
 	}
 
+	//returns the component type
+	@Override
+	public String getType() {
+		return TYPE;
+	}
+
+	//returns isTrigger
+	@Override
+	public boolean getIsTrigger() {
+		return isTrigger;
+	}
+
+	//sets isTrigger
+	@Override
+	public void setIsTrigger(boolean isTrigger) {
+		this.isTrigger=isTrigger;
+	}
+
+	//returns the collision shape's tag
+	@Override
+	public String getTag() {
+		return tag;
+	}
+
+	//sets the collision shape's tag
+	@Override
+	public void setTag(String tag) {
+		this.tag=tag;
+	}
+
+	////updates the current position of the GameObject this collision shape belongs to
+	@Override
+	public void update(Vector position) {
+		objPosition = position;
+	}
 }

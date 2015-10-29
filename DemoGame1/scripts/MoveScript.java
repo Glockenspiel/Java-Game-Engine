@@ -13,11 +13,13 @@ public class MoveScript implements Script {
 	private Vector moveSpeed = new Vector(-10,0);
 	private float maxSpeed;
 	
+	//adds forces to a rigid body each frame until it reaches maximum speed
 	public MoveScript(int id, float maxSpeed){
 		this.id=id;
 		this.maxSpeed=maxSpeed;
 	}
 
+	//moves the rigid body
 	@Override
 	public void execute(GameObject obj) {
 		Component c = obj.getComponentByType("RigidBody");

@@ -10,6 +10,7 @@ public class SpriteSheet {
 	private BufferedImage errorImage;
 	BufferedImage srcImage;
 	
+	//constructor
 	public SpriteSheet(String filename, int frameWidth, int frameHeight){
 		srcImage = ImageLoader.load(filename);
 		loadFrames(frameWidth, frameHeight, filename);
@@ -34,7 +35,7 @@ public class SpriteSheet {
 			}
 	}
 
-	
+	//number of frames on the y-axis in the image
 	public int gridHeight(){
 		if(images==null) 
 			return -1;
@@ -42,6 +43,7 @@ public class SpriteSheet {
 		return images[0].length;
 	}
 	
+	//number of frames on the x-axis in the image
 	public int gridWidth(){
 		if(images==null) 
 			return -1;
@@ -49,6 +51,7 @@ public class SpriteSheet {
 		return images.length;
 	}
 	
+	//returns frame at coordinate x,y
 	public BufferedImage getFrame(int x, int y){
 		if(x<gridWidth() && x>=0 && y<gridHeight() && y>=0)
 			return images[x][y];

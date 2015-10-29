@@ -21,6 +21,7 @@ public class CoinDispenser extends GameObject {
 		
 	}
 	
+	//Dispenses coin at each interval at a random heights
 	@Override
 	public void update(){
 		super.update();
@@ -30,6 +31,7 @@ public class CoinDispenser extends GameObject {
 		}
 	}
 
+	//spawn a coin
 	private void spawn() {
 		Coin coin = new Coin("coin");
 		coin.moveBy(super.getPosition());

@@ -13,7 +13,7 @@ import display.SwingDrawer;
 
 public class GameObject implements Debug{ // also known as an Entity
 	
-	//-1 invalid ID
+	//-1 equals invalid ID
 	private int id=-1;
 	private String tag="";
 	private ArrayList<Component> components = new ArrayList<Component>();
@@ -195,7 +195,6 @@ public class GameObject implements Debug{ // also known as an Entity
 				CollisionListener cl = (CollisionListener) s;
 				cl.onTrigger(tag, id);
 			}
-			
 		}
 	}
 
@@ -224,6 +223,7 @@ public class GameObject implements Debug{ // also known as an Entity
 		this.drawLayer=drawLayer;
 	}
 
+	//returns the all the scripts of event type
 	public ArrayList<Event> getEvents() {
 		ArrayList<Event> events = new ArrayList<Event>();
 		for(Script s: scripts){

@@ -1,6 +1,8 @@
 package Collision;
 
-public interface CollisionListener {
+import framework.Script;
+
+public interface CollisionListener extends Script {
 	//events that will be invoked in the following situations
 	
 	//when this object collides with another object and returns the tag of the object it collided with

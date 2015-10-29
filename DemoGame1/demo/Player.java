@@ -24,7 +24,8 @@ public class Player extends GameObject {
 		
 		createPlayer();
 	}
-
+	
+	//initalise the player
 	private void createPlayer() {
 		//dimensions to display images
 		Vector playerSize = new Vector(100,32);

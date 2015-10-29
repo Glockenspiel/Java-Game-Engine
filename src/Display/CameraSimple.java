@@ -9,6 +9,7 @@ public class CameraSimple implements Camera {
 	private int followId=-1;
 	Vector offset;
 	
+	//constructor
 	public CameraSimple(int x, int y){
 		position=new Vector(x,y);
 	}
@@ -46,10 +47,9 @@ public class CameraSimple implements Camera {
 	}
 	
 	
-
+	//if following a GameObject updat ethe camera's position
 	@Override
 	public void update() {
-		//true if camera is following something
 		if(followId!=-1){ 
 			Vector objPos = Game.getGameObjectById(followId).getPosition();
 			Vector objCameraPos = Vector.multiply(objPos,new Vector(-1,-1));
@@ -58,11 +58,13 @@ public class CameraSimple implements Camera {
 		}
 	}
 
+	//stop following a GameObject
 	@Override
 	public void unFollow() {
 		followId=-1;
 	}
 
+	//returns the id of the GameObject the camera is following. -1 means it's follwoing nothing
 	@Override
 	public int getFollowId() {
 		return followId;

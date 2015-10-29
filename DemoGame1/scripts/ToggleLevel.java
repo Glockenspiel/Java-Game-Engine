@@ -18,6 +18,7 @@ public class ToggleLevel implements Script {
 		this.level=level;
 	}
 	
+	//command to change level if key M is pressed
 	@Override
 	public void execute(GameObject obj) {
 		if(Game.getInput().isKeyPressed((char)KeyEvent.VK_M)){

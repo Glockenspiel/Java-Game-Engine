@@ -26,14 +26,17 @@ public class Animation extends Component {
 		displaySize = new Vector(displayW, displayH);
 	}
 	
+	//reset animation to the begining
 	public void reset(){
 		frameCount=0;
 	}
 	
+	//offset of animation from GameObject position
 	public void setOffset(int offsetX, int offsetY){
 		offset = new Vector(offsetX, offsetY);
 	}
 	
+	//returns the offset
 	public Vector getOffset(){
 		return offset;
 	}
@@ -43,11 +46,13 @@ public class Animation extends Component {
 		return displaySize;
 	}
 	
+	//returns the component type
 	@Override
 	public String getType() {
 		return "Animation";
 	}
 
+	//changes to the next frame in the animation if required
 	@Override
 	public void update(GameObject obj) {
 		frameCount++;
@@ -77,6 +82,7 @@ public class Animation extends Component {
 		
 	}
 
+	//draw the current frame
 	@Override
 	public void draw(Drawer g, Vector objPos) {
 		BufferedImage image = spriteSheet.getFrame(frameX, frameY);

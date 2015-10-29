@@ -2,7 +2,7 @@ package framework;
 
 public abstract class Level {
 
-	//shorthand for add GameObjects in a subclass of level
+	//shorthand to add GameObjects to the game in a subclass of level
 	protected void addObj(GameObject obj){
 		Game.addGameObject(obj);
 	}

@@ -8,7 +8,7 @@ import framework.GameObject;
 import framework.MathG;
 import framework.Script;
 
-public class EnemyHit implements Script, CollisionListener {
+public class EnemyHit implements CollisionListener {
 
 	private int objID;
 	private static int damage=10;
@@ -18,10 +18,9 @@ public class EnemyHit implements Script, CollisionListener {
 	}
 
 	@Override
-	public void onCollision(String tag, int id) {
-		
-	}
+	public void onCollision(String tag, int id) {}
 
+	//if the enemy hits the player it will invoke the events in player
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
@@ -50,6 +49,7 @@ public class EnemyHit implements Script, CollisionListener {
 
 	}
 	
+	//returns the tag of the game object this script belongs to
 	private String getTag(){
 		return Game.getGameObjectById(objID).getTag();
 	}

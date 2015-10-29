@@ -19,6 +19,7 @@ public class cameraFollow implements Script {
 		this.offset=offset;
 	}
 	
+	//checks if the key T is pressed and toggle the camera following the player
 	@Override
 	public void execute(GameObject obj) {
 		//toggle camera follow

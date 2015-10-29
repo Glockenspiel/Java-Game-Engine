@@ -13,6 +13,7 @@ public class IdGenerator {
 			reachedMax=true;
 		}
 		
+		//this is only used if we exceed the maximum of the integer value in java
 		if(reachedMax){
 			//find all exisitng ids
 			ArrayList<Integer> existingIDs = new ArrayList<Integer>();
@@ -21,7 +22,7 @@ public class IdGenerator {
 					existingIDs.add(o.getID());
 			}
 			
-			//once found a unique id, return it
+			//once found a unique id between 0-4000, return it
 			boolean flag=true;
 			for(int i=0; i<4000 && flag; i++)
 				if(existingIDs.contains(i)==false){

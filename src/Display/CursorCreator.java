@@ -10,10 +10,12 @@ import java.io.IOException;
 import framework.Game;
 
 public class CursorCreator {
+	//returns a blink cursor
 	public static Cursor getBlankCursor(){
 		return getCustomCursor(null);
 	}
 	
+	//returns a custom cursor
 	public static Cursor getCustomCursor(String imgSrc){
 		BufferedImage cursorImg=null;
 		if(imgSrc!=null){

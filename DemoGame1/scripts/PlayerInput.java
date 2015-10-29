@@ -21,6 +21,7 @@ public class PlayerInput implements Script {
 		this.playerSize=playerSize;
 	}
 	
+	//take player input and do commands with it
 	@Override
 	public void execute(GameObject obj) {
 		//move player

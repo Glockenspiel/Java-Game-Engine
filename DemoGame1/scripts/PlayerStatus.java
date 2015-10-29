@@ -18,17 +18,19 @@ public class PlayerStatus implements HUDItem, Event {
 	private int health = 100;
 	private int money = 0;
 	private BufferedImage image;
-			
+	
+	//constructor
 	public PlayerStatus(){
 		image = loaders.ImageLoader.load("hudImage.png");
 	}
 	
+	//update time
 	@Override
 	public void execute(GameObject obj) {
 		time+=Time.FRAME_TIME;
 	}
 
-	
+	//draw the HUD for player status
 	@Override
 	public void drawGUI(Drawer g) {
 		if(image!=null)
@@ -54,6 +56,7 @@ public class PlayerStatus implements HUDItem, Event {
 		}
 	}
 
+	//check if the player health falls below zero
 	private void checkIsAlive() {
 		if(health<0){
 			health=0;

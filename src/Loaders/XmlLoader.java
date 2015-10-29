@@ -13,8 +13,10 @@ import org.xml.sax.SAXException;
 
 import framework.Game;
 
-//loads an xml file into a NodeList and displays error message and returns null if failed to load
+
 public class XmlLoader {
+	
+	//loads an .xml file into a NodeList and displays error message and returns null if failed to load
 	public static NodeList load(String filename, String rootName){
 		File xmlFile = new File(filename);
 		

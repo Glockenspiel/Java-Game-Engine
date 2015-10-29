@@ -4,8 +4,9 @@ import framework.Game;
 
 public class LoadingState implements LoadingStateI {
 
+	//load the state into the game
 	@Override
-	public void loadLatestState(GameStateI state) {
+	public void loadState(GameStateI state) {
 		Game.changeLevel(state.getCurrentLevel());
 	}
 

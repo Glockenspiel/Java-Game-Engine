@@ -19,6 +19,7 @@ public class SwingWindow implements Window{
 	private static int preferredW=-1, preferredH=-1;
 	private Cursor cursor = Cursor.getDefaultCursor();
 	
+	//constructor
 	public SwingWindow(int x, int y, int width, int height, boolean windowed, String windowName){
 		f = new JFrame();
 		f.setUndecorated(!windowed);
@@ -41,7 +42,7 @@ public class SwingWindow implements Window{
 		
 	}
 
-
+	//calls the repaint method
 	@Override
 	public void drawScene() {
 		f.repaint();
@@ -66,32 +67,34 @@ public class SwingWindow implements Window{
 		return new Vector(w,h);
 	}
 
-
+	//returns the preferred width of the window
 	@Override
 	public int getPreferredWidth() {
 		return preferredW;
 	}
 
 
+	//returns the preferred height of the window
 	@Override
 	public int getPreferredHeight() {
 		return preferredH;
 	}
 
 
+	//returns the scale of the window size to the preferred window size
 	@Override
 	public Vector getWindowScale() {
 		return new Vector((float)w/(float)preferredW, (float)h/(float)preferredH);
 	}
 
-
+	//set the preffered size
 	@Override
 	public void setPreferredSize(int w, int h) {
 		preferredW=w;
 		preferredH=h;
 	}
 
-
+	//show or hide the cursor
 	@Override
 	public void showCursor(boolean show) {
 		if(show==false)
@@ -101,7 +104,7 @@ public class SwingWindow implements Window{
 		}
 	}
 
-
+	//set a custom cursor
 	@Override
 	public void setCustomCursor(String filename) {
 		cursor = CursorCreator.getCustomCursor("Resources/Images/"+filename);

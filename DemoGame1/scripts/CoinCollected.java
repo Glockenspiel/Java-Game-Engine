@@ -6,7 +6,7 @@ import framework.Game;
 import framework.GameObject;
 import framework.Script;
 
-public class CoinCollected implements Script, CollisionListener {
+public class CoinCollected implements CollisionListener {
 
 	private int value, objID;
 	
@@ -18,6 +18,7 @@ public class CoinCollected implements Script, CollisionListener {
 	@Override
 	public void onCollision(String tag, int id) {}
 
+	//if this game object overlaps a GameObject with the tag 'player' it will invoke all the events in the player object
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){

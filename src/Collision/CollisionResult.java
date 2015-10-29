@@ -1,5 +1,6 @@
 package Collision;
 
+//object to store the relationship between 2 CollisionShapes to increase the readability of code
 public class CollisionResult {
 	
 	private CollisionShape shapeA, shapeB;

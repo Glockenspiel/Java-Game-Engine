@@ -11,6 +11,7 @@ import levels.Level2;
 public class main{
 
 	public static void main(String[] args) {
+		//create the game 
 		Game game = new Game();
 		
 		Vector resolution = LauncherOptions.launch();

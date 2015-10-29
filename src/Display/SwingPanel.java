@@ -19,6 +19,7 @@ public class SwingPanel extends JPanel implements KeyListener {
 	
 	SwingDrawer drawer = new SwingDrawer();
 	
+	//constructor
 	public SwingPanel(){
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -27,6 +28,7 @@ public class SwingPanel extends JPanel implements KeyListener {
 	}
 
 
+	//paints the game in the correct order
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -63,18 +65,19 @@ public class SwingPanel extends JPanel implements KeyListener {
 
 
 	//listen for key events in this panel
+	//notify the input buffer of the key press
 	@Override
 	public void keyPressed(KeyEvent event) {
 		Game.getInput().setPressed(event.getKeyCode());
 	}
 
-
+	//notify the input buffer of the key release
 	@Override
 	public void keyReleased(KeyEvent event) {
 		Game.getInput().setReleased(event.getKeyCode());
 	}
 
-
+	//do nothing
 	@Override
 	public void keyTyped(KeyEvent arg0) {}
 

@@ -15,7 +15,7 @@ public class Animator extends Component {
 	private Animation currentAnim = null;
 	private String currentAnimState = "";
 	
-	
+	//change current animation
 	public boolean setCurrentAnimation(String stateName){
 		if(animations.containsKey(stateName)){
 			currentAnim = animations.get(stateName);
@@ -26,25 +26,30 @@ public class Animator extends Component {
 		return false;
 	}
 	
+	//add an animation
 	public void addAnimation(Animation anim, String stateName){
 		animations.put(stateName, anim);
 	}
 	
+	//get the state name of the current animation
 	public String getCurrentState(){
 		return currentAnimState;
 	}
-	
+
+	//return the component type
 	@Override
 	public String getType() {
 		return TYPE;
 	}
 
+	//update the current animation
 	@Override
 	public void update(GameObject obj) {
 		if(currentAnim!=null)
 			currentAnim.update(obj);
 	}
 
+	//draw the current animation
 	@Override
 	public void draw(Drawer g, Vector objPos) {
 		if(currentAnim!=null)
