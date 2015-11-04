@@ -42,7 +42,7 @@ public class PlayerStatus implements HUDItem, Event {
 	}
 
 	@Override
-	public void invokeEvent(String tag, int value) {
+	public void notify(String tag, int value) {
 		if(tag.contains("Enemy")){
 			health -= value;
 			checkIsAlive();

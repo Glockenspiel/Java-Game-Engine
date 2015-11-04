@@ -23,7 +23,7 @@ public class CoinCollected implements CollisionListener {
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
 			for(Event e : Game.getGameObjectById(id).getEvents()){
-				e.invokeEvent("coin", value);
+				e.notify("coin", value);
 			}
 			Game.deleteObjByID(objID);
 		}

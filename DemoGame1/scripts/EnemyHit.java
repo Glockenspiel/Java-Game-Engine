@@ -25,7 +25,7 @@ public class EnemyHit implements CollisionListener {
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
 			for(Event e : Game.getGameObjectById(id).getEvents()){
-					e.invokeEvent(getTag(), damage+MathG.randomNumber(0, 10));
+					e.notify(getTag(), damage+MathG.randomNumber(0, 10));
 			}
 			
 			//create an explosion
