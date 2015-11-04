@@ -58,12 +58,12 @@ public class SwingDrawer implements Drawer {
 	
 	
 	private int cameraPosX(){
-		return Game.getServiceManager().getCamera().getPosition().intX();
+		return Game.getServices().getCamera().getPosition().intX();
 	}
 	
 	//returns the cameras position on Y-axis
 	private int cameraPosY(){
-		return Game.getServiceManager().getCamera().getPosition().intY();
+		return Game.getServices().getCamera().getPosition().intY();
 	}
 
 	//draw an image on the HUD
@@ -109,11 +109,11 @@ public class SwingDrawer implements Drawer {
 	//convert a world unit on x-axis to the windows scale
 	private int unitsToWindowPosX(int val){
 		
-		return (int)(val*Game.getServiceManager().getWindow().getWindowScale().getX());
+		return (int)(val*Game.getServices().getWindow().getWindowScale().getX());
 	}
 	//convert a world unit on y-axis to the windows scale
 	private int unitsToWindowPosY( int val){
-		return (int)(val*Game.getServiceManager().getWindow().getWindowScale().getY());
+		return (int)(val*Game.getServices().getWindow().getWindowScale().getY());
 	}
 	
 

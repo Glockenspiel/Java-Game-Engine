@@ -40,7 +40,6 @@ public class Game {
 	//flags
 	private static boolean drawDebug=false;
 	private static boolean changeLevel=false;
-	private static boolean gameStarted=false;
 	private static boolean load=false;
 	
 	//time for start of frame
@@ -52,7 +51,12 @@ public class Game {
 		serMan = new ServiceManager();
 	}
 	
-	public static ServiceManagerI getServiceManager(){
+	//service manager constructor
+	public Game(ServiceManagerI serviceManager){
+		serMan = serviceManager;
+	}
+	
+	public static ServiceManagerI getServices(){
 		return serMan;
 	}
 	
@@ -105,7 +109,6 @@ public class Game {
 	//start thread for game loop
 	public static void start(Level level){
 		currentLevel = level;
-		gameStarted=true;
 		gameLoop.start();
 	}
 	
@@ -323,7 +326,18 @@ public class Game {
 		
 		serMan.getLoading().loadState(state);
 	}
+	
+	//short hand for getting the input service
+	public static Input getInput(){
+		return serMan.getInput();
+	}
+	
+	//short hand for getting the camera service
+	public static Camera getCamera(){
+		return serMan.getCamera();
+	}
 
+	//returns the time of when the execution started for the current frame
 	public static long getFrameStartTime(){
 		return startTime;
 	}

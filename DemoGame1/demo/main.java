@@ -15,8 +15,8 @@ public class main{
 		Game game = new Game();
 		
 		Vector resolution = LauncherOptions.launch();
-		Game.getServiceManager().setWindow(new SwingWindow(0, 0, resolution.intX(), resolution.intY(), false, "Game"));
-		Game.getServiceManager().getWindow().showCursor(false);
+		Game.getServices().setWindow(new SwingWindow(0, 0, resolution.intX(), resolution.intY(), false, "Game"));
+		Game.getServices().getWindow().showCursor(false);
 		//custom cursor example
 		//Game.getWindow().setCustomCursor("triangle.png");
 		Game.enableDebugDraw(true);

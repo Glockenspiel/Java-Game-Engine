@@ -25,13 +25,13 @@ public class ServiceManager implements ServiceManagerI {
 	private static CollisionManagerI collisionManager;
 	
 	
-	private static boolean gameStarted=false;
+	private static boolean finialised=false;
 	
 	public ServiceManager(){}
 	
 	//sets the window type
 	public void setWindow(Window windowType){
-		if(gameStarted){
+		if(finialised){
 			Game.print("Window cannot be set once game has started");
 			return;
 		}
@@ -40,7 +40,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//sets the input type
 	public void setInputType(Input inputType){
-		if(gameStarted){
+		if(finialised){
 			Game.print("Input cannot be set once game has started");
 			return;
 		}
@@ -54,7 +54,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//sets the printing type
 	public void setPrint(Print printType){
-		if(gameStarted){
+		if(finialised){
 			Game.print("Print cannot be set once game has started");
 			return;
 		}
@@ -63,7 +63,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//set state loader
 	public void setLoading(LoadingStateI stateLoader){
-		if(gameStarted){
+		if(finialised){
 			Game.print("Loading cannot be set once game has started");
 			return;
 		}
@@ -99,6 +99,8 @@ public class ServiceManager implements ServiceManagerI {
 			
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
+		
+		finialised=true;
 	}
 	
 	//returns the input object
