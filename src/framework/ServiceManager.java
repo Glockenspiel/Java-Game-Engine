@@ -30,7 +30,7 @@ public class ServiceManager implements ServiceManagerI {
 	public ServiceManager(){}
 	
 	//sets the window type
-	public static void setWindow(Window windowType){
+	public void setWindow(Window windowType){
 		if(gameStarted){
 			Game.print("Window cannot be set once game has started");
 			return;
@@ -39,7 +39,7 @@ public class ServiceManager implements ServiceManagerI {
 	}
 	
 	//sets the input type
-	public static void setInputType(Input inputType){
+	public void setInputType(Input inputType){
 		if(gameStarted){
 			Game.print("Input cannot be set once game has started");
 			return;
@@ -48,12 +48,12 @@ public class ServiceManager implements ServiceManagerI {
 	}
 		
 	//sets the collision manager
-	public static void setCollisionManager(CollisionManagerI cm){
+	public void setCollisionManager(CollisionManagerI cm){
 		collisionManager = cm;
 	}
 	
 	//sets the printing type
-	public static void setPrint(Print printType){
+	public void setPrint(Print printType){
 		if(gameStarted){
 			Game.print("Print cannot be set once game has started");
 			return;
@@ -62,7 +62,7 @@ public class ServiceManager implements ServiceManagerI {
 	}
 	
 	//set state loader
-	public static void setLoading(LoadingStateI stateLoader){
+	public void setLoading(LoadingStateI stateLoader){
 		if(gameStarted){
 			Game.print("Loading cannot be set once game has started");
 			return;
@@ -72,7 +72,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//checks to see if all attributes have been initialised correctly for the game
 	//if not this method sets them to the defaults
-	public static void checkInit(){
+	public void checkInit(){
 		int w=854,h=480; //default window size
 		
 		if(window==null)
@@ -102,34 +102,34 @@ public class ServiceManager implements ServiceManagerI {
 	}
 	
 	//returns the input object
-	public static Input getInput(){
+	public Input getInput(){
 		return input;
 	}
 
 	//returns the print object
-	public static Print getPrint(){
+	public Print getPrint(){
 		return print;
 	}
 	
 	//returns the camera object
-	public static Camera getCamera(){
+	public Camera getCamera(){
 		return camera;
 	}
 
 	//returns the window object
-	public static Window getWindow(){
+	public Window getWindow(){
 		return window;
 	}
 	
-	public static CollisionManagerI getCollisionManager(){
+	public CollisionManagerI getCollisionManager(){
 		return collisionManager;
 	}
 
-	public static LoadingStateI getLoading() {
+	public LoadingStateI getLoading() {
 		return loading;
 	}
 	
-	public static SavingI getSaving() {
+	public SavingI getSaving() {
 		return saving;
 	}
 }

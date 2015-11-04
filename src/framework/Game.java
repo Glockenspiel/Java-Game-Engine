@@ -31,7 +31,7 @@ public class Game {
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
 	
 	
-	private static ServiceManager serMan;
+	private static ServiceManagerI serMan;
 	
 	//stores the current level and the desired next level
 	private static Level currentLevel;
@@ -52,7 +52,7 @@ public class Game {
 		serMan = new ServiceManager();
 	}
 	
-	public static ServiceManager getServiceManager(){
+	public static ServiceManagerI getServiceManager(){
 		return serMan;
 	}
 	
