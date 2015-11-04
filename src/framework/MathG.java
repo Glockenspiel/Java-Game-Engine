@@ -10,8 +10,8 @@ public class MathG {
 			min=max;
 			max=temp;
 		}
-		
-		int randomNum = (int)(Math.random() * max) + min;
+		int range = (max - min) + 1;
+		int randomNum = (int)(Math.random() * range) + min;
 		return randomNum;
 	}
 	
