@@ -31,9 +31,9 @@ public class Game {
 	}
 	
 	//service and level manager constructor
-	public Game(ServiceManagerI serviceManager, LevelManagerI levelManager){
+	public Game(ServiceManagerI serviceManager, LevelManagerI levelMan){
 		serMan = serviceManager;
-		this.levelManager = levelManager;
+		levelManager = levelMan;
 	}
 	
 	//returns the service manager object
@@ -78,6 +78,7 @@ public class Game {
 	//start thread for game loop
 	public static void start(Level level){
 		levelManager.setCurrentLevel(level);
+		
 		gameLoop.start();
 	}
 	
@@ -85,6 +86,7 @@ public class Game {
 	private static Thread gameLoop = new Thread(){
 		
 		public void run(){
+			gameLoop.setPriority(Thread.MAX_PRIORITY);
 			//check initialisation was done correctly and load the starting level
 			serMan.checkInit();
 			loadCurrentLevel();
