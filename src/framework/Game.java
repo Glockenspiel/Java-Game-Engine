@@ -30,9 +30,9 @@ public class Game {
 	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
 	
-	
+	//managers
 	private static ServiceManagerI serMan;
-	private static LevelManagerI levelManager = new LevelManager();
+	private static LevelManagerI levelManager;
 
 	//time for start of frame
 	private static long startTime;
@@ -41,13 +41,16 @@ public class Game {
 	//default constructor
 	public Game(){
 		serMan = new ServiceManager();
+		levelManager = new LevelManager();
 	}
 	
-	//service manager constructor
-	public Game(ServiceManagerI serviceManager){
+	//service and level manager constructor
+	public Game(ServiceManagerI serviceManager, LevelManagerI levelManager){
 		serMan = serviceManager;
+		this.levelManager = levelManager;
 	}
 	
+	//returns the service manager object
 	public static ServiceManagerI getServices(){
 		return serMan;
 	}
@@ -270,11 +273,13 @@ public class Game {
 		return false;
 	}
 	
+	//short hand for loading latest saveed state
 	public static void loadLatestSave(){
 		levelManager.load();
 	}
 
 	//short hand for getting the input service
+	//this encapsulates level manager
 	public static Input getInput(){
 		return serMan.getInput();
 	}

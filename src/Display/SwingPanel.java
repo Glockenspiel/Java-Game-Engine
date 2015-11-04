@@ -59,8 +59,10 @@ public class SwingPanel extends JPanel implements KeyListener {
 			for(GameObject o : objs){
 				o.debugDraw(drawer, zero);
 			}
+			
+			//draw frame execution time
 			drawer.drawHUDText("Frame MS: "+(Time.getTime()-Game.getFrameStartTime()), 
-					Game.getServices().getWindow().getWidth()-100, 10, Color.GREEN);
+					Game.getServices().getWindow().getPreferredWidth()/2-50, 10, Color.GREEN);
 		}
 	}
 

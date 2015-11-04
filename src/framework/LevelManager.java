@@ -29,18 +29,22 @@ public class LevelManager implements LevelManagerI {
 		}
 	}
 	
+	//returns the current level object
 	public Level getCurrentLevel(){
 		return currentLevel;
 	}
 	
+	//sets the current Level
 	public void setCurrentLevel(Level level){
 		currentLevel = level;
 	}
 	
+	//a state load is required
 	public void load(){
 		load=true;
 	}
 	
+	//loads the latest state if a load() was called
 	public void loadLatestState(){
 		//if a load state is not required
 		if(load==false) 

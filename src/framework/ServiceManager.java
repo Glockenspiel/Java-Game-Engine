@@ -15,7 +15,7 @@ import display.Window;
 
 public class ServiceManager implements ServiceManagerI {
 	
-	//variables to be set
+	//services
 	private static Window window;
 	private static Input input;
 	private static Print print;
@@ -23,9 +23,9 @@ public class ServiceManager implements ServiceManagerI {
 	private static LoadingStateI loading;
 	private static Camera camera;
 	private static CollisionManagerI collisionManager;
+	
+	//flags
 	private static boolean drawDebug;
-	
-	
 	private static boolean finialised=false;
 	
 	public ServiceManager(){}
@@ -124,10 +124,12 @@ public class ServiceManager implements ServiceManagerI {
 		return window;
 	}
 	
+	//returns the collision manager object
 	public CollisionManagerI getCollisionManager(){
 		return collisionManager;
 	}
 
+	//returns the loading object
 	public LoadingStateI getLoading() {
 		return loading;
 	}
