@@ -59,7 +59,8 @@ public class SwingPanel extends JPanel implements KeyListener {
 			for(GameObject o : objs){
 				o.debugDraw(drawer, zero);
 			}
-			drawer.drawHUDText("Frame MS: "+(Time.getTime()-Game.getFrameStartTime()), Game.getWindow().getWidth()-100, 10, Color.GREEN);
+			drawer.drawHUDText("Frame MS: "+(Time.getTime()-Game.getFrameStartTime()), 
+					Game.getServiceManager().getWindow().getWidth()-100, 10, Color.GREEN);
 		}
 	}
 
@@ -68,13 +69,13 @@ public class SwingPanel extends JPanel implements KeyListener {
 	//notify the input buffer of the key press
 	@Override
 	public void keyPressed(KeyEvent event) {
-		Game.getInput().setPressed(event.getKeyCode());
+		Game.getServiceManager().getInput().setPressed(event.getKeyCode());
 	}
 
 	//notify the input buffer of the key release
 	@Override
 	public void keyReleased(KeyEvent event) {
-		Game.getInput().setReleased(event.getKeyCode());
+		Game.getServiceManager().getInput().setReleased(event.getKeyCode());
 	}
 
 	//do nothing

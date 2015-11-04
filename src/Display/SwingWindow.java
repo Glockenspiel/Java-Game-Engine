@@ -33,7 +33,7 @@ public class SwingWindow implements Window{
 		f.addWindowListener(new WindowAdapter() {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
-		    	Game.print().log("Closing game");
+		    	Game.print("Closing game");
 		    	System.exit(0);
 		    }
 		});

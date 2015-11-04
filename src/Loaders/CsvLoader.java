@@ -14,12 +14,12 @@ public class CsvLoader {
 	public static ArrayList<ArrayList<String>> load(String filename, String delimiter){
 		//incorrect file extension
 		if(Format.getFormat(filename).equalsIgnoreCase(".csv")==false){
-			Game.print().log("Extension is not .csv for file: " + filename);
+			Game.print("Extension is not .csv for file: " + filename);
 			return new ArrayList<ArrayList<String>>();
 		}
 		File f = new File(filename);
 		if(f.exists()==false){
-			Game.print().log("File was not found: "+ filename);
+			Game.print("File was not found: "+ filename);
 		}
 		
 		ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();

@@ -14,7 +14,7 @@ public class cameraFollow implements Script {
 	
 	//sets this object to follow the camera
 	public cameraFollow(int id, Vector offset){
-		Game.getCamera().followObjectID(id, offset);
+		Game.getServiceManager().getCamera().followObjectID(id, offset);
 		this.id=id;
 		this.offset=offset;
 	}
@@ -23,13 +23,13 @@ public class cameraFollow implements Script {
 	@Override
 	public void execute(GameObject obj) {
 		//toggle camera follow
-		if(Game.getInput().isKeyPressed((char) KeyEvent.VK_T)){
-			if(Game.getCamera().getFollowId()!=-1)
-				Game.getCamera().unFollow();
+		if(Game.getServiceManager().getInput().isKeyPressed((char) KeyEvent.VK_T)){
+			if(Game.getServiceManager().getCamera().getFollowId()!=-1)
+				Game.getServiceManager().getCamera().unFollow();
 			else{
 				//uncommented example of using getGameObjectByID
 				//int id = Game.getGameObjectByTag("player").getID();
-				Game.getCamera().followObjectID(id, offset);
+				Game.getServiceManager().getCamera().followObjectID(id, offset);
 			}
 		}
 			

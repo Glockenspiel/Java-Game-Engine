@@ -30,14 +30,8 @@ public class Game {
 	private static ArrayList<Integer> deleteBufferIDs = new ArrayList<Integer>();
 	private static ArrayList<GameObject> objsToAdd = new ArrayList<GameObject>();
 	
-	//variables to be set
-	private static Window window;
-	private static Input input;
-	private static Print print;
-	private static SavingI saving;
-	private static LoadingStateI loading;
-	private static Camera camera;
-	private static CollisionManagerI collisionManager;
+	
+	private static ServiceManager serMan;
 	
 	//stores the current level and the desired next level
 	private static Level currentLevel;
@@ -54,48 +48,12 @@ public class Game {
 	
 	
 	//default constructor
-	public Game(){}
-	
-	//sets the window type
-	public static void setWindow(Window windowType){
-		if(gameStarted){
-			Game.print().log("Window cannot be set once game has started");
-			return;
-		}
-		window=windowType;
+	public Game(){
+		serMan = new ServiceManager();
 	}
 	
-	//sets the input type
-	public static void setInputType(Input inputType){
-		if(gameStarted){
-			Game.print().log("Input cannot be set once game has started");
-			return;
-		}
-		input=inputType;
-	}
-	
-	//sets the collision manager
-	public static void setCollisionManager(CollisionManagerI cm){
-		collisionManager = cm;
-	}
-	
-	//sets the printing type
-	public static void setPrint(Print printType){
-		if(gameStarted){
-			Game.print().log("Print cannot be set once game has started");
-			return;
-		}
-		print = printType;
-	}
-	
-	//set state loader
-	public static void setLoading(LoadingStateI stateLoader){
-		if(gameStarted){
-			Game.print().log("Loading cannot be set once game has started");
-			return;
-		}
-		
-		loading = stateLoader;
+	public static ServiceManager getServiceManager(){
+		return serMan;
 	}
 	
 	//add a GameObject to the game
@@ -144,40 +102,6 @@ public class Game {
 		return currentLevel;
 	}
 
-	
-	//checks to see if all attributes have been initialised correctly for the game
-	//if not this method sets them to the defaults
-	static void checkInit(){
-		int w=854,h=480; //default window size
-		
-		if(window==null)
-			window = new SwingWindow(0,0,w,h,false, "Framework");
-		
-		if(window.getPreferredHeight()<=0 || window.getPreferredWidth()<=0){
-			window.setPreferredSize(w, h);
-		}
-		
-		if(saving==null){
-			saving = new Saving();
-		}
-		
-		if(loading==null){
-			loading = new LoadingState();
-		}
-		
-		if(camera==null)
-			camera = new CameraSimple(0,0);
-		
-		if(input==null)
-			input = new SwingInput();
-		
-		if(print==null)
-			print = new SwingPrint();
-		
-		if(collisionManager==null)
-			collisionManager = new CollisionManager();
-	}
-	
 	//start thread for game loop
 	public static void start(Level level){
 		currentLevel = level;
@@ -190,7 +114,7 @@ public class Game {
 		
 		public void run(){
 			//check initialisation was done correctly and load the starting level
-			checkInit();
+			serMan.checkInit();
 			loadLevel(currentLevel);
 			addObjs(); //add GameObject in buffer that were created when level is loaded
 			
@@ -217,19 +141,19 @@ public class Game {
 					g.updateCollisionShapes();
 				
 				//detect any collisions
-				collisionManager.detect(objs);
+				serMan.getCollisionManager().detect(objs);
 				
 				//update camera once all GameObject positions are finalised
-				camera.update();
+				serMan.getCamera().update();
 				
 				//draw Scene i.e. draw the level
-				window.drawScene();
+				serMan.getWindow().drawScene();
 
 				//change level if there is a request to change level
 				doChangeLevel();
 				
 				//clear the input buffer
-				input.clear();
+				serMan.getInput().clear();
 				
 				//check if there is a request to quit the game
 				if(checkExitGame())
@@ -248,7 +172,7 @@ public class Game {
 
 		//checks if the escape game command is true
 		private boolean checkExitGame() {
-			if(input.isKeyDown((char)KeyEvent.VK_ESCAPE))
+			if(serMan.getInput().isKeyDown((char)KeyEvent.VK_ESCAPE))
 				return true;
 			return false;
 		}
@@ -326,7 +250,7 @@ public class Game {
 			if(g.getTag().equalsIgnoreCase(tag))
 				return g;
 		
-		print.log("Warning: no gameObject was found with tag \"" + tag+ "\"");
+		print("Warning: no gameObject was found with tag \"" + tag+ "\"");
 		return new GameObject("-1");
 	}
 	
@@ -336,25 +260,19 @@ public class Game {
 			if(g.getID()==id)
 				return g;
 		}
-		print.log("Warning: no gameObject was found with id \"" + id+ "\"");
+		print("Warning: no gameObject was found with id \"" + id+ "\"");
 		return new GameObject("-1");
 	}
 	
+	public static void print(String msg) {
+		serMan.getPrint().log(msg);
+	}
+
 	//returns a shallow copy of all the GameObjects
 	public static ArrayList<GameObject> copyOfGameObjects(){
 		return new ArrayList<GameObject>(objs);
 	}
 	
-	//returns the input object
-	public static Input getInput(){
-		return input;
-	}
-	
-	//returns the print object
-	public static Print print(){
-		return print;
-	}
-
 	//turn debug drawing on or off
 	public static void enableDebugDraw(boolean isOn) {
 		drawDebug=isOn;
@@ -368,16 +286,6 @@ public class Game {
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByTag(String tag){
 		deleteBufferTag.add(tag);
-	}
-	
-	//returns the camera object
-	public static Camera getCamera(){
-		return camera;
-	}
-	
-	//returns the window object
-	public static Window getWindow(){
-		return window;
 	}
 	
 	//add tags to buffer which will be deleted later
@@ -407,19 +315,15 @@ public class Game {
 		//change flag to false
 		load=false;
 		
-		GameStateI state = saving.getLastState();
+		GameStateI state = serMan.getSaving().getLastState();
 		
 		//if no state is saved yet return
 		if(state==null) 
 			return;
 		
-		loading.loadState(state);
+		serMan.getLoading().loadState(state);
 	}
 
-	public static SavingI getSaving() {
-		return saving;
-	}
-	
 	public static long getFrameStartTime(){
 		return startTime;
 	}

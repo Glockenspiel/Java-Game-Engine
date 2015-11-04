@@ -25,7 +25,7 @@ public class PlayerInput implements Script {
 	@Override
 	public void execute(GameObject obj) {
 		//move player
-		Vector direction = Game.getInput().getDirectionInput();
+		Vector direction = Game.getServiceManager().getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement.getDeltaVector());
 		//obj.moveBy(Vector.multiply(displacement, new Vector(-1,-1)));
@@ -33,19 +33,19 @@ public class PlayerInput implements Script {
 		
 
 		//shoot
-		if(Game.getInput().isKeyPressed('P')){
+		if(Game.getServiceManager().getInput().isKeyPressed('P')){
 			shoot(obj.getPosition());
 		}
 		
 		//deleting a GameObject with keyboard input
-		if(once && Game.getInput().isKeyDown('Q')){
+		if(once && Game.getServiceManager().getInput().isKeyDown('Q')){
 			Game.deleteObjByTag("map");
 			once=false;
 		}
 		
 		//enable boost
 		char boostKey = (char)KeyEvent.VK_SPACE;
-		if(Game.getInput().isKeyDown(boostKey)){
+		if(Game.getServiceManager().getInput().isKeyDown(boostKey)){
 			speed = 20;
 		}
 		else{
@@ -53,18 +53,18 @@ public class PlayerInput implements Script {
 		}
 		
 		//toggle debug drawing
-		if(Game.getInput().isKeyPressed('L')){
+		if(Game.getServiceManager().getInput().isKeyPressed('L')){
 			Game.enableDebugDraw(!Game.isDrawingDebug());
 		}
 		
-		if(Game.getInput().isKeyPressed('B')){
-			Game.getSaving().saveState();
+		if(Game.getServiceManager().getInput().isKeyPressed('B')){
+			Game.getServiceManager().getSaving().saveState();
 		}
-		if(Game.getInput().isKeyPressed('N')){
+		if(Game.getServiceManager().getInput().isKeyPressed('N')){
 			Game.load();
 		}
 		
-		if(Game.getInput().isKeyPressed('H')){
+		if(Game.getServiceManager().getInput().isKeyPressed('H')){
 			boolean flag=true;
 			while(flag){
 				//if(Game.getInput().isKeyReleased('H'))
@@ -75,10 +75,10 @@ public class PlayerInput implements Script {
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType(Animator.class);
 		if(a!=null){
-			if(Game.getInput().isKeyDown(boostKey) && a.getCurrentState()!="big"){
+			if(Game.getServiceManager().getInput().isKeyDown(boostKey) && a.getCurrentState()!="big"){
 					a.setCurrentAnimation("big");
 			}
-			else if(Game.getInput().isKeyUp(boostKey)  && a.getCurrentState()!="small"){
+			else if(Game.getServiceManager().getInput().isKeyUp(boostKey)  && a.getCurrentState()!="small"){
 				a.setCurrentAnimation("small");
 			}
 		}

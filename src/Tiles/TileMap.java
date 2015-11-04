@@ -130,7 +130,7 @@ public class TileMap extends Component {
 			if(t.getID()==id)
 				return t;
 		}
-		Game.print().log("Warning tile map id not found: " + id);
+		Game.print("Warning tile map id not found: " + id);
 		return null;
 	}
 	

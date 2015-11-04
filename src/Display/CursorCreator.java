@@ -22,13 +22,13 @@ public class CursorCreator {
 			try { 
 				File file = new File(imgSrc);
 				if(file.exists()==false){
-					Game.print().log("File not found for cursor: " + imgSrc);
+					Game.print("File not found for cursor: " + imgSrc);
 				}
 				cursorImg = javax.imageio.ImageIO.read(file);
 				
 			} 
 			catch (IOException ex){
-				Game.print().log("File cuked: " + imgSrc);
+				Game.print("File cuked: " + imgSrc);
 					ex.printStackTrace();
 			}
 		}
