@@ -62,7 +62,4 @@ public class Sprite extends Component {
 	public String getType() {
 		return TYPE;
 	}
-
-	@Override
-	public void interruptThreads() {}
 }

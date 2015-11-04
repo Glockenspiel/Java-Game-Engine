@@ -89,8 +89,4 @@ public class Animation extends Component {
 		Vector position = Vector.add(objPos, offset);
 		g.drawImage(image, position.intX(), position.intY(), displaySize.intX(), displaySize.intY());
 	}
-
-	@Override
-	public void interruptThreads() {}
-
 }

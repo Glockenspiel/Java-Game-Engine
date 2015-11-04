@@ -95,7 +95,4 @@ public class PlayerInput implements Script {
 		
 		Game.addGameObject(bullet);
 	}
-
-	@Override
-	public void interuptThreads() {}
 }

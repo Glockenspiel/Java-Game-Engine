@@ -33,9 +33,6 @@ public class BulletScript implements Script, CollisionListener {
 	}
 
 	@Override
-	public void interuptThreads() {}
-
-	@Override
 	public void onCollision(String tag, int id) {}
 
 	//delete the bullet and create an explosion

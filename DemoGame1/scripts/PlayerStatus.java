@@ -40,9 +40,6 @@ public class PlayerStatus implements HUDItem, Event {
 		g.drawHUDText("HP: " + health, 15, 30, Color.BLACK);
 		g.drawHUDText("Money: " + money, 15, 45, Color.BLACK);
 	}
-	
-	@Override
-	public void interuptThreads() {}
 
 	@Override
 	public void invokeEvent(String tag, int value) {

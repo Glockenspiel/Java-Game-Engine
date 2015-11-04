@@ -42,12 +42,6 @@ public class EnemyHit implements CollisionListener {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void interuptThreads() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	//returns the tag of the game object this script belongs to
 	private String getTag(){

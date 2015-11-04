@@ -25,7 +25,4 @@ public class ToggleLevel implements Script {
 				Game.changeLevel(level);
 		}
 	}
-
-	@Override
-	public void interuptThreads() {}
 }

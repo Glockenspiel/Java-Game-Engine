@@ -143,8 +143,4 @@ public class TileMap extends Component {
 	public BufferedImage getSpriteFromSheet(int x, int y){
 		return sheet.getFrame(x, y);
 	}
-
-	@Override
-	public void interruptThreads() {}
-
 }

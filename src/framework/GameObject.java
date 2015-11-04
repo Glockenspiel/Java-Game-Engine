@@ -173,14 +173,6 @@ public class GameObject implements Debug{ // also known as an Entity
 		}
 	}
 
-	//ends all threads within this GameObject with interrupts
-	public void interruptThreads() {
-		for(Component c : components)
-			c.interruptThreads();
-		for(Script s: scripts)
-			s.interuptThreads();
-	}
-
 	//updates the CollisionShapes in this GameObject
 	public void updateCollisionShapes() {
 		for(CollisionShape cs : collisionShapes){

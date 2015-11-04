@@ -122,15 +122,12 @@ public class Game {
 		//clear all the buffers
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
-		
-		for(GameObject g : objsToAdd)
-			g.interruptThreads();
+
 		objsToAdd.clear();
 
 		//remove all GameObjects that are not global
 		for(int i=0; i<objs.size(); i++){
 			if(objs.get(i).getIsGlobal()==false){
-				objs.get(i).interruptThreads();
 				objs.remove(i);
 				i--;
 			}

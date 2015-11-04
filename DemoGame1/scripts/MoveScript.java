@@ -29,11 +29,4 @@ public class MoveScript implements Script {
 				body.addForce(moveSpeed.getDeltaVector());
 		}
 	}
-
-	@Override
-	public void interuptThreads() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

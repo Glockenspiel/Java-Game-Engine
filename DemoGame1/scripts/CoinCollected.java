@@ -31,8 +31,4 @@ public class CoinCollected implements CollisionListener {
 
 	@Override
 	public void execute(GameObject obj) {}
-
-	@Override
-	public void interuptThreads() {}
-
 }
