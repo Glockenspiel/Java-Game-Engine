@@ -3,23 +3,8 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import saving.GameState;
-import saving.GameStateI;
-import saving.LoadingState;
-import saving.LoadingStateI;
-import saving.Saving;
-import saving.SavingI;
 import services.Camera;
-import services.CameraSimple;
-import services.CollisionManager;
-import services.CollisionManagerI;
 import services.Input;
-import services.Print;
-import services.SwingPrint;
-import services.SwingWindow;
-import services.Window;
-import levels.Level1;
-import levels.Level2;
 
 public class Game {
 	
