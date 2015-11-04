@@ -11,7 +11,6 @@ import framework.Vector;
 public class Sprite extends Component {
 
 	private static final String ImgFilePath = "Resources/Images/";
-	private static final String TYPE = "Sprite";
 	private BufferedImage image;
 	private int offsetX, offsetY; //offsets from GameObject origin
 	private int w,h;
@@ -54,12 +53,5 @@ public class Sprite extends Component {
 		g.drawImage(image, 	objPos.intX()+offsetX, 
 							objPos.intY()+offsetY, 
 							w,h);
-	}
-
-
-	//retuns the type of this component
-	@Override
-	public String getType() {
-		return TYPE;
 	}
 }

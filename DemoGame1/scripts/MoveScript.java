@@ -22,7 +22,7 @@ public class MoveScript implements Script {
 	//moves the rigid body
 	@Override
 	public void execute(GameObject obj) {
-		Component c = obj.getComponentByType("RigidBody");
+		Component c = obj.getComponentByType(RigidBody.class);
 		if(c instanceof RigidBody){
 			RigidBody body =((RigidBody) c);
 			if(body.getVelocityDistance()<maxSpeed)

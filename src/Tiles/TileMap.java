@@ -109,11 +109,6 @@ public class TileMap extends Component {
 	}
 
 	@Override
-	public String getType() {
-		return "TileMap";
-	}
-
-	@Override
 	public void update(GameObject obj) {}
 
 	//draw all the tiles

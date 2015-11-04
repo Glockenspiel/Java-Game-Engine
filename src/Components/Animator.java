@@ -36,12 +36,6 @@ public class Animator extends Component {
 		return currentAnimState;
 	}
 
-	//return the component type
-	@Override
-	public String getType() {
-		return TYPE;
-	}
-
 	//update the current animation
 	@Override
 	public void update(GameObject obj) {

@@ -11,7 +11,6 @@ import framework.Vector;
 //physics movement component
 public class RigidBody extends Component {
 	
-	private static final String TYPE="Rigidbody";
 	private float gravity=1;
 	private int mass;
 	private float drag=1; //from 0-100
@@ -44,12 +43,6 @@ public class RigidBody extends Component {
 	//return the gravity
 	public float getGravity(){
 		return gravity;
-	}
-
-	//return type of this component
-	@Override
-	public String getType() {
-		return TYPE;
 	}
 	
 	//add a force

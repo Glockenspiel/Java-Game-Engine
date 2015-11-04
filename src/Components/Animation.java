@@ -45,12 +45,6 @@ public class Animation extends Component {
 	public Vector getDisplaySize(){
 		return displaySize;
 	}
-	
-	//returns the component type
-	@Override
-	public String getType() {
-		return "Animation";
-	}
 
 	//changes to the next frame in the animation if required
 	@Override

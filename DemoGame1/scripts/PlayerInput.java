@@ -73,7 +73,7 @@ public class PlayerInput implements Script {
 		}
 		
 		//display animation for boost
-		Animator a = (Animator) obj.getComponentByType("Animator");
+		Animator a = (Animator) obj.getComponentByType(Animator.class);
 		if(a!=null){
 			if(Game.getInput().isKeyDown(boostKey) && a.getCurrentState()!="big"){
 					a.setCurrentAnimation("big");

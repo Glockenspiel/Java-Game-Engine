@@ -45,7 +45,6 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	//adds a Component to the GameObject
 	public void add(Component c){
-		c.setGameObjectTag(tag);
 		components.add(c);
 	}
 	
@@ -68,18 +67,20 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 	
 	//returns first found component with matching type
-	public Component getComponentByType(String type){
+	public Component getComponentByType(Class cls){
+		String className = cls.getName();
 		for(Component c : components)
-			if(c.getType().equalsIgnoreCase(type))
+			if(c.getClass().getName().equals(className))
 				return c;
 		
 		return null;
 	}
 	
 	//returns all components with matching type
-	public void getAllComponentsByType(String type, ArrayList<Component> comps){
+	public void getAllComponentsByType(Class cls, ArrayList<Component> comps){
+		String className = cls.getName();
 		for(Component c: components)
-			if(c.getType().equalsIgnoreCase(type))
+			if(c.getClass().getName().equals(className))
 				comps.add(c);
 	}
 	
