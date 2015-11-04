@@ -32,7 +32,7 @@ public class Game {
 	
 	
 	private static ServiceManagerI serMan;
-	private static LevelManager levelManager = new LevelManager();
+	private static LevelManagerI levelManager = new LevelManager();
 
 	//time for start of frame
 	private static long startTime;
@@ -59,7 +59,7 @@ public class Game {
 	
 	//request change level
 	public static void changeLevel(Level level){
-		LevelManager.queueChangeLevel(level);
+		levelManager.queueChangeLevel(level);
 	}
 
 	//loads level given
@@ -89,7 +89,6 @@ public class Game {
 	//start thread for game loop
 	public static void start(Level level){
 		levelManager.setCurrentLevel(level);
-		//currentLevel = level;
 		gameLoop.start();
 	}
 	
@@ -99,8 +98,6 @@ public class Game {
 		public void run(){
 			//check initialisation was done correctly and load the starting level
 			serMan.checkInit();
-		//	levelManager.setLevel(level);
-			//level
 			loadCurrentLevel();
 			addObjs(); //add GameObject in buffer that were created when level is loaded
 			

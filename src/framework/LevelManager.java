@@ -15,22 +15,18 @@ public class LevelManager implements LevelManagerI {
 	public LevelManager(){}
 	
 	//queues a level change
-	public static void queueChangeLevel(Level level){
+	public void queueChangeLevel(Level level){
 		changeLevel=true;
 		nextLevel=level;
 	}
 	
-	//change the level
-	void doChangeLevel(){
+	//change the level if requested
+	public void doChangeLevel(){
 		if(changeLevel){
 			changeLevel=false;
 			currentLevel=nextLevel;
 			Game.loadCurrentLevel();
 		}
-	}
-	
-	public boolean getChangeLevel(){
-		return changeLevel;
 	}
 	
 	public Level getCurrentLevel(){
@@ -39,14 +35,13 @@ public class LevelManager implements LevelManagerI {
 	
 	public void setCurrentLevel(Level level){
 		currentLevel = level;
-	//	currentLevel.init();
 	}
 	
-	public static void load(){
+	public void load(){
 		load=true;
 	}
 	
-	public static void loadLatestState(){
+	public void loadLatestState(){
 		//if a load state is not required
 		if(load==false) 
 			return;
