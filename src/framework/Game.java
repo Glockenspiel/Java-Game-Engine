@@ -9,16 +9,17 @@ import saving.LoadingState;
 import saving.LoadingStateI;
 import saving.Saving;
 import saving.SavingI;
-import Collision.CollisionManager;
-import Collision.CollisionManagerI;
+import services.Camera;
+import services.CameraSimple;
+import services.CollisionManager;
+import services.CollisionManagerI;
+import services.Input;
+import services.Print;
+import services.SwingPrint;
+import services.SwingWindow;
+import services.Window;
 import levels.Level1;
 import levels.Level2;
-import debugging.Print;
-import debugging.SwingPrint;
-import display.Camera;
-import display.CameraSimple;
-import display.SwingWindow;
-import display.Window;
 
 public class Game {
 	

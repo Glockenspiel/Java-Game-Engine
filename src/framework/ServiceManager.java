@@ -4,14 +4,16 @@ import saving.LoadingState;
 import saving.LoadingStateI;
 import saving.Saving;
 import saving.SavingI;
-import Collision.CollisionManager;
-import Collision.CollisionManagerI;
-import debugging.Print;
-import debugging.SwingPrint;
-import display.Camera;
-import display.CameraSimple;
-import display.SwingWindow;
-import display.Window;
+import services.Camera;
+import services.CameraSimple;
+import services.CollisionManager;
+import services.CollisionManagerI;
+import services.Input;
+import services.Print;
+import services.SwingInput;
+import services.SwingPrint;
+import services.SwingWindow;
+import services.Window;
 
 public class ServiceManager implements ServiceManagerI {
 	

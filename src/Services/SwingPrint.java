@@ -1,4 +1,4 @@
-package debugging;
+package services;
 
 import javax.swing.JOptionPane;
 

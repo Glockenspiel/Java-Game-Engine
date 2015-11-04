@@ -1,7 +1,6 @@
-package debugging;
+package framework;
 
 import display.Drawer;
-import framework.Vector;
 
 public interface Debug {
 	//debug drawing

@@ -1,7 +1,9 @@
-package framework;
+package services;
 
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
+
+import framework.Vector;
 
 public class SwingInput implements Input{
 	

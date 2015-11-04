@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Collision.CollisionListener;
-import Collision.CollisionShape;
+import collision.CollisionListener;
+import collision.CollisionShape;
 import components.HUDItem;
-import debugging.Debug;
 import display.Drawer;
 import display.SwingDrawer;
 

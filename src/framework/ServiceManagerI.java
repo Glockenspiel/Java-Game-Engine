@@ -2,10 +2,11 @@ package framework;
 
 import saving.LoadingStateI;
 import saving.SavingI;
-import Collision.CollisionManagerI;
-import debugging.Print;
-import display.Camera;
-import display.Window;
+import services.Camera;
+import services.CollisionManagerI;
+import services.Input;
+import services.Print;
+import services.Window;
 
 public interface ServiceManagerI {
 	//setters

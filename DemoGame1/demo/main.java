@@ -1,6 +1,6 @@
 package demo;
 
-import display.SwingWindow;
+import services.SwingWindow;
 import framework.Game;
 import framework.LauncherOptions;
 import framework.Vector;

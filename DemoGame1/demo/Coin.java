@@ -1,8 +1,8 @@
 package demo;
 
+import collision.CollisionBox;
 import scripts.CoinCollected;
 import scripts.MoveScript;
-import Collision.CollisionBox;
 import components.RigidBody;
 import components.Sprite;
 import framework.GameObject;

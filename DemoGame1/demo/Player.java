@@ -1,7 +1,7 @@
 package demo;
 
-import Collision.CollisionBox;
-import Collision.CollisionCircle;
+import collision.CollisionBox;
+import collision.CollisionCircle;
 import scripts.PlayerInput;
 import scripts.cameraFollow;
 import scripts.PlayerStatus;

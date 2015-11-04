@@ -1,7 +1,7 @@
 package scripts;
 
+import collision.CollisionListener;
 import demo.Explosion;
-import Collision.CollisionListener;
 import framework.Event;
 import framework.Game;
 import framework.GameObject;

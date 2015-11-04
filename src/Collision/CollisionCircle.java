@@ -1,8 +1,8 @@
-package Collision;
+package collision;
 
-import debugging.Debug;
 import display.Drawer;
 import framework.Component;
+import framework.Debug;
 import framework.GameObject;
 import framework.Vector;
 

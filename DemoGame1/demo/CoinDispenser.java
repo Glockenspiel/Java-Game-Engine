@@ -1,6 +1,6 @@
 package demo;
 
-import Collision.CollisionBox;
+import collision.CollisionBox;
 import scripts.MoveScript;
 import components.RigidBody;
 import components.Sprite;

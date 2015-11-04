@@ -1,10 +1,8 @@
 package demo;
 
+import collision.CollisionBox;
 import scripts.BulletScript;
-import Collision.CollisionBox;
-
 import components.Sprite;
-
 import framework.GameObject;
 import framework.Vector;
 

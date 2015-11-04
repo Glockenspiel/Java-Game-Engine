@@ -1,4 +1,4 @@
-package debugging;
+package services;
 
 public interface Print {
 	//custom output for strings

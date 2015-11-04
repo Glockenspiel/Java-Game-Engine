@@ -1,4 +1,4 @@
-package display;
+package services;
 
 import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import display.CursorCreator;
+import display.SwingPanel;
 import framework.Game;
 import framework.Vector;
 

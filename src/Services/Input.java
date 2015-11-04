@@ -1,4 +1,6 @@
-package framework;
+package services;
+
+import framework.Vector;
 
 public interface Input {
 	

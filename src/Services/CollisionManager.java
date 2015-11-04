@@ -1,7 +1,10 @@
-package Collision;
+package services;
 
 import java.util.ArrayList;
 
+import collision.CollisionBox;
+import collision.CollisionResult;
+import collision.CollisionShape;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;

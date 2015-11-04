@@ -1,10 +1,10 @@
-package Collision;
+package collision;
 
 import java.awt.Color;
 
-import debugging.Debug;
 import display.Drawer;
 import framework.Component;
+import framework.Debug;
 import framework.GameObject;
 import framework.Vector;
 

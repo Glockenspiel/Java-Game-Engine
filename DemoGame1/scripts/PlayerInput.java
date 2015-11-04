@@ -2,7 +2,7 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
-import Collision.CollisionBox;
+import collision.CollisionBox;
 import components.Animator;
 import components.Sprite;
 import demo.Bullet;
