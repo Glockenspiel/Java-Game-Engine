@@ -23,6 +23,7 @@ public class ServiceManager implements ServiceManagerI {
 	private static LoadingStateI loading;
 	private static Camera camera;
 	private static CollisionManagerI collisionManager;
+	private static boolean drawDebug;
 	
 	
 	private static boolean finialised=false;
@@ -133,5 +134,15 @@ public class ServiceManager implements ServiceManagerI {
 	
 	public SavingI getSaving() {
 		return saving;
+	}
+	
+	//turn debug drawing on or off
+	public void enableDebugDraw(boolean isOn) {
+		drawDebug=isOn;
+	}
+	
+	//returns true if drawing debug
+	public boolean isDrawingDebug() {
+		return drawDebug;
 	}
 }

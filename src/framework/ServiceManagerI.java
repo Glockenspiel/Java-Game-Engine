@@ -26,4 +26,6 @@ public interface ServiceManagerI {
 	public CollisionManagerI getCollisionManager();
 	public LoadingStateI getLoading();
 	public SavingI getSaving();
+	public void enableDebugDraw(boolean isOn);
+	public boolean isDrawingDebug();
 }

@@ -28,10 +28,6 @@ public class PlayerInput implements Script {
 		Vector direction = Game.getServices().getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement.getDeltaVector());
-		//obj.moveBy(Vector.multiply(displacement, new Vector(-1,-1)));
-	//	Game.getCamera().moveBy(displacement);
-		
-
 		//shoot
 		if(Game.getInput().isKeyPressed('P')){
 			shoot(obj.getPosition());
@@ -54,14 +50,14 @@ public class PlayerInput implements Script {
 		
 		//toggle debug drawing
 		if(Game.getInput().isKeyPressed('L')){
-			Game.enableDebugDraw(!Game.isDrawingDebug());
+			Game.getServices().enableDebugDraw(!Game.getServices().isDrawingDebug());
 		}
 		
 		if(Game.getInput().isKeyPressed('B')){
 			Game.getServices().getSaving().saveState();
 		}
 		if(Game.getInput().isKeyPressed('N')){
-			Game.load();
+			Game.loadLatestSave();
 		}
 		
 		if(Game.getInput().isKeyPressed('H')){

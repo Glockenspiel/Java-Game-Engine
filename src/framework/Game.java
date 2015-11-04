@@ -32,16 +32,8 @@ public class Game {
 	
 	
 	private static ServiceManagerI serMan;
-	
-	//stores the current level and the desired next level
-	private static Level currentLevel;
-	private static Level nextLevel;
-	
-	//flags
-	private static boolean drawDebug=false;
-	private static boolean changeLevel=false;
-	private static boolean load=false;
-	
+	private static LevelManager levelManager = new LevelManager();
+
 	//time for start of frame
 	private static long startTime;
 	
@@ -67,20 +59,11 @@ public class Game {
 	
 	//request change level
 	public static void changeLevel(Level level){
-		changeLevel=true;
-		nextLevel=level;
+		LevelManager.queueChangeLevel(level);
 	}
-	
-	//change the level
-	private static void doChangeLevel(){
-		if(changeLevel){
-			changeLevel=false;
-			loadLevel(nextLevel);
-		}
-	}
-	
+
 	//loads level given
-	private static void loadLevel(Level level){
+	static void loadCurrentLevel(){
 		//clear all the buffers
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
@@ -95,20 +78,18 @@ public class Game {
 			}
 		}
 		
-		
-		//initialise level
-		currentLevel = level;
-		level.init();
+		levelManager.getCurrentLevel().init();
 	}
 	
 	//returns the current level
 	public static Level getCurrentLevel(){
-		return currentLevel;
+		return levelManager.getCurrentLevel();
 	}
 
 	//start thread for game loop
 	public static void start(Level level){
-		currentLevel = level;
+		levelManager.setCurrentLevel(level);
+		//currentLevel = level;
 		gameLoop.start();
 	}
 	
@@ -118,7 +99,9 @@ public class Game {
 		public void run(){
 			//check initialisation was done correctly and load the starting level
 			serMan.checkInit();
-			loadLevel(currentLevel);
+		//	levelManager.setLevel(level);
+			//level
+			loadCurrentLevel();
 			addObjs(); //add GameObject in buffer that were created when level is loaded
 			
 			//main loop
@@ -132,7 +115,7 @@ public class Game {
 				addObjs();
 				
 				//checks if loading state is required and loads if so
-				loadLatestState();
+				levelManager.loadLatestState();
 				
 				//update all GameObjects
 				for(GameObject g : objs)
@@ -153,7 +136,7 @@ public class Game {
 				serMan.getWindow().drawScene();
 
 				//change level if there is a request to change level
-				doChangeLevel();
+				levelManager.doChangeLevel();
 				
 				//clear the input buffer
 				serMan.getInput().clear();
@@ -215,8 +198,6 @@ public class Game {
 						found=true;
 					}
 				}
-				//if(found==false)
-				//	Game.print().log("GameObject tag not found when deleting GameObject by Tag : " + s);
 			}
 			deleteBufferTag.clear();
 			
@@ -229,8 +210,6 @@ public class Game {
 						found=true;
 					}
 				}
-				//if(found==false)
-				//	Game.print().log("GameObject ID not found when deleting GameObject by ID : " + id);
 			}
 			deleteBufferIDs.clear();
 		}
@@ -240,10 +219,6 @@ public class Game {
 			long sleepTime=(long) (Time.FRAME_TIME-executionTime);
 			if(sleepTime<0) sleepTime=0;
 			return sleepTime;
-		}
-		
-		public long getStartTime(){
-			return startTime;
 		}
 	};
 	
@@ -276,15 +251,7 @@ public class Game {
 		return new ArrayList<GameObject>(objs);
 	}
 	
-	//turn debug drawing on or off
-	public static void enableDebugDraw(boolean isOn) {
-		drawDebug=isOn;
-	}
-
-	//returns true if drawing debug
-	public static boolean isDrawingDebug() {
-		return drawDebug;
-	}
+	
 	
 	//add tags to buffer which will be deleted later
 	public static void deleteObjByTag(String tag){
@@ -306,27 +273,10 @@ public class Game {
 		return false;
 	}
 	
-	public static void load(){
-		load=true;
+	public static void loadLatestSave(){
+		levelManager.load();
 	}
-	
-	public static void loadLatestState(){
-		//if a load state is not required
-		if(load==false) 
-			return;
-		
-		//change flag to false
-		load=false;
-		
-		GameStateI state = serMan.getSaving().getLastState();
-		
-		//if no state is saved yet return
-		if(state==null) 
-			return;
-		
-		serMan.getLoading().loadState(state);
-	}
-	
+
 	//short hand for getting the input service
 	public static Input getInput(){
 		return serMan.getInput();

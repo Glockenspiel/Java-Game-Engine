@@ -55,7 +55,7 @@ public class SwingPanel extends JPanel implements KeyListener {
 		
 		//draw all debugging help 
 		Vector zero = new Vector(0,0);
-		if(Game.isDrawingDebug()){
+		if(Game.getServices().isDrawingDebug()){
 			for(GameObject o : objs){
 				o.debugDraw(drawer, zero);
 			}

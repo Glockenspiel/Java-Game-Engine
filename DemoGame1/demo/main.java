@@ -19,7 +19,7 @@ public class main{
 		Game.getServices().getWindow().showCursor(false);
 		//custom cursor example
 		//Game.getWindow().setCustomCursor("triangle.png");
-		Game.enableDebugDraw(true);
+		Game.getServices().enableDebugDraw(true);
 		
 		Game.start(new Level2());
 		
