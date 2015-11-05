@@ -14,9 +14,6 @@ public class CoinCollected implements CollisionListener {
 		this.value=value;
 		this.objID=objID;
 	}
-	
-	@Override
-	public void onCollision(String tag, int id) {}
 
 	//if this game object overlaps a GameObject with the tag 'player' it will invoke all the events in the player object
 	@Override

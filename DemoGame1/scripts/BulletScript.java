@@ -32,9 +32,6 @@ public class BulletScript implements Script, CollisionListener {
 		obj.moveBy(speed.getDeltaVector());
 	}
 
-	@Override
-	public void onCollision(String tag, int id) {}
-
 	//delete the bullet and create an explosion
 	@Override
 	public void onTrigger(String tag, int id) {

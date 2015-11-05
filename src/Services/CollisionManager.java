@@ -106,18 +106,6 @@ public class CollisionManager implements CollisionManagerI {
 		return false;
 	}
 
-
-	//resolve collisions
-	@Override
-	public void resolve(ArrayList<GameObject> objs) {
-		if(objs.size()<2) return;
-		
-		for(int i=0; i<objs.size()-1; i++){
-			for(int j=i+1; j<objs.size(); j++){
-				
-			}
-		}
-	}
 	
 	//returns true if any CollisionResult shape A returns true for isTrigger()
 	private boolean collResShapeAHasTrigger(ArrayList<CollisionResult> results) {

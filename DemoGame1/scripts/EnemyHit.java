@@ -17,9 +17,6 @@ public class EnemyHit implements CollisionListener {
 		objID=id;
 	}
 
-	@Override
-	public void onCollision(String tag, int id) {}
-
 	//if the enemy hits the player it will invoke the events in player
 	@Override
 	public void onTrigger(String tag, int id) {
