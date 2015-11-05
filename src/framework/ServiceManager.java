@@ -28,53 +28,72 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//flags
 	private static boolean drawDebug;
-	private static boolean finialised=false;
+	private static boolean finalised=false;
 	
 	public ServiceManager(){}
 	
-	//sets the window type
+	//sets the window 
+	@Override
 	public void setWindow(Window windowType){
-		if(finialised){
-			Game.print("Window cannot be set once game has started");
+		if(checkFinalised("Window"))
 			return;
-		}
+
 		window=windowType;
 	}
 	
-	//sets the input type
+	//sets the input 
+	@Override
 	public void setInputType(Input inputType){
-		if(finialised){
-			Game.print("Input cannot be set once game has started");
+		if(checkFinalised("Input"))
 			return;
-		}
+
 		input=inputType;
 	}
 		
 	//sets the collision manager
+	@Override
 	public void setCollisionManager(CollisionManagerI cm){
 		collisionManager = cm;
 	}
 	
 	//sets the printing type
+	@Override
 	public void setPrint(Print printType){
-		if(finialised){
-			Game.print("Print cannot be set once game has started");
+		if(checkFinalised("Print"))
 			return;
-		}
+
 		print = printType;
 	}
 	
-	//set state loader
-	public void setLoading(LoadingStateI stateLoader){
-		if(finialised){
-			Game.print("Loading cannot be set once game has started");
+	//set saving
+	@Override
+	public void setSaving(SavingI savingI){
+		 if(checkFinalised("Saving"))
 			return;
-		}
+
+		saving=savingI;
+	}
+	
+	//set state loader
+	@Override
+	public void setLoading(LoadingStateI stateLoader){
+		if(checkFinalised("Loading"))
+			return;
+
 		loading = stateLoader;
+	}
+	
+	//returns finalised boolean and prints message if true
+	private boolean checkFinalised(String name){
+		if(finalised){
+			Game.print(name + " service cannot be set once game has started");
+		}
+		return finalised;
 	}
 	
 	//checks to see if all attributes have been initialised correctly for the game
 	//if not this method sets them to the defaults
+	@Override
 	public void checkInit(){
 		int w=854,h=480; //default window size
 		
@@ -103,49 +122,59 @@ public class ServiceManager implements ServiceManagerI {
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
 		
-		finialised=true;
+		finalised=true;
 	}
 	
 	//returns the input object
+	@Override
 	public Input getInput(){
 		return input;
 	}
 
 	//returns the print object
+	@Override
 	public Print getPrint(){
 		return print;
 	}
 	
 	//returns the camera object
+	@Override
 	public Camera getCamera(){
 		return camera;
 	}
 
 	//returns the window object
+	@Override
 	public Window getWindow(){
 		return window;
 	}
 	
 	//returns the collision manager object
+	@Override
 	public CollisionManagerI getCollisionManager(){
 		return collisionManager;
 	}
 
 	//returns the loading object
+	@Override
 	public LoadingStateI getLoading() {
 		return loading;
 	}
 	
+	//returns saving object
+	@Override
 	public SavingI getSaving() {
 		return saving;
 	}
 	
 	//turn debug drawing on or off
+	@Override
 	public void enableDebugDraw(boolean isOn) {
 		drawDebug=isOn;
 	}
 	
 	//returns true if drawing debug
+	@Override
 	public boolean isDrawingDebug() {
 		return drawDebug;
 	}

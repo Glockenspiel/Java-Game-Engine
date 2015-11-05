@@ -24,6 +24,22 @@ public class PlayerStatus implements HUDItem, Event {
 		image = loaders.ImageLoader.load("hudImage.png");
 	}
 	
+	public int getHP(){
+		return health;
+	}
+	
+	public int getMoney(){
+		return money;
+	}
+	
+	public void setMoney(int money){
+		this.money = money;
+	}
+	
+	public void setHealth(int health){
+		this.health = health;
+	}
+	
 	//update time
 	@Override
 	public void execute(GameObject obj) {

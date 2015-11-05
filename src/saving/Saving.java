@@ -4,8 +4,8 @@ import framework.Game;
 
 public class Saving implements SavingI {
 	
-	private Originator originator;
-    private CareTaker careTaker;
+	protected Originator originator;
+    protected CareTaker careTaker;
 	
 	public Saving(){
 		originator = new Originator();

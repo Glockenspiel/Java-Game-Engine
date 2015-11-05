@@ -1,5 +1,8 @@
 package demo;
 
+import saving.ComplexLoading;
+import saving.ComplexSaving;
+import saving.Saving;
 import services.SwingWindow;
 import framework.Game;
 import framework.LauncherOptions;
@@ -17,6 +20,8 @@ public class main{
 		Vector resolution = LauncherOptions.launch();
 		Game.getServices().setWindow(new SwingWindow(0, 0, resolution.intX(), resolution.intY(), false, "Game"));
 		Game.getServices().getWindow().showCursor(false);
+		Game.getServices().setSaving(new ComplexSaving());
+		Game.getServices().setLoading(new ComplexLoading());
 		//custom cursor example
 		//Game.getWindow().setCustomCursor("triangle.png");
 		Game.getServices().enableDebugDraw(true);

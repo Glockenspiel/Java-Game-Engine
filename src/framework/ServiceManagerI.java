@@ -15,6 +15,7 @@ public interface ServiceManagerI {
 	public void setCollisionManager(CollisionManagerI cm);
 	public void setPrint(Print printType);
 	public void setLoading(LoadingStateI stateLoader);
+	public void setSaving(SavingI savingI);
 	
 	//check everything was set
 	public void checkInit();

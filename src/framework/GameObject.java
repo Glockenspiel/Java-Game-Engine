@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import scripts.PlayerStatus;
 import collision.CollisionListener;
 import collision.CollisionShape;
 import components.HUDItem;
@@ -224,5 +225,17 @@ public class GameObject implements Debug{ // also known as an Entity
 			}
 		}
 		return events;
+	}
+
+	public Script getScriptByClass(Class cls) {
+		boolean flag=true;
+		String className = cls.getName();
+		for(Script s : scripts){
+			if(s.getClass().getName().equals(className)){
+				return s;
+			}
+		}
+		
+		return null;
 	}
 }

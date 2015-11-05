@@ -6,7 +6,7 @@ public class GameState implements GameStateI {
 
 	private Level currentLevel;
 	
-	//construcotr
+	//constructor
 	public GameState(Level currentLevel){
 		this.currentLevel=currentLevel;
 	}
