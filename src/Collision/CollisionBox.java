@@ -61,18 +61,6 @@ public class CollisionBox implements CollisionShape, Debug {
 		g.drawBox(objPos.intX()+x, objPos.intY()+y, w, h, Color.GREEN);
 	}
 
-	//returns isTrigger
-	@Override
-	public boolean getIsTrigger() {
-		return isTrigger;
-	}
-
-	//set isTrigger
-	@Override
-	public void setIsTrigger(boolean isTrigger) {
-		this.isTrigger=isTrigger;
-	}
-
 	//returns the collision shape's tag
 	@Override
 	public String getTag() {

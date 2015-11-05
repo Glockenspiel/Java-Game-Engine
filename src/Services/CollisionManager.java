@@ -110,7 +110,6 @@ public class CollisionManager implements CollisionManagerI {
 	//returns true if any CollisionResult shape A returns true for isTrigger()
 	private boolean collResShapeAHasTrigger(ArrayList<CollisionResult> results) {
 		for(CollisionResult r : results)
-			if(r.getShapeA().getIsTrigger())
 				return true;
 		return false;
 	}
@@ -118,7 +117,6 @@ public class CollisionManager implements CollisionManagerI {
 	//returns true if any CollisionResult shape B returns true for isTrigger()
 	private boolean collResShapeBHasTrigger(ArrayList<CollisionResult> results) {
 		for(CollisionResult r : results)
-			if(r.getShapeB().getIsTrigger())
 				return true;
 		return false;
 	}
