@@ -8,5 +8,5 @@ public interface CollisionShape {
 	public String getType();
 	public String getTag();
 	public void setTag(String tag);
-	public void update(Vector position);
+	public void notify(Vector position);
 }

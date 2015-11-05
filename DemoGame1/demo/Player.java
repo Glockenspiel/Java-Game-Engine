@@ -60,7 +60,7 @@ public class Player extends GameObject {
 		
 		
 		//collision box
-		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY(),false));
+		add(new CollisionBox(0,0,playerSize.intX(), playerSize.intY()));
 		//add(new CollisionCircle(0,0,20,false,true));
 		
 		//Player stats i.e. time and lives

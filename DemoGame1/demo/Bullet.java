@@ -1,6 +1,7 @@
 package demo;
 
 import collision.CollisionBox;
+import collision.CollisionCircle;
 import scripts.BulletScript;
 import components.Sprite;
 import framework.GameObject;
@@ -16,7 +17,7 @@ public class Bullet extends GameObject {
 
 		//add components and scripts
 		add(new Sprite("laser.png", bulletSize.intX(), bulletSize.intY()));
-		add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY(), true));
+		add(new CollisionBox(0,0,bulletSize.intX(), bulletSize.intY()));
 		add(new BulletScript(10,0, getID()));
 	}
 	

@@ -9,18 +9,17 @@ import framework.Vector;
 public class CollisionCircle implements CollisionShape, Debug {
 
 	private static final String TYPE="COLLISIONCIRCLE";
-	private boolean isAlive, isTrigger;
+	private boolean isAlive;
 	private int x,y,r;
 	private String tag="";
 	private Vector objPosition = new Vector(0,0);
 	
 	//constructor
-	public CollisionCircle(int x, int y, int radius, boolean isTrigger, boolean isAlive){
+	public CollisionCircle(int x, int y, int radius){
 		this.x=x;
 		this.y=y;
 		this.r=radius;
-		this.isAlive=isAlive;
-		this.isTrigger=isTrigger;
+		this.isAlive=true;
 	}
 	
 	//draw a debug circle
@@ -61,7 +60,19 @@ public class CollisionCircle implements CollisionShape, Debug {
 
 	////updates the current position of the GameObject this collision shape belongs to
 	@Override
-	public void update(Vector position) {
+	public void notify(Vector position) {
 		objPosition = position;
+	}
+	
+	public int getX(){
+		return objPosition.intX()+x;
+	}
+	
+	public int getY(){
+		return objPosition.intY()+y;
+	}
+	
+	public int getRadius(){
+		return r;
 	}
 }

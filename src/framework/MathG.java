@@ -39,5 +39,9 @@ public class MathG {
 	public static double distance(float x1, float y1, float x2, float y2){
 		return Math.hypot(x1-x2, y1-y2);
 	}
+
+	public static float sqr(float f) {
+		return f*f;
+	}
 		
 }

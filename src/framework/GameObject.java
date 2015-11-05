@@ -175,9 +175,9 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 
 	//updates the CollisionShapes in this GameObject
-	public void updateCollisionShapes() {
+	public void notifyCollisionShapes() {
 		for(CollisionShape cs : collisionShapes){
-			cs.update(getPosition());
+			cs.notify(getPosition());
 		}
 	}
 

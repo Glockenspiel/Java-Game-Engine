@@ -1,6 +1,7 @@
 package demo;
 
 import collision.CollisionBox;
+import collision.CollisionCircle;
 import scripts.EnemyHit;
 import scripts.MoveScript;
 import components.RigidBody;
@@ -23,7 +24,7 @@ public class Enemy extends GameObject {
 		super(tag);
 		
 		add(new Sprite("rock.png", size.intX(), size.intY()));
-		add(new CollisionBox(0,0,size.intX(),size.intY(),true));
+		add(new CollisionBox(0,0,size.intX(),size.intY()));
 		add(new EnemyHit(super.getID()));
 		RigidBody r = new RigidBody(100);
 		r.setGravity(0);

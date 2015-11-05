@@ -11,8 +11,7 @@ import framework.Vector;
 
 public class CollisionBox implements CollisionShape, Debug {
 
-	private boolean isAlive=false, //if this collision shape is has a physical component
-					isTrigger; //true if this collision shape invokes events
+	private boolean isAlive=true;
 	private int x,y,w,h; //position and dimensions
 	private static final String TYPE="COLLISIONBOX";
 	private String tag; //used for deleting this shape
@@ -21,12 +20,11 @@ public class CollisionBox implements CollisionShape, Debug {
 	Vector objPosition=new Vector(0,0);
 	
 	//constructor
-	public CollisionBox(int x, int y, int w, int h, boolean isTrigger){
+	public CollisionBox(int x, int y, int w, int h){
 		this.x=x;
 		this.y=y;
 		this.w=w;
 		this.h=h;
-		this.isTrigger=isTrigger;
 	}
 	
 	//returns minimum x value 
@@ -75,7 +73,7 @@ public class CollisionBox implements CollisionShape, Debug {
 
 	//updates the current position of the GameObject this collision shape belongs to
 	@Override
-	public void update(Vector position) {
+	public void notify(Vector position) {
 		objPosition=position;
 	}
 
@@ -89,5 +87,21 @@ public class CollisionBox implements CollisionShape, Debug {
 	@Override
 	public boolean getAlive() {
 		return isAlive;
+	}
+
+	public int width() {
+		return w;
+	}
+	
+	public int height() {
+		return h;
+	}
+
+	public int getCenterX() {
+		return objPosition.intX() + x + w/2;
+	}
+	
+	public int getCenterY() {
+		return objPosition.intY() + y + h/2;
 	}
 }

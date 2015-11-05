@@ -1,6 +1,7 @@
 package demo;
 
 import collision.CollisionBox;
+import collision.CollisionCircle;
 import scripts.CoinCollected;
 import scripts.MoveScript;
 import components.RigidBody;
@@ -19,7 +20,7 @@ public class Coin extends GameObject {
 		RigidBody r = new RigidBody(20);
 		r.setGravity(0);
 		add(r);
-		add(new CollisionBox(0,0,w,h,true));
+		add(new CollisionCircle(w/2, h/2, w/2));
 		add(new MoveScript(getID(), 25f));
 		add(new Sprite("coins.png", w,h));
 		add(new CoinCollected(getID(),3));

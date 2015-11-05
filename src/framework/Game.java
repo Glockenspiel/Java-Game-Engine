@@ -112,7 +112,7 @@ public class Game {
 				//update new positions of collision shapes
 				//as other GameObjects may have changed the current GameObjects position after the current GameObject updated
 				for(GameObject g : objs)
-					g.updateCollisionShapes();
+					g.notifyCollisionShapes();
 				
 				//detect any collisions
 				serMan.getCollisionManager().detect(objs);
