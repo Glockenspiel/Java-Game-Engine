@@ -40,6 +40,7 @@ public class MathG {
 		return Math.hypot(x1-x2, y1-y2);
 	}
 
+	//returns the value squared
 	public static float sqr(float f) {
 		return f*f;
 	}
