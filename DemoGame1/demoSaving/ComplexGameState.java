@@ -1,5 +1,6 @@
-package saving;
+package demoSaving;
 
+import saving.GameState;
 import framework.Level;
 import framework.Vector;
 

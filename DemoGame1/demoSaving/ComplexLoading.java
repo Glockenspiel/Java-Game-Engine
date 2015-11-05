@@ -1,5 +1,7 @@
-package saving;
+package demoSaving;
 
+import saving.GameStateI;
+import saving.LoadingState;
 import scripts.PlayerStatus;
 import framework.Game;
 import framework.GameObject;

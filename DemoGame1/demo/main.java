@@ -1,7 +1,7 @@
 package demo;
 
-import saving.ComplexLoading;
-import saving.ComplexSaving;
+import demoSaving.ComplexLoading;
+import demoSaving.ComplexSaving;
 import saving.Saving;
 import services.SwingWindow;
 import framework.Game;
