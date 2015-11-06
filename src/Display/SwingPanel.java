@@ -18,10 +18,11 @@ import framework.Vector;
 
 public class SwingPanel extends JPanel implements KeyListener {
 	
-	SwingDrawer drawer = new SwingDrawer();
+	Drawer drawer;
 	
 	//constructor
 	public SwingPanel(){
+		drawer =  new SwingDrawer();
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.requestFocusInWindow();

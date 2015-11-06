@@ -170,7 +170,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 
 	//finds which scripts implement HUDItem and draw the HUD
-	public void drawHUDItems(SwingDrawer drawer) {
+	public void drawHUDItems(Drawer drawer) {
 		for(Script s : scripts){
 			if(s instanceof HUDItem){
 				((HUDItem) s).drawGUI(drawer);

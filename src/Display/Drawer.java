@@ -1,6 +1,7 @@
 package display;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 
 public interface Drawer {
@@ -18,4 +19,6 @@ public interface Drawer {
 	public void drawHUDText(String string, int x, int y, Color color);
 
 	public void drawCircle(int x, int y, int radius);
+
+	public void setGraphics(Graphics g);
 }

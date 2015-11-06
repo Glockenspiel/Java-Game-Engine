@@ -103,7 +103,9 @@ public class SwingDrawer implements Drawer {
 		y+=cameraPosY();
 		x = unitsToWindowPosX(x);
 		y = unitsToWindowPosY(y);
-		g.drawOval(x-radius, y-radius, 2*radius, 2*radius);
+		int radiusX = unitsToWindowPosX(radius);
+		int radiusY = unitsToWindowPosX(radius);
+		g.drawOval(x-radiusX, y-radiusY, 2*radiusX, 2*radiusY);
 	}
 	
 	//convert a world unit on x-axis to the windows scale

@@ -24,7 +24,7 @@ public class Game {
 	//private static ComponentThread compThreads[] = new ComponentThread[threads];
 	private static ThreadList threadList;
 
-	//time for start of frame
+	//time for start of frame, used to calculate sleep time
 	private static long startTime;
 	
 	private static Timer timer=new Timer();
@@ -130,7 +130,7 @@ public class Game {
 				for(GameObject g : objs)
 					g.update();
 				
-				
+				//update all components of all GameObjects
 				timer.start();
 				//multi threaded method
 				updateObjComponents();
