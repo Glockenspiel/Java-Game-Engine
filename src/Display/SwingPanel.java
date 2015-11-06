@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import framework.Game;
 import framework.GameObject;
 import framework.Time;
+import framework.Timer;
 import framework.Vector;
 
 public class SwingPanel extends JPanel implements KeyListener {
@@ -61,7 +62,7 @@ public class SwingPanel extends JPanel implements KeyListener {
 			}
 			
 			//draw frame execution time
-			drawer.drawHUDText("Frame MS: "+(Time.getTime()-Game.getFrameStartTime()), 
+			drawer.drawHUDText("Frame time: "+ (double)((double)Game.getTimeSinceFrameStart()/1000) + "ms", 
 					Game.getServices().getWindow().getPreferredWidth()/2-50, 10, Color.GREEN);
 		}
 	}

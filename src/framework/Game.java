@@ -19,15 +19,35 @@ public class Game {
 	//managers
 	private static ServiceManagerI serMan;
 	private static LevelManagerI levelManager;
+	
+	
+	//private static ComponentThread compThreads[] = new ComponentThread[threads];
+	private static ThreadList threadList;
 
 	//time for start of frame
 	private static long startTime;
 	
+	private static Timer timer=new Timer();
+	private static Timer frameTimer = new Timer();
+	
 	
 	//default constructor
 	public Game(){
+		timer.setMicrosecs();
+		timer.start();
+		//set threads for split
+		ThreadList.setThreadCount(8);
+		int threadCount= ThreadList.getThreadCount();
+		Split compThreads []= new CompSplit[threadCount];
+		for(int i=0; i<threadCount; i++){
+			compThreads[i] = new CompSplit(objs,0);
+		}
+		threadList=new ThreadList(compThreads);
+		
 		serMan = new ServiceManager();
 		levelManager = new LevelManager();
+		timer.stopAndPrint("Constructor time: ");
+		timer.clearLoggedTimes();
 	}
 	
 	//service and level manager constructor
@@ -91,12 +111,13 @@ public class Game {
 			serMan.checkInit();
 			loadCurrentLevel();
 			addObjs(); //add GameObject in buffer that were created when level is loaded
-			
+			frameTimer.setMicrosecs();
 			//main loop
 			boolean flag=true;
 			while(flag){
 				//start frame time
 				startTime = System.currentTimeMillis();
+				frameTimer.start();
 				
 				//add and delete Game Objects in buffer
 				deleteGameObjects();
@@ -108,6 +129,17 @@ public class Game {
 				//update all GameObjects
 				for(GameObject g : objs)
 					g.update();
+				
+				
+				timer.start();
+				//multi threaded method
+				updateObjComponents();
+				
+				//single threaded method
+				//for(GameObject g: objs)
+				//	g.updateComp();
+				timer.stopAndLog();
+				
 				
 				//update new positions of collision shapes
 				//as other GameObjects may have changed the current GameObjects position after the current GameObject updated
@@ -137,12 +169,23 @@ public class Game {
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
-			
+			timer.setNanosecs();
+			timer.printAvg();
 			//exit game if ended loop
 			System.exit(0);
 		}
-		
-		
+
+		private void updateObjComponents() {
+			for(int i=0; i<ThreadList.getThreadCount(); i++){
+				threadList.setSplit(objs, i);
+			}
+			threadList.runAll();
+		}
+
+
+
+
+
 
 		//checks if the escape game command is true
 		private boolean checkExitGame() {
@@ -278,7 +321,8 @@ public class Game {
 	}
 
 	//returns the time of when the execution started for the current frame
-	public static long getFrameStartTime(){
-		return startTime;
+	public static long getTimeSinceFrameStart(){
+		//return startTime;
+		return frameTimer.getCurrentTime(Timer.MICRO);
 	}
 }
