@@ -4,17 +4,16 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import loaders.XmlLoader;
+import misc.Vector;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import components.SpriteSheet;
-
 import display.Drawer;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;
-import framework.Vector;
 
 public class TileMap extends Component {
 

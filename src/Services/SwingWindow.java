@@ -6,10 +6,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import misc.Vector;
 import display.CursorCreator;
 import display.SwingPanel;
 import framework.Game;
-import framework.Vector;
 
 public class SwingWindow implements Window{
 	//create and update the window

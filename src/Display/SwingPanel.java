@@ -10,11 +10,11 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import misc.Time;
+import misc.Timer;
+import misc.Vector;
 import framework.Game;
 import framework.GameObject;
-import framework.Time;
-import framework.Timer;
-import framework.Vector;
 
 public class SwingPanel extends JPanel implements KeyListener {
 	

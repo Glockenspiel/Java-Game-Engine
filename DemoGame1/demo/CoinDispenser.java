@@ -1,14 +1,14 @@
 package demo;
 
+import misc.MathG;
+import misc.Time;
+import misc.Vector;
 import collision.CollisionBox;
 import scripts.MoveScript;
 import components.RigidBody;
 import components.Sprite;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
-import framework.Time;
-import framework.Vector;
 
 public class CoinDispenser extends GameObject {
 	

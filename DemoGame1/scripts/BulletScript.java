@@ -1,10 +1,10 @@
 package scripts;
 
+import misc.Time;
+import misc.Vector;
 import collision.CollisionListener;
 import demo.Explosion;
 import framework.Game;
-import framework.Time;
-import framework.Vector;
 import framework.GameObject;
 import framework.Script;
 

@@ -2,11 +2,11 @@ package collision;
 
 import java.awt.Color;
 
+import misc.Debug;
+import misc.Vector;
 import display.Drawer;
 import framework.Component;
-import framework.Debug;
 import framework.GameObject;
-import framework.Vector;
 
 
 public class CollisionBox implements CollisionShape, Debug {

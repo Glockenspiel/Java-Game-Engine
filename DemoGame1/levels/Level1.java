@@ -1,5 +1,6 @@
 package levels;
 
+import misc.Vector;
 import components.SpriteSheet;
 import demo.Player;
 import scripts.ToggleLevel;
@@ -7,7 +8,6 @@ import tiles.TileMap;
 import framework.Game;
 import framework.GameObject;
 import framework.Level;
-import framework.Vector;
 
 public class Level1 extends Level{
 

@@ -3,13 +3,13 @@ package scripts;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import misc.Time;
 import components.HUDItem;
 import display.Drawer;
 import framework.Event;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
-import framework.Time;
 
 public class PlayerStatus implements HUDItem, Event {
 

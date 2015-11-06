@@ -1,11 +1,11 @@
 package scripts;
 
+import misc.MathG;
 import collision.CollisionListener;
 import demo.Explosion;
 import framework.Event;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
 import framework.Script;
 
 public class EnemyHit implements CollisionListener {

@@ -1,12 +1,12 @@
 package components;
 
+import misc.MathG;
+import misc.Time;
+import misc.Vector;
 import display.Drawer;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
-import framework.Time;
-import framework.Vector;
 
 //physics movement component
 public class RigidBody extends Component {

@@ -1,9 +1,9 @@
 package demoSaving;
 
+import misc.Vector;
 import saving.Saving;
 import scripts.PlayerStatus;
 import framework.Script;
-import framework.Vector;
 import framework.Game;
 import framework.GameObject;
 

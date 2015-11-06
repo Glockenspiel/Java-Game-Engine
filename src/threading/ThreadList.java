@@ -1,7 +1,9 @@
-package framework;
+package threading;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import framework.Game;
 
 //this class allows you to to create muiple parallel threads
 public class ThreadList {

@@ -2,6 +2,7 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
+import misc.Vector;
 import collision.CollisionBox;
 import components.Animator;
 import components.Sprite;
@@ -9,7 +10,6 @@ import demo.Bullet;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
-import framework.Vector;
 
 public class PlayerInput implements Script {
 

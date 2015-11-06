@@ -1,5 +1,8 @@
 package demo;
 
+import misc.MathG;
+import misc.Time;
+import misc.Vector;
 import collision.CollisionBox;
 import collision.CollisionCircle;
 import scripts.EnemyHit;
@@ -9,9 +12,6 @@ import components.Sprite;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
-import framework.Time;
-import framework.Vector;
 
 public class Enemy extends GameObject {
 	

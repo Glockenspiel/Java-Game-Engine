@@ -1,5 +1,6 @@
 package framework;
 
+import misc.Vector;
 import display.Drawer;
 
 public abstract class Component{

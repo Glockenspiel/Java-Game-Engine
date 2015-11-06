@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 
+import misc.MathG;
 import collision.CollisionBox;
 import collision.CollisionCircle;
 import collision.CollisionResult;
@@ -9,7 +10,6 @@ import collision.CollisionShape;
 import framework.Component;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
 
 public class CollisionManager implements CollisionManagerI {
 

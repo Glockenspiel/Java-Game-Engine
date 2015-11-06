@@ -1,6 +1,6 @@
 package collision;
 
-import framework.Vector;
+import misc.Vector;
 
 public interface CollisionShape {
 	public boolean getAlive();

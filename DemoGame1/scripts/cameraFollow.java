@@ -2,10 +2,10 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
+import misc.Vector;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
-import framework.Vector;
 
 public class cameraFollow implements Script {
 

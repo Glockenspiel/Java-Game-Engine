@@ -1,4 +1,4 @@
-package framework;
+package misc;
 
 import display.Drawer;
 

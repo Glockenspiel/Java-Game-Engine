@@ -1,6 +1,6 @@
 package services;
 
-import framework.Vector;
+import misc.Vector;
 
 public interface Camera {
 	

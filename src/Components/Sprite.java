@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 import display.Drawer;
 import loaders.ImageLoader;
+import misc.Vector;
 import framework.Component;
 import framework.GameObject;
-import framework.Vector;
 
 public class Sprite extends Component {
 

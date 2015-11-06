@@ -1,7 +1,9 @@
-package framework;
+package threading;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import framework.GameObject;
 
 public class CompSplit extends Split {
 

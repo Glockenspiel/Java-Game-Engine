@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import misc.Vector;
+
 public class LauncherOptions {
 	
 	//display a dialog for setting the window size for the game

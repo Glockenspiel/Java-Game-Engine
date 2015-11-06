@@ -1,10 +1,10 @@
 package demo;
 
+import misc.Time;
+import misc.Vector;
 import components.Animation;
 import components.SpriteSheet;
 import framework.GameObject;
-import framework.Time;
-import framework.Vector;
 
 public class Explosion extends GameObject {
 

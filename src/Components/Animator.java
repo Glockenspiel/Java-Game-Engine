@@ -3,10 +3,10 @@ package components;
 import java.util.HashMap;
 import java.util.Map;
 
+import misc.Vector;
 import display.Drawer;
 import framework.Component;
 import framework.GameObject;
-import framework.Vector;
 
 public class Animator extends Component {
 

@@ -6,9 +6,9 @@ import saving.Saving;
 import services.SwingWindow;
 import framework.Game;
 import framework.LauncherOptions;
-import framework.Vector;
 import levels.Level1;
 import levels.Level2;
+import misc.Vector;
 
 
 public class main{

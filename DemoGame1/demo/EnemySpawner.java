@@ -1,9 +1,9 @@
 package demo;
 
+import misc.MathG;
+import misc.Vector;
 import framework.Game;
 import framework.GameObject;
-import framework.MathG;
-import framework.Vector;
 
 public class EnemySpawner extends GameObject {
 

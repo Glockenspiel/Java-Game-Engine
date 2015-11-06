@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import misc.Debug;
+import misc.IdGenerator;
+import misc.Time;
+import misc.Vector;
 import scripts.PlayerStatus;
 import collision.CollisionListener;
 import collision.CollisionShape;

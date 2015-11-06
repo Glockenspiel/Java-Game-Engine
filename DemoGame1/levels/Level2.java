@@ -1,5 +1,6 @@
 package levels;
 
+import misc.Vector;
 import scripts.ToggleLevel;
 import tiles.TileMap;
 import demo.CoinDispenser;
@@ -7,7 +8,6 @@ import demo.Player;
 import framework.Game;
 import framework.GameObject;
 import framework.Level;
-import framework.Vector;
 import demo.EnemySpawner;
 
 public class Level2 extends Level {

@@ -1,5 +1,6 @@
 package demo;
 
+import misc.Vector;
 import collision.CollisionBox;
 import collision.CollisionCircle;
 import scripts.PlayerInput;
@@ -11,7 +12,6 @@ import components.Sprite;
 import components.SpriteSheet;
 import framework.Game;
 import framework.GameObject;
-import framework.Vector;
 
 public class Player extends GameObject {
 	

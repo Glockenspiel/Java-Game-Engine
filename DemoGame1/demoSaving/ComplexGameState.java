@@ -1,8 +1,8 @@
 package demoSaving;
 
+import misc.Vector;
 import saving.GameState;
 import framework.Level;
-import framework.Vector;
 
 public class ComplexGameState extends GameState{
 

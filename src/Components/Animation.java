@@ -2,10 +2,10 @@ package components;
 
 import java.awt.image.BufferedImage;
 
+import misc.Vector;
 import display.Drawer;
 import framework.Component;
 import framework.GameObject;
-import framework.Vector;
 
 public class Animation extends Component {
 

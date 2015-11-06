@@ -1,4 +1,4 @@
-package framework;
+package misc;
 
 public class Vector { //for storing 2D coordinates or directions
 	

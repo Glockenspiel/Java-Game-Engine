@@ -1,6 +1,9 @@
-package framework;
+package misc;
 
 import java.util.ArrayList;
+
+import framework.Game;
+import framework.GameObject;
 
 public class IdGenerator {
 	

@@ -1,4 +1,4 @@
-package framework;
+package misc;
 
 public class MathG {
 	

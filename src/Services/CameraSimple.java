@@ -1,7 +1,7 @@
 package services;
 
+import misc.Vector;
 import framework.Game;
-import framework.Vector;
 
 public class CameraSimple implements Camera {
 
