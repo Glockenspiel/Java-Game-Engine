@@ -46,7 +46,8 @@ public class Timer {
 		long total=0;
 		for(int i=0; i<times.length && i < maxTimeIndex; i++)
 			total+=times[i];
-		
+		if(total==0 || maxTimeIndex==0)
+			return 1;
 		return total/maxTimeIndex;
 	}
 	

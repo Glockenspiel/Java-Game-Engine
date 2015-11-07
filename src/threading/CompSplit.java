@@ -10,14 +10,14 @@ public class CompSplit extends Split {
 	private ArrayList<GameObject> objs;
 	
 	public CompSplit(ArrayList<GameObject> objs, int splitIndex){
-		this.objs=objs;
-		findStartAndEndIndexes(splitIndex, objs.size());
+		//this.objs=objs;
+	//	findStartAndEndIndexes(splitIndex, objs.size());
 	}
 	
-	
-	public void setValues(Collection<?> objs,int splitIndex){
+	@Override
+	public void update(Collection<?> objs,int splitIndex, int threadCount){
 		this.objs=(ArrayList<GameObject>) objs;
-		findStartAndEndIndexes(splitIndex, objs.size());
+		findStartAndEndIndexes(splitIndex, objs.size(), threadCount);
 	}
 
 	@Override

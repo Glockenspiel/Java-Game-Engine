@@ -7,8 +7,8 @@ public abstract class Split extends Thread {
 	protected int startingIndex,endIndex;
 	
 	//evenly distributes the size of the objs to the start and end indexes
-	protected void findStartAndEndIndexes(int splitIndex, int arraySize){
-		int threadCount=ThreadList.getThreadCount();
+	protected void findStartAndEndIndexes(int splitIndex, int arraySize, int threadCount){
+		//int threadCount=ThreadList.getThreadCount();
 		int objsPerThread = arraySize/threadCount;
 		
 		//bonus is when a thread has to computer an extra index
@@ -41,5 +41,5 @@ public abstract class Split extends Thread {
 		endIndex=maxIndex;
 	}
 
-	public abstract void setValues(Collection<?> objs, int splitIndex);
+	public abstract void update(Collection<?> objs, int splitIndex, int threadCount);
 }

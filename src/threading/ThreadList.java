@@ -4,60 +4,56 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import framework.Game;
+import framework.GameObject;
 
 //this class allows you to to create muiple parallel threads
 public class ThreadList {
-	
-	private static int threadCount = 4;
 	private static boolean once=false;
-	private Split splites[];
+	private Split splits[];
 	
 	public ThreadList(Split threads[]){
-		once=true;
-		splites=threads;
+		splits=threads;
 	}
 	
 	public Split getThreadAtIndex(int i){
-		if(i<0 || i>threadCount){
+		if(i<0 || i>getThreadCount()){
 			Game.print("Warning: SplitedThreads.getThreadAtIndex(), index out of bounds: " + i);
 			return null;
 		}
-		return splites[i];
+		return splits[i];
 	}
 	
 	public void setSplit(Collection<?> objs, int splitIndex){
-		 splites[splitIndex].setValues(objs,splitIndex);
+		 splits[splitIndex].update(objs,splitIndex, getThreadCount());
 	}
 	
 	//runs all the threads and waits for them to all complete
 	public void runAll(){
-		for(int i=0; i<threadCount; i++)
-			splites[i].run();
+		for(int i=0; i<getThreadCount(); i++)
+			splits[i].run();
 			
 		//wait for all threads to complete
-		for(int i = 0; i < threadCount; i++){
+		for(int i = 0; i < getThreadCount(); i++){
 			try {
-				splites[i].join();
+				splits[i].join();
 			} catch (InterruptedException e) 
 				{e.printStackTrace();}
 		}
 	}
 	
 	public void addAt(Split split, int index){
-		if(index<0 || index>=threadCount) return;
+		if(index<0 || index>=getThreadCount()) return;
 		
-		splites[index]=split;
+		splits[index]=split;
 	}
 
-	public static int getThreadCount() {
-		return threadCount;
+	public int getThreadCount() {
+		return splits.length;
 	}
-	
-	//set the thread count, only before a ThreadList is created
-	public static void setThreadCount(int count){
-		//threadCount can only be set before ThreadList's constructor is called
-		if(!once && count>0){
-			threadCount=count;
+
+	public void update(ArrayList<GameObject> objs) {
+		for(int i=0; i<splits.length; i++){
+			splits[i].update(objs, i, getThreadCount());
 		}
 	}
 }

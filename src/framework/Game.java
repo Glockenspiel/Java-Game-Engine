@@ -25,8 +25,6 @@ public class Game {
 	private static ServiceManagerI serMan;
 	private static LevelManagerI levelManager;
 	
-	
-	//private static ComponentThread compThreads[] = new ComponentThread[threads];
 	private static ThreadList threadList;
 
 	//time for start of frame, used to calculate sleep time
@@ -38,21 +36,24 @@ public class Game {
 	
 	//default constructor
 	public Game(){
-		timer.setMicrosecs();
-		timer.start();
+		
 		//set threads for split
-		ThreadList.setThreadCount(8);
-		int threadCount= ThreadList.getThreadCount();
-		Split compThreads []= new CompSplit[threadCount];
-		for(int i=0; i<threadCount; i++){
+		//ThreadList.setThreadCount(8);
+		//int threadCount= ThreadList.getThreadCount();
+		
+		Split compThreads []= new CompSplit[4];
+		for(int i=0; i<compThreads.length; i++){
 			compThreads[i] = new CompSplit(objs,0);
 		}
 		threadList=new ThreadList(compThreads);
 		
+		timer.setMicrosecs();
+		timer.start();
 		serMan = new ServiceManager();
+		timer.stopAndPrint("ServiceManager time: ");
+		timer.start();
 		levelManager = new LevelManager();
-		timer.stopAndPrint("Constructor time: ");
-		timer.clearLoggedTimes();
+		timer.stopAndPrint("LevelManager time: ");
 	}
 	
 	//service and level manager constructor
@@ -113,7 +114,10 @@ public class Game {
 		public void run(){
 			gameLoop.setPriority(Thread.MAX_PRIORITY);
 			//check initialisation was done correctly and load the starting level
+			timer.start();
 			serMan.checkInit();
+			timer.stopAndPrint("CheckInit time:");
+			timer.clearLoggedTimes();
 			loadCurrentLevel();
 			addObjs(); //add GameObject in buffer that were created when level is loaded
 			frameTimer.setMicrosecs();
@@ -136,14 +140,15 @@ public class Game {
 					g.update();
 				
 				//update all components of all GameObjects
-				timer.start();
+				
 				//multi threaded method
-				updateObjComponents();
+				threadList.update(objs);
+				threadList.runAll();
 				
 				//single threaded method
 				//for(GameObject g: objs)
 				//	g.updateComp();
-				timer.stopAndLog();
+				
 				
 				
 				//update new positions of collision shapes
@@ -151,14 +156,17 @@ public class Game {
 				for(GameObject g : objs)
 					g.notifyCollisionShapes();
 				
+				timer.start();
 				//detect any collisions
 				serMan.getCollisionManager().detect(objs);
+				timer.stopAndLog();
 				
 				//update camera once all GameObject positions are finalised
 				serMan.getCamera().update();
 				
 				//draw Scene i.e. draw the level
 				serMan.getWindow().drawScene();
+				
 
 				//change level if there is a request to change level
 				levelManager.doChangeLevel();
@@ -170,27 +178,16 @@ public class Game {
 				if(checkExitGame())
 					flag=false;
 				
+				frameTimer.stopAndLog();
 				//sleep so there is a limit to the number of frames per second
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
-			timer.setNanosecs();
+			timer.setMicrosecs();
 			timer.printAvg();
 			//exit game if ended loop
 			System.exit(0);
 		}
-
-		private void updateObjComponents() {
-			for(int i=0; i<ThreadList.getThreadCount(); i++){
-				threadList.setSplit(objs, i);
-			}
-			threadList.runAll();
-		}
-
-
-
-
-
 
 		//checks if the escape game command is true
 		private boolean checkExitGame() {
@@ -326,8 +323,8 @@ public class Game {
 	}
 
 	//returns the time of when the execution started for the current frame
-	public static long getTimeSinceFrameStart(){
+	public static long getFrameTime(){
 		//return startTime;
-		return frameTimer.getCurrentTime(Timer.MICRO);
+		return frameTimer.calculateAvg()/1000;
 	}
 }

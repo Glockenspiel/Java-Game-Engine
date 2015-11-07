@@ -1,6 +1,9 @@
 package levels;
 
+import misc.Timer;
+
 import misc.Vector;
+import components.RigidBody;
 import components.SpriteSheet;
 import demo.Player;
 import scripts.ToggleLevel;
@@ -30,6 +33,19 @@ public class Level1 extends Level{
 			GameObject player = new Player();
 			addObj(player);
 		}
+		
+		Timer timer =new Timer();
+		timer.setMicrosecs();
+		timer.start();
+		for(int i=0; i<4000; i++){
+			GameObject obj = new GameObject("stressTest");
+			obj.moveBy(new Vector(i*2, 0));
+			RigidBody body = new RigidBody(20);
+			body.setGravity(0.2f);
+			obj.add(body);
+			addObj(obj);
+		}
+		timer.stopAndPrint("stress test creation time: ");
 		
 		GameObject nextLevel = new GameObject("move level");
 		nextLevel.add(new ToggleLevel(new Level2()));
