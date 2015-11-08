@@ -16,13 +16,19 @@ import collision.QuadTree;
 import display.Drawer;
 import framework.Game;
 import framework.GameObject;
+import threading.CollisionTask;
 
 public class CollisionManager implements CollisionManagerI {
 
+	private static int threadCount = Runtime.getRuntime().availableProcessors();
 	private QuadTree quadTree;
-	private ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
+	
 	private ThreadList checkCollisionThreads;
 	private boolean useThreading=true;
+	private boolean useForkPool=true;
+	
+	private enum Approach { standardLoop, threadList, forkJoin }
+	private Approach approach = Approach.forkJoin;
 	
 	//timer for stress testing
 	private Timer t = new Timer();
@@ -44,8 +50,34 @@ public class CollisionManager implements CollisionManagerI {
 		
 		updateTree(objs);
 		
+		//FORKJOIN APPROACH
+		if(approach==Approach.forkJoin){
+			t.start();
+			CollisionTask tasks []= new CollisionTask[threadCount];
+			boolean lastIndex=false;
+			for(int i=0; i<threadCount; i++){
+				lastIndex = i+1==threadCount;
+				tasks[i] = new CollisionTask(objs,threadCount, i);
+
+				//fork each tasks
+				if(!lastIndex){
+					tasks[i].fork();
+				}
+				//compute the last task until it completes
+				else{
+					tasks[i].compute();
+				}
+			}
+
+			//wait for all task that were forked to complete
+			for(int i=0; i<threadCount-1; i++)
+				tasks[i].join();
+
+			t.stopAndLog();
+		}
+		
 		//THREAD LIST APPROACH
-		if(useThreading){
+		else if(approach == Approach.threadList){
 			t.start();
 			checkCollisionThreads.updateAndRunAll(objs);
 			t.stopAndLog();
@@ -72,9 +104,9 @@ public class CollisionManager implements CollisionManagerI {
 	//updateTree() should be called before this
 	@Override
 	public void checkCollision(GameObject currentObj){
+			ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
 		
 			//retrieve all the GameObjects which could collide with this GameObject
-			returnObjects.clear();
 			quadTree.retrieve(returnObjects, currentObj.getCollisionBounds());
 		 
 			ArrayList<CollisionShape> currentObjShapes = currentObj .getCollisionShapes();

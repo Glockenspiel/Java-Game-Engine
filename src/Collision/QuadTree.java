@@ -11,8 +11,8 @@ import framework.GameObject;
 
 public class QuadTree {
  
-	 private static int MAX_OBJECTS = 5;
-	 private static int MAX_LEVELS = 6;
+	 private static int MAX_OBJECTS = 100;
+	 private static int MAX_LEVELS = 5;
 		 
 	 private int level;
 	 private ArrayList<GameObject> objects;
