@@ -1,6 +1,6 @@
 package collision;
 
-import java.awt.Rectangle;
+import collision.Rectangle;
 import java.util.ArrayList;
 
 import framework.GameObject;
@@ -13,20 +13,18 @@ public class QuadTree {
 		 
 	 private int level;
 	 private ArrayList<GameObject> objects;
-	 private Rectangle bounds;
+	 private RectangleI bounds;
 	 private QuadTree[] nodes;
 		 
-	
-	public QuadTree(int level, Rectangle bounds) {
+	//constructor
+	public QuadTree(int level, RectangleI bounds) {
 		this.level = level;
 		objects = new ArrayList<GameObject>();
 		this.bounds = bounds;
 		nodes = new QuadTree[4];
 	}
 	
-	/*
-	 * Clears the QuadTree
-	 */
+	//Clears the QuadTree
 	public void clear() {
 		objects.clear();
 	 
@@ -38,14 +36,16 @@ public class QuadTree {
 	 	}
 	 }
 	
+	//insert an ArrayList of GameObjects in to the tree
 	public void insertAll(ArrayList<GameObject> objs){
 		for(GameObject o : objs)
 			insert(o);
 	}
 	
+	//insert a GameObject to the tree
 	public void insert(GameObject obj) {
 		//return if the obj has no CollisionShapes
-		Rectangle rect = obj.getCollisionBounds();
+		RectangleI rect = obj.getCollisionBounds();
 		if(rect==null) 
 			return;
 		 
@@ -81,7 +81,7 @@ public class QuadTree {
 		}
 	}
 	
-	 
+	//split the current node into 4 nodes
 	private void split() {
 		int subWidth = (int)(bounds.getWidth() / 2);
 		int subHeight = (int)(bounds.getHeight() / 2);
@@ -100,7 +100,7 @@ public class QuadTree {
 	 * object cannot completely fit within a child node and is part
 	 * of the parent node
 	 */
-	private int getIndex(Rectangle pRect) {
+	private int getIndex(RectangleI pRect) {
 		if(pRect==null) return -1;
 		int index = -1;
 		double verticalMidpoint = bounds.getX() + (bounds.getWidth() / 2);
@@ -134,10 +134,8 @@ public class QuadTree {
 	 }
 	
 	 
-	 /*
-	  * Return all objects that could collide with the given object
-	  */
-	public ArrayList<GameObject> retrieve(ArrayList<GameObject> returnObjects, Rectangle objRect) {
+	// Return all objects that could collide with the given object
+	public ArrayList<GameObject> retrieve(ArrayList<GameObject> returnObjects, RectangleI objRect) {
 		  int index = getIndex(objRect);
 		  if (index != -1 && nodes[0] != null) {
 			  nodes[index].retrieve(returnObjects, objRect);

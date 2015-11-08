@@ -7,7 +7,7 @@ import misc.Time;
 import misc.Timer;
 import services.Camera;
 import services.Input;
-import threading.CompSplit;
+import threading.ComponentSplit;
 import threading.Split;
 import threading.ThreadList;
 
@@ -25,7 +25,7 @@ public class Game {
 	private static ServiceManagerI serMan;
 	private static LevelManagerI levelManager;
 	
-	private static ThreadList threadList;
+	private static ThreadList compThreads;
 
 	//time for start of frame, used to calculate sleep time
 	private static long startTime;
@@ -38,14 +38,11 @@ public class Game {
 	public Game(){
 		
 		//set threads for split
-		//ThreadList.setThreadCount(8);
-		//int threadCount= ThreadList.getThreadCount();
-		
-		Split compThreads []= new CompSplit[4];
-		for(int i=0; i<compThreads.length; i++){
-			compThreads[i] = new CompSplit(objs,0);
+		Split compSplits []= new ComponentSplit[4];
+		for(int i=0; i<compSplits.length; i++){
+			compSplits[i] = new ComponentSplit();
 		}
-		threadList=new ThreadList(compThreads);
+		compThreads=new ThreadList(compSplits);
 		
 		timer.setMicrosecs();
 		timer.start();
@@ -141,9 +138,8 @@ public class Game {
 				
 				//update all components of all GameObjects
 				
-				//multi threaded method
-				threadList.update(objs);
-				threadList.runAll();
+				//update components with multithreading
+				compThreads.updateAndRunAll(objs);
 				
 				//single threaded method
 				//for(GameObject g: objs)
@@ -156,10 +152,10 @@ public class Game {
 				for(GameObject g : objs)
 					g.notifyCollisionShapes();
 				
-				timer.start();
+				//timer.start();
 				//detect any collisions
 				serMan.getCollisionManager().detect(objs);
-				timer.stopAndLog();
+				//timer.stopAndLog();
 				
 				//update camera once all GameObject positions are finalised
 				serMan.getCamera().update();
@@ -183,9 +179,10 @@ public class Game {
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
-			timer.setMicrosecs();
-			Game.print("Collision:");
-			timer.printAvg();
+			//timer.setMicrosecs();
+			//Game.print("Collision:");
+			//timer.printAvg();
+			serMan.getCollisionManager().printAvgTime();
 			//exit game if ended loop
 			System.exit(0);
 		}

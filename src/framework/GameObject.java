@@ -1,20 +1,18 @@
 package framework;
 
 import java.awt.Color;
-import java.awt.Rectangle;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import misc.Debug;
 import misc.IdGenerator;
 import misc.Time;
 import misc.Vector;
-import scripts.PlayerStatus;
+import collision.Rectangle;
 import collision.CollisionListener;
 import collision.CollisionShape;
+import collision.RectangleI;
 import components.HUDItem;
 import display.Drawer;
-import display.SwingDrawer;
 
 public class GameObject implements Debug{ // also known as an Entity
 	
@@ -249,7 +247,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 	
 	//returns a bounding box for all collision shapes, returns null if no collision shapes
-	public Rectangle getCollisionBounds(){
+	public RectangleI getCollisionBounds(){
 		ArrayList<CollisionShape> shapes = getCollisionShapes();
 		//if no shapes return null
 		if(shapes.size()==0)

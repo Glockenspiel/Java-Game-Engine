@@ -5,19 +5,16 @@ import java.util.Collection;
 
 import framework.GameObject;
 
-public class CompSplit extends Split {
+public class ComponentSplit extends Split {
 
 	private ArrayList<GameObject> objs;
 	
-	public CompSplit(ArrayList<GameObject> objs, int splitIndex){
-		//this.objs=objs;
-	//	findStartAndEndIndexes(splitIndex, objs.size());
-	}
+	public ComponentSplit(){}
 	
 	@Override
 	public void update(Collection<?> objs,int splitIndex, int threadCount){
 		this.objs=(ArrayList<GameObject>) objs;
-		findStartAndEndIndexes(splitIndex, objs.size(), threadCount);
+		super.findStartAndEndIndexes(splitIndex, objs.size(), threadCount);
 	}
 
 	@Override

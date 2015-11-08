@@ -1,81 +1,92 @@
 package services;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import threading.CollisionSplit;
+import threading.Split;
+import threading.ThreadList;
 import misc.MathG;
+import misc.Timer;
+import collision.Rectangle;
 import collision.CollisionBox;
 import collision.CollisionCircle;
 import collision.CollisionResult;
 import collision.CollisionShape;
 import collision.QuadTree;
+import framework.Game;
 import framework.GameObject;
 
 public class CollisionManager implements CollisionManagerI {
 
 	private QuadTree quadTree = new QuadTree(0, new Rectangle(0,0,6000,6000));
+	private ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
+	private ThreadList checkCollisionThreads;
+	private boolean useThreading=true;
 	
-	public CollisionManager(){}
+	//timer for stress testing
+	private Timer t = new Timer();
+	
+	public CollisionManager(){
+		int threadsToUse=4;
+		Split splits [] = new CollisionSplit[threadsToUse];
+		for(int i=0; i<splits.length; i++){
+			splits[i] = new CollisionSplit();
+		}
+		checkCollisionThreads = new ThreadList(splits);
+	}
 	
 	//detect collision and trigger events
 	@Override
 	public void detect(ArrayList<GameObject> objs) {
 		if(objs.size()<2) return; //return if only 1 object
 		
-		//create the current quad tree
-		quadTree.clear();
-		quadTree.insertAll(objs);
+		updateTree(objs);
 		
-		//GameObjects found in quad tree
-		ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
+		//THREAD LIST APPROACH
+		if(useThreading){
+			t.start();
+			checkCollisionThreads.updateAndRunAll(objs);
+			t.stopAndLog();
+		}
 		
-		//the current GameObject's shapes 
-		ArrayList<CollisionShape> curObjShapes;
+		//SINGLE THREADED APPROACH
+		else{
+			t.start();
+			for(GameObject currentObj : objs) {
+				checkCollision(currentObj);
+			}
+			t.stopAndLog();
+		}
+	}
+	
+	//update the quad tree
+	@Override
+	public void updateTree(ArrayList<GameObject> objs){
+			quadTree.clear();
+			quadTree.insertAll(objs);
+	}
+	
+	//checks the GameObjects CollisionShapes with the current Quad Tree, 
+	//updateTree() should be called before this
+	@Override
+	public void checkCollision(GameObject currentObj){
 		
-		for(GameObject currentObj : objs) {
 			//retrieve all the GameObjects which could collide with this GameObject
 			returnObjects.clear();
-			quadTree.retrieve(returnObjects, currentObj .getCollisionBounds());
+			quadTree.retrieve(returnObjects, currentObj.getCollisionBounds());
 		 
-			curObjShapes = currentObj .getCollisionShapes();
+			ArrayList<CollisionShape> currentObjShapes = currentObj .getCollisionShapes();
 		  
 			//check if the current GameObject has any collisions 
 			//with any of the GameObjects retrieved from the quad tree
 			for(GameObject returnedObj : returnObjects){
 				if(currentObj.getID()!=returnedObj.getID()){
 					//notify the GameObject of the collision if there is a collision
-					if(hasCollisions(curObjShapes,  returnedObj.getCollisionShapes())){
+					if(hasCollisions(currentObjShapes,  returnedObj.getCollisionShapes())){
 						currentObj .collisionNotify(returnedObj.getTag(), returnedObj.getID());
-						}
 				}
 			}
 		}
-
-		
-		/*
-		 * BRUTE FORCE METHOD
-		 * 
-		ArrayList<CollisionShape> objA;// = new ArrayList<CollisionShape>();
-		ArrayList<CollisionShape> objB;// = ArrayList<CollisionShape>();
-		
-		for(int i=0; i<objs.size()-1; i++){
-			//collision components in each object
-				objA = objs.get(i).getCollisionShapes();
-			for(int j=i+1; j<objs.size(); j++){
-				objB = objs.get(j).getCollisionShapes();
-				//don't check any overlaps if one of the 2 GameObject has no collision shapes
-				if(objA.size()>0 && objB.size()>0){
-					//check if they overlap
-					if(hasCollisions(objA, objB)){
-						//if the collision shapes which overlapped 
-						//notify both objects of the overlaps to invoke onTrigger() to listeners
-							objs.get(i).collisionNotify(objs.get(j).getTag(), objs.get(j).getID());
-							objs.get(j).collisionNotify(objs.get(i).getTag(), objs.get(i).getID());
-					}
-				}
-			}
-		}
-		*/
 	}
 	
 	
@@ -216,5 +227,11 @@ public class CollisionManager implements CollisionManagerI {
 	                         MathG.sqr(circleDistanceY - box.height()/2);
 
 	    return (cornerDistance_sq <= (MathG.sqr(circle.getRadius())));
+	}
+	
+	//to be removed later
+	//prints time of collision detection 
+	public void printAvgTime(){
+		Game.print("Collision avg time: " + t.calculateAvg()/1000 + "us" + "\nMulti-threaded: " + useThreading);
 	}
 }

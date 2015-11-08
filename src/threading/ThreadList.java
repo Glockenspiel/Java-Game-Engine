@@ -6,7 +6,6 @@ import java.util.Collection;
 import framework.Game;
 import framework.GameObject;
 
-//this class allows you to to create muiple parallel threads
 public class ThreadList {
 	private static boolean once=false;
 	private Split splits[];
@@ -15,6 +14,7 @@ public class ThreadList {
 		splits=threads;
 	}
 	
+	//returns the thread at index
 	public Split getThreadAtIndex(int i){
 		if(i<0 || i>getThreadCount()){
 			Game.print("Warning: SplitedThreads.getThreadAtIndex(), index out of bounds: " + i);
@@ -23,7 +23,8 @@ public class ThreadList {
 		return splits[i];
 	}
 	
-	public void setSplit(Collection<?> objs, int splitIndex){
+	//updates the split at index
+	public void updateSplit(Collection<?> objs, int splitIndex){
 		 splits[splitIndex].update(objs,splitIndex, getThreadCount());
 	}
 	
@@ -33,27 +34,36 @@ public class ThreadList {
 			splits[i].run();
 			
 		//wait for all threads to complete
-		for(int i = 0; i < getThreadCount(); i++){
+		for(Split s: splits){
 			try {
-				splits[i].join();
+				s.join();
 			} catch (InterruptedException e) 
 				{e.printStackTrace();}
 		}
 	}
 	
+	//add a split at index
 	public void addAt(Split split, int index){
 		if(index<0 || index>=getThreadCount()) return;
 		
 		splits[index]=split;
 	}
 
+	//returns the amount of threads being used
 	public int getThreadCount() {
 		return splits.length;
 	}
 
-	public void update(ArrayList<GameObject> objs) {
+	//update the current collection in each of the splits
+	public void update(ArrayList<?> objs) {
 		for(int i=0; i<splits.length; i++){
 			splits[i].update(objs, i, getThreadCount());
 		}
+	}
+
+	//calls update() then calls runAll()
+	public void updateAndRunAll(ArrayList<GameObject> objs) {
+		update(objs);
+		runAll();
 	}
 }

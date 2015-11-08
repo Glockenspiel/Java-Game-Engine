@@ -23,10 +23,10 @@ public class main{
 		Game.getServices().setSaving(new ComplexSaving());
 		Game.getServices().setLoading(new ComplexLoading());
 		//custom cursor example
-		//Game.getWindow().setCustomCursor("triangle.png");
+		//Game.getServices().getWindow().setCustomCursor("triangle.png");
 		Game.getServices().enableDebugDraw(true);
 		
-		Game.start(new Level2());
+		Game.start(new Level1());
 		
 	}
 
