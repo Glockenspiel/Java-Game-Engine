@@ -28,21 +28,25 @@ public class CollisionBox implements CollisionShape, Debug {
 	}
 	
 	//returns minimum x value 
+	@Override
 	public int minX(){
 		return objPosition.intX()+x;
 	}
 	
 	//returns minimum  y value
+	@Override
 	public int minY(){
 		return objPosition.intY()+y;
 	}
 	
 	//returns maximum x value
+	@Override
 	public int maxX(){
 		return objPosition.intX()+x+w;
 	}
 	
 	//returns maximum y value
+	@Override
 	public int maxY(){
 		return objPosition.intY()+y+h;
 	}

@@ -1,7 +1,7 @@
 package levels;
 
+import collision.CollisionBox;
 import misc.Timer;
-
 import misc.Vector;
 import components.RigidBody;
 import components.SpriteSheet;
@@ -37,12 +37,13 @@ public class Level1 extends Level{
 		Timer timer =new Timer();
 		timer.setMicrosecs();
 		timer.start();
-		for(int i=0; i<4000; i++){
+		for(int i=0; i<1000; i++){
 			GameObject obj = new GameObject("stressTest");
-			obj.moveBy(new Vector(i*2, 0));
+			obj.moveBy(new Vector(i*5, 0));
 			RigidBody body = new RigidBody(20);
-			body.setGravity(0.2f);
+			body.setGravity(0);
 			obj.add(body);
+			obj.add(new CollisionBox(0,0,4,4));
 			addObj(obj);
 		}
 		timer.stopAndPrint("stress test creation time: ");

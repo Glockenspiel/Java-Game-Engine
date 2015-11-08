@@ -72,6 +72,31 @@ public class CollisionCircle implements CollisionShape, Debug {
 		return objPosition.intY()+y;
 	}
 	
+	
+	//returns minimum x value 
+	@Override
+	public int minX(){
+		return objPosition.intX()+x-r;
+	}
+	
+	//returns minimum  y value
+	@Override
+	public int minY(){
+		return objPosition.intY()+y-r;
+	}
+	
+	//returns maximum x value
+	@Override
+	public int maxX(){
+		return objPosition.intX()+x+r;
+	}
+	
+	//returns maximum y value
+	@Override
+	public int maxY(){
+		return objPosition.intY()+y+r;
+	}
+	
 	public int getRadius(){
 		return r;
 	}

@@ -35,9 +35,6 @@ public class BulletScript implements Script, CollisionListener {
 	//delete the bullet and create an explosion
 	@Override
 	public void onTrigger(String tag, int id) {
-		//if(tag.equalsIgnoreCase("Bullet")==false)
-		//	Game.print().log("bullet overlap: " + tag + " | id: "+ id);
-		
 		if(tag.equalsIgnoreCase("Enemy1")){
 			explosion.moveTo(Game.getGameObjectById(objID).getPosition());
 			Game.addGameObject(explosion);

@@ -184,6 +184,7 @@ public class Game {
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
 			timer.setMicrosecs();
+			Game.print("Collision:");
 			timer.printAvg();
 			//exit game if ended loop
 			System.exit(0);

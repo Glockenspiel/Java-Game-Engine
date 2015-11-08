@@ -9,4 +9,8 @@ public interface CollisionShape {
 	public String getTag();
 	public void setTag(String tag);
 	public void notify(Vector position);
+	public int minX();
+	public int minY();
+	public int maxX();
+	public int maxY();
 }

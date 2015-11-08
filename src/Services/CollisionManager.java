@@ -1,5 +1,6 @@
 package services;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import misc.MathG;
@@ -7,20 +8,55 @@ import collision.CollisionBox;
 import collision.CollisionCircle;
 import collision.CollisionResult;
 import collision.CollisionShape;
-import framework.Component;
-import framework.Game;
+import collision.QuadTree;
 import framework.GameObject;
 
 public class CollisionManager implements CollisionManagerI {
 
+	private QuadTree quadTree = new QuadTree(0, new Rectangle(0,0,6000,6000));
+	
+	public CollisionManager(){}
+	
 	//detect collision and trigger events
 	@Override
 	public void detect(ArrayList<GameObject> objs) {
 		if(objs.size()<2) return; //return if only 1 object
 		
+		//create the current quad tree
+		quadTree.clear();
+		quadTree.insertAll(objs);
+		
+		//GameObjects found in quad tree
+		ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
+		
+		//the current GameObject's shapes 
+		ArrayList<CollisionShape> curObjShapes;
+		
+		for(GameObject currentObj : objs) {
+			//retrieve all the GameObjects which could collide with this GameObject
+			returnObjects.clear();
+			quadTree.retrieve(returnObjects, currentObj .getCollisionBounds());
+		 
+			curObjShapes = currentObj .getCollisionShapes();
+		  
+			//check if the current GameObject has any collisions 
+			//with any of the GameObjects retrieved from the quad tree
+			for(GameObject returnedObj : returnObjects){
+				if(currentObj.getID()!=returnedObj.getID()){
+					//notify the GameObject of the collision if there is a collision
+					if(hasCollisions(curObjShapes,  returnedObj.getCollisionShapes())){
+						currentObj .collisionNotify(returnedObj.getTag(), returnedObj.getID());
+						}
+				}
+			}
+		}
+
+		
+		/*
+		 * BRUTE FORCE METHOD
+		 * 
 		ArrayList<CollisionShape> objA;// = new ArrayList<CollisionShape>();
 		ArrayList<CollisionShape> objB;// = ArrayList<CollisionShape>();
-		ArrayList<CollisionResult> results = new ArrayList<CollisionResult>();
 		
 		for(int i=0; i<objs.size()-1; i++){
 			//collision components in each object
@@ -30,25 +66,23 @@ public class CollisionManager implements CollisionManagerI {
 				//don't check any overlaps if one of the 2 GameObject has no collision shapes
 				if(objA.size()>0 && objB.size()>0){
 					//check if they overlap
-					results.clear();
-					results = hasCollisions(objA, objB);
-					if(results.size()>0){
+					if(hasCollisions(objA, objB)){
 						//if the collision shapes which overlapped 
 						//notify both objects of the overlaps to invoke onTrigger() to listeners
-						if(collResShapeAHasTrigger(results))
-							objs.get(i).collisionOverlap(objs.get(j).getTag(), objs.get(j).getID());
-						
-						if(collResShapeBHasTrigger(results))
-							objs.get(j).collisionOverlap(objs.get(i).getTag(), objs.get(i).getID());
+							objs.get(i).collisionNotify(objs.get(j).getTag(), objs.get(j).getID());
+							objs.get(j).collisionNotify(objs.get(i).getTag(), objs.get(i).getID());
 					}
 				}
 			}
 		}
+		*/
 	}
+	
+	
 
 
 	//returns an ArrayList of results from the ArrayList of CollisionShapes in object A and B
-	private ArrayList<CollisionResult> hasCollisions(ArrayList<CollisionShape> objA,
+	private boolean hasCollisions(ArrayList<CollisionShape> objA,
 			ArrayList<CollisionShape> objB) {
 		
 		
@@ -96,7 +130,7 @@ public class CollisionManager implements CollisionManagerI {
 			}
 		}
 		
-		return collisionResults;
+		return collisionResults.size()>0;
 	}
 
 	//checks if there is an overlap between 2 collision boxes
@@ -182,19 +216,5 @@ public class CollisionManager implements CollisionManagerI {
 	                         MathG.sqr(circleDistanceY - box.height()/2);
 
 	    return (cornerDistance_sq <= (MathG.sqr(circle.getRadius())));
-	}
-	
-	//returns true if any CollisionResult shape A returns true for isTrigger()
-	private boolean collResShapeAHasTrigger(ArrayList<CollisionResult> results) {
-		for(CollisionResult r : results)
-				return true;
-		return false;
-	}
-	
-	//returns true if any CollisionResult shape B returns true for isTrigger()
-	private boolean collResShapeBHasTrigger(ArrayList<CollisionResult> results) {
-		for(CollisionResult r : results)
-				return true;
-		return false;
 	}
 }

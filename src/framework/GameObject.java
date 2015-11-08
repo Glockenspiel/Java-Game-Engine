@@ -1,6 +1,7 @@
 package framework;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -190,7 +191,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 
 	//notifies any CollisionListeners of CollisionOverlaps this GameObject has had
-	public void collisionOverlap(String tag, int id) {
+	public void collisionNotify(String tag, int id) {
 		for(Script s : scripts){
 			if(s instanceof CollisionListener){
 				CollisionListener cl = (CollisionListener) s;
@@ -245,5 +246,31 @@ public class GameObject implements Debug{ // also known as an Entity
 		}
 		
 		return null;
+	}
+	
+	//returns a bounding box for all collision shapes, returns null if no collision shapes
+	public Rectangle getCollisionBounds(){
+		ArrayList<CollisionShape> shapes = getCollisionShapes();
+		//if no shapes return null
+		if(shapes.size()==0)
+			return null;
+			
+		//find min and max x and y position
+		int 	minX = shapes.get(0).minX(), 
+				minY = shapes.get(0).minY(),
+				maxX = shapes.get(0).maxX(),
+				maxY = shapes.get(0).maxY();
+		for(int i=1; i<shapes.size(); i++){
+			if(shapes.get(i).minX()<minX)
+				minX=shapes.get(i).minX();
+			if(shapes.get(i).maxX()>maxX)
+				maxX=shapes.get(i).maxX();
+			if(shapes.get(i).minY()<minY)
+				minY=shapes.get(i).minY();
+			if(shapes.get(i).maxY()>maxY)
+				maxY=shapes.get(i).maxY();
+		}
+	
+		return new Rectangle(minX, minY, maxX-minX, maxY-minY);
 	}
 }
