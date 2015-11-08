@@ -1,15 +1,18 @@
 package collision;
 
 import collision.Rectangle;
+
+import java.awt.Color;
 import java.util.ArrayList;
 
+import display.Drawer;
 import framework.GameObject;
 
 
 public class QuadTree {
  
-	 private static int MAX_OBJECTS = 100;
-	 private static int MAX_LEVELS = 5;
+	 private static int MAX_OBJECTS = 5;
+	 private static int MAX_LEVELS = 6;
 		 
 	 private int level;
 	 private ArrayList<GameObject> objects;
@@ -145,5 +148,16 @@ public class QuadTree {
 	  
 		  return returnObjects;
 	 }
+
+	public void drawBounds(Drawer g) {
+		g.drawBox(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight(), Color.GRAY);
+
+		if(nodes[0]==null)
+			return;
+		
+		for(QuadTree tree : nodes){
+			tree.drawBounds(g);
+		}
+	}
 }
 

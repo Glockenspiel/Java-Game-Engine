@@ -62,6 +62,10 @@ public class SwingPanel extends JPanel implements KeyListener {
 				o.debugDraw(drawer, zero);
 			}
 			
+			//draw quad trees
+			if(Game.getServices().getCollisionManager()!=null)
+				Game.getServices().getCollisionManager().drawQuadTree(drawer);	
+			
 			//draw frame execution time
 			drawer.drawHUDText("Frame time: "+ (double)((double)Game.getFrameTime()/1000) + "ms", 
 					Game.getServices().getWindow().getPreferredWidth()/2-50, 10, Color.RED);

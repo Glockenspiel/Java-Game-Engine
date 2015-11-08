@@ -13,12 +13,13 @@ import collision.CollisionCircle;
 import collision.CollisionResult;
 import collision.CollisionShape;
 import collision.QuadTree;
+import display.Drawer;
 import framework.Game;
 import framework.GameObject;
 
 public class CollisionManager implements CollisionManagerI {
 
-	private QuadTree quadTree = new QuadTree(0, new Rectangle(0,0,6000,6000));
+	private QuadTree quadTree;
 	private ArrayList<GameObject> returnObjects = new ArrayList<GameObject>();
 	private ThreadList checkCollisionThreads;
 	private boolean useThreading=true;
@@ -27,6 +28,7 @@ public class CollisionManager implements CollisionManagerI {
 	private Timer t = new Timer();
 	
 	public CollisionManager(){
+		quadTree= new QuadTree(0, new Rectangle(-1500,-1500,6000,6000));
 		int threadsToUse=4;
 		Split splits [] = new CollisionSplit[threadsToUse];
 		for(int i=0; i<splits.length; i++){
@@ -233,5 +235,10 @@ public class CollisionManager implements CollisionManagerI {
 	//prints time of collision detection 
 	public void printAvgTime(){
 		Game.print("Collision avg time: " + t.calculateAvg()/1000 + "us" + "\nMulti-threaded: " + useThreading);
+	}
+
+	@Override
+	public void drawQuadTree(Drawer g) {
+		quadTree.drawBounds(g);
 	}
 }

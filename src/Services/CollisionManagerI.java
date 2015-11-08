@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 
+import display.Drawer;
 import framework.GameObject;
 
 public interface CollisionManagerI {
@@ -16,4 +17,6 @@ public interface CollisionManagerI {
 	
 	//to be removed later
 	public void printAvgTime();
+	
+	public void drawQuadTree(Drawer g);
 }
