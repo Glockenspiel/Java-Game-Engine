@@ -7,9 +7,6 @@ import misc.Time;
 import misc.Timer;
 import services.Camera;
 import services.Input;
-import threading.ComponentSplit;
-import threading.Split;
-import threading.ThreadList;
 
 public class Game {
 	
