@@ -28,14 +28,14 @@ public class CollisionManager implements CollisionManagerI {
 	private boolean useForkPool=true;
 	
 	private enum Approach { standardLoop, threadList, forkJoin }
-	private Approach approach = Approach.forkJoin;
+	private Approach approach = Approach.threadList;
 	
 	//timer for stress testing
 	private Timer t = new Timer();
 	
 	public CollisionManager(){
 		quadTree= new QuadTree(0, new Rectangle(-1500,-1500,6000,6000));
-		int threadsToUse=4;
+		int threadsToUse=8;
 		Split splits [] = new CollisionSplit[threadsToUse];
 		for(int i=0; i<splits.length; i++){
 			splits[i] = new CollisionSplit();
