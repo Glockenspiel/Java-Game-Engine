@@ -25,32 +25,17 @@ public class Game {
 	private static ServiceManagerI serMan;
 	private static LevelManagerI levelManager;
 	
-	private static ThreadList compThreads;
 
 	//time for start of frame, used to calculate sleep time
 	private static long startTime;
 	
-	private static Timer timer=new Timer();
 	private static Timer frameTimer = new Timer();
 	
 	
 	//default constructor
 	public Game(){
-		
-		//set threads for split
-		Split compSplits []= new ComponentSplit[4];
-		for(int i=0; i<compSplits.length; i++){
-			compSplits[i] = new ComponentSplit();
-		}
-		compThreads=new ThreadList(compSplits);
-		
-		timer.setMicrosecs();
-		timer.start();
 		serMan = new ServiceManager();
-		timer.stopAndPrint("ServiceManager time: ");
-		timer.start();
 		levelManager = new LevelManager();
-		timer.stopAndPrint("LevelManager time: ");
 	}
 	
 	//service and level manager constructor
@@ -110,11 +95,7 @@ public class Game {
 		
 		public void run(){
 			gameLoop.setPriority(Thread.MAX_PRIORITY);
-			//check initialisation was done correctly and load the starting level
-			timer.start();
 			serMan.checkInit();
-			timer.stopAndPrint("CheckInit time:");
-			timer.clearLoggedTimes();
 			loadCurrentLevel();
 			addObjs(); //add GameObject in buffer that were created when level is loaded
 			frameTimer.setMicrosecs();
@@ -135,18 +116,7 @@ public class Game {
 				//update all GameObjects
 				for(GameObject g : objs)
 					g.update();
-				
-				//update all components of all GameObjects
-				
-				//update components with multithreading
-				compThreads.updateAndRunAll(objs);
-				
-				//single threaded method
-				//for(GameObject g: objs)
-				//	g.updateComp();
-				
-				
-				
+
 				//update new positions of collision shapes
 				//as other GameObjects may have changed the current GameObjects position after the current GameObject updated
 				for(GameObject g : objs)

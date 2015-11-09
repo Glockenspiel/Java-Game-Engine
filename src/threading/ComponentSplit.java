@@ -21,7 +21,7 @@ public class ComponentSplit extends Split {
 	public void run() {
 		//uncomment this to see examples of how the start and end indexes where generated
 		//Game.print("" + startingIndex + ":" + endIndex);
-		for(int i=startingIndex; i<endIndex; i++)
-			objs.get(i).updateComp();
+		//for(int i=startingIndex; i<endIndex; i++)
+		//	objs.get(i).updateComp();
 	}
 }

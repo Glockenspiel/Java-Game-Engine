@@ -91,11 +91,6 @@ public class GameObject implements Debug{ // also known as an Entity
 	public ArrayList<CollisionShape> getCollisionShapes(){
 		return collisionShapes;
 	}
-
-	public void updateComp(){
-		for(Component c : components)
-			c.update(this);
-	}
 	
 	//update all components
 	public void update(){
@@ -103,8 +98,9 @@ public class GameObject implements Debug{ // also known as an Entity
 		for(Script s: scripts)
 			s.execute(this);
 		
-		
-		
+		for(Component c: components)
+			c.update(this);
+			
 		if(deleteOnTime>0 && Time.getTime()>deleteOnTime){
 			delete();
 		}

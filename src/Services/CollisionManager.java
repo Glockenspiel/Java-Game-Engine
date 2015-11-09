@@ -21,25 +21,12 @@ import threading.CollisionTask;
 
 public class CollisionManager implements CollisionManagerI {
 
-	private static int threadCount = Sceduler.THREAD_COUNT;
+	//1 task per thread available
+	private static final int taskCount = Sceduler.THREAD_COUNT;
 	private QuadTree quadTree;
-	
-	private ThreadList checkCollisionThreads;
-	
-	private enum Approach { standardLoop, threadList, forkJoin }
-	private Approach approach = Approach.forkJoin;
-	
-	//timer for stress testing
-	private Timer t = new Timer();
 	
 	public CollisionManager(){
 		quadTree= new QuadTree(0, new Rectangle(-1500,-1500,6000,6000));
-		int threadsToUse=8;
-		Split splits [] = new CollisionSplit[threadsToUse];
-		for(int i=0; i<splits.length; i++){
-			splits[i] = new CollisionSplit();
-		}
-		checkCollisionThreads = new ThreadList(splits);
 	}
 	
 	//detect collision and trigger events
@@ -50,31 +37,11 @@ public class CollisionManager implements CollisionManagerI {
 		updateTree(objs);
 		
 		//FORKJOIN APPROACH
-		if(approach==Approach.forkJoin){
-			t.start();
-			CollisionTask[] tasks= new CollisionTask[threadCount];
-			for(int i=0; i<threadCount; i++){
-				tasks[i] = new CollisionTask(objs, i, tasks.length);
-			}
-			Sceduler.forkAndJoin(tasks);
-			t.stopAndLog();
+		CollisionTask[] tasks= new CollisionTask[taskCount];
+		for(int i=0; i<taskCount; i++){
+			tasks[i] = new CollisionTask(objs, i, taskCount);
 		}
-		
-		//THREAD LIST APPROACH
-		else if(approach == Approach.threadList){
-			t.start();
-			checkCollisionThreads.updateAndRunAll(objs);
-			t.stopAndLog();
-		}
-		
-		//SINGLE THREADED APPROACH
-		else{
-			t.start();
-			for(GameObject currentObj : objs) {
-				checkCollision(currentObj);
-			}
-			t.stopAndLog();
-		}
+		Sceduler.forkAndJoin(tasks);
 	}
 	
 	//update the quad tree

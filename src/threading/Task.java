@@ -1,9 +1,24 @@
 package threading;
 
-import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveTask;
 
-public interface Task {
-	public void joinTask();
-	public void computeTask();
-	public void forkTask();
+public abstract class Task extends RecursiveTask {
+	
+	//calls join() for the recursive task
+	public void joinTask(){
+		join();
+	}
+	
+	//calls compute() for the recursive task
+	public void computeTask(){
+		compute();
+	}
+	
+	//calls fork() in the recursive task
+	public void forkTask(){
+		fork();
+	}
+	
+	//computes the function until completion. See RecursiveTask
+	public abstract Object compute();
 }

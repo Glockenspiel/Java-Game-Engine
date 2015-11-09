@@ -7,7 +7,7 @@ import framework.Game;
 import framework.GameObject;
 
 //define your class
-public class CollisionTask extends  RecursiveTask implements Task{
+public class CollisionTask extends Task{
 	private ArrayList<GameObject> objs;
 	private int start,end; 
 	public CollisionTask(ArrayList<GameObject> objs, int taskIndex, int taskCount) {
@@ -24,19 +24,4 @@ public class CollisionTask extends  RecursiveTask implements Task{
 			Game.getServices().getCollisionManager().checkCollision(objs.get(i));
 		return null;
 	}
-	
-	public void computeTask(){
-		compute();
-	}
-	
-	public void joinTask(){
-		join();
-	}
-	
-	public void forkTask(){
-		fork();
-	}
-	
-	
-
 }

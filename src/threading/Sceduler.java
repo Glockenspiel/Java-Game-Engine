@@ -6,7 +6,7 @@ public class Sceduler {
 	public static final int THREAD_COUNT = Runtime.getRuntime().availableProcessors();
 	
 	//forks all the tasks and waits for them to complete
-	public static void forkAndJoin(	Task[] tasks){
+	public static void forkAndJoin(Task[] tasks){
 		boolean lastIndex;
 		//fork each tasks
 		for(int i=0; i<tasks.length; i++){
@@ -27,27 +27,27 @@ public class Sceduler {
 
 
 
-/* evenly distributes the size of the array to the start and end indexes
- * returns start and end index as an integer array
- * use this algorithm instead of simply dividing by the number of threads
- * 
- * worst case:
- * objs.size() = 27
- * 
- * Algorithm result from worst case example:
- * thread 1: 8 indexes
- * thread 2: 8 indexes
- * thread 3: 8 indexes
- * thread 4: 7 indexes
- * 
- * 
- * works case example from dividing by 4
- * thread 1: 7 indexes
- * thread 2: 7 indexes
- * thread 3: 7 indexes
- * thread 4: 13 indexes
- */
-public static  int[] findStartAndEndIndexes(int arraySize,int taskIndex, int taskCount){
+	/* evenly distributes the size of the array to the start and end indexes
+	 * returns start and end index as an integer array
+	 * use this algorithm instead of simply dividing by the number of threads
+	 * 
+	 * worst case:
+	 * objs.size() = 27
+	 * 
+	 * Algorithm result from worst case example:
+	 * thread 1: 8 indexes
+	 * thread 2: 8 indexes
+	 * thread 3: 8 indexes
+	 * thread 4: 7 indexes
+	 * 
+	 * 
+	 * works case example from dividing by 4
+	 * thread 1: 7 indexes
+	 * thread 2: 7 indexes
+	 * thread 3: 7 indexes
+	 * thread 4: 13 indexes
+	 */
+	public static  int[] findStartAndEndIndexes(int arraySize,int taskIndex, int taskCount){
 		int objsPerThread = arraySize/taskCount;
 		
 		//bonus is when a thread has to computer an extra index
