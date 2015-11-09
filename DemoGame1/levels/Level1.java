@@ -34,7 +34,7 @@ public class Level1 extends Level{
 			addObj(player);
 		}
 
-		int stressObjCount=100;
+		int stressObjCount=2500;
 		for(int i=0; i<stressObjCount; i++){
 			GameObject obj = new GameObject("stressOBJ1");
 			obj.moveBy(new Vector(i*5, 150));

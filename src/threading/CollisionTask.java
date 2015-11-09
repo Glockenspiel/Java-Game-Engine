@@ -7,21 +7,34 @@ import framework.Game;
 import framework.GameObject;
 
 //define your class
-public class CollisionTask extends  RecursiveTask {
+public class CollisionTask extends  RecursiveTask implements Task{
 	private ArrayList<GameObject> objs;
 	private int start,end; 
-	public CollisionTask(ArrayList<GameObject> objs, int threadCount, int threadIndex) {
+	public CollisionTask(ArrayList<GameObject> objs, int taskIndex, int taskCount) {
 		this.objs=objs;
-		int[] indexes = ForkAlg.findStartAndEndIndexes(objs.size(), threadCount, threadIndex);
+		int[] indexes = Sceduler.findStartAndEndIndexes(objs.size(), taskIndex, taskCount);
 		start = indexes[0];
 		end = indexes[1];
 	}
 	
 	//check collision for all the GameObjects in this task
+	@Override
 	public Object compute() {
 		for(int i=start; i<end; i++)
 			Game.getServices().getCollisionManager().checkCollision(objs.get(i));
 		return null;
+	}
+	
+	public void computeTask(){
+		compute();
+	}
+	
+	public void joinTask(){
+		join();
+	}
+	
+	public void forkTask(){
+		fork();
 	}
 	
 	

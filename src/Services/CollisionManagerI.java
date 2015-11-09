@@ -15,8 +15,5 @@ public interface CollisionManagerI {
 	//update the tree used
 	public void updateTree(ArrayList<GameObject> objs);
 	
-	//to be removed later
-	public void printAvgTime();
-	
 	public void drawQuadTree(Drawer g);
 }

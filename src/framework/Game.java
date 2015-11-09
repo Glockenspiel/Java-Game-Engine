@@ -179,10 +179,7 @@ public class Game {
 				try {Thread.sleep(calculateSleepTime());} 
 		    	catch (InterruptedException e) {e.printStackTrace();}
 			}
-			//timer.setMicrosecs();
-			//Game.print("Collision:");
-			//timer.printAvg();
-			serMan.getCollisionManager().printAvgTime();
+
 			//exit game if ended loop
 			System.exit(0);
 		}

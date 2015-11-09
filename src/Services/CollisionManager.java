@@ -3,6 +3,7 @@ package services;
 import java.util.ArrayList;
 
 import threading.CollisionSplit;
+import threading.Sceduler;
 import threading.Split;
 import threading.ThreadList;
 import misc.MathG;
@@ -20,15 +21,13 @@ import threading.CollisionTask;
 
 public class CollisionManager implements CollisionManagerI {
 
-	private static int threadCount = Runtime.getRuntime().availableProcessors();
+	private static int threadCount = Sceduler.THREAD_COUNT;
 	private QuadTree quadTree;
 	
 	private ThreadList checkCollisionThreads;
-	private boolean useThreading=true;
-	private boolean useForkPool=true;
 	
 	private enum Approach { standardLoop, threadList, forkJoin }
-	private Approach approach = Approach.threadList;
+	private Approach approach = Approach.forkJoin;
 	
 	//timer for stress testing
 	private Timer t = new Timer();
@@ -53,26 +52,11 @@ public class CollisionManager implements CollisionManagerI {
 		//FORKJOIN APPROACH
 		if(approach==Approach.forkJoin){
 			t.start();
-			CollisionTask tasks []= new CollisionTask[threadCount];
-			boolean lastIndex=false;
+			CollisionTask[] tasks= new CollisionTask[threadCount];
 			for(int i=0; i<threadCount; i++){
-				lastIndex = i+1==threadCount;
-				tasks[i] = new CollisionTask(objs,threadCount, i);
-
-				//fork each tasks
-				if(!lastIndex){
-					tasks[i].fork();
-				}
-				//compute the last task until it completes
-				else{
-					tasks[i].compute();
-				}
+				tasks[i] = new CollisionTask(objs, i, tasks.length);
 			}
-
-			//wait for all task that were forked to complete
-			for(int i=0; i<threadCount-1; i++)
-				tasks[i].join();
-
+			Sceduler.forkAndJoin(tasks);
 			t.stopAndLog();
 		}
 		
@@ -261,12 +245,6 @@ public class CollisionManager implements CollisionManagerI {
 	                         MathG.sqr(circleDistanceY - box.height()/2);
 
 	    return (cornerDistance_sq <= (MathG.sqr(circle.getRadius())));
-	}
-	
-	//to be removed later
-	//prints time of collision detection 
-	public void printAvgTime(){
-		Game.print("Collision avg time: " + t.calculateAvg()/1000 + "us" + "\nMulti-threaded: " + useThreading);
 	}
 
 	@Override
