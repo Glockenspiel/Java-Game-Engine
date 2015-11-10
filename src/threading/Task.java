@@ -2,7 +2,7 @@ package threading;
 
 import java.util.concurrent.RecursiveTask;
 
-public abstract class Task extends RecursiveTask {
+public abstract class Task extends RecursiveTask<Object> {
 	
 	//calls join() for the recursive task
 	public void joinTask(){

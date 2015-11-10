@@ -43,10 +43,6 @@ public class Sprite extends Component {
 		return h;
 	}
 
-	//do nothing
-	@Override
-	public void update(GameObject obj) {}
-
 	//draw this sprite
 	@Override
 	public void draw(Drawer g, Vector objPos) {

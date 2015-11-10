@@ -15,7 +15,7 @@ public class CursorCreator {
 		return getCustomCursor(null);
 	}
 	
-	//returns a custom cursor
+	//returns a custom cursor, pass null as imgSrc for standard windows cursor
 	public static Cursor getCustomCursor(String imgSrc){
 		BufferedImage cursorImg=null;
 		if(imgSrc!=null){

@@ -189,7 +189,7 @@ public class Game {
 				found=false;
 				for(int g=0; g<objs.size() && !found; g++){
 					if(objs.get(g).getTag().equalsIgnoreCase(s)){
-						objs.remove(g);
+						deleteObjAtIndex(g);
 						found=true;
 					}
 				}
@@ -201,12 +201,19 @@ public class Game {
 				found=false;
 				for(int g=0; g<objs.size() && !found; g++){
 					if(objs.get(g).getID()==id){
-						objs.remove(g);
+						deleteObjAtIndex(g);
 						found=true;
 					}
 				}
 			}
 			deleteBufferIDs.clear();
+		}
+		
+		private void deleteObjAtIndex(int index){
+			if(index>=0 && index<objs.size()){
+				objs.get(index).dispose();
+				objs.remove(index);
+			}
 		}
 
 		private long calculateSleepTime() {

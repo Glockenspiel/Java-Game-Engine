@@ -107,9 +107,6 @@ public class TileMap extends Component {
 		return nList.item(0).getTextContent();
 	}
 
-	@Override
-	public void update(GameObject obj) {}
-
 	//draw all the tiles
 	@Override
 	public void draw(Drawer g, Vector objPos) {

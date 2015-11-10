@@ -9,8 +9,11 @@ public abstract class Component{
 	private String gameObjectTag="";
 
 	//update is where to do the game's logic
-	public abstract void update(GameObject obj);
+	public void update(GameObject obj){};
 	
 	//draw is where draw calls should be placed and is called after update
-	public abstract void draw(Drawer g, Vector objPos);
+	public void draw(Drawer g, Vector objPos){};
+	
+	//called on deletion
+	public void dispose(){};
 }

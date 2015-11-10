@@ -85,10 +85,6 @@ public class RigidBody extends Component {
 		moveBy = new Vector(moveBy.getX()*Time.deltaTime, moveBy.getY()*Time.deltaTime);
 		obj.moveBy(moveBy);
 	}
-
-	//don't draw anything
-	@Override
-	public void draw(Drawer g, Vector objPos) {}
 	
 	//ratio of the current mass to the default mass
 	private float massRatio(){

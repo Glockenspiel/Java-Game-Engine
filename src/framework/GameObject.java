@@ -267,4 +267,11 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 		return new Rectangle(minX, minY, maxX-minX, maxY-minY);
 	}
+	
+	//dispose all components
+	public void dispose(){
+		for(Component c: components){
+			c.dispose();
+		}
+	}
 }
