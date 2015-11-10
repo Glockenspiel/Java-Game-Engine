@@ -151,12 +151,10 @@ public class QuadTree {
 
 	public void drawBounds(Drawer g) {
 		g.drawBox(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight(), Color.GRAY);
-
-		if(nodes[0]==null)
-			return;
 		
 		for(QuadTree tree : nodes){
-			tree.drawBounds(g);
+			if(tree!=null)
+				tree.drawBounds(g);
 		}
 	}
 }

@@ -220,14 +220,20 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 
 	//returns the all the scripts of event type
-	public ArrayList<Event> getEvents() {
-		ArrayList<Event> events = new ArrayList<Event>();
+	private ArrayList<EventListener> getEventListeners() {
+		ArrayList<EventListener> events = new ArrayList<EventListener>();
 		for(Script s: scripts){
-			if(s instanceof Event){
-				events.add((Event)s);
+			if(s instanceof EventListener){
+				events.add((EventListener)s);
 			}
 		}
 		return events;
+	}
+	
+	public void notifyEventListeners(String tag, int value){
+		for(EventListener e : getEventListeners()){
+			e.notify(tag, value);
+		}
 	}
 
 	public Script getScriptByClass(Class cls) {

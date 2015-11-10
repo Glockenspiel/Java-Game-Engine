@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import misc.Time;
 import components.HUDItem;
 import display.Drawer;
-import framework.Event;
+import framework.EventListener;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
 
-public class PlayerStatus implements HUDItem, Event {
+public class PlayerStatus implements HUDItem, EventListener {
 
 	
 	private int time = 0;
@@ -59,12 +59,12 @@ public class PlayerStatus implements HUDItem, Event {
 
 	@Override
 	public void notify(String tag, int value) {
-		if(tag.contains("Enemy")){
+		if(tag.contains("enemy_hit")){
 			health -= value;
 			checkIsAlive();
 		}
 		
-		else if(tag.equalsIgnoreCase("Coin")){
+		else if(tag.equalsIgnoreCase("Coin_collected")){
 			money+=value;
 		}
 	}

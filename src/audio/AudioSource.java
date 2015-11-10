@@ -5,7 +5,7 @@ import framework.Component;
 public class AudioSource extends Component {
 
 	private String filename;
-	private AudioState currentState;
+	private AudioState currentState = null;
 	
 	public AudioSource(String filename, boolean startOnConstruction){
 		this.filename=filename;
@@ -17,14 +17,24 @@ public class AudioSource extends Component {
 	}
 	
 	public void setState(AudioState state){
-		if(currentState!=null)
-			currentState.endAction();
+		////if(currentState!=null)
+		//	currentState.endAction();
 		
 		currentState = state;
 		state.doAction();
 	}
 	
+	public String getFilename(){
+		return filename;
+	}
+	
 	public AudioState getState(){
 		return currentState;
+	}
+	
+	@Override
+	public void dispose(){
+		currentState.endAction();
+		//setState(new StoppedState());
 	}
 }

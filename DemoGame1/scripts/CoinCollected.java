@@ -1,7 +1,9 @@
 package scripts;
 
+import audio.AudioSource;
+import audio.PlayingState;
 import collision.CollisionListener;
-import framework.Event;
+import framework.EventListener;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -19,10 +21,14 @@ public class CoinCollected implements CollisionListener {
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
-			for(Event e : Game.getGameObjectById(id).getEvents()){
-				e.notify("coin", value);
-			}
+			Game.getGameObjectById(id).notifyEventListeners("coin_collected", value);
 			Game.deleteObjByID(objID);
+			GameObject obj = new GameObject("ching");
+			obj.add(new AudioSource("coins.wav", true));
+			obj.delete(3000);
+			Game.addGameObject(obj);
+			//AudioSource src = (AudioSource) super.getComponentByType(AudioSource.class);
+			//src.setState(new PlayingState(src));
 		}
 	}
 

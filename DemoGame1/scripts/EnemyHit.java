@@ -3,7 +3,7 @@ package scripts;
 import misc.MathG;
 import collision.CollisionListener;
 import demo.Explosion;
-import framework.Event;
+import framework.EventListener;
 import framework.Game;
 import framework.GameObject;
 import framework.Script;
@@ -21,9 +21,8 @@ public class EnemyHit implements CollisionListener {
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Player")){
-			for(Event e : Game.getGameObjectById(id).getEvents()){
-					e.notify(getTag(), damage+MathG.randomNumber(0, 10));
-			}
+			
+			Game.getGameObjectById(id).notifyEventListeners("enemy_hit", damage+MathG.randomNumber(0, 10));
 			
 			//create an explosion
 			Explosion ex = new Explosion(-5,16,64,64);
