@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import framework.Game;
+
 public class ImageLoader {
 	
 	private static String filePath = "Resources/Images/";
@@ -19,7 +21,7 @@ public class ImageLoader {
 			try {
 				image = javax.imageio.ImageIO.read(new File(filePath+filename));
 			} catch (IOException ex) {
-				System.out.println("Failed to load image: " + ex.getMessage());
+				Game.print("Failed to load image: " + ex.getMessage(), "error");
 				
 				//return  Error image instead
 				//and don't let loading become an infinite loop trying to load errorImage

@@ -1,5 +1,7 @@
 package framework;
 
+import interceptor.DebugFilter;
+import interceptor.FilterManager;
 import saving.LoadingState;
 import saving.LoadingStateI;
 import saving.Saving;
@@ -25,6 +27,8 @@ public class ServiceManager implements ServiceManagerI {
 	private static LoadingStateI loading;
 	private static Camera camera;
 	private static CollisionManagerI collisionManager;
+	
+	private static FilterManager filterManager;// = new FilterManager(new SwingPrint());
 	
 	//flags
 	private static boolean drawDebug;
@@ -58,11 +62,11 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//sets the printing type
 	@Override
-	public void setPrint(Print printType){
+	public void setPrintTarget(Print printType){
 		if(checkFinalised("Print"))
 			return;
 
-		print = printType;
+		filterManager = new FilterManager(new SwingPrint());
 	}
 	
 	//set saving
@@ -122,6 +126,9 @@ public class ServiceManager implements ServiceManagerI {
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
 		
+		if(filterManager==null)
+			filterManager = new FilterManager(new SwingPrint());
+		
 		finalised=true;
 	}
 	
@@ -132,10 +139,12 @@ public class ServiceManager implements ServiceManagerI {
 	}
 
 	//returns the print object
+	/*
 	@Override
 	public Print getPrint(){
 		return print;
 	}
+	*/
 	
 	//returns the camera object
 	@Override
@@ -169,7 +178,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//turn debug drawing on or off
 	@Override
-	public void enableDebugDraw(boolean isOn) {
+	public void setDebugDraw(boolean isOn) {
 		drawDebug=isOn;
 	}
 	
@@ -177,5 +186,10 @@ public class ServiceManager implements ServiceManagerI {
 	@Override
 	public boolean isDrawingDebug() {
 		return drawDebug;
+	}
+
+	@Override
+	public FilterManager getFilterManager() {
+		return filterManager;
 	}
 }

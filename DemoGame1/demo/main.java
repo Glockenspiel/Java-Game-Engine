@@ -1,8 +1,11 @@
 package demo;
 
+import interceptor.DebugFilter;
+import interceptor.FormatFilter;
 import demoSaving.ComplexLoading;
 import demoSaving.ComplexSaving;
 import saving.Saving;
+import services.SwingPrint;
 import services.SwingWindow;
 import framework.Game;
 import framework.LauncherOptions;
@@ -22,9 +25,13 @@ public class main{
 		Game.getServices().getWindow().showCursor(false);
 		Game.getServices().setSaving(new ComplexSaving());
 		Game.getServices().setLoading(new ComplexLoading());
+		Game.getServices().setPrintTarget(new SwingPrint());
+	//	Game.getServices().getFilterManager().setFilter(new FormatFilter());
+	//	Game.getServices().getFilterManager().setFilter(new DebugFilter());
+		
 		//custom cursor example
 		//Game.getServices().getWindow().setCustomCursor("triangle.png");
-		Game.getServices().enableDebugDraw(true);
+		Game.getServices().setDebugDraw(true);
 		
 		Game.start(new Level1());
 		

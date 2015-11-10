@@ -11,6 +11,8 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
+import framework.Game;
+
 public class PlayingState implements AudioState {
 
 	private AudioSource audioSrc;
@@ -50,9 +52,6 @@ public class PlayingState implements AudioState {
 	
 	private Thread playThread = new Thread(){
 		public void run(){
-			//play audio here
-			System.out.println(sound.getName());
-			//thread here
 			try
 			{
 				// Check if the audio file is a .wav file
@@ -119,7 +118,9 @@ public class PlayingState implements AudioState {
 								offset += line.write(buf, offset, num_read - offset);
 							}
 						}
-					} catch(IOException ex){ System.out.println("catched");}
+					} catch(IOException ex){ 
+						Game.print("caught   ioexception", "warning");
+					}
 					
 					line.drain();
 					line.stop();
@@ -146,15 +147,16 @@ public class PlayingState implements AudioState {
 		
 		@Override
 		public void interrupt(){
-			super.interrupt();
-			System.out.println("interupt");
+			Game.print("GameObect deleted before AudioSource completed its play state - " + sound.getName());
 			try {
 				if(stream!=null)
 					stream.close();
-				System.out.println("closing");
+				Game.print("closing sound -                    " + sound.getName());
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			super.interrupt();
 		}
 	};
 }

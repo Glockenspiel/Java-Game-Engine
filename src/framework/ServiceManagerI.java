@@ -1,5 +1,6 @@
 package framework;
 
+import interceptor.FilterManager;
 import saving.LoadingStateI;
 import saving.SavingI;
 import services.Camera;
@@ -13,7 +14,7 @@ public interface ServiceManagerI {
 	public void setWindow(Window windowType);
 	public void setInputType(Input inputType);
 	public void setCollisionManager(CollisionManagerI cm);
-	public void setPrint(Print printType);
+	public void setPrintTarget(Print printType);
 	public void setLoading(LoadingStateI stateLoader);
 	public void setSaving(SavingI savingI);
 	
@@ -22,12 +23,14 @@ public interface ServiceManagerI {
 	
 	//getters
 	public Input getInput();
-	public Print getPrint();
 	public Camera getCamera();
 	public Window getWindow();
 	public CollisionManagerI getCollisionManager();
 	public LoadingStateI getLoading();
 	public SavingI getSaving();
-	public void enableDebugDraw(boolean isOn);
+	public FilterManager getFilterManager();
+	
+	//getter and setter for boolean
+	public void setDebugDraw(boolean isOn);
 	public boolean isDrawingDebug();
 }

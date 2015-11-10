@@ -17,9 +17,6 @@ public class AudioSource extends Component {
 	}
 	
 	public void setState(AudioState state){
-		////if(currentState!=null)
-		//	currentState.endAction();
-		
 		currentState = state;
 		state.doAction();
 	}
@@ -35,6 +32,5 @@ public class AudioSource extends Component {
 	@Override
 	public void dispose(){
 		currentState.endAction();
-		//setState(new StoppedState());
 	}
 }

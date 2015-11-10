@@ -21,12 +21,12 @@ public class XmlLoader {
 		File xmlFile = new File(filename);
 		
 		if(!xmlFile.exists()){
-			Game.print("File was not found: " + filename+ " \nMake sure you have to correct path");
+			Game.print("File was not found: " + filename+ " \nMake sure you have to correct path", "error");
 			return null;
 		}
 		
 		if(Format.getFormat(filename).equalsIgnoreCase("xml")==false){
-			Game.print("Extension is not .xml for file: " + filename);
+			Game.print("Extension is not .xml for file: " + filename, "error");
 			return null;
 		}
 		

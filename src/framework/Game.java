@@ -1,5 +1,7 @@
 package framework;
 
+import interceptor.FilterManager;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -21,7 +23,6 @@ public class Game {
 	//managers
 	private static ServiceManagerI serMan;
 	private static LevelManagerI levelManager;
-	
 
 	//time for start of frame, used to calculate sleep time
 	private static long startTime;
@@ -245,7 +246,11 @@ public class Game {
 	}
 	
 	public static void print(String msg) {
-		serMan.getPrint().log(msg);
+		serMan.getFilterManager().filterRequest(msg);
+	}
+	
+	public static void print(String msg, String stateName) {
+		serMan.getFilterManager().filterRequest(msg, stateName);
 	}
 
 	//returns a shallow copy of all the GameObjects

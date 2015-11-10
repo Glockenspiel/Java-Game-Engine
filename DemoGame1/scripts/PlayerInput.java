@@ -50,7 +50,7 @@ public class PlayerInput implements Script {
 		
 		//toggle debug drawing
 		if(Game.getInput().isKeyPressed('L')){
-			Game.getServices().enableDebugDraw(!Game.getServices().isDrawingDebug());
+			Game.getServices().setDebugDraw(!Game.getServices().isDrawingDebug());
 		}
 		
 		if(Game.getInput().isKeyPressed('B')){
