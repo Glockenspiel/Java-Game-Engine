@@ -13,8 +13,9 @@ import framework.Script;
 
 public class PlayerInput implements Script {
 
-	private int speed=3;
-	private boolean once=true;
+	private int speed=10,
+			slowSpeed=10, 
+			fastSpeed=20;
 	private Vector playerSize;
 	
 	public PlayerInput(Vector playerSize){
@@ -28,46 +29,21 @@ public class PlayerInput implements Script {
 		Vector direction = Game.getServices().getInput().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement.getDeltaVector());
+		
 		//shoot
 		if(Game.getInput().isKeyPressed('P')){
 			shoot(obj.getPosition());
 		}
 		
-		//deleting a GameObject with keyboard input
-		if(once && Game.getInput().isKeyDown('Q')){
-			Game.deleteObjByTag("map");
-			once=false;
-		}
-		
 		//enable boost
 		char boostKey = (char)KeyEvent.VK_SPACE;
 		if(Game.getInput().isKeyDown(boostKey)){
-			speed = 20;
+			speed = fastSpeed;
 		}
 		else{
-			speed = 10;
+			speed = slowSpeed;
 		}
-		
-		//toggle debug drawing
-		if(Game.getInput().isKeyPressed('L')){
-			Game.getServices().setDebugDraw(!Game.getServices().isDrawingDebug());
-		}
-		
-		if(Game.getInput().isKeyPressed('B')){
-			Game.getServices().getSaving().saveState();
-		}
-		if(Game.getInput().isKeyPressed('N')){
-			Game.loadLatestSave();
-		}
-		
-		if(Game.getInput().isKeyPressed('H')){
-			boolean flag=true;
-			while(flag){
-				//if(Game.getInput().isKeyReleased('H'))
-					flag=false;
-			}
-		}
-		
+
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType(Animator.class);
 		if(a!=null){

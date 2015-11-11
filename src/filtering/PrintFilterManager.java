@@ -1,16 +1,16 @@
-package interceptor;
+package filtering;
 
 import java.util.ArrayList;
 
 import framework.Game;
 import services.Print;
 
-public class FilterManager {
+public class PrintFilterManager {
 
 	private FilterChain chain;
 	private ArrayList<FilteringState> filteringStates = new ArrayList<FilteringState>();
 	
-	public FilterManager(Print target){
+	public PrintFilterManager(Print target){
 		chain = new FilterChain(target);
 		
 		//create filter states

@@ -1,9 +1,6 @@
-package interceptor;
-
-import java.util.ArrayList;
+package filtering;
 
 import services.Print;
-import services.SwingPrint;
 
 public class FilterChain {
 	

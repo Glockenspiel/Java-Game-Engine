@@ -1,10 +1,9 @@
 package framework;
 
-import interceptor.FilterManager;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import filtering.PrintFilterManager;
 import misc.Time;
 import misc.Timer;
 import services.Camera;
@@ -210,6 +209,7 @@ public class Game {
 			deleteBufferIDs.clear();
 		}
 		
+		//deletes a GameObject from objs at the given index
 		private void deleteObjAtIndex(int index){
 			if(index>=0 && index<objs.size()){
 				objs.get(index).dispose();
@@ -217,6 +217,7 @@ public class Game {
 			}
 		}
 
+		//calculates the sleep time for this frame
 		private long calculateSleepTime() {
 			long executionTime= System.currentTimeMillis()-startTime;
 			long sleepTime=(long) (Time.FRAME_TIME-executionTime);
@@ -245,10 +246,12 @@ public class Game {
 		return new GameObject("-1");
 	}
 	
+	//prints a message with the current filter state
 	public static void print(String msg) {
 		serMan.getFilterManager().filterRequest(msg);
 	}
 	
+	//prints a message with the state specified
 	public static void print(String msg, String stateName) {
 		serMan.getFilterManager().filterRequest(msg, stateName);
 	}

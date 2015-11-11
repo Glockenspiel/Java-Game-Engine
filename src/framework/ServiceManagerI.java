@@ -1,6 +1,6 @@
 package framework;
 
-import interceptor.FilterManager;
+import filtering.PrintFilterManager;
 import saving.LoadingStateI;
 import saving.SavingI;
 import services.Camera;
@@ -28,7 +28,7 @@ public interface ServiceManagerI {
 	public CollisionManagerI getCollisionManager();
 	public LoadingStateI getLoading();
 	public SavingI getSaving();
-	public FilterManager getFilterManager();
+	public PrintFilterManager getFilterManager();
 	
 	//getter and setter for boolean
 	public void setDebugDraw(boolean isOn);

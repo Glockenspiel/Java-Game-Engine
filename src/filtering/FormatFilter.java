@@ -1,4 +1,4 @@
-package interceptor;
+package filtering;
 
 public class FormatFilter implements Filter {
 

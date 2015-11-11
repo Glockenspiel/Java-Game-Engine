@@ -4,6 +4,8 @@ import misc.Vector;
 import collision.CollisionBox;
 import collision.CollisionCircle;
 import scripts.PlayerInput;
+import scripts.SavingAndLoading;
+import scripts.ToggleDebugDrawing;
 import scripts.cameraFollow;
 import scripts.PlayerStatus;
 import components.Animation;
@@ -67,7 +69,11 @@ public class Player extends GameObject {
 		add(new PlayerStatus());
 		
 		moveBy(playerStartPosition); //move player to a suitable starting position
-		add(new PlayerInput(playerSize));//adding a script for input
+		
+		//commands
+		add(new PlayerInput(playerSize));
+		add(new ToggleDebugDrawing()); 
+		add(new SavingAndLoading());
 
 		add(new cameraFollow(getID(), playerStartPosition));
 	}

@@ -2,7 +2,7 @@ package services;
 
 import java.util.ArrayList;
 
-import threading.Sceduler;
+import threading.Scheduler;
 import misc.MathG;
 import misc.Timer;
 import collision.Rectangle;
@@ -19,7 +19,7 @@ import threading.CollisionTask;
 public class CollisionManager implements CollisionManagerI {
 
 	//1 task per thread available
-	private static final int taskCount = Sceduler.THREAD_COUNT;
+	private static final int taskCount = Scheduler.THREAD_COUNT;
 	private QuadTree quadTree;
 	
 	public CollisionManager(){
@@ -38,7 +38,7 @@ public class CollisionManager implements CollisionManagerI {
 		for(int i=0; i<taskCount; i++){
 			tasks[i] = new CollisionTask(objs, i, taskCount);
 		}
-		Sceduler.forkAndJoin(tasks);
+		Scheduler.forkAndJoin(tasks);
 	}
 	
 	//update the quad tree

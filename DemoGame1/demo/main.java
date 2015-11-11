@@ -1,16 +1,16 @@
 package demo;
 
-import interceptor.DebugFilter;
-import interceptor.FormatFilter;
 import demoSaving.ComplexLoading;
 import demoSaving.ComplexSaving;
 import saving.Saving;
 import services.SwingPrint;
 import services.SwingWindow;
+import filtering.DebugFilter;
+import filtering.FormatFilter;
 import framework.Game;
 import framework.LauncherOptions;
-import levels.Level1;
 import levels.Level2;
+import levels.Level1;
 import misc.Vector;
 
 

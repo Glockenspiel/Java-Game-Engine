@@ -2,8 +2,8 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
-import levels.Level1;
 import levels.Level2;
+import levels.Level1;
 import framework.Game;
 import framework.GameObject;
 import framework.Level;

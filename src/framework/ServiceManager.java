@@ -1,7 +1,7 @@
 package framework;
 
-import interceptor.DebugFilter;
-import interceptor.FilterManager;
+import filtering.DebugFilter;
+import filtering.PrintFilterManager;
 import saving.LoadingState;
 import saving.LoadingStateI;
 import saving.Saving;
@@ -28,7 +28,7 @@ public class ServiceManager implements ServiceManagerI {
 	private static Camera camera;
 	private static CollisionManagerI collisionManager;
 	
-	private static FilterManager filterManager;// = new FilterManager(new SwingPrint());
+	private static PrintFilterManager filterManager;// = new FilterManager(new SwingPrint());
 	
 	//flags
 	private static boolean drawDebug;
@@ -66,7 +66,7 @@ public class ServiceManager implements ServiceManagerI {
 		if(checkFinalised("Print"))
 			return;
 
-		filterManager = new FilterManager(new SwingPrint());
+		filterManager = new PrintFilterManager(new SwingPrint());
 	}
 	
 	//set saving
@@ -127,7 +127,7 @@ public class ServiceManager implements ServiceManagerI {
 			collisionManager = new CollisionManager();
 		
 		if(filterManager==null)
-			filterManager = new FilterManager(new SwingPrint());
+			filterManager = new PrintFilterManager(new SwingPrint());
 		
 		finalised=true;
 	}
@@ -189,7 +189,7 @@ public class ServiceManager implements ServiceManagerI {
 	}
 
 	@Override
-	public FilterManager getFilterManager() {
+	public PrintFilterManager getFilterManager() {
 		return filterManager;
 	}
 }

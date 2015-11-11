@@ -12,7 +12,7 @@ public class CollisionTask extends Task{
 	private int start,end; 
 	public CollisionTask(ArrayList<GameObject> objs, int taskIndex, int taskCount) {
 		this.objs=objs;
-		int[] indexes = Sceduler.findStartAndEndIndexes(objs.size(), taskIndex, taskCount);
+		int[] indexes = Scheduler.findStartAndEndIndexes(objs.size(), taskIndex, taskCount);
 		start = indexes[0];
 		end = indexes[1];
 	}

@@ -1,7 +1,7 @@
 package threading;
 
 
-public class Sceduler {
+public class Scheduler {
 	
 	public static final int THREAD_COUNT = Runtime.getRuntime().availableProcessors();
 	

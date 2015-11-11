@@ -1,42 +1,50 @@
 package levels;
 
+import collision.CollisionBox;
+import misc.Timer;
 import misc.Vector;
+import components.RigidBody;
+import components.SpriteSheet;
+import demo.Player;
 import scripts.ToggleLevel;
 import tiles.TileMap;
-import demo.CoinDispenser;
-import demo.Player;
 import framework.Game;
 import framework.GameObject;
 import framework.Level;
-import demo.EnemySpawner;
 
-public class Level2 extends Level {
+public class Level2 extends Level{
 
-	private final String levelName="level2";
+	private final String levelName = "example level1";
 	
 	//initialise level
 	@Override
 	public void init() {
-		//spawner of enemys
-		GameObject enemySpawner = new EnemySpawner("Enemy spawner", 1000);
-		addObj(enemySpawner);
+
 		
-		//add player if it doesn't exist already
+		GameObject map = new GameObject("map");
+		
+		//create tile map component
+		TileMap tilemap = new TileMap("level1.xml", 32,32);
+		map.add(tilemap);
+		addObj(map);
+		
+		
 		if(Game.objExistsWithTag(Player.getDefaultTag())==false){
 			GameObject player = new Player();
 			addObj(player);
 		}
+
+		int stressObjCount=200;
+		for(int i=0; i<stressObjCount; i++){
+			GameObject obj = new GameObject("stressOBJ1");
+			obj.moveBy(new Vector(i*5, 150));
+			RigidBody body = new RigidBody(20);
+			body.setGravity(0);
+			obj.add(body);
+			obj.add(new CollisionBox(0,0,4,4));
+			addObj(obj);
+		}
 		
-		//create the tile map object
-		GameObject map = new GameObject("map");
-		map.add(new TileMap("level2.xml", 64,64));
-		map.moveBy(new Vector(-250,-250));
-		addObj(map);
-		
-		//create and add a coin dispenser
-		addObj(new CoinDispenser(500,0));
-		
-		//add a script to toggle to next level
 		GameObject nextLevel = new GameObject("move level");
 		nextLevel.add(new ToggleLevel(new Level1()));
 		addObj(nextLevel);
@@ -44,7 +52,7 @@ public class Level2 extends Level {
 
 	@Override
 	public String getName() {
-		return "level2";
+		return levelName;
 	}
 
 }
