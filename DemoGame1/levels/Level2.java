@@ -24,7 +24,7 @@ public class Level2 extends Level{
 		GameObject map = new GameObject("map");
 		
 		//create tile map component
-		TileMap tilemap = new TileMap("level1.xml", 32,32);
+		TileMap tilemap = new TileMap("level2.xml", 32,32);
 		map.add(tilemap);
 		addObj(map);
 		

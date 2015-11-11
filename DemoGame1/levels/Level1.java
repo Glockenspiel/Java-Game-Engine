@@ -29,7 +29,7 @@ public class Level1 extends Level {
 		
 		//create the tile map object
 		GameObject map = new GameObject("map");
-		map.add(new TileMap("level2.xml", 64,64));
+		map.add(new TileMap("level1.xml", 64,64));
 		map.moveBy(new Vector(-250,-250));
 		addObj(map);
 		
