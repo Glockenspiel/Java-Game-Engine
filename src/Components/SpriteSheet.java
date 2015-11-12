@@ -8,7 +8,7 @@ public class SpriteSheet {
 	
 	private BufferedImage[][] images;
 	private BufferedImage errorImage;
-	BufferedImage srcImage;
+	private BufferedImage srcImage;
 	
 	//constructor
 	public SpriteSheet(String filename, int frameWidth, int frameHeight){

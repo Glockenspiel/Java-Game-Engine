@@ -8,7 +8,7 @@ import framework.Game;
 
 public class SwingDrawer implements Drawer {
 
-	Graphics g;
+	private Graphics g;
 	
 	//default constructor
 	public SwingDrawer(){}

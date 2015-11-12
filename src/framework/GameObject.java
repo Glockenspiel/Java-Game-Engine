@@ -70,7 +70,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 	
 	//returns first found component with matching type
-	public Component getComponentByType(Class cls){
+	public Component getComponentByType(Class<?> cls){
 		String className = cls.getName();
 		for(Component c : components)
 			if(c.getClass().getName().equals(className))
@@ -80,7 +80,7 @@ public class GameObject implements Debug{ // also known as an Entity
 	}
 	
 	//returns all components with matching type
-	public void getAllComponentsByType(Class cls, ArrayList<Component> comps){
+	public void getAllComponentsByType(Class<?> cls, ArrayList<Component> comps){
 		String className = cls.getName();
 		for(Component c: components)
 			if(c.getClass().getName().equals(className))
@@ -236,8 +236,7 @@ public class GameObject implements Debug{ // also known as an Entity
 		}
 	}
 
-	public Script getScriptByClass(Class cls) {
-		boolean flag=true;
+	public Script getScriptByClass(Class<?> cls) {
 		String className = cls.getName();
 		for(Script s : scripts){
 			if(s.getClass().getName().equals(className)){

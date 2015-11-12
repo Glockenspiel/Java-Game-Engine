@@ -67,4 +67,9 @@ public class LevelManager implements LevelManagerI {
 		
 		Game.getServices().getLoading().loadState(state);
 	}
+
+	@Override
+	public void initCurrentLevel() {
+		currentLevel.init();
+	}
 }

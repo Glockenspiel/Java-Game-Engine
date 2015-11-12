@@ -2,19 +2,15 @@ package demo;
 
 import demoSaving.ComplexLoading;
 import demoSaving.ComplexSaving;
-import saving.Saving;
-import services.SwingPrint;
+import services.ConsolePrint;
 import services.SwingWindow;
-import filtering.DebugFilter;
-import filtering.FormatFilter;
 import framework.Game;
 import framework.LauncherOptions;
-import levels.Level2;
 import levels.Level1;
 import misc.Vector;
 
 
-public class main{
+public class Main{
 
 	public static void main(String[] args) {
 		//create the game 
@@ -25,9 +21,7 @@ public class main{
 		Game.getServices().getWindow().showCursor(false);
 		Game.getServices().setSaving(new ComplexSaving());
 		Game.getServices().setLoading(new ComplexLoading());
-		Game.getServices().setPrintTarget(new SwingPrint());
-	//	Game.getServices().getFilterManager().setFilter(new FormatFilter());
-	//	Game.getServices().getFilterManager().setFilter(new DebugFilter());
+		Game.getServices().setPrintTarget(new ConsolePrint());
 		
 		//custom cursor example
 		//Game.getServices().getWindow().setCustomCursor("triangle.png");

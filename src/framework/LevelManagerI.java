@@ -7,4 +7,5 @@ package framework;
 	public void setCurrentLevel(Level level);
 	public void load();
 	public void loadLatestState();
+	public void initCurrentLevel();
 }

@@ -3,9 +3,7 @@ package components;
 import misc.MathG;
 import misc.Time;
 import misc.Vector;
-import display.Drawer;
 import framework.Component;
-import framework.Game;
 import framework.GameObject;
 
 //physics movement component

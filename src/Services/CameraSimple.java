@@ -7,7 +7,7 @@ public class CameraSimple implements Camera {
 
 	private Vector position;
 	private int followId=-1;
-	Vector offset;
+	private Vector offset;
 	
 	//constructor
 	public CameraSimple(int x, int y){

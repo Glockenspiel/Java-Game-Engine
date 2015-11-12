@@ -35,17 +35,17 @@ public class Scheduler {
 	 * objs.size() = 27
 	 * 
 	 * Algorithm result from worst case example:
-	 * thread 1: 8 indexes
-	 * thread 2: 8 indexes
-	 * thread 3: 8 indexes
-	 * thread 4: 7 indexes
-	 * 
-	 * 
-	 * works case example from dividing by 4
 	 * thread 1: 7 indexes
 	 * thread 2: 7 indexes
 	 * thread 3: 7 indexes
-	 * thread 4: 13 indexes
+	 * thread 4: 6 indexes
+	 * 
+	 * 
+	 * works case example from dividing by 4
+	 * thread 1: 6 indexes
+	 * thread 2: 6 indexes
+	 * thread 3: 6 indexes
+	 * thread 4: 9 indexes
 	 */
 	public static  int[] findStartAndEndIndexes(int arraySize,int taskIndex, int taskCount){
 		int objsPerThread = arraySize/taskCount;

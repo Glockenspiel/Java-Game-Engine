@@ -3,7 +3,6 @@ package scripts;
 import misc.Vector;
 import components.RigidBody;
 import framework.Component;
-import framework.Game;
 import framework.GameObject;
 import framework.Script;
 

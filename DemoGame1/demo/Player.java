@@ -2,7 +2,6 @@ package demo;
 
 import misc.Vector;
 import collision.CollisionBox;
-import collision.CollisionCircle;
 import scripts.PlayerInput;
 import scripts.SavingAndLoading;
 import scripts.ToggleDebugDrawing;

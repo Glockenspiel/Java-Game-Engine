@@ -10,7 +10,6 @@ import framework.GameObject;
 
 public class Animator extends Component {
 
-	private static final String TYPE = "Animator";
 	private Map<String, Animation> animations = new HashMap<String, Animation>();
 	private Animation currentAnim = null;
 	private String currentAnimState = "";

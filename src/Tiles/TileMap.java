@@ -13,7 +13,6 @@ import components.SpriteSheet;
 import display.Drawer;
 import framework.Component;
 import framework.Game;
-import framework.GameObject;
 
 public class TileMap extends Component {
 

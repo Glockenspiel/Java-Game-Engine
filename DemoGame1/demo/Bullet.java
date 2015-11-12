@@ -2,7 +2,6 @@ package demo;
 
 import misc.Vector;
 import collision.CollisionBox;
-import collision.CollisionCircle;
 import scripts.BulletScript;
 import components.Sprite;
 import framework.GameObject;

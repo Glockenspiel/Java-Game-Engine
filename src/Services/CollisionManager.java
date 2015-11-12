@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import threading.Scheduler;
 import misc.MathG;
-import misc.Timer;
 import collision.Rectangle;
 import collision.CollisionBox;
 import collision.CollisionCircle;
@@ -12,7 +11,6 @@ import collision.CollisionResult;
 import collision.CollisionShape;
 import collision.QuadTree;
 import display.Drawer;
-import framework.Game;
 import framework.GameObject;
 import threading.CollisionTask;
 

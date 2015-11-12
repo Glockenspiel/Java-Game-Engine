@@ -1,12 +1,9 @@
 package scripts;
 
 import audio.AudioSource;
-import audio.PlayingState;
 import collision.CollisionListener;
-import framework.EventListener;
 import framework.Game;
 import framework.GameObject;
-import framework.Script;
 
 public class CoinCollected implements CollisionListener {
 

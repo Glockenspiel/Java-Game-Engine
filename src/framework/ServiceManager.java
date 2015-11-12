@@ -1,6 +1,5 @@
 package framework;
 
-import filtering.DebugFilter;
 import filtering.PrintFilterManager;
 import saving.LoadingState;
 import saving.LoadingStateI;
@@ -13,7 +12,7 @@ import services.CollisionManagerI;
 import services.Input;
 import services.Print;
 import services.SwingInput;
-import services.SwingPrint;
+import services.ConsolePrint;
 import services.SwingWindow;
 import services.Window;
 
@@ -22,7 +21,6 @@ public class ServiceManager implements ServiceManagerI {
 	//services
 	private static Window window;
 	private static Input input;
-	private static Print print;
 	private static SavingI saving;
 	private static LoadingStateI loading;
 	private static Camera camera;
@@ -66,7 +64,7 @@ public class ServiceManager implements ServiceManagerI {
 		if(checkFinalised("Print"))
 			return;
 
-		filterManager = new PrintFilterManager(new SwingPrint());
+		filterManager = new PrintFilterManager(new ConsolePrint());
 	}
 	
 	//set saving
@@ -119,15 +117,12 @@ public class ServiceManager implements ServiceManagerI {
 			
 		if(input==null)
 			input = new SwingInput();
-			
-		if(print==null)
-			print = new SwingPrint();
-			
+				
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
 		
 		if(filterManager==null)
-			filterManager = new PrintFilterManager(new SwingPrint());
+			filterManager = new PrintFilterManager(new ConsolePrint());
 		
 		finalised=true;
 	}

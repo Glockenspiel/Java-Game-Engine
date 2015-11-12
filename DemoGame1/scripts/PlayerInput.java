@@ -2,10 +2,9 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
+import audio.AudioSource;
 import misc.Vector;
-import collision.CollisionBox;
 import components.Animator;
-import components.Sprite;
 import demo.Bullet;
 import framework.Game;
 import framework.GameObject;
@@ -64,7 +63,10 @@ public class PlayerInput implements Script {
 		Vector offset = new Vector(playerSize.intX(),playerSize.intY()/2-bullet.getSize().intY()/2);
 		bullet.moveTo(Vector.add(position, offset));
 		bullet.delete(4000);
-		
 		Game.addGameObject(bullet);
+		GameObject obj = new GameObject("bang");
+		obj.add(new AudioSource("bullet.wav", true));
+		obj.delete(3000);
+		Game.addGameObject(obj);
 	}
 }

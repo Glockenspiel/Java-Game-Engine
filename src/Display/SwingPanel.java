@@ -10,15 +10,14 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
-import misc.Time;
-import misc.Timer;
 import misc.Vector;
 import framework.Game;
 import framework.GameObject;
 
+@SuppressWarnings("serial")
 public class SwingPanel extends JPanel implements KeyListener {
 	
-	Drawer drawer;
+	private Drawer drawer;
 	
 	//constructor
 	public SwingPanel(){

@@ -6,11 +6,9 @@ import display.Drawer;
 import loaders.ImageLoader;
 import misc.Vector;
 import framework.Component;
-import framework.GameObject;
 
 public class Sprite extends Component {
 
-	private static final String ImgFilePath = "Resources/Images/";
 	private BufferedImage image;
 	private int offsetX, offsetY; //offsets from GameObject origin
 	private int w,h;

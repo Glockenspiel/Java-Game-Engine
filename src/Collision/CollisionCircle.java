@@ -3,8 +3,6 @@ package collision;
 import misc.Debug;
 import misc.Vector;
 import display.Drawer;
-import framework.Component;
-import framework.GameObject;
 
 public class CollisionCircle implements CollisionShape, Debug {
 

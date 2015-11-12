@@ -3,10 +3,8 @@ package scripts;
 import misc.MathG;
 import collision.CollisionListener;
 import demo.Explosion;
-import framework.EventListener;
 import framework.Game;
 import framework.GameObject;
-import framework.Script;
 
 public class EnemyHit implements CollisionListener {
 

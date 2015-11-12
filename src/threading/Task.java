@@ -2,6 +2,7 @@ package threading;
 
 import java.util.concurrent.RecursiveTask;
 
+@SuppressWarnings("serial")
 public abstract class Task extends RecursiveTask<Object> {
 	
 	//calls join() for the recursive task

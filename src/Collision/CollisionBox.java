@@ -5,8 +5,6 @@ import java.awt.Color;
 import misc.Debug;
 import misc.Vector;
 import display.Drawer;
-import framework.Component;
-import framework.GameObject;
 
 
 public class CollisionBox implements CollisionShape, Debug {
@@ -17,7 +15,7 @@ public class CollisionBox implements CollisionShape, Debug {
 	private String tag; //used for deleting this shape
 	
 	 //stores the latest position of the GameObject this collision shape belongs to
-	Vector objPosition=new Vector(0,0);
+	private Vector objPosition=new Vector(0,0);
 	
 	//constructor
 	public CollisionBox(int x, int y, int w, int h){

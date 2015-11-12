@@ -3,7 +3,6 @@ package framework;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import filtering.PrintFilterManager;
 import misc.Time;
 import misc.Timer;
 import services.Camera;
@@ -57,7 +56,7 @@ public class Game {
 	}
 
 	//loads level given
-	static void loadCurrentLevel(){
+	public static void loadCurrentLevel(){
 		//clear all the buffers
 		deleteBufferTag.clear();
 		deleteBufferIDs.clear();
@@ -72,7 +71,7 @@ public class Game {
 			}
 		}
 		
-		levelManager.getCurrentLevel().init();
+		levelManager.initCurrentLevel();
 	}
 	
 	//returns the current level

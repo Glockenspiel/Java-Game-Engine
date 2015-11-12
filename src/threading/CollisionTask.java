@@ -1,12 +1,12 @@
 package threading;
 
 import java.util.ArrayList;
-import java.util.concurrent.RecursiveTask;
 
 import framework.Game;
 import framework.GameObject;
 
 //define your class
+@SuppressWarnings("serial")
 public class CollisionTask extends Task{
 	private ArrayList<GameObject> objs;
 	private int start,end; 

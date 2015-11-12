@@ -8,9 +8,9 @@ import misc.Vector;
 public class SwingInput implements Input{
 	
 	//store booleans of keys pressed, each index relates to the key's unicode character
-	final static int SIZE=128;
-	static boolean [] prevInput = new boolean[SIZE];
-	static boolean [] currentInput = new boolean[SIZE];
+	private final static int SIZE=128;
+	private static boolean [] prevInput = new boolean[SIZE];
+	private static boolean [] currentInput = new boolean[SIZE];
 	
 	//default constructor
 	public SwingInput(){

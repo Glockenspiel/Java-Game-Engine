@@ -2,8 +2,6 @@ package demo;
 
 import misc.MathG;
 import misc.Vector;
-import audio.AudioSource;
-import collision.CollisionBox;
 import collision.CollisionCircle;
 import scripts.CoinCollected;
 import scripts.MoveScript;

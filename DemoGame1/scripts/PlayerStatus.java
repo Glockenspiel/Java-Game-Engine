@@ -7,9 +7,7 @@ import misc.Time;
 import components.HUDItem;
 import display.Drawer;
 import framework.EventListener;
-import framework.Game;
 import framework.GameObject;
-import framework.Script;
 
 public class PlayerStatus implements HUDItem, EventListener {
 

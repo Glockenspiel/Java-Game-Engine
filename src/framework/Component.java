@@ -3,10 +3,7 @@ package framework;
 import misc.Vector;
 import display.Drawer;
 
-public abstract class Component{
-	
-	//game object tag is the name of the GameObject which this component belongs to
-	private String gameObjectTag="";
+public abstract class Component{	
 
 	//update is where to do the game's logic
 	public void update(GameObject obj){};
