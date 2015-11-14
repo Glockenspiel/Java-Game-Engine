@@ -6,7 +6,7 @@ import services.ConsolePrint;
 import services.SwingWindow;
 import framework.Game;
 import framework.LauncherOptions;
-import levels.Level1;
+import levels.*;
 import misc.Vector;
 
 
@@ -27,7 +27,7 @@ public class Main{
 		//Game.getServices().getWindow().setCustomCursor("triangle.png");
 		Game.getServices().setDebugDraw(true);
 		
-		Game.start(new Level1());
+		Game.start(new Level3());
 		
 	}
 

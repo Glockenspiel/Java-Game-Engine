@@ -42,7 +42,4 @@ public class Health implements EventListener, SetObjID {
 	public void setGameObjectID(int id) {
 		objID=id;
 	}
-
-	
-	
 }
