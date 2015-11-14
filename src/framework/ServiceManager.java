@@ -9,10 +9,12 @@ import services.Camera;
 import services.CameraSimple;
 import services.CollisionManager;
 import services.CollisionManagerI;
-import services.Input;
+import services.KeyBoardInput;
+import services.MouseInput;
 import services.Print;
-import services.SwingInput;
+import services.SwingKeyBoardInput;
 import services.ConsolePrint;
+import services.SwingMouseInput;
 import services.SwingWindow;
 import services.Window;
 
@@ -20,7 +22,8 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//services
 	private static Window window;
-	private static Input input;
+	private static KeyBoardInput input;
+	private static MouseInput mouseInput;
 	private static SavingI saving;
 	private static LoadingStateI loading;
 	private static Camera camera;
@@ -45,7 +48,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//sets the input 
 	@Override
-	public void setInputType(Input inputType){
+	public void setInputType(KeyBoardInput inputType){
 		if(checkFinalised("Input"))
 			return;
 
@@ -105,6 +108,10 @@ public class ServiceManager implements ServiceManagerI {
 		if(window.getPreferredHeight()<=0 || window.getPreferredWidth()<=0){
 			window.setPreferredSize(w, h);
 		}
+		
+		if(mouseInput==null){
+			mouseInput=new SwingMouseInput();
+		}
 			
 		if(saving==null)
 			saving = new Saving();
@@ -116,7 +123,7 @@ public class ServiceManager implements ServiceManagerI {
 			camera = new CameraSimple(0,0);
 			
 		if(input==null)
-			input = new SwingInput();
+			input = new SwingKeyBoardInput();
 				
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
@@ -129,7 +136,7 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//returns the input object
 	@Override
-	public Input getInput(){
+	public KeyBoardInput getInput(){
 		return input;
 	}
 
@@ -186,5 +193,10 @@ public class ServiceManager implements ServiceManagerI {
 	@Override
 	public PrintFilterManager getFilterManager() {
 		return filterManager;
+	}
+	
+	@Override
+	public MouseInput getMouse(){
+		return mouseInput;
 	}
 }

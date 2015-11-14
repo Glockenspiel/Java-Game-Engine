@@ -2,6 +2,7 @@ package scripts;
 
 import java.awt.event.KeyEvent;
 
+import services.MouseInput;
 import audio.AudioSource;
 import misc.Vector;
 import components.Animator;
@@ -30,13 +31,13 @@ public class PlayerInput implements Script {
 		obj.moveBy(displacement.getDeltaVector());
 		
 		//shoot
-		if(Game.getInput().isKeyPressed('P')){
+		if(Game.getInput().isButtonPressed('P') || Game.getMouse().isButtonPressed(MouseInput.MIDDLE)){
 			shoot(obj.getPosition());
 		}
 		
 		//enable boost
-		char boostKey = (char)KeyEvent.VK_SPACE;
-		if(Game.getInput().isKeyDown(boostKey)){
+		char boostKey = KeyEvent.VK_SPACE;
+		if(Game.getInput().isButtonDown(boostKey)){
 			speed = fastSpeed;
 		}
 		else{
@@ -46,10 +47,10 @@ public class PlayerInput implements Script {
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType(Animator.class);
 		if(a!=null){
-			if(Game.getInput().isKeyDown(boostKey) && a.getCurrentState()!="big"){
+			if(Game.getInput().isButtonDown(boostKey) && a.getCurrentState()!="big"){
 					a.setCurrentAnimation("big");
 			}
-			else if(Game.getServices().getInput().isKeyUp(boostKey)  && a.getCurrentState()!="small"){
+			else if(Game.getServices().getInput().isButtonUp(boostKey)  && a.getCurrentState()!="small"){
 				a.setCurrentAnimation("small");
 			}
 		}

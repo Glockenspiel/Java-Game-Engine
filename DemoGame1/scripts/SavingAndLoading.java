@@ -9,12 +9,12 @@ public class SavingAndLoading implements Script {
 	@Override
 	public void execute(GameObject obj) {
 		//save button
-		if(Game.getInput().isKeyPressed('B')){
+		if(Game.getInput().isButtonPressed('B')){
 			Game.getServices().getSaving().saveState();
 		}
 		
 		//load button
-		if(Game.getInput().isKeyPressed('N')){
+		if(Game.getInput().isButtonPressed('N')){
 			Game.loadLatestSave();
 		}
 	}

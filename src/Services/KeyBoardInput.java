@@ -2,22 +2,22 @@ package services;
 
 import misc.Vector;
 
-public interface Input {
+public interface KeyBoardInput {
 	
 	//clear input for next frame
 	void clear();
 	
 	//if current state of key is down
-	public boolean isKeyDown(char key);
+	public boolean isButtonDown(int key);
 		
 	//if current state of key is up
-	public boolean isKeyUp(char key);
+	public boolean isButtonUp(int key);
 		
 	//true if key pressed down
-	public boolean isKeyPressed(char key);
+	public boolean isButtonPressed(int key);
 		
 	//true if key released
-	public boolean isKeyReleased(char key);
+	public boolean isButtonReleased(int key);
 	
 	//returns the magnitude for the directional input
 	public Vector getDirectionInput();

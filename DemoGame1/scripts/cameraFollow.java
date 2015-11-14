@@ -23,7 +23,7 @@ public class cameraFollow implements Script {
 	@Override
 	public void execute(GameObject obj) {
 		//toggle camera follow
-		if(Game.getServices().getInput().isKeyPressed((char) KeyEvent.VK_T)){
+		if(Game.getServices().getInput().isButtonPressed((char) KeyEvent.VK_T)){
 			if(Game.getCamera().getFollowId()!=-1)
 				Game.getCamera().unFollow();
 			else{

@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import misc.Vector;
 
-public class SwingInput implements Input{
+public class SwingKeyBoardInput implements KeyBoardInput{
 	
 	//store booleans of keys pressed, each index relates to the key's unicode character
 	private final static int SIZE=128;
@@ -13,7 +13,7 @@ public class SwingInput implements Input{
 	private static boolean [] currentInput = new boolean[SIZE];
 	
 	//default constructor
-	public SwingInput(){
+	public SwingKeyBoardInput(){
 		//set all values to false by default
 		Arrays.fill(prevInput, Boolean.FALSE);
 		Arrays.fill(currentInput, Boolean.FALSE);
@@ -28,19 +28,19 @@ public class SwingInput implements Input{
 	
 	//if current state of key is down
 	@Override
-	public boolean isKeyDown(char key){
+	public boolean isButtonDown(int key){
 		return currentInput[key];
 	}
 	
 	//if current state of key is up
 	@Override
-	public boolean isKeyUp(char key){
+	public boolean isButtonUp(int key){
 		return !currentInput[key];
 	}
 	
 	//true if key pressed down
 	@Override
-	public boolean isKeyPressed(char key){
+	public boolean isButtonPressed(int key){
 		if(prevInput[key] == false && currentInput[key] == true)
 			return true;
 		return false;
@@ -49,7 +49,7 @@ public class SwingInput implements Input{
 	
 	//true if key released
 	@Override
-	public boolean isKeyReleased(char key){
+	public boolean isButtonReleased(int key){
 		if(prevInput[key] == true && currentInput[key] == false)
 			return true;
 		return false;
@@ -78,20 +78,20 @@ public class SwingInput implements Input{
 		int x=0,y=0;
 		
 		//up
-		if(isKeyDown('W') || isKeyDown((char)KeyEvent.VK_UP)){
+		if(isButtonDown('W') || isButtonDown((char)KeyEvent.VK_UP)){
 			y=-1;
 		}
 		//down
-		else if(isKeyDown('S') || isKeyDown((char)KeyEvent.VK_DOWN)){
+		else if(isButtonDown('S') || isButtonDown((char)KeyEvent.VK_DOWN)){
 			y=1;
 		}
 		
 		//left
-		if(isKeyDown('A') || isKeyDown((char)KeyEvent.VK_LEFT)){
+		if(isButtonDown('A') || isButtonDown((char)KeyEvent.VK_LEFT)){
 			x=-1;
 		}
 		//right
-		else if(isKeyDown('D') || isKeyDown((char)KeyEvent.VK_RIGHT)){
+		else if(isButtonDown('D') || isButtonDown((char)KeyEvent.VK_RIGHT)){
 			x=1;
 		}
 		

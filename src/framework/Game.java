@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import misc.Time;
 import misc.Timer;
 import services.Camera;
-import services.Input;
+import services.KeyBoardInput;
+import services.MouseInput;
 
 public class Game {
 	
@@ -136,6 +137,7 @@ public class Game {
 				
 				//clear the input buffer
 				serMan.getInput().clear();
+				serMan.getMouse().clear();
 				
 				//check if there is a request to quit the game
 				if(checkExitGame())
@@ -154,7 +156,8 @@ public class Game {
 		//checks if the escape game command is true
 		private boolean checkExitGame() {
 			if(Game.getServices().isDrawingDebug())
-				if(getInput().isKeyDown((char)KeyEvent.VK_ESCAPE))
+				if(getInput().isButtonDown((char)KeyEvent.VK_ESCAPE) && 
+						getInput().isButtonDown((char)KeyEvent.VK_SHIFT))
 					return true;
 			return exitGame;
 		}
@@ -303,7 +306,7 @@ public class Game {
 
 	//short hand for getting the input service
 	//this encapsulates level manager
-	public static Input getInput(){
+	public static KeyBoardInput getInput(){
 		return serMan.getInput();
 	}
 	
@@ -320,5 +323,9 @@ public class Game {
 	
 	public static void exit(){
 		exitGame=true;
+	}
+
+	public static MouseInput getMouse() {
+		return serMan.getMouse();
 	}
 }

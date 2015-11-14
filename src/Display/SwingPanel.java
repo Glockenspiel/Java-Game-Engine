@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +29,16 @@ public class SwingPanel extends JPanel implements KeyListener {
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.setBackground(new Color(0,200,200));
+		
+		addMouseListener(new MouseAdapter() { 
+	          public void mousePressed(MouseEvent me) { 
+	            Game.getServices().getMouse().setPressed(me.getButton());
+	          } 
+	          
+	          public void mouseReleased(MouseEvent me){
+	        	  Game.getServices().getMouse().setReleased(me.getButton());
+	          }
+	        });
 	}
 
 
@@ -90,5 +103,4 @@ public class SwingPanel extends JPanel implements KeyListener {
 	//do nothing
 	@Override
 	public void keyTyped(KeyEvent arg0) {}
-
 }
