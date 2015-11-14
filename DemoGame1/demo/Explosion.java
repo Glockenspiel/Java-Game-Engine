@@ -1,7 +1,7 @@
 package demo;
 
+import scripts.DeleteOnAudioComplete;
 import audio.AudioSource;
-import audio.PlayingState;
 import misc.Time;
 import misc.Vector;
 import components.Animation;
@@ -28,8 +28,9 @@ public class Explosion extends GameObject {
 	private void init(int x, int y, int w, int h){
 		SpriteSheet s = new SpriteSheet("explo.png", 70,70);
 		add(new Animation(s,w,h,new Vector(x,y),3));
-		add(new AudioSource("explosion.wav", false));
-		
+		add(new AudioSource("explosion.wav"));
+		add(new DeleteOnAudioComplete());
+		super.setDrawLayer(100);
 	}
 	
 	//update the Explosition
@@ -38,12 +39,14 @@ public class Explosion extends GameObject {
 		super.update();
 		
 		//call delete once
-		if(once){
+		/*
+		if(!once){
 			once=false;
 			AudioSource src = (AudioSource) super.getComponentByType(AudioSource.class);
 			src.setState(new PlayingState(src));
 			delete((long)Time.FRAME_TIME*3*6);
 		}
+		*/
 	}
 
 }

@@ -48,16 +48,25 @@ public class GameObject implements Debug{ // also known as an Entity
 	
 	//adds a Component to the GameObject
 	public void add(Component c){
+		if(c instanceof SetObjID)
+			((SetObjID) c).setGameObjectID(getID());
+		
 		components.add(c);
 	}
 	
 	//adds a CollisionShape to the GameObject
 	public void add(CollisionShape shape){
+		if(shape instanceof SetObjID)
+			((SetObjID) shape).setGameObjectID(getID());
+		
 		collisionShapes.add(shape);
 	}
 	
 	//adds a Script to the GameObject
 	public void add(Script s){
+		if(s instanceof SetObjID)
+			((SetObjID) s).setGameObjectID(getID());
+		
 		scripts.add(s);
 	}
 	

@@ -1,0 +1,65 @@
+todo list:
+
+Rotation
+GUI application
+Write saves to file
+tile editor
+scripts commonly used in games
+website 
+
+
+
+
+
+
+
+Rotation
+---------
+rotate images
+rotates collision boxes
+detect collisions with rotated boxes
+
+GUI application
+---------------
+draw and drop
+windows:
+	-game preview
+	-scene contents list
+	-Game object manager
+	-pipeline contents
+	
+	
+Saving file
+----------
+use saving and load to load and save to xml file
+	
+tile editor
+--------
+create a tile editor for tile maps
+or files from tiled2D
+
+website
+--------
+home
+tutorials
+market
+buy pro
+login
+
+
+pro version
+-------------
+encrypt xml files
+online leaderboards
+port to android
+3D
+source control
+multiplayer games
+make money
+advertising
+steam integration
+free game templates
+better debugging features
+analysis on players playing your game
+discounts on website market
+premium support

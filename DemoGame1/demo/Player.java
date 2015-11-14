@@ -2,6 +2,8 @@ package demo;
 
 import misc.Vector;
 import collision.CollisionBox;
+import scripts.DamageEffect;
+import scripts.Health;
 import scripts.PlayerInput;
 import scripts.SavingAndLoading;
 import scripts.ToggleDebugDrawing;
@@ -65,7 +67,9 @@ public class Player extends GameObject {
 		//add(new CollisionCircle(0,0,20,false,true));
 		
 		//Player stats i.e. time and lives
-		add(new PlayerStatus());
+		//add(new PlayerStatus());
+		add(new Health(100));
+		add(new DamageEffect());
 		
 		moveBy(playerStartPosition); //move player to a suitable starting position
 		

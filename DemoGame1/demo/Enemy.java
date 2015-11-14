@@ -3,6 +3,7 @@ package demo;
 import misc.Vector;
 import collision.CollisionBox;
 import scripts.EnemyHit;
+import scripts.HurtAndDelete;
 import scripts.MoveScript;
 import components.RigidBody;
 import components.Sprite;
@@ -19,7 +20,8 @@ public class Enemy extends GameObject {
 		
 		add(new Sprite("rock.png", size.intX(), size.intY()));
 		add(new CollisionBox(0,0,size.intX(),size.intY()));
-		add(new EnemyHit(super.getID()));
+		//add(new EnemyHit(super.getID()));
+		add(new HurtAndDelete("player", 10));
 		RigidBody r = new RigidBody(100);
 		r.setGravity(0);
 		add(r);

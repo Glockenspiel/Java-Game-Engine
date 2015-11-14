@@ -24,6 +24,7 @@ public class Game {
 
 	//time for start of frame, used to calculate sleep time
 	private static long startTime;
+	private static boolean exitGame=false;
 	
 	private static Timer frameTimer = new Timer();
 	
@@ -152,9 +153,10 @@ public class Game {
 
 		//checks if the escape game command is true
 		private boolean checkExitGame() {
-			if(serMan.getInput().isKeyDown((char)KeyEvent.VK_ESCAPE))
-				return true;
-			return false;
+			if(Game.getServices().isDrawingDebug())
+				if(getInput().isKeyDown((char)KeyEvent.VK_ESCAPE))
+					return true;
+			return exitGame;
 		}
 
 		//adds GameObjects in buffer to the level
@@ -235,6 +237,18 @@ public class Game {
 		return new GameObject("-1");
 	}
 	
+	//returns all GameObjects with a matching tag
+	public static ArrayList<GameObject> getAllGameObjectsByTag(String tag){
+		ArrayList<GameObject> gameObjs = new ArrayList<GameObject>();
+		for(GameObject o : objs){
+			if(o.getTag().equalsIgnoreCase(tag)){
+				gameObjs.add(o);
+			}
+		}
+		
+		return gameObjs;
+ 	}
+	
 	//returns the GameObject with a matching id
 	public static GameObject getGameObjectById(int id){
 		for(GameObject g: objs){
@@ -302,5 +316,9 @@ public class Game {
 	public static long getFrameTime(){
 		//return startTime;
 		return frameTimer.calculateAvg()/1000;
+	}
+	
+	public static void exit(){
+		exitGame=true;
 	}
 }
