@@ -11,7 +11,7 @@ public class BulletScript implements Script, CollisionListener {
 
 	private Vector speed;
 	private int objID;
-	private Explosion explosion = new Explosion();
+	
 	
 	//constructor with a vector
 	public BulletScript(Vector speed, int objID){
@@ -35,6 +35,7 @@ public class BulletScript implements Script, CollisionListener {
 	@Override
 	public void onTrigger(String tag, int id) {
 		if(tag.equalsIgnoreCase("Enemy1")){
+			Explosion explosion = new Explosion();
 			explosion.moveTo(Game.getGameObjectById(objID).getPosition());
 			Game.addGameObject(explosion);
 			Game.deleteObjByID(id);

@@ -89,15 +89,15 @@ public class SwingPanel extends JPanel implements KeyListener {
 	//notify the input buffer of the key press
 	@Override
 	public void keyPressed(KeyEvent event) {
-		if(Game.getServices().getInput()!=null)
-			Game.getServices().getInput().setPressed(event.getKeyCode());
+		if(Game.Keyboard()!=null)
+			Game.Keyboard().setPressed(event.getKeyCode());
 	}
 
 	//notify the input buffer of the key release
 	@Override
 	public void keyReleased(KeyEvent event) {
-		if(Game.getServices().getInput()!=null)
-			Game.getServices().getInput().setReleased(event.getKeyCode());
+		if(Game.Keyboard()!=null)
+			Game.Keyboard().setReleased(event.getKeyCode());
 	}
 
 	//do nothing

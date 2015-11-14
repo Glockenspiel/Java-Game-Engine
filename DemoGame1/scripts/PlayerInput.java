@@ -26,18 +26,18 @@ public class PlayerInput implements Script {
 	@Override
 	public void execute(GameObject obj) {
 		//move player
-		Vector direction = Game.getServices().getInput().getDirectionInput();
+		Vector direction = Game.Keyboard().getDirectionInput();
 		Vector displacement = Vector.multiply(direction, new Vector(speed,speed));
 		obj.moveBy(displacement.getDeltaVector());
 		
 		//shoot
-		if(Game.getInput().isButtonPressed('P') || Game.getMouse().isButtonPressed(MouseInput.MIDDLE)){
+		if(Game.Keyboard().isButtonPressed('P') || Game.Mouse().isButtonPressed(MouseInput.LEFT)){
 			shoot(obj.getPosition());
 		}
 		
 		//enable boost
 		char boostKey = KeyEvent.VK_SPACE;
-		if(Game.getInput().isButtonDown(boostKey)){
+		if(Game.Keyboard().isButtonDown(boostKey)){
 			speed = fastSpeed;
 		}
 		else{
@@ -47,10 +47,10 @@ public class PlayerInput implements Script {
 		//display animation for boost
 		Animator a = (Animator) obj.getComponentByType(Animator.class);
 		if(a!=null){
-			if(Game.getInput().isButtonDown(boostKey) && a.getCurrentState()!="big"){
+			if(Game.Keyboard().isButtonDown(boostKey) && a.getCurrentState()!="big"){
 					a.setCurrentAnimation("big");
 			}
-			else if(Game.getServices().getInput().isButtonUp(boostKey)  && a.getCurrentState()!="small"){
+			else if(Game.Keyboard().isButtonUp(boostKey)  && a.getCurrentState()!="small"){
 				a.setCurrentAnimation("small");
 			}
 		}

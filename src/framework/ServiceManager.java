@@ -9,6 +9,7 @@ import services.Camera;
 import services.CameraSimple;
 import services.CollisionManager;
 import services.CollisionManagerI;
+import services.InputManager;
 import services.KeyBoardInput;
 import services.MouseInput;
 import services.Print;
@@ -22,12 +23,12 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//services
 	private static Window window;
-	private static KeyBoardInput input;
 	private static MouseInput mouseInput;
 	private static SavingI saving;
 	private static LoadingStateI loading;
 	private static Camera camera;
 	private static CollisionManagerI collisionManager;
+	private static InputManager inputManager;
 	
 	private static PrintFilterManager filterManager;// = new FilterManager(new SwingPrint());
 	
@@ -48,11 +49,8 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//sets the input 
 	@Override
-	public void setInputType(KeyBoardInput inputType){
-		if(checkFinalised("Input"))
-			return;
-
-		input=inputType;
+	public void setInputType(byte inputType){
+		inputManager = new InputManager(inputType);
 	}
 		
 	//sets the collision manager
@@ -109,6 +107,10 @@ public class ServiceManager implements ServiceManagerI {
 			window.setPreferredSize(w, h);
 		}
 		
+		if(inputManager==null){
+			inputManager = new InputManager(InputManager.PC);
+		}
+		
 		if(mouseInput==null){
 			mouseInput=new SwingMouseInput();
 		}
@@ -121,9 +123,6 @@ public class ServiceManager implements ServiceManagerI {
 			
 		if(camera==null)
 			camera = new CameraSimple(0,0);
-			
-		if(input==null)
-			input = new SwingKeyBoardInput();
 				
 		if(collisionManager==null)
 			collisionManager = new CollisionManager();
@@ -136,18 +135,9 @@ public class ServiceManager implements ServiceManagerI {
 	
 	//returns the input object
 	@Override
-	public KeyBoardInput getInput(){
-		return input;
+	public KeyBoardInput getKeyboard(){
+		return InputManager.getKeyBoard();
 	}
-
-	//returns the print object
-	/*
-	@Override
-	public Print getPrint(){
-		return print;
-	}
-	*/
-	
 	//returns the camera object
 	@Override
 	public Camera getCamera(){
@@ -197,6 +187,6 @@ public class ServiceManager implements ServiceManagerI {
 	
 	@Override
 	public MouseInput getMouse(){
-		return mouseInput;
+		return InputManager.getMouse();
 	}
 }

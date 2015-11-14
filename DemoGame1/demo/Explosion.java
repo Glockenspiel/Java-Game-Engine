@@ -30,6 +30,7 @@ public class Explosion extends GameObject {
 		add(new Animation(s,w,h,new Vector(x,y),3));
 		add(new AudioSource("explosion.wav", true));
 		add(new DeleteOnAudioComplete());
+		//delete(3000);
 		super.setDrawLayer(100);
 	}
 	

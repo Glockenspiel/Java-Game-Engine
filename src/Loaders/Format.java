@@ -1,5 +1,7 @@
 package loaders;
 
+import java.io.File;
+
 public class Format {
 	
 	//return extension for a file name
@@ -12,5 +14,9 @@ public class Format {
 		
  		String format = elements[elements.length-1]; //get last element
  		return format;
+	}
+
+	public static boolean match(File file, String format) {
+		return getFormat(file.getName()).equalsIgnoreCase(format);
 	}
 }

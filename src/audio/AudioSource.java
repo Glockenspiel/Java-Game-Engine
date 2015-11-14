@@ -7,8 +7,11 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
+import loaders.Format;
+import misc.MathG;
 import framework.Component;
 import framework.Game;
 import framework.SetObjID;
@@ -19,7 +22,8 @@ public class AudioSource extends Component implements SetObjID {
 	private static final String PATH="Resources/Sounds/";
 	private AudioInputStream stream;
 	private File sound;
-	private boolean loop=false;
+	private boolean loop=false, isPaused=false, volumeChanged=false;
+	private int volume=93;
 	
 	public AudioSource(String fileName, boolean playOnStart){
 		sound = new File(PATH + fileName);
@@ -41,6 +45,8 @@ public class AudioSource extends Component implements SetObjID {
 	public void play(){
 		if(isPlaying()==false)
 			playThread.start();
+		else if(isPaused==true)
+				isPaused=false;
 	}
 
 	//stop the audio 
@@ -72,65 +78,66 @@ public class AudioSource extends Component implements SetObjID {
 		public void run(){
 			try
 			{
-				// Check if the audio file is a .wav file
-				if (sound.getName().toLowerCase().contains(".wav"))
-				{
-					int playCount=0;
-					while(loop || (loop==false && playCount==0)){
-						playCount++;
-						stream = AudioSystem.getAudioInputStream(sound);
-						
-						AudioFormat format = stream.getFormat();
-						
-						if (format.getEncoding() != AudioFormat.Encoding.PCM_SIGNED)
-						{
-							format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-									format.getSampleRate(),
-									format.getSampleSizeInBits() * 2,
-									format.getChannels(),
-									format.getFrameSize() * 2,
-									format.getFrameRate(),
-									true);
-							
-							stream = AudioSystem.getAudioInputStream(format, stream);
-						}
-						
-						SourceDataLine.Info info = new DataLine.Info(
-								SourceDataLine.class,
-								stream.getFormat(),
-								(int) (stream.getFrameLength() * format.getFrameSize()));
-						
-						SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
-						line.open(stream.getFormat());
-						line.start();
-									
-							
-							int num_read = 0;
-							byte[] buf = new byte[line.getBufferSize()];
-							
-							try{
-								while ((num_read = stream.read(buf, 0, buf.length)) >= 0)
-								{
-									int offset = 0;
-									
-									while (offset < num_read)
-									{
-										offset += line.write(buf, offset, num_read - offset);
-									}
-								}
-							} catch(IOException ex){ 
-								Game.print("caught ioexception", "warning");
-							}
-						
-						
-						line.drain();
-						line.stop();
-					}
+				if(Format.match(sound, "wav")){
+					//create audio stream
+					try {
+			            stream = AudioSystem.getAudioInputStream(sound);
+			        } catch (Exception e){
+			        	Game.print("Audio file not found: " + sound.getName(), "error");
+			            return;
+			        }
+			
 					
+					//get the format
+			        AudioFormat audioFormat = stream.getFormat();
+			
+			        //open source data
+			        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+			        SourceDataLine sourceLine = null;
+					try {
+			            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+			            sourceLine.open(audioFormat);
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			            return;
+			        }
+					//start source data
+			        sourceLine.start();
+			        FloatControl volumeControl = (FloatControl) sourceLine.getControl(FloatControl.Type.MASTER_GAIN);
+			        volumeControl.setValue(volumePercentToValue());
+			
+			        int nBytesRead = 0;
+			        byte[] abData = new byte[sourceLine.getBufferSize()];
+			        int playCount=0;
+			        while(loop || (loop==false && playCount==0)){
+			        		playCount++;
+				        while (nBytesRead != -1) {
+				        	if(isPaused==false){
+				        		
+				        		
+				        		if(volumeChanged){
+				    		        volumeControl.setValue(volumePercentToValue());
+				        		}
+					            try {
+					                nBytesRead = stream.read(abData, 0, abData.length);
+					            } catch (IOException e) {e.printStackTrace(); }
+					            if (nBytesRead >= 0) {
+					                int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+					            }
+				        	}
+				        }
+			        }
+			
+			        //drain queued data and close
+			        sourceLine.drain(); 
+			        sourceLine.close();
 				}
-				stream.close();
+				else{
+					Game.print("Sound file must be of format .wav - "  + sound.getName(), "error");
+				}
+		        //broadcast event saying the audio is completed
 				Game.getGameObjectById(objID).notifyEventListeners("Audio_complete", 0);
-
+				
 			}
 			catch (Exception ex) { ex.printStackTrace(); }
 		}
@@ -149,6 +156,7 @@ public class AudioSource extends Component implements SetObjID {
 		}
 	};
 	
+	//returns true if the audio has started playing, (paused audio returns true)
 	public boolean isPlaying(){
 		return playThread.isAlive();
 	}
@@ -156,5 +164,37 @@ public class AudioSource extends Component implements SetObjID {
 	//audio will loop if set to true
 	public void setLooping(boolean loop){
 		this.loop = loop;
+	}
+	
+	//pauses the audio
+	public void pause(){
+		isPaused=true;
+	}
+	
+	//resumes paused audio
+	public void resume(){
+		isPaused=false;
+	}
+	
+	//returns the current state as a string
+	public String getState(){
+		boolean playing=isPlaying();
+		if(playing && !isPaused)
+			return "playing";
+		else if(playing && isPaused)
+			return "paused";
+		
+		return "stopped";
+	}
+	
+	//sets the volume percentage
+	public void setVolume(int volume){
+		this.volume=MathG.clamp(volume, 100, 0);
+		volumeChanged=true;
+	}
+	
+	//converts the volume percentage to the range 6 to -80
+	private float volumePercentToValue(){
+		return (((float)volume/100) * 86)-80;
 	}
 }
