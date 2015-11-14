@@ -65,7 +65,7 @@ public class PlayerInput implements Script {
 		bullet.delete(4000);
 		Game.addGameObject(bullet);
 		GameObject obj = new GameObject("bang");
-		obj.add(new AudioSource("bullet.wav"));
+		obj.add(new AudioSource("bullet.wav", true));
 		obj.delete(3000);
 		Game.addGameObject(obj);
 	}

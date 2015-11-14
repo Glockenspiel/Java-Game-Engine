@@ -16,22 +16,53 @@ import framework.SetObjID;
 public class AudioSource extends Component implements SetObjID {
 
 	private int objID;
-	private AudioSource audioSrc;
 	private static final String PATH="Resources/Sounds/";
 	private AudioInputStream stream;
 	private File sound;
+	private boolean loop=false;
 	
-	public AudioSource(String filename){
-		sound = new File(PATH + filename);
-		playThread.start();
+	public AudioSource(String fileName, boolean playOnStart){
+		sound = new File(PATH + fileName);
+		if(playOnStart)
+			playThread.start();
 	}
 	
+	//disposes of audio when GameObject is deleted
 	@Override
 	public void dispose(){
-		if(playThread.isAlive())
+		if(isPlaying()){
+			if(loop==false)
+				Game.print("GameObect deleted before AudioSource completed - " + sound.getName(), "warning");
 			playThread.interrupt();
+		}
+	}
+	
+	//plays the audio
+	public void play(){
+		if(isPlaying()==false)
+			playThread.start();
 	}
 
+	//stop the audio 
+	public void stop(){
+		if(isPlaying()){
+			playThread.interrupt();
+		}
+	}
+	
+	//set a new sound, if the audio source is play it will resume with the new sound.
+	public void setSound(String fileName){
+		boolean wasPlaying=isPlaying();
+		
+		if(wasPlaying)
+			playThread.interrupt();
+		
+		sound = new File(PATH+fileName);
+		
+		if(wasPlaying)
+			playThread.start();
+	}
+	
 	@Override
 	public void setGameObjectID(int id) {
 		objID=id;
@@ -44,52 +75,57 @@ public class AudioSource extends Component implements SetObjID {
 				// Check if the audio file is a .wav file
 				if (sound.getName().toLowerCase().contains(".wav"))
 				{
-					stream = AudioSystem.getAudioInputStream(sound);
-					
-					AudioFormat format = stream.getFormat();
-					
-					if (format.getEncoding() != AudioFormat.Encoding.PCM_SIGNED)
-					{
-						format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-								format.getSampleRate(),
-								format.getSampleSizeInBits() * 2,
-								format.getChannels(),
-								format.getFrameSize() * 2,
-								format.getFrameRate(),
-								true);
+					int playCount=0;
+					while(loop || (loop==false && playCount==0)){
+						playCount++;
+						stream = AudioSystem.getAudioInputStream(sound);
 						
-						stream = AudioSystem.getAudioInputStream(format, stream);
-					}
-					
-					SourceDataLine.Info info = new DataLine.Info(
-							SourceDataLine.class,
-							stream.getFormat(),
-							(int) (stream.getFrameLength() * format.getFrameSize()));
-					
-					SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
-					line.open(stream.getFormat());
-					line.start();
-							
-					
-					int num_read = 0;
-					byte[] buf = new byte[line.getBufferSize()];
-					
-					try{
-						while ((num_read = stream.read(buf, 0, buf.length)) >= 0)
+						AudioFormat format = stream.getFormat();
+						
+						if (format.getEncoding() != AudioFormat.Encoding.PCM_SIGNED)
 						{
-							int offset = 0;
+							format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
+									format.getSampleRate(),
+									format.getSampleSizeInBits() * 2,
+									format.getChannels(),
+									format.getFrameSize() * 2,
+									format.getFrameRate(),
+									true);
 							
-							while (offset < num_read)
-							{
-								offset += line.write(buf, offset, num_read - offset);
-							}
+							stream = AudioSystem.getAudioInputStream(format, stream);
 						}
-					} catch(IOException ex){ 
-						Game.print("caught   ioexception", "warning");
+						
+						SourceDataLine.Info info = new DataLine.Info(
+								SourceDataLine.class,
+								stream.getFormat(),
+								(int) (stream.getFrameLength() * format.getFrameSize()));
+						
+						SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
+						line.open(stream.getFormat());
+						line.start();
+									
+							
+							int num_read = 0;
+							byte[] buf = new byte[line.getBufferSize()];
+							
+							try{
+								while ((num_read = stream.read(buf, 0, buf.length)) >= 0)
+								{
+									int offset = 0;
+									
+									while (offset < num_read)
+									{
+										offset += line.write(buf, offset, num_read - offset);
+									}
+								}
+							} catch(IOException ex){ 
+								Game.print("caught ioexception", "warning");
+							}
+						
+						
+						line.drain();
+						line.stop();
 					}
-					
-					line.drain();
-					line.stop();
 					
 				}
 				stream.close();
@@ -99,13 +135,12 @@ public class AudioSource extends Component implements SetObjID {
 			catch (Exception ex) { ex.printStackTrace(); }
 		}
 		
+		//closes the audio stream before it calls interrupt
 		@Override
 		public void interrupt(){
-			Game.print("GameObect deleted before AudioSource completed its play state - " + sound.getName(), "warning");
 			try {
 				if(stream!=null)
 					stream.close();
-				Game.print("closing sound -                    " + sound.getName());
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -113,4 +148,13 @@ public class AudioSource extends Component implements SetObjID {
 			super.interrupt();
 		}
 	};
+	
+	public boolean isPlaying(){
+		return playThread.isAlive();
+	}
+	
+	//audio will loop if set to true
+	public void setLooping(boolean loop){
+		this.loop = loop;
+	}
 }

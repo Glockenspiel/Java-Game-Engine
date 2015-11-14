@@ -28,7 +28,7 @@ public class Explosion extends GameObject {
 	private void init(int x, int y, int w, int h){
 		SpriteSheet s = new SpriteSheet("explo.png", 70,70);
 		add(new Animation(s,w,h,new Vector(x,y),3));
-		add(new AudioSource("explosion.wav"));
+		add(new AudioSource("explosion.wav", true));
 		add(new DeleteOnAudioComplete());
 		super.setDrawLayer(100);
 	}

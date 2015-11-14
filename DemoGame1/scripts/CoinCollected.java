@@ -21,7 +21,7 @@ public class CoinCollected implements CollisionListener {
 			Game.getGameObjectById(id).notifyEventListeners("coin_collected", value);
 			Game.deleteObjByID(objID);
 			GameObject obj = new GameObject("ching");
-			obj.add(new AudioSource("coins.wav"));
+			obj.add(new AudioSource("coins.wav", true));
 			obj.delete(3000);
 			Game.addGameObject(obj);
 			//AudioSource src = (AudioSource) super.getComponentByType(AudioSource.class);

@@ -27,7 +27,7 @@ public class Main{
 		//Game.getServices().getWindow().setCustomCursor("triangle.png");
 		Game.getServices().setDebugDraw(true);
 		
-		Game.start(new Level3());
+		Game.start(new Level1());
 		
 	}
 
