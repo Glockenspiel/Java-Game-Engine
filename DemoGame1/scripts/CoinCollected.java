@@ -1,6 +1,7 @@
 package scripts;
 
-import audio.AudioSource;
+import components.AudioSource;
+
 import collision.CollisionListener;
 import framework.Game;
 import framework.GameObject;
@@ -21,6 +22,7 @@ public class CoinCollected implements CollisionListener {
 			Game.getGameObjectById(id).notifyEventListeners("coin_collected", value);
 			Game.deleteObjByID(objID);
 			GameObject obj = new GameObject("ching");
+			Game.addGameObjectWithoutBuffer(obj);
 			obj.add(new AudioSource("coins.wav", true));
 			obj.add(new DeleteOnAudioComplete());
 			Game.addGameObject(obj);

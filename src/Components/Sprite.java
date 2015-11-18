@@ -13,6 +13,8 @@ public class Sprite extends Component {
 	private int offsetX, offsetY; //offsets from GameObject origin
 	private int w,h;
 	
+	public Sprite(){}
+	
 	//simple constructor
 	public Sprite(String filename, int width, int height){
 		offsetX=0;
@@ -47,5 +49,18 @@ public class Sprite extends Component {
 		g.drawImage(image, 	objPos.intX()+offsetX, 
 							objPos.intY()+offsetY, 
 							w,h);
+	}
+
+	@Override
+	public void construct(String[] args) {
+		w = toInt(args[1]);	
+		h = toInt(args[2]);	
+		
+		if(args.length>3){
+			offsetX = toInt(args[3]);
+			offsetY = toInt(args[4]);
+		}
+		
+		image = ImageLoader.load(args[0]);
 	}
 }

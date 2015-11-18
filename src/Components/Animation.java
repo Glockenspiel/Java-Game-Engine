@@ -83,4 +83,10 @@ public class Animation extends Component {
 		Vector position = Vector.add(objPos, offset);
 		g.drawImage(image, position.intX(), position.intY(), displaySize.intX(), displaySize.intY());
 	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
 }

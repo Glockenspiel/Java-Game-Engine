@@ -2,6 +2,7 @@ package collision;
 
 import java.awt.Color;
 
+import levelloading.Cast;
 import misc.Debug;
 import misc.Vector;
 import display.Drawer;
@@ -18,12 +19,14 @@ public class CollisionBox implements CollisionShape, Debug {
 	private Vector objPosition=new Vector(0,0);
 	
 	//constructor
+	
 	public CollisionBox(int x, int y, int w, int h){
 		this.x=x;
 		this.y=y;
 		this.w=w;
 		this.h=h;
 	}
+	
 	
 	//returns minimum x value 
 	@Override
@@ -105,5 +108,13 @@ public class CollisionBox implements CollisionShape, Debug {
 	
 	public int getCenterY() {
 		return objPosition.intY() + y + h/2;
+	}
+
+	@Override
+	public void construct(String[] args) {
+		x = Cast.toInt(args[0]);
+		y = Cast.toInt(args[1]);
+		w = Cast.toInt(args[2]);
+		h = Cast.toInt(args[3]);
 	}
 }

@@ -1,10 +1,10 @@
 package demo;
 
 import scripts.DeleteOnAudioComplete;
-import audio.AudioSource;
 import misc.Time;
 import misc.Vector;
 import components.Animation;
+import components.AudioSource;
 import components.SpriteSheet;
 import framework.GameObject;
 

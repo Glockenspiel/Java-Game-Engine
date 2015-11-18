@@ -16,7 +16,7 @@ import framework.Game;
 
 public class TileMap extends Component {
 
-	private ArrayList<Tile_I> tiles;
+	private ArrayList<Tile_I> tiles = new ArrayList<Tile_I>();
 	
 	//sprite sheet of images
 	private SpriteSheet sheet;
@@ -30,11 +30,13 @@ public class TileMap extends Component {
 	//default path for a TileMap  xml file
 	private static String tileMapPath= "Resources/TileMaps/";
 	
+	/*
 	public TileMap(String filename, int tileW, int tileH){
 		tileSize=new Vector(tileW, tileH);
 		tiles= new ArrayList<Tile_I>();
 		loadTiles(filename);
 	}
+	*/
 
 	//loads the rest of the TileMap from the filename provided
 	private void loadTiles(String filename) {
@@ -132,5 +134,15 @@ public class TileMap extends Component {
 	//returns a BufferedImage from the spriteSheet at a given grid coordinate
 	public BufferedImage getSpriteFromSheet(int x, int y){
 		return sheet.getFrame(x, y);
+	}
+
+	@Override
+	public void construct(String[] args) {
+		String filename = args[0];
+		int w = toInt(args[1]);
+		int h = toInt(args[2]);
+		
+		tileSize=new Vector(w, h);
+		loadTiles(filename);
 	}
 }

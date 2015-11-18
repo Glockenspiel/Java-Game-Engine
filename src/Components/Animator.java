@@ -48,4 +48,10 @@ public class Animator extends Component {
 		if(currentAnim!=null)
 			currentAnim.draw(g,objPos);
 	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,6 +1,7 @@
 package levels;
 
 import collision.CollisionBox;
+import levelloading.ObjConstructor;
 import misc.Timer;
 import misc.Vector;
 import components.RigidBody;
@@ -20,12 +21,10 @@ public class Level2 extends Level{
 	@Override
 	public void init() {
 
-		
-		GameObject map = new GameObject("map");
-		
-		//create tile map component
-		TileMap tilemap = new TileMap("level2.xml", 32,32);
-		map.add(tilemap);
+		String[] mapArgs = new String[]{"map"};
+		GameObject map = ObjConstructor.loadGameObject(mapArgs, GameObject.class.getName());
+		String[] tilemapArgs = new String[]{"level2.xml", "32", "32"};
+		ObjConstructor.loadAddableObject(tilemapArgs, TileMap.class.getName(), map);
 		addObj(map);
 		
 		
@@ -49,10 +48,4 @@ public class Level2 extends Level{
 		nextLevel.add(new ToggleLevel(new Level1()));
 		addObj(nextLevel);
 	}
-
-	@Override
-	public String getName() {
-		return levelName;
-	}
-
 }

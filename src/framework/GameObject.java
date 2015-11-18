@@ -3,6 +3,7 @@ package framework;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import levelloading.Cast;
 import misc.Debug;
 import misc.IdGenerator;
 import misc.Time;
@@ -14,7 +15,7 @@ import collision.RectangleI;
 import components.HUDItem;
 import display.Drawer;
 
-public class GameObject implements Debug{ // also known as an Entity
+public class GameObject extends Constructable implements Debug { // also known as an Entity
 	
 	//-1 equals invalid ID
 	private int id=-1;
@@ -28,6 +29,8 @@ public class GameObject implements Debug{ // also known as an Entity
 	private long deleteOnTime=0;
 	
 	//constructor
+	public GameObject(){}
+	
 	public GameObject(String tag){
 		this.tag=tag;
 	}
@@ -287,5 +290,14 @@ public class GameObject implements Debug{ // also known as an Entity
 		for(Component c: components){
 			c.dispose();
 		}
+	}
+
+	@Override
+	public void construct(String[] args) {
+		tag=args[0];
+	}
+
+	public void setTag(String tag) {
+		this.tag=tag;
 	}
 }

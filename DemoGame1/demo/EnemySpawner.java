@@ -1,5 +1,6 @@
 package demo;
 
+import levelloading.Cast;
 import misc.MathG;
 import misc.Vector;
 import framework.Game;
@@ -9,6 +10,10 @@ public class EnemySpawner extends GameObject {
 
 	private long lastSpawn=0;
 	private long spawnTime;
+	
+	public EnemySpawner(){
+		super();
+	}
 	
 	//spawns an enemy waves every spawnTime
 	public EnemySpawner(String tag, long spawnTime) {
@@ -35,4 +40,9 @@ public class EnemySpawner extends GameObject {
 		Game.addGameObject(o);
 	}
 
+	@Override
+	public void construct(String[] args){
+		super.construct(args);
+		spawnTime= Cast.toInt(args[1]);
+	}
 }

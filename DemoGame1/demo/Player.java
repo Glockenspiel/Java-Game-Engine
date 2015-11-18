@@ -1,5 +1,6 @@
 package demo;
 
+import levelloading.ObjConstructor;
 import misc.Vector;
 import collision.CollisionBox;
 import scripts.DamageEffect;
@@ -58,8 +59,10 @@ public class Player extends GameObject {
 		add(animator);
 		
 		//player sprite
-		Sprite ship = new Sprite("spaceship.png", playerSize.intX(), playerSize.intY());
-		add(ship); //add component
+		//Sprite ship = new Sprite("spaceship.png", playerSize.intX(), playerSize.intY());
+		ObjConstructor.loadAddableObject(new String[]{"spaceship.png", "100", "32"}, 
+				Sprite.class.getName(), this);
+		//add(ship); //add component
 		
 		
 		//collision box

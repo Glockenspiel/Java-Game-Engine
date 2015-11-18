@@ -98,4 +98,9 @@ public class RigidBody extends Component {
 	public float getDrag(){
 		return drag;
 	}
+
+	@Override
+	public void construct(String[] args) {
+		mass=toInt(args[0]);
+	}
 }

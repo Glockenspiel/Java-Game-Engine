@@ -1,4 +1,4 @@
-package audio;
+package components;
 
 import java.io.File;
 import java.io.IOException;
@@ -196,5 +196,12 @@ public class AudioSource extends Component implements SetObjID {
 	//converts the volume percentage to the range 6 to -80
 	private float volumePercentToValue(){
 		return (((float)volume/100) * 86)-80;
+	}
+
+	@Override
+	public void construct(String[] args) {
+		sound = new File(PATH + args[0]);
+		if(toBoolean(args[1]))
+			playThread.start();
 	}
 }

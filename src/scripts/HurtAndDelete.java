@@ -28,8 +28,10 @@ public class HurtAndDelete implements CollisionListener, SetObjID {
 				for(GameObject  o : Game.getAllGameObjectsByTag(tag)){
 					o.notifyEventListeners("hurt", damage);
 				}
+			
+				Game.deleteObjByID(objID);
 		} 
-		Game.deleteObjByID(objID);
+		
 	}
 
 

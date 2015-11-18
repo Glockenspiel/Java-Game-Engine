@@ -331,4 +331,8 @@ public class Game {
 	public static MouseInput Mouse() {
 		return serMan.getMouse();
 	}
+
+	public static void addGameObjectWithoutBuffer(GameObject obj) {
+		objs.add(obj);
+	}
 }

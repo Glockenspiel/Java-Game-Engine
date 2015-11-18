@@ -1,0 +1,57 @@
+<Level>
+	<!-- tilemap -->
+	<object>
+		<obj_class>framework.GameObject</obj_class>
+		<param>map</param>
+		<param>-250</param>
+		<param>-250</param>
+		
+		<add>
+			<type>tiles.TileMap</type>
+			<val>level1.xml</val>
+			<val>64</val>
+			<val>64</val>
+		</add>
+	</object>
+
+	<!-- Enemy spawner -->
+	<object>
+		<obj_class>demo.EnemySpawner</obj_class>
+		<param>Enemy Spawner</param>
+		<param>1000</param>
+	</object>
+
+	<!-- Player -->
+	<object1>
+		<obj_class>demo.Player</obj_class>
+		<param>player</param>
+	</object1>
+
+	<!-- Coin dispenser -->
+	<object>
+		<obj_class>demo.CoinDispenser</obj_class>
+		<param>coin dispenser</param>
+		<param>500</param>
+		<param>0</param>
+	</object>
+
+	<!-- Toggle level -->
+	<object11>
+		<obj_class>framework.GameObject</obj_class>
+		<param>more level</param>
+		<add>
+			<type>scripts.TogleLevel</type>
+		</add>
+	</object11>
+	
+	<!-- Door -->
+	<object>
+		<obj_class>prefabs.Door</obj_class>
+		<param>door</param>
+		<param>levels.Level2</param>
+		<param>150</param>
+		<param>-10</param>
+		<param>60</param>
+		<param>60</param>
+	</object>
+</Level>

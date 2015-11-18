@@ -1,5 +1,6 @@
 package demo;
 
+import levelloading.Cast;
 import misc.Time;
 import misc.Vector;
 import framework.Game;
@@ -9,6 +10,8 @@ public class CoinDispenser extends GameObject {
 	
 	private long lastSpawn=0;
 	private long delay = 1400;
+	
+	public CoinDispenser(){}
 
 	public CoinDispenser(int x, int y){
 		super("CoinDispenser");
@@ -33,4 +36,9 @@ public class CoinDispenser extends GameObject {
 		Game.addGameObject(coin);
 	}
 
+	@Override
+	public void construct(String[] args){
+		super.construct(args);
+		super.moveTo(new Vector(Cast.toFloat(args[1]), Cast.toFloat(args[2])));
+	}
 }

@@ -1,5 +1,6 @@
 package collision;
 
+import levelloading.Cast;
 import misc.Debug;
 import misc.Vector;
 import display.Drawer;
@@ -7,18 +8,20 @@ import display.Drawer;
 public class CollisionCircle implements CollisionShape, Debug {
 
 	private static final String TYPE="COLLISIONCIRCLE";
-	private boolean isAlive;
+	private boolean isAlive=true;
 	private int x,y,r;
 	private String tag="";
 	private Vector objPosition = new Vector(0,0);
 	
 	//constructor
+	
 	public CollisionCircle(int x, int y, int radius){
 		this.x=x;
 		this.y=y;
 		this.r=radius;
 		this.isAlive=true;
 	}
+	
 	
 	//draw a debug circle
 	@Override
@@ -97,5 +100,12 @@ public class CollisionCircle implements CollisionShape, Debug {
 	
 	public int getRadius(){
 		return r;
+	}
+
+	@Override
+	public void construct(String[] args) {
+		x = Cast.toInt(args[0]);
+		y = Cast.toInt(args[1]);
+		r = Cast.toInt(args[2]);
 	}
 }

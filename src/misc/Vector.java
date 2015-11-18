@@ -46,11 +46,21 @@ public class Vector { //for storing 2D coordinates or directions
 		y += amount.getY();
 	}
 	
+	public void moveBy(float x, float y){
+		this.x += x;
+		this.y += y;
+	}
+	
 	
 	//sets vector
 	public void moveTo(Vector position){
 		x = position.getX();
 		y = position.getY();
+	}
+	
+	public void moveTo(float x, float y) {
+		this.x=x;
+		this.y=y;
 	}
 	
 	//returns a formated string of X and Y values
@@ -78,4 +88,6 @@ public class Vector { //for storing 2D coordinates or directions
 		Vector dt = new Vector(x*Time.deltaTime, y*Time.deltaTime);
 		return dt;
 	}
+
+
 }

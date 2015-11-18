@@ -3,9 +3,9 @@ package scripts;
 import java.awt.event.KeyEvent;
 
 import services.MouseInput;
-import audio.AudioSource;
 import misc.Vector;
 import components.Animator;
+import components.AudioSource;
 import demo.Bullet;
 import framework.Game;
 import framework.GameObject;
