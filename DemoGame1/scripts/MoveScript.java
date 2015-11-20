@@ -28,4 +28,16 @@ public class MoveScript implements Script {
 				body.addForce(moveSpeed.getDeltaVector());
 		}
 	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

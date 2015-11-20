@@ -19,6 +19,8 @@ public class Animation extends Component {
 	 * width and height are display sizes
 	 * offsetX and offsetY are offsets to append to the GameObject origin
 	 */
+	public Animation(){}
+	
 	public Animation(SpriteSheet spriteSheet, int displayW, int displayH, Vector offset, int frameSpeed){
 		this.offset=offset;
 		this.spriteSheet = spriteSheet;
@@ -88,5 +90,11 @@ public class Animation extends Component {
 	public void construct(String[] args) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

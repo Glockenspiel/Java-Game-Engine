@@ -30,13 +30,15 @@ public class Level1 extends Level {
 		
 		//create the tile map object
 		//GameObject map = new GameObject("map");
-		String[] mapArgs = new String[]{"map"};
-		GameObject map = ObjConstructor.loadGameObject(mapArgs, GameObject.class.getName());
-		// map.add(new TileMap("level1.xml", 64,64));
-		//	map.moveBy(new Vector(-250,-250));
+		//String[] mapArgs = new String[]{"map"};
+		//GameObject map = ObjConstructor.loadGameObject(mapArgs, GameObject.class.getName());
+		GameObject map=new GameObject("map");
+		map.add(new TileMap("level1.xml", 64,64));
 		
-		String[] tilemapArgs = new String[]{"level1.xml", "64", "64"};
-		ObjConstructor.loadAddableObject(tilemapArgs, TileMap.class.getName(), map);
+		map.moveBy(new Vector(-250,-250));
+		
+		//String[] tilemapArgs = new String[]{"level1.xml", "64", "64"};
+		//ObjConstructor.loadAddableObject(tilemapArgs, TileMap.class.getName(), map);
 		addObj(map);
 		//create and add a coin dispenser
 		addObj(new CoinDispenser(500,0));
@@ -46,8 +48,9 @@ public class Level1 extends Level {
 		nextLevel.add(new ToggleLevel(new Level2()));
 		addObj(nextLevel);
 		
-		GameObject Door = ObjConstructor.loadGameObject(new String[]{"door",Level3.class.getName()}, Door.class.getName());
-		addObj(Door);
+		GameObject door = new Door("levels.Level3");//ObjConstructor.loadGameObject(new String[]{"door",Level3.class.getName()}, Door.class.getName());
+		door.getPosition().moveTo(200,-50);
+		addObj(door);
 		//addObj(new Door(Level2.class.getName()));
 	}
 }

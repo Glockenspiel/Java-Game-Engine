@@ -42,4 +42,16 @@ public class EnemyHit implements CollisionListener {
 		return Game.getGameObjectById(objID).getTag();
 	}
 
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

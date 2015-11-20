@@ -14,4 +14,5 @@ public interface CollisionShape {
 	public int maxX();
 	public int maxY();
 	public void construct(String[] args);
+	public String[] getSaveArgs();
 }

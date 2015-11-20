@@ -1,4 +1,4 @@
-package scripts;
+package prescripts;
 
 import levels.*;
 import framework.Game;
@@ -30,4 +30,17 @@ public class ChangeLevel implements CollisionListener {
 		if(tag.equalsIgnoreCase("Player"))
 			Game.changeLevel(level);
 	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

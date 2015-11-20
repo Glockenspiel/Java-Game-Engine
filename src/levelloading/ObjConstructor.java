@@ -18,11 +18,6 @@ public class ObjConstructor {
 	
 	//pass in arraylist of string parameters
 	public static void loadAddableObject(String[] args, String className, GameObject obj){
-		/*cases
-			1. TileMap (only int and strings)
-			2. sprite (multiple constructors)
-			3. animation (nested construction)
-		*/
 
 		try {
 				Class<?> c = Class.forName(className);
@@ -39,7 +34,7 @@ public class ObjConstructor {
 					}
 					else if(o instanceof Script){
 						Script script = (Script) o;
-						//script.construct(args);
+						script.construct(args);
 						obj.add(script);
 					}
 					else if(o instanceof CollisionShape){
@@ -70,6 +65,20 @@ public class ObjConstructor {
 		} catch (ClassNotFoundException x) {
 			x.printStackTrace();
 		}
+		return null;
+	}
+	
+	/* returns a new instance of that class, returns null on error
+	 * the class must have a default constructor
+	 * uses Class.getName(); for accurate naming
+	 */
+	public static Object classNameToObject(String className){
+		try {
+			
+			return Class.forName(className).newInstance();
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {e.printStackTrace();}
 		return null;
 	}
 }

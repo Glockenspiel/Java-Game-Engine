@@ -70,4 +70,16 @@ public class PlayerInput implements Script {
 		obj.delete(3000);
 		Game.addGameObject(obj);
 	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

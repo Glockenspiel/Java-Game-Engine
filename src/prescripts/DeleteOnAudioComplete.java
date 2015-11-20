@@ -1,4 +1,4 @@
-package scripts;
+package prescripts;
 
 import framework.EventListener;
 import framework.Game;
@@ -22,6 +22,18 @@ public class DeleteOnAudioComplete implements EventListener, SetObjID {
 	@Override
 	public void setGameObjectID(int id) {
 		objID=id;
+	}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

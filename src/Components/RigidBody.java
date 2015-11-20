@@ -1,5 +1,6 @@
 package components;
 
+import levelloading.Cast;
 import misc.MathG;
 import misc.Time;
 import misc.Vector;
@@ -9,8 +10,8 @@ import framework.GameObject;
 //physics movement component
 public class RigidBody extends Component {
 	
-	private float gravity=1;
 	private int mass;
+	private float gravity=1;
 	private float drag=1; //from 0-100
 	private Vector velocity=new Vector(0,0);
 	
@@ -18,6 +19,8 @@ public class RigidBody extends Component {
 	public RigidBody(int mass){
 		this.mass=mass;
 	}
+	
+	public RigidBody(){}
 	
 	//set the gravity
 	public void setGravity(float gravity){
@@ -102,5 +105,24 @@ public class RigidBody extends Component {
 	@Override
 	public void construct(String[] args) {
 		mass=toInt(args[0]);
+		gravity = toFloat(args[1]);
+		drag = toFloat(args[2]);
+		float x = Cast.toFloat(args[3]);
+		float y = Cast.toFloat(args[4]);
+		velocity = new Vector(x,y);
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				String.valueOf(mass),
+				String.valueOf(gravity),
+				String.valueOf(drag),
+				String.valueOf(velocity.getX()),
+				String.valueOf(velocity.getY())
+		};
+		
+		return args;
+		
 	}
 }

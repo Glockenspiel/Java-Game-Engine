@@ -12,11 +12,13 @@ public class Sprite extends Component {
 	private BufferedImage image;
 	private int offsetX, offsetY; //offsets from GameObject origin
 	private int w,h;
+	private String filename;
 	
 	public Sprite(){}
 	
 	//simple constructor
 	public Sprite(String filename, int width, int height){
+		this.filename=filename;
 		offsetX=0;
 		offsetY=0;
 		w=width;
@@ -61,6 +63,20 @@ public class Sprite extends Component {
 			offsetY = toInt(args[4]);
 		}
 		
-		image = ImageLoader.load(args[0]);
+		filename=args[0];
+		image = ImageLoader.load(filename);
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+			filename,
+			String.valueOf(w),
+			String.valueOf(h),
+			String.valueOf(offsetX),
+			String.valueOf(offsetY)
+		};
+		
+		return args;
 	}
 }

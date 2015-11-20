@@ -1,7 +1,7 @@
 package scripts;
 
+import prescripts.DeleteOnAudioComplete;
 import components.AudioSource;
-
 import collision.CollisionListener;
 import framework.Game;
 import framework.GameObject;
@@ -31,4 +31,16 @@ public class CoinCollected implements CollisionListener {
 
 	@Override
 	public void execute(GameObject obj) {}
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

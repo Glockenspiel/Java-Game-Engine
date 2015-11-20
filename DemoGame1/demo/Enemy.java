@@ -1,9 +1,9 @@
 package demo;
 
+import prescripts.HurtAndDelete;
 import misc.Vector;
 import collision.CollisionBox;
 import scripts.EnemyHit;
-import scripts.HurtAndDelete;
 import scripts.MoveScript;
 import components.RigidBody;
 import components.Sprite;

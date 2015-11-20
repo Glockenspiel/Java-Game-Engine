@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import levelloading.Cast;
+import levelloading.Constructable;
 import misc.Debug;
 import misc.IdGenerator;
 import misc.Time;
@@ -292,12 +293,34 @@ public class GameObject extends Constructable implements Debug { // also known a
 		}
 	}
 
+	public void setTag(String tag) {
+		this.tag=tag;
+	}
+	
 	@Override
 	public void construct(String[] args) {
 		tag=args[0];
+		 return;
+		/*
+		float x = Cast.toFloat(args[1]);
+		float y = Cast.toFloat(args[2]);
+		position.moveTo(x, y);
+		drawLayer = Cast.toInt(args[3]);
+		isGlobal = Cast.toBoolean(args[4]);
+		deleteOnTime=Time.getTime()+Cast.toLong(args[5]);
+		*/
 	}
 
-	public void setTag(String tag) {
-		this.tag=tag;
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				tag,
+				String.valueOf(position.getX()),
+				String.valueOf(position.getY()),
+				String.valueOf(drawLayer),
+				String.valueOf(isGlobal),
+				String.valueOf(deleteOnTime-Time.getTime())
+		};
+		return args;
 	}
 }

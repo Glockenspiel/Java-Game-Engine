@@ -19,6 +19,7 @@ public class CollisionBox implements CollisionShape, Debug {
 	private Vector objPosition=new Vector(0,0);
 	
 	//constructor
+	public CollisionBox(){}
 	
 	public CollisionBox(int x, int y, int w, int h){
 		this.x=x;
@@ -116,5 +117,18 @@ public class CollisionBox implements CollisionShape, Debug {
 		y = Cast.toInt(args[1]);
 		w = Cast.toInt(args[2]);
 		h = Cast.toInt(args[3]);
+	}
+
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				String.valueOf(x),
+				String.valueOf(y),
+				String.valueOf(w),
+				String.valueOf(h)
+		};
+		
+		return args;
 	}
 }

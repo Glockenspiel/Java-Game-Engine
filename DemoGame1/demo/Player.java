@@ -1,10 +1,10 @@
 package demo;
 
+import prescripts.DamageEffect;
+import prescripts.Health;
 import levelloading.ObjConstructor;
 import misc.Vector;
 import collision.CollisionBox;
-import scripts.DamageEffect;
-import scripts.Health;
 import scripts.PlayerInput;
 import scripts.SavingAndLoading;
 import scripts.ToggleDebugDrawing;

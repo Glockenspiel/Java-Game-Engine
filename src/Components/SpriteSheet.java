@@ -9,10 +9,13 @@ public class SpriteSheet {
 	private BufferedImage[][] images;
 	private BufferedImage errorImage;
 	private BufferedImage srcImage;
+	private int frameWidth, frameHeight;
 	
 	//constructor
 	public SpriteSheet(String filename, int frameWidth, int frameHeight){
 		srcImage = ImageLoader.load(filename);
+		this.frameHeight=frameHeight;
+		this.frameWidth=frameWidth;
 		loadFrames(frameWidth, frameHeight, filename);
 	}
 
@@ -57,5 +60,13 @@ public class SpriteSheet {
 			return images[x][y];
 		
 		return errorImage;
+	}
+
+	public int getFrameWidth() {
+		return frameWidth;
+	}
+	
+	public int getFrameHeight() {
+		return frameHeight;
 	}
 }

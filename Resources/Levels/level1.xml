@@ -5,6 +5,9 @@
 		<param>map</param>
 		<param>-250</param>
 		<param>-250</param>
+		<param>-10</param>
+		<param>false</param>
+		<param>0</param>
 		
 		<add>
 			<type>tiles.TileMap</type>
@@ -36,22 +39,32 @@
 	</object>
 
 	<!-- Toggle level -->
-	<object11>
+	<object>
 		<obj_class>framework.GameObject</obj_class>
 		<param>more level</param>
 		<add>
-			<type>scripts.TogleLevel</type>
+			<type>scripts.ToggleLevel</type>
+			<val>levels.Level2</val>
 		</add>
-	</object11>
+	</object>
 	
 	<!-- Door -->
 	<object>
 		<obj_class>prefabs.Door</obj_class>
 		<param>door</param>
-		<param>levels.Level2</param>
 		<param>150</param>
 		<param>-10</param>
-		<param>60</param>
-		<param>60</param>
+		<param>0</param>
+		<param>false</param>
+		<param>0</param>
+		<param>levels.Level2</param>
+		
+		<add>
+			<type>collision.CollisionBox</type>
+			<val>100</val>
+			<val>100</val>
+			<val>60</val>
+			<val>60</val>
+		</add>
 	</object>
 </Level>

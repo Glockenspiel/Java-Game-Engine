@@ -1,6 +1,7 @@
 package framework;
 
 import levelloading.Cast;
+import levelloading.Constructable;
 import misc.Vector;
 import display.Drawer;
 

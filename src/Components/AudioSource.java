@@ -31,6 +31,8 @@ public class AudioSource extends Component implements SetObjID {
 			playThread.start();
 	}
 	
+	public AudioSource(){}
+	
 	//disposes of audio when GameObject is deleted
 	@Override
 	public void dispose(){
@@ -203,5 +205,14 @@ public class AudioSource extends Component implements SetObjID {
 		sound = new File(PATH + args[0]);
 		if(toBoolean(args[1]))
 			playThread.start();
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				sound.getName(),
+				String.valueOf(playThread.isAlive())
+		};
+		return args;
 	}
 }

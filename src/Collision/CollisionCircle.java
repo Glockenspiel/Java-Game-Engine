@@ -14,6 +14,7 @@ public class CollisionCircle implements CollisionShape, Debug {
 	private Vector objPosition = new Vector(0,0);
 	
 	//constructor
+	public CollisionCircle(){}
 	
 	public CollisionCircle(int x, int y, int radius){
 		this.x=x;
@@ -107,5 +108,15 @@ public class CollisionCircle implements CollisionShape, Debug {
 		x = Cast.toInt(args[0]);
 		y = Cast.toInt(args[1]);
 		r = Cast.toInt(args[2]);
+	}
+
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				String.valueOf(x),
+				String.valueOf(y),
+				String.valueOf(r)};
+		return args;
 	}
 }

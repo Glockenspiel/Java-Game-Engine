@@ -15,4 +15,16 @@ public class StressScript implements Script {
 		}
 	}
 
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

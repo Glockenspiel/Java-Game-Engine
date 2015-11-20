@@ -30,13 +30,18 @@ public class TileMap extends Component {
 	//default path for a TileMap  xml file
 	private static String tileMapPath= "Resources/TileMaps/";
 	
-	/*
+	private String filename;
+	
+	
+	public TileMap(){}
+	
 	public TileMap(String filename, int tileW, int tileH){
+		this.filename=filename;
 		tileSize=new Vector(tileW, tileH);
 		tiles= new ArrayList<Tile_I>();
 		loadTiles(filename);
 	}
-	*/
+	
 
 	//loads the rest of the TileMap from the filename provided
 	private void loadTiles(String filename) {
@@ -138,11 +143,21 @@ public class TileMap extends Component {
 
 	@Override
 	public void construct(String[] args) {
-		String filename = args[0];
+		filename = args[0];
 		int w = toInt(args[1]);
 		int h = toInt(args[2]);
 		
 		tileSize=new Vector(w, h);
 		loadTiles(filename);
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		String[] args = new String[]{
+				filename,
+				String.valueOf(sheet.getFrameWidth()),
+				String.valueOf(sheet.getFrameHeight()),
+		};
+		return args;
 	}
 }

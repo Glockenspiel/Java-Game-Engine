@@ -1,6 +1,6 @@
 package demo;
 
-import scripts.DeleteOnAudioComplete;
+import prescripts.DeleteOnAudioComplete;
 import misc.Time;
 import misc.Vector;
 import components.Animation;

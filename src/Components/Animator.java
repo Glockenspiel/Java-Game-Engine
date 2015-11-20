@@ -49,9 +49,10 @@ public class Animator extends Component {
 			currentAnim.draw(g,objPos);
 	}
 
+	//SAVE ANIMATIONS AND CURRENT STATE
 	@Override
-	public void construct(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void construct(String[] args) {}
+
+	@Override
+	public String[] getSaveArgs() { return null;}
 }

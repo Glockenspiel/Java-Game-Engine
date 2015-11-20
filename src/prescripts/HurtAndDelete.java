@@ -1,4 +1,4 @@
-package scripts;
+package prescripts;
 
 import java.util.ArrayList;
 
@@ -38,5 +38,19 @@ public class HurtAndDelete implements CollisionListener, SetObjID {
 	@Override
 	public void setGameObjectID(int id) {
 		objID=id;
+	}
+
+
+	@Override
+	public void construct(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

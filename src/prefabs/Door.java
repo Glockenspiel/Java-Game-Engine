@@ -1,7 +1,7 @@
 package prefabs;
 
+import prescripts.ChangeLevel;
 import levelloading.Cast;
-import scripts.ChangeLevel;
 import collision.CollisionBox;
 import framework.Game;
 import framework.GameObject;
@@ -21,16 +21,15 @@ public class Door extends GameObject {
 	@Override
 	public void construct(String[] args){
 		super.construct(args);
-		add(new ChangeLevel(args[1]));
 		
-		if(args.length==2)
-			add(new CollisionBox(0,0,60,60));
-		
-		else{
-			add(new CollisionBox(Cast.toInt(args[2]), Cast.toInt(args[3]), 
-					Cast.toInt(args[4]), Cast.toInt(args[5])));
-		}
-		
-		
+		add(new ChangeLevel(args[6]));
+		/*
+		add(new CollisionBox(
+				Cast.toInt(args[7]), 
+				Cast.toInt(args[8]), 
+				Cast.toInt(args[9]), 
+				Cast.toInt(args[10]) ));
+				*/
 	}
+	
 }
