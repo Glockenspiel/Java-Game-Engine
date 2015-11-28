@@ -21,14 +21,19 @@
 	<object>
 		<obj_class>demo.EnemySpawner</obj_class>
 		<param>Enemy Spawner</param>
+		<param>0</param>
+		<param>0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>0</param>
 		<param>1000</param>
 	</object>
 
 	<!-- Player -->
-	<object1>
+	<ZZobject1>
 		<obj_class>demo.Player</obj_class>
 		<param>player</param>
-	</object1>
+	</ZZobject1>
 
 	<!-- Coin dispenser -->
 	<object>
@@ -67,4 +72,32 @@
 			<val>60</val>
 		</add>
 	</object>
+	
+	<object>
+		<obj_class>framework.GameObject</obj_class>
+		<param>testAnim</param>
+		<param>200</param>
+		<param>200</param>
+		<param>0</param>
+		<param>false</param>
+		<param>0</param>
+		<add>
+			<type>components.Animation</type>
+			<val>1</val>
+			<val>100</val>
+			<val>100</val>
+			<val>0</val>
+			<val>0</val>
+			<val>3</val>
+			<val>explode</val>
+		</add>
+	</object>
+	
+	<sharedObj>
+		<id>1</id>
+		<obj_class>components.SpriteSheet</obj_class>
+		<param>explo.png</param>
+		<param>70</param>
+		<param>70</param>
+	</sharedObj>
 </Level>

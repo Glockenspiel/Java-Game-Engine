@@ -2,9 +2,12 @@ package components;
 
 import java.awt.image.BufferedImage;
 
+import levelloading.Cast;
+import levelloading.LevelConstructor;
 import misc.Vector;
 import display.Drawer;
 import framework.Component;
+import framework.Game;
 import framework.GameObject;
 
 public class Animation extends Component {
@@ -15,6 +18,8 @@ public class Animation extends Component {
 	private int frameSpeed; //number of game frames until change to next image in animation
 	private int frameCount=0;
 	private Vector displaySize;
+	private String name="";
+	
 	/*
 	 * width and height are display sizes
 	 * offsetX and offsetY are offsets to append to the GameObject origin
@@ -22,6 +27,13 @@ public class Animation extends Component {
 	public Animation(){}
 	
 	public Animation(SpriteSheet spriteSheet, int displayW, int displayH, Vector offset, int frameSpeed){
+		this.offset=offset;
+		this.spriteSheet = spriteSheet;
+		this.frameSpeed=frameSpeed;
+		displaySize = new Vector(displayW, displayH);
+	}
+	
+	public Animation(int animID, SpriteSheet spriteSheet, int displayW, int displayH, Vector offset, int frameSpeed){
 		this.offset=offset;
 		this.spriteSheet = spriteSheet;
 		this.frameSpeed=frameSpeed;
@@ -88,13 +100,20 @@ public class Animation extends Component {
 
 	@Override
 	public void construct(String[] args) {
-		// TODO Auto-generated method stub
-		
+		spriteSheet = (SpriteSheet) LevelConstructor.getSharedObj(Cast.toInt(args[0]));
+		displaySize = new Vector(Cast.toInt(args[1]), Cast.toInt(args[2]));
+		offset = new Vector(Cast.toFloat(args[3]), Cast.toFloat(args[4]));
+		frameSpeed = Cast.toInt(args[5]);
+		name = args[6];
 	}
 
 	@Override
 	public String[] getSaveArgs() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

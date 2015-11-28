@@ -2,14 +2,18 @@ package components;
 
 import java.awt.image.BufferedImage;
 
+import levelloading.Cast;
+import levelloading.Constructable;
 import loaders.ImageLoader;
 
-public class SpriteSheet {
+public class SpriteSheet extends Constructable{
 	
 	private BufferedImage[][] images;
 	private BufferedImage errorImage;
 	private BufferedImage srcImage;
 	private int frameWidth, frameHeight;
+	
+	public SpriteSheet(){}
 	
 	//constructor
 	public SpriteSheet(String filename, int frameWidth, int frameHeight){
@@ -68,5 +72,19 @@ public class SpriteSheet {
 	
 	public int getFrameHeight() {
 		return frameHeight;
+	}
+
+	@Override
+	public void construct(String[] args) {
+		srcImage = ImageLoader.load(args[0]);
+		frameHeight=Cast.toInt(args[1]);
+		frameWidth=Cast.toInt(args[2]);
+		loadFrames(frameWidth, frameHeight, args[0]);
+	}
+
+	@Override
+	public String[] getSaveArgs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

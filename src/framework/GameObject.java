@@ -13,6 +13,8 @@ import collision.Rectangle;
 import collision.CollisionListener;
 import collision.CollisionShape;
 import collision.RectangleI;
+import components.Animation;
+import components.Animator;
 import components.HUDItem;
 import display.Drawer;
 
@@ -24,6 +26,7 @@ public class GameObject extends Constructable implements Debug { // also known a
 	private ArrayList<Component> components = new ArrayList<Component>();
 	private ArrayList<CollisionShape> collisionShapes = new ArrayList<CollisionShape>();
 	private ArrayList<Script> scripts = new ArrayList<Script>();
+	private Animator animator = new Animator();
 	private Vector position = new Vector(0,0);
 	private boolean isGlobal=false;
 	private int drawLayer=0;
@@ -64,6 +67,10 @@ public class GameObject extends Constructable implements Debug { // also known a
 			((SetObjID) shape).setGameObjectID(getID());
 		
 		collisionShapes.add(shape);
+	}
+	
+	public void addAnim(Animation anim){
+		animator.addAnimation(anim, anim.getName());
 	}
 	
 	//adds a Script to the GameObject
@@ -113,6 +120,8 @@ public class GameObject extends Constructable implements Debug { // also known a
 		
 		for(Component c: components)
 			c.update(this);
+		
+		animator.update(this);
 			
 		if(deleteOnTime>0 && Time.getTime()>deleteOnTime){
 			delete();
@@ -123,6 +132,8 @@ public class GameObject extends Constructable implements Debug { // also known a
 	public void draw(Drawer g){
 		for(Component c : components)
 			c.draw(g, this.position);
+		
+		animator.draw(g, this.position);
 	}
 	
 	//return a copy of position to avoid breaking encapsulation
@@ -300,15 +311,18 @@ public class GameObject extends Constructable implements Debug { // also known a
 	@Override
 	public void construct(String[] args) {
 		tag=args[0];
-		 return;
-		/*
-		float x = Cast.toFloat(args[1]);
-		float y = Cast.toFloat(args[2]);
-		position.moveTo(x, y);
-		drawLayer = Cast.toInt(args[3]);
-		isGlobal = Cast.toBoolean(args[4]);
-		deleteOnTime=Time.getTime()+Cast.toLong(args[5]);
-		*/
+
+		if(args.length>=6){
+			float x = Cast.toFloat(args[1]);
+			float y = Cast.toFloat(args[2]);
+
+			position.moveTo(x, y);
+			drawLayer = Cast.toInt(args[3]);
+			isGlobal = Cast.toBoolean(args[4]);
+			long time = Cast.toLong(args[5]);
+			if(time>0)
+				deleteOnTime=Time.getTime()+Cast.toLong(args[5]);
+		}
 	}
 
 	@Override

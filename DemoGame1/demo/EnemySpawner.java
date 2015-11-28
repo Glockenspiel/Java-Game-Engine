@@ -43,6 +43,6 @@ public class EnemySpawner extends GameObject {
 	@Override
 	public void construct(String[] args){
 		super.construct(args);
-		spawnTime= Cast.toInt(args[1]);
+		spawnTime= Cast.toInt(args[6]);
 	}
 }

@@ -28,6 +28,8 @@ public class Animator extends Component {
 	//add an animation
 	public void addAnimation(Animation anim, String stateName){
 		animations.put(stateName, anim);
+		if(currentAnim==null)
+			setCurrentAnimation(stateName);
 	}
 	
 	//get the state name of the current animation

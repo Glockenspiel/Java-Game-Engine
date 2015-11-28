@@ -1,18 +1,12 @@
 package levelloading;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Type;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
+
+import components.Animation;
 
 import collision.CollisionShape;
-import components.Animation;
-import components.SpriteSheet;
 import framework.Component;
-import framework.Game;
 import framework.GameObject;
 import framework.Script;
-import tiles.TileMap;
 
 public class ObjConstructor {
 	
@@ -26,8 +20,12 @@ public class ObjConstructor {
 					try {
 						o=c.newInstance();
 					} catch (InstantiationException | IllegalAccessException e) {e.printStackTrace();}
-					
-					if(o instanceof Component){
+					if(o instanceof Animation){
+						Animation anim = (Animation) o;
+						anim.construct(args);
+						obj.addAnim(anim);
+					}
+					else if(o instanceof Component){
 						Component comp = (Component) o;
 						comp.construct(args);
 						obj.add(comp);
@@ -79,6 +77,22 @@ public class ObjConstructor {
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {e.printStackTrace();}
+		return null;
+	}
+
+	public static Constructable loadObject(String[] args, String className) {
+		try {
+			Class<?> c = Class.forName(className);
+			Constructable o = null;
+				try {
+					o = (Constructable) c.newInstance();
+					o.construct(args);
+				} catch (InstantiationException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			return o;
+		} 
+		catch (ClassNotFoundException e) {e.printStackTrace();}
 		return null;
 	}
 }
