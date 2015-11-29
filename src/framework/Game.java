@@ -1,8 +1,11 @@
 package framework;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import levelloading.LevelConstructor;
+import loaders.XmlLoader;
 import misc.Time;
 import misc.Timer;
 import services.Camera;
@@ -334,5 +337,29 @@ public class Game {
 
 	public static void addGameObjectWithoutBuffer(GameObject obj) {
 		objs.add(obj);
+	}
+
+	public static void saveState() {
+		String xmlString="";
+		
+		xmlString+="<Level>\n";
+		xmlString+=LevelConstructor.getSharedObjStrings();
+		//print(LevelConstructor.getSharedObjStrings());
+		
+		for(GameObject obj : objs){
+		//	print(obj.getSaveString());
+			xmlString+=obj.getSaveString();
+		}
+		
+		xmlString+="</Level>";
+		
+		//print(xmlString);
+		String levelName = Game.getCurrentLevel().getClass().getSimpleName();
+		String filename = "Resources/Levels/"+levelName+".xml";
+		try {
+			XmlLoader.writeStringtoXML(xmlString, filename);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

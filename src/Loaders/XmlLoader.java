@@ -1,7 +1,13 @@
 package loaders;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,4 +53,11 @@ public class XmlLoader {
 		NodeList nList = doc.getElementsByTagName(rootName);
 		return nList;
 	}
+	
+	public static void writeStringtoXML(String content, String filename) throws IOException {
+	        java.io.FileWriter fw = new java.io.FileWriter(filename);
+	        fw.write(content);
+	        fw.close();
+	    }
+	
 }

@@ -12,6 +12,8 @@ import framework.GameObject;
 //a coin
 public class Coin extends GameObject {
 	
+	public Coin(){}
+	
 	public Coin(String tag){
 		super(tag);
 		

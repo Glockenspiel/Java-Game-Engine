@@ -19,6 +19,7 @@ public class Animation extends Component {
 	private int frameCount=0;
 	private Vector displaySize;
 	private String name="";
+	private int spriteSheetID=-1;
 	
 	/*
 	 * width and height are display sizes
@@ -100,7 +101,8 @@ public class Animation extends Component {
 
 	@Override
 	public void construct(String[] args) {
-		spriteSheet = (SpriteSheet) LevelConstructor.getSharedObj(Cast.toInt(args[0]));
+		spriteSheetID = Cast.toInt(args[0]);
+		spriteSheet = (SpriteSheet) LevelConstructor.getSharedObj(spriteSheetID);
 		displaySize = new Vector(Cast.toInt(args[1]), Cast.toInt(args[2]));
 		offset = new Vector(Cast.toFloat(args[3]), Cast.toFloat(args[4]));
 		frameSpeed = Cast.toInt(args[5]);
@@ -109,8 +111,16 @@ public class Animation extends Component {
 
 	@Override
 	public String[] getSaveArgs() {
-		// TODO Auto-generated method stub
-		return null;
+		String args[] =new String[]{
+			String.valueOf(spriteSheetID),
+			String.valueOf(displaySize.intX()),
+			String.valueOf(displaySize.intY()),
+			String.valueOf(offset.getX()),
+			String.valueOf(offset.getY()),
+			String.valueOf(frameSpeed),
+			name
+		};
+		return args;
 	}
 
 	public String getName() {

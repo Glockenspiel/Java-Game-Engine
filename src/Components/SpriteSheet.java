@@ -12,6 +12,7 @@ public class SpriteSheet extends Constructable{
 	private BufferedImage errorImage;
 	private BufferedImage srcImage;
 	private int frameWidth, frameHeight;
+	private String filename;
 	
 	public SpriteSheet(){}
 	
@@ -76,7 +77,8 @@ public class SpriteSheet extends Constructable{
 
 	@Override
 	public void construct(String[] args) {
-		srcImage = ImageLoader.load(args[0]);
+		filename= args[0];
+		srcImage = ImageLoader.load(filename);
 		frameHeight=Cast.toInt(args[1]);
 		frameWidth=Cast.toInt(args[2]);
 		loadFrames(frameWidth, frameHeight, args[0]);
@@ -84,7 +86,11 @@ public class SpriteSheet extends Constructable{
 
 	@Override
 	public String[] getSaveArgs() {
-		// TODO Auto-generated method stub
-		return null;
+		String [] args = new String[]{
+				filename,
+				String.valueOf(frameHeight),
+				String.valueOf(frameWidth)
+		};
+		return args;
 	}
 }

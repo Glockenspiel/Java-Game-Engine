@@ -1,5 +1,6 @@
 package components;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,8 +54,31 @@ public class Animator extends Component {
 
 	//SAVE ANIMATIONS AND CURRENT STATE
 	@Override
-	public void construct(String[] args) {}
+	public void construct(String[] args) {
+		setCurrentAnimation(args[0]);
+	}
 
 	@Override
-	public String[] getSaveArgs() { return null;}
+	public String[] getSaveArgs() { 
+		String args[] = new String[]{
+				currentAnimState
+		};
+
+		return args;
+	}
+	
+	public String getAnimationsSaveString(){
+		String s="";
+		
+		for(Animation anim : animations.values()){
+			s+="\n\t<add>\n";
+			s+="\t\t<type>"+anim.getClass().getName()+"</type>\n";
+			for(String arg : anim.getSaveArgs()){
+				s+="\t\t\t<val>"+arg+"</val>\n";
+			}
+			s+="\t</add>\n";
+		}
+
+		return s;
+	}
 }

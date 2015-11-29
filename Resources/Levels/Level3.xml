@@ -1,0 +1,452 @@
+<Level>
+<sharedObj>
+	<id>1</id>
+	<obj_class>components.SpriteSheet</obj_class>
+	<param>explo.png</param>
+	<param>70</param>
+	<param>70</param>
+</sharedObj>
+
+<object>
+	<obj_class>demo.Player</obj_class>
+		<param>player</param>
+		<param>-26.666668</param>
+		<param>99.00011</param>
+		<param>10</param>
+		<param>true</param>
+		<param>-1448773797816</param>
+		<param></param>
+
+		<add>
+			<type>components.Animator</type>
+				<val>small</val>
+		</add>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>spaceship.png</val>
+				<val>100</val>
+				<val>32</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+</object>
+<object>
+	<obj_class>framework.GameObject</obj_class>
+		<param>map</param>
+		<param>-250.0</param>
+		<param>-250.0</param>
+		<param>-10</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+
+		<add>
+			<type>tiles.TileMap</type>
+				<val>level1.xml</val>
+				<val>64</val>
+				<val>64</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.EnemySpawner</obj_class>
+		<param>Enemy Spawner</param>
+		<param>0.0</param>
+		<param>0.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+</object>
+<object>
+	<obj_class>demo.CoinDispenser</obj_class>
+		<param>coin dispenser</param>
+		<param>500.0</param>
+		<param>0.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+</object>
+<object>
+	<obj_class>framework.GameObject</obj_class>
+		<param>more level</param>
+		<param>0.0</param>
+		<param>0.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+</object>
+<object>
+	<obj_class>prefabs.Door</obj_class>
+		<param>door</param>
+		<param>150.0</param>
+		<param>-10.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+</object>
+<object>
+	<obj_class>framework.GameObject</obj_class>
+		<param>testAnim</param>
+		<param>100.0</param>
+		<param>100.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param>explode</param>
+
+	<add>
+		<type>components.Animation</type>
+			<val>1</val>
+			<val>100</val>
+			<val>100</val>
+			<val>0.0</val>
+			<val>0.0</val>
+			<val>3</val>
+			<val>explode</val>
+	</add>
+</object>
+<object>
+	<obj_class>framework.GameObject</obj_class>
+		<param>ching</param>
+		<param>0.0</param>
+		<param>0.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797816</param>
+		<param></param>
+
+		<add>
+			<type>components.AudioSource</type>
+				<val>coins.wav</val>
+				<val>false</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>-539.43146</param>
+		<param>74.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>1301</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.670854</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>-374.5636</param>
+		<param>118.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>2311</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.662839</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>-209.8125</param>
+		<param>63.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>3320</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.647747</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Coin</obj_class>
+		<param>coin</param>
+		<param>-757.0418</param>
+		<param>78.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>512</param>
+		<param></param>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>20</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-15.482377</val>
+				<val>0.0</val>
+		</add>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>coins.png</val>
+				<val>32</val>
+				<val>32</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+</object>
+<object>
+	<obj_class>framework.GameObject</obj_class>
+		<param>ching</param>
+		<param>0.0</param>
+		<param>0.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>-1448773797817</param>
+		<param></param>
+
+		<add>
+			<type>components.AudioSource</type>
+				<val>coins.wav</val>
+				<val>false</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>-45.121666</param>
+		<param>58.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>4328</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.629005</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Coin</obj_class>
+		<param>coin</param>
+		<param>-339.88525</param>
+		<param>21.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>1922</param>
+		<param></param>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>20</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-15.764581</val>
+				<val>0.0</val>
+		</add>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>coins.png</val>
+				<val>32</val>
+				<val>32</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>119.73706</param>
+		<param>240.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>5338</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.620439</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Coin</obj_class>
+		<param>coin</param>
+		<param>77.50427</param>
+		<param>299.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>3332</param>
+		<param></param>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>20</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-16.060886</val>
+				<val>0.0</val>
+		</add>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>coins.png</val>
+				<val>32</val>
+				<val>32</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>284.47064</param>
+		<param>205.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>6349</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-8.604301</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Enemy</obj_class>
+		<param>Enemy1</param>
+		<param>355.1161</param>
+		<param>181.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>7024</param>
+		<param></param>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>rock.png</val>
+				<val>32</val>
+				<val>64</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>100</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-16.21916</val>
+				<val>0.0</val>
+		</add>
+</object>
+<object>
+	<obj_class>demo.Coin</obj_class>
+		<param>coin</param>
+		<param>219.38766</param>
+		<param>100.0</param>
+		<param>0</param>
+		<param>false</param>
+		<param>4024</param>
+		<param></param>
+
+		<add>
+			<type>components.RigidBody</type>
+				<val>20</val>
+				<val>0.0</val>
+				<val>1.0</val>
+				<val>-32.993206</val>
+				<val>0.0</val>
+		</add>
+
+		<add>
+			<type>components.Sprite</type>
+				<val>coins.png</val>
+				<val>32</val>
+				<val>32</val>
+				<val>0</val>
+				<val>0</val>
+		</add>
+</object>
+</Level>

@@ -14,6 +14,8 @@ public class Enemy extends GameObject {
 	private Vector size = new Vector(32,64);
 	private float maxSpeed = 15f;
 
+	public Enemy(){}
+	
 	//constructor
 	public Enemy(String tag) {
 		super(tag);

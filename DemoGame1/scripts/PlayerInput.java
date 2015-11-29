@@ -35,6 +35,10 @@ public class PlayerInput implements Script {
 			shoot(obj.getPosition());
 		}
 		
+		if(Game.Keyboard().isButtonPressed('V')){
+			Game.saveState();
+		}
+		
 		//enable boost
 		char boostKey = KeyEvent.VK_SPACE;
 		if(Game.Keyboard().isButtonDown(boostKey)){

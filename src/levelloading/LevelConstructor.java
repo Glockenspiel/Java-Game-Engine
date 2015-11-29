@@ -2,6 +2,8 @@ package levelloading;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import loaders.XmlLoader;
 
@@ -130,5 +132,28 @@ public class LevelConstructor {
 	
 	public static Constructable getSharedObj(int id){
 		return sharedObjs.get(id);
+	}
+
+	public static String getSharedObjStrings() {
+		String s ="";
+		Iterator it = sharedObjs.entrySet().iterator();
+		while(it.hasNext()){
+			 Map.Entry pair = (Map.Entry)it.next();
+			s+="<sharedObj>\n";
+			s+="\t<id>"+pair.getKey()+"</id>\n";
+			
+			Constructable value = (Constructable) pair.getValue();
+			String[] args = value.getSaveArgs();
+			
+			s+="\t<obj_class>"+value.getClass().getName()+"</obj_class>\n";
+			if(args!=null){
+				for(String arg : args){
+					s+="\t<param>"+arg+"</param>\n";
+				}
+			}
+			
+			s+="</sharedObj>\n\n";
+		}
+		return s;
 	}
 }

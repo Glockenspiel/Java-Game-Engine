@@ -7,6 +7,6 @@ public class Level3 extends Level {
 
 	@Override
 	public void init() {
-		LevelConstructor.construct("level1.xml");
+		LevelConstructor.construct("level3.xml");
 	}
 }

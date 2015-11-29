@@ -22,7 +22,7 @@ public class Door extends GameObject {
 	public void construct(String[] args){
 		super.construct(args);
 		
-		add(new ChangeLevel(args[6]));
+		//add(new ChangeLevel(args[7]));
 		/*
 		add(new CollisionBox(
 				Cast.toInt(args[7]), 

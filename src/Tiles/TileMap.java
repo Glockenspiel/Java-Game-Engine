@@ -155,8 +155,8 @@ public class TileMap extends Component {
 	public String[] getSaveArgs() {
 		String[] args = new String[]{
 				filename,
-				String.valueOf(sheet.getFrameWidth()),
-				String.valueOf(sheet.getFrameHeight()),
+				String.valueOf(tileSize.intX()),
+				String.valueOf(tileSize.intY()),
 		};
 		return args;
 	}

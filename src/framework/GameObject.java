@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import levelloading.Cast;
 import levelloading.Constructable;
+import levelloading.LevelConstructor;
 import misc.Debug;
 import misc.IdGenerator;
 import misc.Time;
@@ -333,8 +334,40 @@ public class GameObject extends Constructable implements Debug { // also known a
 				String.valueOf(position.getY()),
 				String.valueOf(drawLayer),
 				String.valueOf(isGlobal),
-				String.valueOf(deleteOnTime-Time.getTime())
+				String.valueOf(deleteOnTime-Time.getTime()),
+				animator.getCurrentState()
 		};
 		return args;
+	}
+	
+	public String getSaveString(){
+		
+		//do shared objects first
+		//s+=LevelConstructor.getSharedObjStrings();
+		String s ="";
+		
+		
+		s+="<object>\n";
+		s+="\t<obj_class>"+this.getClass().getName()+"</obj_class>\n";
+		for(String param : getSaveArgs()){
+			s+="\t\t<param>"+param+"</param>\n";
+		}
+		
+		for(Component comp : components){
+			s+="\n\t\t<add>\n";
+			s+="\t\t\t<type>"+comp.getClass().getName()+"</type>\n";
+			
+			if(comp.getSaveArgs()!=null)
+			for(String arg : comp.getSaveArgs()){
+				s+="\t\t\t\t<val>"+arg+"</val>\n";
+			}
+			
+			s+="\t\t</add>\n";
+		}
+		
+		s += animator.getAnimationsSaveString();
+		
+		s+="</object>\n";
+		return s;
 	}
 }

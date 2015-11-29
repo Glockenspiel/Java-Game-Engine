@@ -9,7 +9,7 @@ import framework.GameObject;
 public class EnemySpawner extends GameObject {
 
 	private long lastSpawn=0;
-	private long spawnTime;
+	private long spawnTime=1000;
 	
 	public EnemySpawner(){
 		super();
@@ -43,6 +43,12 @@ public class EnemySpawner extends GameObject {
 	@Override
 	public void construct(String[] args){
 		super.construct(args);
-		spawnTime= Cast.toInt(args[6]);
+		//spawnTime= Cast.toInt(args[7]);
+	}
+	
+	@Override
+	public String[] getSaveArgs(){
+		String[] args = super.getSaveArgs();
+		return args;
 	}
 }

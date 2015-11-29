@@ -8,6 +8,7 @@
 		<param>-10</param>
 		<param>false</param>
 		<param>0</param>
+		<param></param>
 		
 		<add>
 			<type>tiles.TileMap</type>
@@ -26,6 +27,7 @@
 		<param>0</param>
 		<param>false</param>
 		<param>0</param>
+		<param></param>
 		<param>1000</param>
 	</object>
 
@@ -62,6 +64,7 @@
 		<param>0</param>
 		<param>false</param>
 		<param>0</param>
+		<param></param>
 		<param>levels.Level2</param>
 		
 		<add>
@@ -76,11 +79,12 @@
 	<object>
 		<obj_class>framework.GameObject</obj_class>
 		<param>testAnim</param>
-		<param>200</param>
-		<param>200</param>
+		<param>100</param>
+		<param>100</param>
 		<param>0</param>
 		<param>false</param>
 		<param>0</param>
+		<param>explode</param>
 		<add>
 			<type>components.Animation</type>
 			<val>1</val>
