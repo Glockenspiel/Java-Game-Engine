@@ -1,0 +1,6 @@
+if errors appear in eclipse its probably because of capital letters.
+1. clone repo
+2. rename folders in src with not capital letter at start of folders
+3. import to eclipse
+4. refacetor and rename the folders that have the first letter uppercase
+5. demo1.main int the java file the class name must be change the lower case

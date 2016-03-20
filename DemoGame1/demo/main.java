@@ -10,7 +10,7 @@ import levels.*;
 import misc.Vector;
 
 
-public class Main{
+public class main{
 
 	public static void main(String[] args) {
 		//create the game 
